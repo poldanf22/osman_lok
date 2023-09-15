@@ -58,7 +58,7 @@ if authentication_status:
 
         st.info("Jika melihat pesan error di paling bawah, silahkan refresh")
         st.title("Olahan untuk Lokasi")
-        st.header("SD-SMP-10KM")
+        st.header("SD(K13) SMP(K13-KM)")
 
         col6 = st.container()
 
@@ -1852,7 +1852,7 @@ if authentication_status:
                 'border': 1,
                 'align': 'center',
                 'valign': 'vcenter',
-                'font_size': 40,
+                'font_size': 35,
                 'font_name': 'Arial Rounded MT Bold'})
             borderCover = workbook.add_format({
                 'bottom': 1,
@@ -1958,7 +1958,8 @@ if authentication_status:
                 'A6:F7', fr'{semester} TAHUN {tahun}', headerCover)
             worksheetcover.write('A9', 'JUMLAH BENAR', sub_headerCover)
             worksheetcover.write('A19', 'NILAI STANDAR', sub_headerCover)
-            worksheetcover.merge_range('F8:G9', fr'{kelas}', kelasCover)
+            worksheetcover.merge_range(
+                'F8:G9', fr'{kelas}-{kurikulum}', kelasCover)
             worksheetcover.merge_range(
                 'F11:G12', 'JUMLAH SOAL', sub_header1Cover)
 
