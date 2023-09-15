@@ -229,63 +229,17 @@ if authentication_status:
             best150 = pd.concat(dfs)
 
             # sort setiap lokasi
-            # tanpa 104, 114, 125, 150
-            sort101 = df[df['LOKASI'] == 101]
-            sort102 = df[df['LOKASI'] == 102]
-            sort103 = df[df['LOKASI'] == 103]
-            sort105 = df[df['LOKASI'] == 105]
-            sort106 = df[df['LOKASI'] == 106]
-            sort107 = df[df['LOKASI'] == 107]
-            sort108 = df[df['LOKASI'] == 108]
-            sort109 = df[df['LOKASI'] == 109]
-            sort110 = df[df['LOKASI'] == 110]
-            sort111 = df[df['LOKASI'] == 111]
-            sort112 = df[df['LOKASI'] == 112]
-            sort113 = df[df['LOKASI'] == 113]
-            sort115 = df[df['LOKASI'] == 115]
-            sort116 = df[df['LOKASI'] == 116]
-            sort117 = df[df['LOKASI'] == 117]
-            sort118 = df[df['LOKASI'] == 118]
-            sort119 = df[df['LOKASI'] == 119]
-            sort120 = df[df['LOKASI'] == 120]
-            sort121 = df[df['LOKASI'] == 121]
-            sort122 = df[df['LOKASI'] == 122]
-            sort123 = df[df['LOKASI'] == 123]
-            sort124 = df[df['LOKASI'] == 124]
-            sort126 = df[df['LOKASI'] == 126]
-            sort127 = df[df['LOKASI'] == 127]
-            sort128 = df[df['LOKASI'] == 128]
-            sort129 = df[df['LOKASI'] == 129]
-            sort130 = df[df['LOKASI'] == 130]
-            sort131 = df[df['LOKASI'] == 131]
-            sort132 = df[df['LOKASI'] == 132]
-            sort133 = df[df['LOKASI'] == 133]
-            sort134 = df[df['LOKASI'] == 134]
-            sort135 = df[df['LOKASI'] == 135]
-            sort136 = df[df['LOKASI'] == 136]
-            sort137 = df[df['LOKASI'] == 137]
-            sort138 = df[df['LOKASI'] == 138]
-            sort139 = df[df['LOKASI'] == 139]
-            sort140 = df[df['LOKASI'] == 140]
-            sort141 = df[df['LOKASI'] == 141]
-            sort142 = df[df['LOKASI'] == 142]
-            sort143 = df[df['LOKASI'] == 143]
-            sort144 = df[df['LOKASI'] == 144]
-            sort145 = df[df['LOKASI'] == 145]
-            sort146 = df[df['LOKASI'] == 146]
-            sort147 = df[df['LOKASI'] == 147]  # baru
-            sort148 = df[df['LOKASI'] == 148]
-            sort149 = df[df['LOKASI'] == 149]
-            sort151 = df[df['LOKASI'] == 151]
-            sort152 = df[df['LOKASI'] == 152]
-            sort153 = df[df['LOKASI'] == 153]
-            sort154 = df[df['LOKASI'] == 154]
-            sort155 = df[df['LOKASI'] == 155]
-            sort156 = df[df['LOKASI'] == 156]
-            sort157 = df[df['LOKASI'] == 157]
-            sort158 = df[df['LOKASI'] == 158]
-            sort159 = df[df['LOKASI'] == 159]
-            sort160 = df[df['LOKASI'] == 160]
+            lokasi_list = [101, 102, 103, 105, 106, 107, 108, 109, 110, 111, 112, 113, 115, 116,
+                           117, 118, 119, 120, 121, 122, 123, 124, 126, 127, 128, 129, 130, 131,
+                           132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145,
+                           146, 147, 148, 149, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160]
+
+            sort_dict = {}
+
+            for lokasi in lokasi_list:
+                sort_key = f'sort{lokasi}'
+                sort_result = df[df['LOKASI'] == lokasi]
+                sort_dict[sort_key] = sort_result
 
             # best150
             best150_all = best150.sort_values(
