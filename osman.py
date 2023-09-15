@@ -234,14 +234,17 @@ if authentication_status:
                            132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145,
                            146, 147, 148, 149, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160]
 
+            result = {}
+
             for lokasi in lokasi_list:
                 sort_df = df[df['LOKASI'] == lokasi]
                 sort_df_10 = sort_df.sort_values(
                     by=['RANK LOK.'], ascending=[True])
                 del sort_df_10['LOKASI']
-                sort_df_10 = sort_df_10.drop(
-                    sort_df_10[sort_df_10['RANK LOK.'] > 10].index)
-                globals()[f'sort{lokasi}_10'] = sort_df_10
+                sort_df_10 = sort_df_10[sort_df_10['RANK LOK.'] > 10]
+
+                result[f'row{lokasi}_10'] = sort_df_10.shape[0]
+                result[f'row{lokasi}'] = sort_df.shape[0]
 
             # best150
             best150_all = best150.sort_values(
@@ -255,174 +258,6 @@ if authentication_status:
             # 150
             rowBest150_all = best150_all.shape[0]
             rowBest150 = best150.shape[0]
-            # 101
-            row101_10 = sort101_10.shape[0]
-            row101 = sort101.shape[0]
-            # 102
-            row102_10 = sort102_10.shape[0]
-            row102 = sort102.shape[0]
-            # 103
-            row103_10 = sort103_10.shape[0]
-            row103 = sort103.shape[0]
-            # 105
-            row105_10 = sort105_10.shape[0]
-            row105 = sort105.shape[0]
-            # 106
-            row106_10 = sort106_10.shape[0]
-            row106 = sort106.shape[0]
-            # 107
-            row107_10 = sort107_10.shape[0]
-            row107 = sort107.shape[0]
-            # 108
-            row108_10 = sort108_10.shape[0]
-            row108 = sort108.shape[0]
-            # 109
-            row109_10 = sort109_10.shape[0]
-            row109 = sort109.shape[0]
-            # 110
-            row110_10 = sort110_10.shape[0]
-            row110 = sort110.shape[0]
-            # 111
-            row111_10 = sort111_10.shape[0]
-            row111 = sort111.shape[0]
-            # 112
-            row112_10 = sort112_10.shape[0]
-            row112 = sort112.shape[0]
-            # 113
-            row113_10 = sort113_10.shape[0]
-            row113 = sort113.shape[0]
-            # 115
-            row115_10 = sort115_10.shape[0]
-            row115 = sort115.shape[0]
-            # 116
-            row116_10 = sort116_10.shape[0]
-            row116 = sort116.shape[0]
-            # 117
-            row117_10 = sort117_10.shape[0]
-            row117 = sort117.shape[0]
-            # 118
-            row118_10 = sort118_10.shape[0]
-            row118 = sort118.shape[0]
-            # 119
-            row119_10 = sort119_10.shape[0]
-            row119 = sort119.shape[0]
-            # 120
-            row120_10 = sort120_10.shape[0]
-            row120 = sort120.shape[0]
-            # 121
-            row121_10 = sort121_10.shape[0]
-            row121 = sort121.shape[0]
-            # 122
-            row122_10 = sort122_10.shape[0]
-            row122 = sort122.shape[0]
-            # 123
-            row123_10 = sort123_10.shape[0]
-            row123 = sort123.shape[0]
-            # 124
-            row124_10 = sort124_10.shape[0]
-            row124 = sort124.shape[0]
-            # 126
-            row126_10 = sort126_10.shape[0]
-            row126 = sort126.shape[0]
-            # 127
-            row127_10 = sort127_10.shape[0]
-            row127 = sort127.shape[0]
-            # 128
-            row128_10 = sort128_10.shape[0]
-            row128 = sort128.shape[0]
-            # 129
-            row129_10 = sort129_10.shape[0]
-            row129 = sort129.shape[0]
-            # 130
-            row130_10 = sort130_10.shape[0]
-            row130 = sort130.shape[0]
-            # 131
-            row131_10 = sort131_10.shape[0]
-            row131 = sort131.shape[0]
-            # 132
-            row132_10 = sort132_10.shape[0]
-            row132 = sort132.shape[0]
-            # 133
-            row133_10 = sort133_10.shape[0]
-            row133 = sort133.shape[0]
-            # 134
-            row134_10 = sort134_10.shape[0]
-            row134 = sort134.shape[0]
-            # 135
-            row135_10 = sort135_10.shape[0]
-            row135 = sort135.shape[0]
-            # 136
-            row136_10 = sort136_10.shape[0]
-            row136 = sort136.shape[0]
-            # 137
-            row137_10 = sort137_10.shape[0]
-            row137 = sort137.shape[0]
-            # 138
-            row138_10 = sort138_10.shape[0]
-            row138 = sort138.shape[0]
-            # 139
-            row139_10 = sort139_10.shape[0]
-            row139 = sort139.shape[0]
-            # 140
-            row140_10 = sort140_10.shape[0]
-            row140 = sort140.shape[0]
-            # 141
-            row141_10 = sort141_10.shape[0]
-            row141 = sort141.shape[0]
-            # 142
-            row142_10 = sort142_10.shape[0]
-            row142 = sort142.shape[0]
-            # 143
-            row143_10 = sort143_10.shape[0]
-            row143 = sort143.shape[0]
-            # 144
-            row144_10 = sort144_10.shape[0]
-            row144 = sort144.shape[0]
-            # 145
-            row145_10 = sort145_10.shape[0]
-            row145 = sort145.shape[0]
-            # 146
-            row146_10 = sort146_10.shape[0]
-            row146 = sort146.shape[0]
-            # 147
-            row147_10 = sort147_10.shape[0]
-            row147 = sort147.shape[0]
-            # 148
-            row148_10 = sort148_10.shape[0]
-            row148 = sort148.shape[0]
-            # 149
-            row149_10 = sort149_10.shape[0]
-            row149 = sort149.shape[0]
-            # 151
-            row151_10 = sort151_10.shape[0]
-            row151 = sort151.shape[0]
-            # 152
-            row152_10 = sort152_10.shape[0]
-            row152 = sort152.shape[0]
-            # 153
-            row153_10 = sort153_10.shape[0]
-            row153 = sort153.shape[0]
-            # 154
-            row154_10 = sort154_10.shape[0]
-            row154 = sort154.shape[0]
-            # 155
-            row155_10 = sort155_10.shape[0]
-            row155 = sort155.shape[0]
-            # 156
-            row156_10 = sort156_10.shape[0]
-            row156 = sort156.shape[0]
-            # 157
-            row157_10 = sort157_10.shape[0]
-            row157 = sort157.shape[0]
-            # 158
-            row158_10 = sort158_10.shape[0]
-            row158 = sort158.shape[0]
-            # 159
-            row159_10 = sort159_10.shape[0]
-            row159 = sort159.shape[0]
-            # 160
-            row160_10 = sort160_10.shape[0]
-            row160 = sort160.shape[0]
 
             # Create a Pandas Excel writer using XlsxWriter as the engine.
             # Path file hasil penyimpanan
