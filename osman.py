@@ -229,22 +229,63 @@ if authentication_status:
             best150 = pd.concat(dfs)
 
             # sort setiap lokasi
-            lokasi_list = [101, 102, 103, 105, 106, 107, 108, 109, 110, 111, 112, 113, 115, 116,
-                           117, 118, 119, 120, 121, 122, 123, 124, 126, 127, 128, 129, 130, 131,
-                           132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145,
-                           146, 147, 148, 149, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160]
-
-            result = {}
-
-            for lokasi in lokasi_list:
-                sort_df = df[df['LOKASI'] == lokasi]
-                sort_df_10 = sort_df.sort_values(
-                    by=['RANK LOK.'], ascending=[True])
-                del sort_df_10['LOKASI']
-                sort_df_10 = sort_df_10[sort_df_10['RANK LOK.'] > 10]
-
-                result[f'row{lokasi}_10'] = sort_df_10.shape[0]
-                result[f'row{lokasi}'] = sort_df.shape[0]
+            # tanpa 104, 114, 125, 150
+            sort101 = df[df['LOKASI'] == 101]
+            sort102 = df[df['LOKASI'] == 102]
+            sort103 = df[df['LOKASI'] == 103]
+            sort105 = df[df['LOKASI'] == 105]
+            sort106 = df[df['LOKASI'] == 106]
+            sort107 = df[df['LOKASI'] == 107]
+            sort108 = df[df['LOKASI'] == 108]
+            sort109 = df[df['LOKASI'] == 109]
+            sort110 = df[df['LOKASI'] == 110]
+            sort111 = df[df['LOKASI'] == 111]
+            sort112 = df[df['LOKASI'] == 112]
+            sort113 = df[df['LOKASI'] == 113]
+            sort115 = df[df['LOKASI'] == 115]
+            sort116 = df[df['LOKASI'] == 116]
+            sort117 = df[df['LOKASI'] == 117]
+            sort118 = df[df['LOKASI'] == 118]
+            sort119 = df[df['LOKASI'] == 119]
+            sort120 = df[df['LOKASI'] == 120]
+            sort121 = df[df['LOKASI'] == 121]
+            sort122 = df[df['LOKASI'] == 122]
+            sort123 = df[df['LOKASI'] == 123]
+            sort124 = df[df['LOKASI'] == 124]
+            sort126 = df[df['LOKASI'] == 126]
+            sort127 = df[df['LOKASI'] == 127]
+            sort128 = df[df['LOKASI'] == 128]
+            sort129 = df[df['LOKASI'] == 129]
+            sort130 = df[df['LOKASI'] == 130]
+            sort131 = df[df['LOKASI'] == 131]
+            sort132 = df[df['LOKASI'] == 132]
+            sort133 = df[df['LOKASI'] == 133]
+            sort134 = df[df['LOKASI'] == 134]
+            sort135 = df[df['LOKASI'] == 135]
+            sort136 = df[df['LOKASI'] == 136]
+            sort137 = df[df['LOKASI'] == 137]
+            sort138 = df[df['LOKASI'] == 138]
+            sort139 = df[df['LOKASI'] == 139]
+            sort140 = df[df['LOKASI'] == 140]
+            sort141 = df[df['LOKASI'] == 141]
+            sort142 = df[df['LOKASI'] == 142]
+            sort143 = df[df['LOKASI'] == 143]
+            sort144 = df[df['LOKASI'] == 144]
+            sort145 = df[df['LOKASI'] == 145]
+            sort146 = df[df['LOKASI'] == 146]
+            sort147 = df[df['LOKASI'] == 147]
+            sort148 = df[df['LOKASI'] == 148]
+            sort149 = df[df['LOKASI'] == 149]
+            sort151 = df[df['LOKASI'] == 151]
+            sort152 = df[df['LOKASI'] == 152]
+            sort153 = df[df['LOKASI'] == 153]
+            sort154 = df[df['LOKASI'] == 154]
+            sort155 = df[df['LOKASI'] == 155]
+            sort156 = df[df['LOKASI'] == 156]
+            sort157 = df[df['LOKASI'] == 157]
+            sort158 = df[df['LOKASI'] == 158]
+            sort159 = df[df['LOKASI'] == 159]
+            sort160 = df[df['LOKASI'] == 160]
 
             # best150
             best150_all = best150.sort_values(
@@ -254,10 +295,685 @@ if authentication_status:
             best150_all = best150_all.drop(
                 best150_all[(best150_all['RANK NAS.'] > 150)].index)
 
+            # 10 besar setiap lokasi
+            # 101
+            sort101_10 = sort101.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort101_10['LOKASI']
+            sort101_10 = sort101_10.drop(
+                sort101_10[(sort101_10['RANK LOK.'] > 10)].index)
+            # 102
+            sort102_10 = sort102.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort102_10['LOKASI']
+            sort102_10 = sort102_10.drop(
+                sort102_10[(sort102_10['RANK LOK.'] > 10)].index)
+            # 103
+            sort103_10 = sort103.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort103_10['LOKASI']
+            sort103_10 = sort103_10.drop(
+                sort103_10[(sort103_10['RANK LOK.'] > 10)].index)
+            # 105
+            sort105_10 = sort105.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort105_10['LOKASI']
+            sort105_10 = sort105_10.drop(
+                sort105_10[(sort105_10['RANK LOK.'] > 10)].index)
+            # 106
+            sort106_10 = sort106.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort106_10['LOKASI']
+            sort106_10 = sort106_10.drop(
+                sort106_10[(sort106_10['RANK LOK.'] > 10)].index)
+            # 107
+            sort107_10 = sort107.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort107_10['LOKASI']
+            sort107_10 = sort107_10.drop(
+                sort107_10[(sort107_10['RANK LOK.'] > 10)].index)
+            # 108
+            sort108_10 = sort108.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort108_10['LOKASI']
+            sort108_10 = sort108_10.drop(
+                sort108_10[(sort108_10['RANK LOK.'] > 10)].index)
+            # 109
+            sort109_10 = sort109.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort109_10['LOKASI']
+            sort109_10 = sort109_10.drop(
+                sort109_10[(sort109_10['RANK LOK.'] > 10)].index)
+            # 110
+            sort110_10 = sort110.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort110_10['LOKASI']
+            sort110_10 = sort110_10.drop(
+                sort110_10[(sort110_10['RANK LOK.'] > 10)].index)
+            # 111
+            sort111_10 = sort111.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort111_10['LOKASI']
+            sort111_10 = sort111_10.drop(
+                sort111_10[(sort111_10['RANK LOK.'] > 10)].index)
+            # 112
+            sort112_10 = sort112.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort112_10['LOKASI']
+            sort112_10 = sort112_10.drop(
+                sort112_10[(sort112_10['RANK LOK.'] > 10)].index)
+            # 113
+            sort113_10 = sort113.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort113_10['LOKASI']
+            sort113_10 = sort113_10.drop(
+                sort113_10[(sort113_10['RANK LOK.'] > 10)].index)
+            # 115
+            sort115_10 = sort115.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort115_10['LOKASI']
+            sort115_10 = sort115_10.drop(
+                sort115_10[(sort115_10['RANK LOK.'] > 10)].index)
+            # 116
+            sort116_10 = sort116.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort116_10['LOKASI']
+            sort116_10 = sort116_10.drop(
+                sort116_10[(sort116_10['RANK LOK.'] > 10)].index)
+            # 117
+            sort117_10 = sort117.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort117_10['LOKASI']
+            sort117_10 = sort117_10.drop(
+                sort117_10[(sort117_10['RANK LOK.'] > 10)].index)
+            # 118
+            sort118_10 = sort118.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort118_10['LOKASI']
+            sort118_10 = sort118_10.drop(
+                sort118_10[(sort118_10['RANK LOK.'] > 10)].index)
+            # 119
+            sort119_10 = sort119.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort119_10['LOKASI']
+            sort119_10 = sort119_10.drop(
+                sort119_10[(sort119_10['RANK LOK.'] > 10)].index)
+            # 120
+            sort120_10 = sort120.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort120_10['LOKASI']
+            sort120_10 = sort120_10.drop(
+                sort120_10[(sort120_10['RANK LOK.'] > 10)].index)
+            # 121
+            sort121_10 = sort121.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort121_10['LOKASI']
+            sort121_10 = sort121_10.drop(
+                sort121_10[(sort121_10['RANK LOK.'] > 10)].index)
+            # 122
+            sort122_10 = sort122.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort122_10['LOKASI']
+            sort122_10 = sort122_10.drop(
+                sort122_10[(sort122_10['RANK LOK.'] > 10)].index)
+            # 123
+            sort123_10 = sort123.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort123_10['LOKASI']
+            sort123_10 = sort123_10.drop(
+                sort123_10[(sort123_10['RANK LOK.'] > 10)].index)
+            # 124
+            sort124_10 = sort124.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort124_10['LOKASI']
+            sort124_10 = sort124_10.drop(
+                sort124_10[(sort124_10['RANK LOK.'] > 10)].index)
+            # 126
+            sort126_10 = sort126.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort126_10['LOKASI']
+            sort126_10 = sort126_10.drop(
+                sort126_10[(sort126_10['RANK LOK.'] > 10)].index)
+            # 127
+            sort127_10 = sort127.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort127_10['LOKASI']
+            sort127_10 = sort127_10.drop(
+                sort127_10[(sort127_10['RANK LOK.'] > 10)].index)
+            # 128
+            sort128_10 = sort128.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort128_10['LOKASI']
+            sort128_10 = sort128_10.drop(
+                sort128_10[(sort128_10['RANK LOK.'] > 10)].index)
+            # 129
+            sort129_10 = sort129.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort129_10['LOKASI']
+            sort129_10 = sort129_10.drop(
+                sort129_10[(sort129_10['RANK LOK.'] > 10)].index)
+            # 130
+            sort130_10 = sort130.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort130_10['LOKASI']
+            sort130_10 = sort130_10.drop(
+                sort130_10[(sort130_10['RANK LOK.'] > 10)].index)
+            # 131
+            sort131_10 = sort131.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort131_10['LOKASI']
+            sort131_10 = sort131_10.drop(
+                sort131_10[(sort131_10['RANK LOK.'] > 10)].index)
+            # 132
+            sort132_10 = sort132.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort132_10['LOKASI']
+            sort132_10 = sort132_10.drop(
+                sort132_10[(sort132_10['RANK LOK.'] > 10)].index)
+            # 133
+            sort133_10 = sort133.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort133_10['LOKASI']
+            sort133_10 = sort133_10.drop(
+                sort133_10[(sort133_10['RANK LOK.'] > 10)].index)
+            # 134
+            sort134_10 = sort134.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort134_10['LOKASI']
+            sort134_10 = sort134_10.drop(
+                sort134_10[(sort134_10['RANK LOK.'] > 10)].index)
+            # 135
+            sort135_10 = sort135.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort135_10['LOKASI']
+            sort135_10 = sort135_10.drop(
+                sort135_10[(sort135_10['RANK LOK.'] > 10)].index)
+            # 136
+            sort136_10 = sort136.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort136_10['LOKASI']
+            sort136_10 = sort136_10.drop(
+                sort136_10[(sort136_10['RANK LOK.'] > 10)].index)
+            # 137
+            sort137_10 = sort137.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort137_10['LOKASI']
+            sort137_10 = sort137_10.drop(
+                sort137_10[(sort137_10['RANK LOK.'] > 10)].index)
+            # 138
+            sort138_10 = sort138.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort138_10['LOKASI']
+            sort138_10 = sort138_10.drop(
+                sort138_10[(sort138_10['RANK LOK.'] > 10)].index)
+            # 139
+            sort139_10 = sort139.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort139_10['LOKASI']
+            sort139_10 = sort139_10.drop(
+                sort139_10[(sort139_10['RANK LOK.'] > 10)].index)
+            # 140
+            sort140_10 = sort140.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort140_10['LOKASI']
+            sort140_10 = sort140_10.drop(
+                sort140_10[(sort140_10['RANK LOK.'] > 10)].index)
+            # 141
+            sort141_10 = sort141.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort141_10['LOKASI']
+            sort141_10 = sort141_10.drop(
+                sort141_10[(sort141_10['RANK LOK.'] > 10)].index)
+            # 142
+            sort142_10 = sort142.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort142_10['LOKASI']
+            sort142_10 = sort142_10.drop(
+                sort142_10[(sort142_10['RANK LOK.'] > 10)].index)
+            # 143
+            sort143_10 = sort143.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort143_10['LOKASI']
+            sort143_10 = sort143_10.drop(
+                sort143_10[(sort143_10['RANK LOK.'] > 10)].index)
+            # 144
+            sort144_10 = sort144.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort144_10['LOKASI']
+            sort144_10 = sort144_10.drop(
+                sort144_10[(sort144_10['RANK LOK.'] > 10)].index)
+            # 145
+            sort145_10 = sort145.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort145_10['LOKASI']
+            sort145_10 = sort145_10.drop(
+                sort145_10[(sort145_10['RANK LOK.'] > 10)].index)
+            # 146
+            sort146_10 = sort146.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort146_10['LOKASI']
+            sort146_10 = sort146_10.drop(
+                sort146_10[(sort146_10['RANK LOK.'] > 10)].index)
+            # 147
+            sort147_10 = sort147.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort147_10['LOKASI']
+            sort147_10 = sort147_10.drop(
+                sort147_10[(sort147_10['RANK LOK.'] > 10)].index)
+            # 148
+            sort148_10 = sort148.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort148_10['LOKASI']
+            sort148_10 = sort148_10.drop(
+                sort148_10[(sort148_10['RANK LOK.'] > 10)].index)
+            # 149
+            sort149_10 = sort149.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort149_10['LOKASI']
+            sort149_10 = sort149_10.drop(
+                sort149_10[(sort149_10['RANK LOK.'] > 10)].index)
+            # 151
+            sort151_10 = sort151.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort151_10['LOKASI']
+            sort151_10 = sort151_10.drop(
+                sort151_10[(sort151_10['RANK LOK.'] > 10)].index)
+            # 152
+            sort152_10 = sort152.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort152_10['LOKASI']
+            sort152_10 = sort152_10.drop(
+                sort152_10[(sort152_10['RANK LOK.'] > 10)].index)
+            # 153
+            sort153_10 = sort153.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort153_10['LOKASI']
+            sort153_10 = sort153_10.drop(
+                sort153_10[(sort153_10['RANK LOK.'] > 10)].index)
+            # 154
+            sort154_10 = sort154.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort154_10['LOKASI']
+            sort154_10 = sort154_10.drop(
+                sort154_10[(sort154_10['RANK LOK.'] > 10)].index)
+            # 155
+            sort155_10 = sort155.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort155_10['LOKASI']
+            sort155_10 = sort155_10.drop(
+                sort155_10[(sort155_10['RANK LOK.'] > 10)].index)
+            # 156
+            sort156_10 = sort156.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort156_10['LOKASI']
+            sort156_10 = sort156_10.drop(
+                sort156_10[(sort156_10['RANK LOK.'] > 10)].index)
+            # 157
+            sort157_10 = sort157.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort157_10['LOKASI']
+            sort157_10 = sort157_10.drop(
+                sort157_10[(sort157_10['RANK LOK.'] > 10)].index)
+            # 158
+            sort158_10 = sort158.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort158_10['LOKASI']
+            sort158_10 = sort158_10.drop(
+                sort158_10[(sort158_10['RANK LOK.'] > 10)].index)
+            # 159
+            sort159_10 = sort159.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort159_10['LOKASI']
+            sort159_10 = sort159_10.drop(
+                sort159_10[(sort159_10['RANK LOK.'] > 10)].index)
+            # 160
+            sort160_10 = sort160.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort160_10['LOKASI']
+            sort160_10 = sort160_10.drop(
+                sort160_10[(sort160_10['RANK LOK.'] > 10)].index)
+
+            # All 101
+            sort101 = sort101.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort101['LOKASI']
+            # All 102
+            sort102 = sort102.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort102['LOKASI']
+            # All 103
+            sort103 = sort103.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort103['LOKASI']
+            # All 105
+            sort105 = sort105.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort105['LOKASI']
+            # All 106
+            sort106 = sort106.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort106['LOKASI']
+            # All 107
+            sort107 = sort107.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort107['LOKASI']
+            # All 108
+            sort108 = sort108.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort108['LOKASI']
+            # All 109
+            sort109 = sort109.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort109['LOKASI']
+            # All 110
+            sort110 = sort110.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort110['LOKASI']
+            # All 111
+            sort111 = sort111.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort111['LOKASI']
+            # All 112
+            sort112 = sort112.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort112['LOKASI']
+            # All 113
+            sort113 = sort113.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort113['LOKASI']
+            # All 115
+            sort115 = sort115.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort115['LOKASI']
+            # All 116
+            sort116 = sort116.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort116['LOKASI']
+            # All 117
+            sort117 = sort117.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort117['LOKASI']
+            # All 118
+            sort118 = sort118.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort118['LOKASI']
+            # All 119
+            sort119 = sort119.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort119['LOKASI']
+            # All 120
+            sort120 = sort120.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort120['LOKASI']
+            # All 121
+            sort121 = sort121.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort121['LOKASI']
+            # All 122
+            sort122 = sort122.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort122['LOKASI']
+            # All 123
+            sort123 = sort123.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort123['LOKASI']
+            # All 124
+            sort124 = sort124.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort124['LOKASI']
+            # All 126
+            sort126 = sort126.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort126['LOKASI']
+            # All 127
+            sort127 = sort127.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort127['LOKASI']
+            # All 128
+            sort128 = sort128.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort128['LOKASI']
+            # All 129
+            sort129 = sort129.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort129['LOKASI']
+            # All 130
+            sort130 = sort130.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort130['LOKASI']
+            # All 131
+            sort131 = sort131.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort131['LOKASI']
+            # All 132
+            sort132 = sort132.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort132['LOKASI']
+            # All 133
+            sort133 = sort133.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort133['LOKASI']
+            # All 134
+            sort134 = sort134.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort134['LOKASI']
+            # All 135
+            sort135 = sort135.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort135['LOKASI']
+            # All 136
+            sort136 = sort136.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort136['LOKASI']
+            # All 137
+            sort137 = sort137.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort137['LOKASI']
+            # All 138
+            sort138 = sort138.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort138['LOKASI']
+            # All 139
+            sort139 = sort139.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort139['LOKASI']
+            # All 140
+            sort140 = sort140.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort140['LOKASI']
+            # All 141
+            sort141 = sort141.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort141['LOKASI']
+            # All 142
+            sort142 = sort142.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort142['LOKASI']
+            # All 143
+            sort143 = sort143.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort143['LOKASI']
+            # All 144
+            sort144 = sort144.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort144['LOKASI']
+            # All 145
+            sort145 = sort145.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort145['LOKASI']
+            # All 146
+            sort146 = sort146.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort146['LOKASI']
+            # All 147
+            sort147 = sort147.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort147['LOKASI']
+            # All 148
+            sort148 = sort148.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort148['LOKASI']
+            # All 149
+            sort149 = sort149.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort149['LOKASI']
+            # All 151
+            sort151 = sort151.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort151['LOKASI']
+            # All 152
+            sort152 = sort152.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort152['LOKASI']
+            # All 153
+            sort153 = sort153.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort153['LOKASI']
+            # All 154
+            sort154 = sort154.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort154['LOKASI']
+            # All 155
+            sort155 = sort155.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort155['LOKASI']
+            # All 156
+            sort156 = sort156.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort156['LOKASI']
+            # All 157
+            sort157 = sort157.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort157['LOKASI']
+            # All 158
+            sort158 = sort158.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort158['LOKASI']
+            # All 159
+            sort159 = sort159.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort159['LOKASI']
+            # All 160
+            sort160 = sort160.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort160['LOKASI']
+
             # jumlah row
             # 150
             rowBest150_all = best150_all.shape[0]
             rowBest150 = best150.shape[0]
+            # 101
+            row101_10 = sort101_10.shape[0]
+            row101 = sort101.shape[0]
+            # 102
+            row102_10 = sort102_10.shape[0]
+            row102 = sort102.shape[0]
+            # 103
+            row103_10 = sort103_10.shape[0]
+            row103 = sort103.shape[0]
+            # 105
+            row105_10 = sort105_10.shape[0]
+            row105 = sort105.shape[0]
+            # 106
+            row106_10 = sort106_10.shape[0]
+            row106 = sort106.shape[0]
+            # 107
+            row107_10 = sort107_10.shape[0]
+            row107 = sort107.shape[0]
+            # 108
+            row108_10 = sort108_10.shape[0]
+            row108 = sort108.shape[0]
+            # 109
+            row109_10 = sort109_10.shape[0]
+            row109 = sort109.shape[0]
+            # 110
+            row110_10 = sort110_10.shape[0]
+            row110 = sort110.shape[0]
+            # 111
+            row111_10 = sort111_10.shape[0]
+            row111 = sort111.shape[0]
+            # 112
+            row112_10 = sort112_10.shape[0]
+            row112 = sort112.shape[0]
+            # 113
+            row113_10 = sort113_10.shape[0]
+            row113 = sort113.shape[0]
+            # 115
+            row115_10 = sort115_10.shape[0]
+            row115 = sort115.shape[0]
+            # 116
+            row116_10 = sort116_10.shape[0]
+            row116 = sort116.shape[0]
+            # 117
+            row117_10 = sort117_10.shape[0]
+            row117 = sort117.shape[0]
+            # 118
+            row118_10 = sort118_10.shape[0]
+            row118 = sort118.shape[0]
+            # 119
+            row119_10 = sort119_10.shape[0]
+            row119 = sort119.shape[0]
+            # 120
+            row120_10 = sort120_10.shape[0]
+            row120 = sort120.shape[0]
+            # 121
+            row121_10 = sort121_10.shape[0]
+            row121 = sort121.shape[0]
+            # 122
+            row122_10 = sort122_10.shape[0]
+            row122 = sort122.shape[0]
+            # 123
+            row123_10 = sort123_10.shape[0]
+            row123 = sort123.shape[0]
+            # 124
+            row124_10 = sort124_10.shape[0]
+            row124 = sort124.shape[0]
+            # 126
+            row126_10 = sort126_10.shape[0]
+            row126 = sort126.shape[0]
+            # 127
+            row127_10 = sort127_10.shape[0]
+            row127 = sort127.shape[0]
+            # 128
+            row128_10 = sort128_10.shape[0]
+            row128 = sort128.shape[0]
+            # 129
+            row129_10 = sort129_10.shape[0]
+            row129 = sort129.shape[0]
+            # 130
+            row130_10 = sort130_10.shape[0]
+            row130 = sort130.shape[0]
+            # 131
+            row131_10 = sort131_10.shape[0]
+            row131 = sort131.shape[0]
+            # 132
+            row132_10 = sort132_10.shape[0]
+            row132 = sort132.shape[0]
+            # 133
+            row133_10 = sort133_10.shape[0]
+            row133 = sort133.shape[0]
+            # 134
+            row134_10 = sort134_10.shape[0]
+            row134 = sort134.shape[0]
+            # 135
+            row135_10 = sort135_10.shape[0]
+            row135 = sort135.shape[0]
+            # 136
+            row136_10 = sort136_10.shape[0]
+            row136 = sort136.shape[0]
+            # 137
+            row137_10 = sort137_10.shape[0]
+            row137 = sort137.shape[0]
+            # 138
+            row138_10 = sort138_10.shape[0]
+            row138 = sort138.shape[0]
+            # 139
+            row139_10 = sort139_10.shape[0]
+            row139 = sort139.shape[0]
+            # 140
+            row140_10 = sort140_10.shape[0]
+            row140 = sort140.shape[0]
+            # 141
+            row141_10 = sort141_10.shape[0]
+            row141 = sort141.shape[0]
+            # 142
+            row142_10 = sort142_10.shape[0]
+            row142 = sort142.shape[0]
+            # 143
+            row143_10 = sort143_10.shape[0]
+            row143 = sort143.shape[0]
+            # 144
+            row144_10 = sort144_10.shape[0]
+            row144 = sort144.shape[0]
+            # 145
+            row145_10 = sort145_10.shape[0]
+            row145 = sort145.shape[0]
+            # 146
+            row146_10 = sort146_10.shape[0]
+            row146 = sort146.shape[0]
+            # 147
+            row147_10 = sort147_10.shape[0]
+            row147 = sort147.shape[0]
+            # 148
+            row148_10 = sort148_10.shape[0]
+            row148 = sort148.shape[0]
+            # 149
+            row149_10 = sort149_10.shape[0]
+            row149 = sort149.shape[0]
+            # 151
+            row151_10 = sort151_10.shape[0]
+            row151 = sort151.shape[0]
+            # 152
+            row152_10 = sort152_10.shape[0]
+            row152 = sort152.shape[0]
+            # 153
+            row153_10 = sort153_10.shape[0]
+            row153 = sort153.shape[0]
+            # 154
+            row154_10 = sort154_10.shape[0]
+            row154 = sort154.shape[0]
+            # 155
+            row155_10 = sort155_10.shape[0]
+            row155 = sort155.shape[0]
+            # 156
+            row156_10 = sort156_10.shape[0]
+            row156 = sort156.shape[0]
+            # 157
+            row157_10 = sort157_10.shape[0]
+            row157 = sort157.shape[0]
+            # 158
+            row158_10 = sort158_10.shape[0]
+            row158 = sort158.shape[0]
+            # 159
+            row159_10 = sort159_10.shape[0]
+            row159 = sort159.shape[0]
+            # 160
+            row160_10 = sort160_10.shape[0]
+            row160 = sort160.shape[0]
 
             # Create a Pandas Excel writer using XlsxWriter as the engine.
             # Path file hasil penyimpanan
