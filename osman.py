@@ -13952,7 +13952,7 @@ if authentication_status:
             worksheet263.set_column('F:F', 8.57, center)
             worksheet263.set_column('G:R', 5, center)
             worksheet263.merge_range(
-                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF CITRA RAYA CIKUPA', title)
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF GRAHA PRIMA', title)
             worksheet263.merge_range(
                 'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet263.write('A5', 'LOKASI', header)
@@ -13981,7 +13981,7 @@ if authentication_status:
                                             {'type': 'no_errors', 'format': border})
 
             worksheet263.merge_range(
-                'A17:R17', fr'KELAS {kelas} - LOKASI NF CITRA RAYA CIKUPA', title)
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF GRAHA PRIMA', title)
             worksheet263.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet263.merge_range(
                 'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
