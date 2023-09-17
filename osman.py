@@ -7628,7 +7628,7 @@ if authentication_status:
                 'A6:F7', fr'{semester} TAHUN {tahun}', headerCover)
             worksheetcover.write('A9', 'JUMLAH BENAR', sub_headerCover)
             worksheetcover.write('A19', 'NILAI STANDAR', sub_headerCover)
-            worksheetcover.merge_range('F8:G9', fr'{kelas}', kelasCover)
+            worksheetcover.merge_range('F8:G9', fr'{kelas}-{kurikulum}', kelasCover)
             worksheetcover.merge_range(
                 'F11:G12', 'JUMLAH SOAL', sub_header1Cover)
 
@@ -12927,7 +12927,7 @@ if authentication_status:
                 'A6:F7', fr'{semester} TAHUN {tahun}', headerCover)
             worksheetcover.write('A9', 'JUMLAH BENAR', sub_headerCover)
             worksheetcover.write('A19', 'NILAI STANDAR', sub_headerCover)
-            worksheetcover.merge_range('F8:G9', fr'{kelas}', kelasCover)
+            worksheetcover.merge_range('F8:G9', fr'{kelas}-{kurikulum}', kelasCover)
             worksheetcover.merge_range(
                 'F11:G12', 'JUMLAH SOAL', sub_header1Cover)
 
@@ -16867,7 +16867,7 @@ if authentication_status:
                 'A6:F7', fr'{semester} TAHUN {tahun}', headerCover)
             worksheetcover.write('A9', 'JUMLAH BENAR', sub_headerCover)
             worksheetcover.write('A19', 'NILAI STANDAR', sub_headerCover)
-            worksheetcover.merge_range('F8:G9', fr'{kelas}', kelasCover)
+            worksheetcover.merge_range('F8:G9', fr'{kelas}-{kurikulum}', kelasCover)
             worksheetcover.merge_range(
                 'F11:G12', 'JUMLAH SOAL', sub_header1Cover)
 
