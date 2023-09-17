@@ -28578,7 +28578,7 @@ if authentication_status:
 
             data_jml_soal = {'BIDANG STUDI': ['MAT', 'EKO', 'SEJ', 'SOS'],
                              'JUMLAH': [JML_SOAINDAT, JML_SOAL_EKO, JML_SOAL_SEJ, JML_SOAL_SOSIND
-            jml_soal = pd.DataFrame(data_jml_soEIPAS
+            jml_soal = pd.DataFrame(data_jml_soal)
             df = df[['LOKASI', 'RANK LOK.', 'RANK NAS.', 'NOMOR NF', 'NAMA SISWA', 'NAMA SEKOLAH',
                     'KELAS', 'MAT', 'EKO', 'SEJ', 'SOS', 'JML', 'S_MAT', 'S_EKO', 'S_SEJ', 'S_SOS', 'S_JML'IND
             # sort best ENG
@@ -33209,9 +33209,9 @@ if authentication_status:
 
             # rata-rata nilai standar
             rata_Smat = df.iloc[t, len_col-11]
-            rata_Seko = df.iloc[t, len_col-10]
-            rata_Ssej = df.iloc[t, len_col-9]
-            rata_Ssos = df.iloc[t, len_col-8]
+            rata_Sind = df.iloc[t, len_col-10]
+            rata_Seng = df.iloc[t, len_col-9]
+            rata_Sipas = df.iloc[t, len_col-8]
             rata_Sjml = df.iloc[t, len_col-7]
 
             # max jumlah benar
@@ -33223,9 +33223,9 @@ if authentication_status:
 
             # max nilai standar
             max_Smat = df.iloc[r, len_col-11]
-            max_Seko = df.iloc[r, len_col-10]
-            max_Ssej = df.iloc[r, len_col-9]
-            max_Ssos = df.iloc[r, len_col-8]
+            max_Sind = df.iloc[r, len_col-10]
+            max_Seng = df.iloc[r, len_col-9]
+            max_Sipas = df.iloc[r, len_col-8]
             max_Sjml = df.iloc[r, len_col-7]
 
             # min jumlah benar
@@ -33237,9 +33237,9 @@ if authentication_status:
 
             # min nilai standar
             min_Smat = df.iloc[s, len_col-11]
-            min_Seko = df.iloc[s, len_col-10]
-            min_Ssej = df.iloc[s, len_col-9]
-            min_Ssos = df.iloc[s, len_col-8]
+            min_Sind = df.iloc[s, len_col-10]
+            min_Seng = df.iloc[s, len_col-9]
+            min_Sipas = df.iloc[s, len_col-8]
             min_Sjml = df.iloc[s, len_col-7]
 
             data_jml_benar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPAS', 'JUMLAH (JML)'],
@@ -33250,9 +33250,9 @@ if authentication_status:
             jml_benar = pd.DataFrame(data_jml_benar)
 
             data_n_standar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPAS', 'JUMLAH (JML)'],
-                              'TERENDAH': [min_Smat, min_Seko, min_Ssej, min_Ssos, min_Sjml],
-                              'RATA-RATA': [rata_Smat, rata_Seko, rata_Ssej, rata_Ssos, rata_Sjml],
-                              'TERTINGGI': [max_Smat, max_Seko, max_Ssej, max_Ssos, max_Sjml]}
+                              'TERENDAH': [min_Smat, min_Sind, min_Seng, min_Sipas, min_Sjml],
+                              'RATA-RATA': [rata_Smat, rata_Sind, rata_Seng, rata_Sipas, rata_Sjml],
+                              'TERTINGGI': [max_Smat, max_Sind, max_Seng, max_Sipas, max_Sjml]}
 
             n_standar = pd.DataFrame(data_n_standar)
 
@@ -33260,13 +33260,13 @@ if authentication_status:
 
             jml_peserta = pd.DataFrame(data_jml_peserta)
 
-            data_jml_soal = {'BIDANG STUDI': ['MAT', 'EKO', 'SEJ', 'SOS'],
-                             'JUMLAH': [JML_SOAINDAT, JML_SOAL_EKO, JML_SOAL_SEJ, JML_SOAL_SOSIND
-            jml_soal = pd.DataFrame(data_jml_soEIPAS
+            data_jml_soal = {'BIDANG STUDI': ['MAT', 'IND', 'ENG', 'IPAS'],
+                             'JUMLAH': [JML_SOAL_MAT, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_IPAS]}
+            jml_soal = pd.DataFrame(data_jml_soal)
             df = df[['LOKASI', 'RANK LOK.', 'RANK NAS.', 'NOMOR NF', 'NAMA SISWA', 'NAMA SEKOLAH',
-                    'KELAS', 'MAT', 'EKO', 'SEJ', 'SOS', 'JML', 'S_MAT', 'S_EKO', 'S_SEJ', 'S_SOS', 'S_JML'IND
+                    'KELAS', 'MAT', 'IND', 'ENG', 'IPAS', 'JML', 'S_MAT', 'S_IND', 'S_ENG', 'S_IPAS', 'S_JML']]
             # sort best ENG
-            grouped = dfIPASoupby('LOKASI')
+            grouped = dfgroupby('LOKASI')
             dfs = []  # List kosong untuk menyimpan DataFrame yang akan digabungkan
             for name, group in grouped:
                 dfs.append(group)
