@@ -38,10 +38,10 @@ if authentication_status:
                     unsafe_allow_html=True)
         selected_file = option_menu(
             menu_title="Pilih file:",
-            options=["Lok. SD(K13), SMP(K13-KM)", "Lok. All IPA",
-                     "Lok. 10, 11 IPS", "Lok. PPLS, RONIN IPS", "Lok. 11KM"],
+            options=["Lok. SD (K13), SMP (K13-KM)", "Lok. SD (KM)",
+                     "Lok. PPLS IPA", "Lok. PPLS IPS"],
         )
-    if selected_file == "Lok. SD(K13), SMP(K13-KM)":
+    if selected_file == "Lok. SD (K13), SMP (K13-KM)":
         # menghilangkan hamburger
         st.markdown("""
         <style>
