@@ -40317,9 +40317,12 @@ if authentication_status:
             del sort826['LOKASI']
             
             # jumlah row
+            # 150
+            rowBest150_all = best150_all.shape[0]
+            rowBest150 = best150.shape[0]
             # 728
-            rowBest728_all = best728_all.shape[0]
-            rowBest728 = best728.shape[0]
+            row728_10 = sort728_10.shape[0]
+            row728 = sort728.shape[0]
             # 741
             row741_10 = sort741_10.shape[0]
             row741 = sort741.shape[0]
