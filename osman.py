@@ -40974,7 +40974,7 @@ if authentication_status:
             worksheet826.conditional_format(22, 0, row826+21, 15,
                                             {'type': 'no_errors', 'format': border})
 
-                        workbook.close()
+            workbook.close()
             st.success("File siap diunduh!")
 
             # Tombol unduh file
