@@ -38694,3 +38694,1470 @@ if authentication_status:
                 bytes_data = f.read()
             st.download_button(label="Unduh File", data=bytes_data,
                                file_name=file_name)
+
+        uploaded_file = st.file_uploader(
+            'Letakkan file excel NILAI STANDAR [LOKASI DEPOK-PADANG]', type='xlsx')
+
+        if uploaded_file is not None:
+            df = pd.read_excel(uploaded_file)
+
+            len_col = df.shape[1]
+
+            r = df.shape[0]-5  # baris average
+            s = df.shape[0]-4  # baris stdev
+            t = df.shape[0]-3  # baris max
+            u = df.shape[0]-2  # baris min
+
+            # JUMLAH PESERTA
+            peserta = df.iloc[r, len_col-136]
+
+            # rata-rata jumlah benar
+            rata_mat = df.iloc[r, len_col-20]
+            rata_fis = df.iloc[r, len_col-19]
+            rata_kim = df.iloc[r, len_col-18]
+            rata_bio = df.iloc[r, len_col-17]
+            rata_jml = df.iloc[r, len_col-16]
+
+            # rata-rata nilai standar
+            rata_Smat = df.iloc[t, len_col-11]
+            rata_Sfis = df.iloc[t, len_col-10]
+            rata_Skim = df.iloc[t, len_col-9]
+            rata_Sbio = df.iloc[t, len_col-8]
+            rata_Sjml = df.iloc[t, len_col-7]
+
+            # max jumlah benar
+            max_mat = df.iloc[t, len_col-20]
+            max_fis = df.iloc[t, len_col-19]
+            max_kim = df.iloc[t, len_col-18]
+            max_bio = df.iloc[t, len_col-17]
+            max_jml = df.iloc[t, len_col-16]
+
+            # max nilai standar
+            max_Smat = df.iloc[r, len_col-11]
+            max_Sfis = df.iloc[r, len_col-10]
+            max_Skim = df.iloc[r, len_col-9]
+            max_Sbio = df.iloc[r, len_col-8]
+            max_Sjml = df.iloc[r, len_col-7]
+
+            # min jumlah benar
+            min_mat = df.iloc[u, len_col-20]
+            min_fis = df.iloc[u, len_col-19]
+            min_kim = df.iloc[u, len_col-18]
+            min_bio = df.iloc[u, len_col-17]
+            min_jml = df.iloc[u, len_col-16]
+
+            # min nilai standar
+            min_Smat = df.iloc[s, len_col-11]
+            min_Sfis = df.iloc[s, len_col-10]
+            min_Skim = df.iloc[s, len_col-9]
+            min_Sbio = df.iloc[s, len_col-8]
+            min_Sjml = df.iloc[s, len_col-7]
+
+            data_jml_benar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'FISIKA (FIS)', 'KIMIA (KIM)', 'BIOLOGI (BIO)', 'JUMLAH (JML)'],
+                              'TERENDAH': [min_mat, min_fis, min_kim, min_bio, min_jml],
+                              'RATA-RATA': [rata_mat, rata_fis, rata_kim, rata_bio, rata_jml],
+                              'TERTINGGI': [max_mat, max_fis, max_kim, max_bio, max_jml]}
+
+            jml_benar = pd.DataFrame(data_jml_benar)
+
+            data_n_standar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'FISIKA (FIS)', 'KIMIA (KIM)', 'BIOLOGI (BIO)', 'JUMLAH (JML)'],
+                              'TERENDAH': [min_Smat, min_Sfis, min_Skim, min_Sbio, min_Sjml],
+                              'RATA-RATA': [rata_Smat, rata_Sfis, rata_Skim, rata_Sbio, rata_Sjml],
+                              'TERTINGGI': [max_Smat, max_Sfis, max_Skim, max_Sbio, max_Sjml]}
+
+            n_standar = pd.DataFrame(data_n_standar)
+
+            data_jml_peserta = {'JUMLAH PESERTA': [peserta]}
+
+            jml_peserta = pd.DataFrame(data_jml_peserta)
+
+            data_jml_soal = {'BIDANG STUDI': ['MAT', 'FIS', 'KIM', 'BIO'],
+                             'JUMLAH': [JML_SOAL_MAT, JML_SOAL_FIS, JML_SOAL_KIM, JML_SOAL_BIO]}
+
+            jml_soal = pd.DataFrame(data_jml_soal)
+
+            df = df[['LOKASI', 'RANK LOK.', 'RANK NAS.', 'NOMOR NF', 'NAMA SISWA', 'NAMA SEKOLAH',
+                    'KELAS', 'MAT', 'FIS', 'KIM', 'BIO', 'JML', 'S_MAT', 'S_FIS', 'S_KIM', 'S_BIO', 'S_JML']]
+
+            # sort best 150
+            grouped = df.groupby('LOKASI')
+            dfs = []  # List kosong untuk menyimpan DataFrame yang akan digabungkan
+            for name, group in grouped:
+                dfs.append(group)
+            best150 = pd.concat(dfs)
+
+            # sort setiap lokasi
+            sort530 = df[df['LOKASI'] == 530]
+            sort531 = df[df['LOKASI'] == 531]
+            sort532 = df[df['LOKASI'] == 532]
+            sort534 = df[df['LOKASI'] == 534]
+            sort547 = df[df['LOKASI'] == 547]
+            sort556 = df[df['LOKASI'] == 556]
+            sort557 = df[df['LOKASI'] == 557]
+            sort575 = df[df['LOKASI'] == 575]
+            sort576 = df[df['LOKASI'] == 576]
+            sort588 = df[df['LOKASI'] == 588]
+            sort661 = df[df['LOKASI'] == 661]
+            sort662 = df[df['LOKASI'] == 662]
+            
+            # best150
+            best150_all = best150.sort_values(
+                by=['RANK NAS.'], ascending=[True])
+            del best150_all['LOKASI']
+            del best150_all['RANK LOK.']
+            best150_all = best150_all.drop(
+                best150_all[(best150_all['RANK NAS.'] > 150)].index)
+
+            # 10 besar setiap lokasi
+            # 530
+            sort530_10 = sort530.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort530_10['LOKASI']
+            sort530_10 = sort530_10.drop(
+                sort530_10[(sort530_10['RANK LOK.'] > 10)].index)
+            # 531
+            sort531_10 = sort531.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort531_10['LOKASI']
+            sort531_10 = sort531_10.drop(
+                sort531_10[(sort531_10['RANK LOK.'] > 10)].index)
+            # 532
+            sort532_10 = sort532.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort532_10['LOKASI']
+            sort532_10 = sort532_10.drop(
+                sort532_10[(sort532_10['RANK LOK.'] > 10)].index)
+            # 534
+            sort534_10 = sort534.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort534_10['LOKASI']
+            sort534_10 = sort534_10.drop(
+                sort534_10[(sort534_10['RANK LOK.'] > 10)].index)
+            # 547
+            sort547_10 = sort547.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort547_10['LOKASI']
+            sort547_10 = sort547_10.drop(
+                sort547_10[(sort547_10['RANK LOK.'] > 10)].index)
+            # 556
+            sort556_10 = sort556.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort556_10['LOKASI']
+            sort556_10 = sort556_10.drop(
+                sort556_10[(sort556_10['RANK LOK.'] > 10)].index)
+            # 557
+            sort557_10 = sort557.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort557_10['LOKASI']
+            sort557_10 = sort557_10.drop(
+                sort557_10[(sort557_10['RANK LOK.'] > 10)].index)
+            # 575
+            sort575_10 = sort575.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort575_10['LOKASI']
+            sort575_10 = sort575_10.drop(
+                sort575_10[(sort575_10['RANK LOK.'] > 10)].index)
+            # 576
+            sort576_10 = sort576.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort576_10['LOKASI']
+            sort576_10 = sort576_10.drop(
+                sort576_10[(sort576_10['RANK LOK.'] > 10)].index)
+            # 588
+            sort588_10 = sort588.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort588_10['LOKASI']
+            sort588_10 = sort588_10.drop(
+                sort588_10[(sort588_10['RANK LOK.'] > 10)].index)
+            # 661
+            sort661_10 = sort661.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort661_10['LOKASI']
+            sort661_10 = sort661_10.drop(
+                sort661_10[(sort661_10['RANK LOK.'] > 10)].index)
+            # 662
+            sort662_10 = sort662.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort662_10['LOKASI']
+            sort662_10 = sort662_10.drop(
+                sort662_10[(sort662_10['RANK LOK.'] > 10)].index)
+            
+            # All 530
+            sort530 = sort530.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort530['LOKASI']
+            # All 531
+            sort531 = sort531.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort531['LOKASI']
+            # All 532
+            sort532 = sort532.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort532['LOKASI']
+            # All 534
+            sort534 = sort534.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort534['LOKASI']
+            # All 547
+            sort547 = sort547.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort547['LOKASI']
+            # All 556
+            sort556 = sort556.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort556['LOKASI']
+            # All 557
+            sort557 = sort557.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort557['LOKASI']
+            # All 575
+            sort575 = sort575.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort575['LOKASI']
+            # All 576
+            sort576 = sort576.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort576['LOKASI']
+            # All 588
+            sort588 = sort588.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort588['LOKASI']
+            # All 661
+            sort661 = sort661.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort661['LOKASI']
+            # All 662
+            sort662 = sort662.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort662['LOKASI']
+            
+            # jumlah row
+            # 150
+            rowBest150_all = best150_all.shape[0]
+            rowBest150 = best150.shape[0]
+            # 530
+            row530_10 = sort530_10.shape[0]
+            row530 = sort530.shape[0]
+            # 531
+            row531_10 = sort531_10.shape[0]
+            row531 = sort531.shape[0]
+            # 532
+            row532_10 = sort532_10.shape[0]
+            row532 = sort532.shape[0]
+            # 534
+            row534_10 = sort534_10.shape[0]
+            row534 = sort534.shape[0]
+            # 547
+            row547_10 = sort547_10.shape[0]
+            row547 = sort547.shape[0]
+            # 556
+            row556_10 = sort556_10.shape[0]
+            row556 = sort556.shape[0]
+            # 557
+            row557_10 = sort557_10.shape[0]
+            row557 = sort557.shape[0]
+            # 575
+            row575_10 = sort575_10.shape[0]
+            row575 = sort575.shape[0]
+            # 576
+            row576_10 = sort576_10.shape[0]
+            row576 = sort576.shape[0]
+            # 588
+            row588_10 = sort588_10.shape[0]
+            row588 = sort588.shape[0]
+            # 661
+            row661_10 = sort661_10.shape[0]
+            row661 = sort661.shape[0]
+            # 662
+            row662_10 = sort662_10.shape[0]
+            row662 = sort662.shape[0]
+            
+            # Create a Pandas Excel writer using XlsxWriter as the engine.
+            # Path file hasil penyimpanan
+            file_name = f"{kelas}_{penilaian}_{semester}_lokasi_depok_padang.xlsx"
+            file_path = tempfile.gettempdir() + '/' + file_name
+
+            # Menyimpan file Excel
+            writer = pd.ExcelWriter(file_path, engine='xlsxwriter')
+
+            # Convert the dataframe to an XlsxWriter Excel object cover.
+            jml_benar.to_excel(writer, sheet_name='cover',
+                               startrow=10,
+                               startcol=0,
+                               index=False,
+                               )
+
+            # Convert the dataframe to an XlsxWriter Excel object cover.
+            n_standar.to_excel(writer, sheet_name='cover',
+                               startrow=21,
+                               startcol=0,
+                               index=False,
+                               header=False)
+
+            # Convert the dataframe to an XlsxWriter Excel object cover.
+            jml_peserta.to_excel(writer, sheet_name='cover',
+                                 startrow=21,
+                                 startcol=5,
+                                 index=False,
+                                 header=False)
+
+            # Convert the dataframe to an XlsxWriter Excel object cover.
+            jml_soal.to_excel(writer, sheet_name='cover',
+                              startrow=13,
+                              startcol=5,
+                              index=False,
+                              header=False)
+
+            # Ranking 150
+            best150_all.to_excel(writer, sheet_name='best_150',
+                                 startrow=5,
+                                 startcol=0,
+                                 index=False,
+                                 header=False)
+
+            # 530
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort530_10.to_excel(writer, sheet_name='530',
+                                startrow=5,
+                                startcol=0,
+                                index=False,
+                                header=False)
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort530.to_excel(writer, sheet_name='530',
+                             startrow=22,
+                             startcol=0,
+                             index=False,
+                             header=False)
+            # 531
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort531_10.to_excel(writer, sheet_name='531',
+                                startrow=5,
+                                startcol=0,
+                                index=False,
+                                header=False)
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort531.to_excel(writer, sheet_name='531',
+                             startrow=22,
+                             startcol=0,
+                             index=False,
+                             header=False)
+            # 532
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort532_10.to_excel(writer, sheet_name='532',
+                                startrow=5,
+                                startcol=0,
+                                index=False,
+                                header=False)
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort532.to_excel(writer, sheet_name='532',
+                             startrow=22,
+                             startcol=0,
+                             index=False,
+                             header=False)
+            # 534
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort534_10.to_excel(writer, sheet_name='534',
+                                startrow=5,
+                                startcol=0,
+                                index=False,
+                                header=False)
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort534.to_excel(writer, sheet_name='534',
+                             startrow=22,
+                             startcol=0,
+                             index=False,
+                             header=False)
+            # 547
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort547_10.to_excel(writer, sheet_name='547',
+                                startrow=5,
+                                startcol=0,
+                                index=False,
+                                header=False)
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort547.to_excel(writer, sheet_name='547',
+                             startrow=22,
+                             startcol=0,
+                             index=False,
+                             header=False)
+            # 556
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort556_10.to_excel(writer, sheet_name='556',
+                                startrow=5,
+                                startcol=0,
+                                index=False,
+                                header=False)
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort556.to_excel(writer, sheet_name='556',
+                             startrow=22,
+                             startcol=0,
+                             index=False,
+                             header=False)
+            # 557
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort557_10.to_excel(writer, sheet_name='557',
+                                startrow=5,
+                                startcol=0,
+                                index=False,
+                                header=False)
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort557.to_excel(writer, sheet_name='557',
+                             startrow=22,
+                             startcol=0,
+                             index=False,
+                             header=False)
+            # 575
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort575_10.to_excel(writer, sheet_name='575',
+                                startrow=5,
+                                startcol=0,
+                                index=False,
+                                header=False)
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort575.to_excel(writer, sheet_name='575',
+                             startrow=22,
+                             startcol=0,
+                             index=False,
+                             header=False)
+            # 576
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort576_10.to_excel(writer, sheet_name='576',
+                                startrow=5,
+                                startcol=0,
+                                index=False,
+                                header=False)
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort576.to_excel(writer, sheet_name='576',
+                             startrow=22,
+                             startcol=0,
+                             index=False,
+                             header=False)
+            # 588
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort588_10.to_excel(writer, sheet_name='588',
+                                startrow=5,
+                                startcol=0,
+                                index=False,
+                                header=False)
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort588.to_excel(writer, sheet_name='588',
+                             startrow=22,
+                             startcol=0,
+                             index=False,
+                             header=False)
+            # 661
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort661_10.to_excel(writer, sheet_name='661',
+                                startrow=5,
+                                startcol=0,
+                                index=False,
+                                header=False)
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort661.to_excel(writer, sheet_name='661',
+                             startrow=22,
+                             startcol=0,
+                             index=False,
+                             header=False)
+            # 662
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort662_10.to_excel(writer, sheet_name='662',
+                                startrow=5,
+                                startcol=0,
+                                index=False,
+                                header=False)
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort662.to_excel(writer, sheet_name='662',
+                             startrow=22,
+                             startcol=0,
+                             index=False,
+                             header=False)
+            
+            # Get the xlsxwriter objects from the dataframe writer object.
+            workbook = writer.book
+
+            # membuat worksheet baru
+            worksheetcover = writer.sheets['cover']
+            worksheetbest = writer.sheets['best_150']
+            worksheet530 = writer.sheets['530']
+            worksheet531 = writer.sheets['531']
+            worksheet532 = writer.sheets['532']
+            worksheet534 = writer.sheets['534']
+            worksheet547 = writer.sheets['547']
+            worksheet556 = writer.sheets['556']
+            worksheet557 = writer.sheets['557']
+            worksheet575 = writer.sheets['575']
+            worksheet576 = writer.sheets['576']
+            worksheet588 = writer.sheets['588']
+            worksheet661 = writer.sheets['661']
+            worksheet662 = writer.sheets['662']
+            
+            # format workbook
+            titleCover = workbook.add_format({
+                'bold': 1,
+                'border': 0,
+                'align': 'left',
+                'valign': 'vcenter',
+                'font_color': '#00058E',
+                'font_size': 52,
+                'font_name': 'Arial Black'})
+            sub_titleCover = workbook.add_format({
+                'bold': 0,
+                'border': 0,
+                'align': 'left',
+                'valign': 'vcenter',
+                'font_size': 27,
+                'font_name': 'Arial Unicode MS'})
+            headerCover = workbook.add_format({
+                'bold': 1,
+                'border': 0,
+                'align': 'left',
+                'valign': 'vcenter',
+                'font_size': 24,
+                'font_name': 'Arial Rounded MT Bold'})
+            sub_headerCover = workbook.add_format({
+                'bold': 0,
+                'border': 0,
+                'align': 'left',
+                'valign': 'vcenter',
+                'font_size': 16,
+                'font_name': 'Arial'})
+            sub_header1Cover = workbook.add_format({
+                'bold': 1,
+                'border': 0,
+                'align': 'center',
+                'valign': 'vcenter',
+                'font_size': 20,
+                'font_name': 'Arial'})
+            kelasCover = workbook.add_format({
+                'bold': 1,
+                'border': 1,
+                'align': 'center',
+                'valign': 'vcenter',
+                'font_size': 40,
+                'font_name': 'Arial Rounded MT Bold'})
+            borderCover = workbook.add_format({
+                'bottom': 1,
+                'top': 1,
+                'left': 1,
+                'right': 1})
+            centerCover = workbook.add_format({
+                'align': 'center',
+                'font_size': 12,
+                'font_name': 'Arial'})
+            center1Cover = workbook.add_format({
+                'align': 'center',
+                'font_size': 20,
+                'font_name': 'Arial'})
+            bodyCover = workbook.add_format({
+                'bold': 1,
+                'border': 1,
+                'align': 'center',
+                'valign': 'vcenter',
+                'font_size': 12,
+                'font_name': 'Arial',
+                'bg_color': 'FFF684'})
+
+            center = workbook.add_format({
+                'align': 'center',
+                'font_size': 10,
+                'font_name': 'Arial'})
+            left = workbook.add_format({
+                'align': 'left',
+                'font_size': 10,
+                'font_name': 'Arial'})
+            title = workbook.add_format({
+                'bold': 1,
+                'border': 0,
+                'align': 'center',
+                'valign': 'vcenter',
+                'font_color': '#00058E',
+                'font_size': 12,
+                'font_name': 'Arial'})
+            sub_title = workbook.add_format({
+                'bold': 1,
+                'border': 0,
+                'align': 'center',
+                'valign': 'vcenter',
+                'font_size': 12,
+                'font_name': 'Arial'})
+            subTitle = workbook.add_format({
+                'bold': 1,
+                'border': 0,
+                'align': 'center',
+                'valign': 'vcenter',
+                'font_size': 14,
+                'font_name': 'Arial'})
+            header = workbook.add_format({
+                'bold': 1,
+                'border': 1,
+                'align': 'center',
+                'valign': 'vcenter',
+                'font_size': 10,
+                'font_name': 'Arial',
+                'bg_color': 'FFF684'})
+            body = workbook.add_format({
+                'bold': 0,
+                'border': 1,
+                'align': 'center',
+                'font_size': 10,
+                'font_name': 'Arial',
+                'bg_color': 'FFF684'})
+            border = workbook.add_format({
+                'bottom': 1,
+                'top': 1,
+                'left': 1,
+                'right': 1})
+
+            # worksheet cover
+            worksheetcover.conditional_format(15, 0, 11, 3,
+                                              {'type': 'no_errors', 'format': borderCover})
+
+            worksheetcover.insert_image('F1', r'logo nf.jpg')
+
+            worksheetcover.merge_range('A10:A11', 'BIDANG STUDI', bodyCover)
+            worksheetcover.merge_range('B10:B11', 'TERENDAH', bodyCover)
+            worksheetcover.merge_range('C10:C11', 'RATA-RATA', bodyCover)
+            worksheetcover.merge_range('D10:D11', 'TERTINGGI', bodyCover)
+            worksheetcover.merge_range('A20:A21', 'BIDANG STUDI', bodyCover)
+            worksheetcover.merge_range('B20:B21', 'TERENDAH', bodyCover)
+            worksheetcover.merge_range('C20:C21', 'RATA-RATA', bodyCover)
+            worksheetcover.merge_range('D20:D21', 'TERTINGGI', bodyCover)
+            worksheetcover.write('F13', 'BIDANG STUDI', bodyCover)
+            worksheetcover.merge_range('F20:F21', 'JUMLAH', sub_header1Cover)
+            worksheetcover.merge_range('F23:F24', 'PESERTA', sub_header1Cover)
+            worksheetcover.write('G13', 'JUMLAH', bodyCover)
+            worksheetcover.set_column('A:A', 25.71, centerCover)
+            worksheetcover.set_column('B:B', 15, centerCover)
+            worksheetcover.set_column('C:C', 15, centerCover)
+            worksheetcover.set_column('D:D', 15, centerCover)
+            worksheetcover.set_column('F:F', 25.71, centerCover)
+            worksheetcover.set_column('G:G', 13, centerCover)
+            worksheetcover.merge_range('A1:F3', 'DAFTAR NILAI', titleCover)
+            worksheetcover.merge_range(
+                'A4:F5', fr'{penilaian}', sub_titleCover)
+            worksheetcover.merge_range(
+                'A6:F7', fr'{semester} TAHUN {tahun} ({kurikulum})', headerCover)
+            worksheetcover.write('A9', 'JUMLAH BENAR', sub_headerCover)
+            worksheetcover.write('A19', 'NILAI STANDAR', sub_headerCover)
+            worksheetcover.merge_range('F8:G9', fr'{kelas}', kelasCover)
+            worksheetcover.merge_range(
+                'F11:G12', 'JUMLAH SOAL', sub_header1Cover)
+
+            worksheetcover.conditional_format(25, 0, 21, 3,
+                                              {'type': 'no_errors', 'format': borderCover})
+
+            worksheetcover.conditional_format(16, 6, 13, 5,
+                                              {'type': 'no_errors', 'format': borderCover})
+
+            worksheetcover.conditional_format(21, 5, 21, 5,
+                                              {'type': 'no_errors', 'format': borderCover})
+
+            # workseet best_150
+            worksheetbest.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheetbest.set_column('A:A', 5.43, center)
+            worksheetbest.set_column('B:B', 11.43, center)
+            worksheetbest.set_column('C:C', 34.29, left)
+            worksheetbest.set_column('D:D', 36.71, left)
+            worksheetbest.set_column('E:E', 7.57, left)
+            worksheetbest.set_column('F:Q', 6.29, center)
+            worksheetbest.merge_range(
+                'A1:O1', fr'150 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF NASIONAL', title)
+            worksheetbest.merge_range(
+                'A2:O2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
+            worksheetbest.merge_range('A4:A5', 'RANK', header)
+            worksheetbest.merge_range('B4:B5', 'NOMOR NF', header)
+            worksheetbest.merge_range('C4:C5', 'NAMA SISWA', header)
+            worksheetbest.merge_range('D4:D5', 'SEKOLAH', header)
+            worksheetbest.merge_range('E4:E5', 'KELAS', header)
+            worksheetbest.merge_range('F4:J4', 'JUMLAH BENAR', header)
+            worksheetbest.merge_range('K4:O4', 'NILAI STANDAR', header)
+            worksheetbest.write('F5', 'MAT', body)
+            worksheetbest.write('G5', 'FIS', body)
+            worksheetbest.write('H5', 'KIM', body)
+            worksheetbest.write('I5', 'BIO', body)
+            worksheetbest.write('J5', 'JML', body)
+            worksheetbest.write('K5', 'MAT', body)
+            worksheetbest.write('L5', 'FIS', body)
+            worksheetbest.write('M5', 'KIM', body)
+            worksheetbest.write('N5', 'BIO', body)
+            worksheetbest.write('O5', 'JML', body)
+
+            worksheetbest.conditional_format(5, 0, rowBest150_all+4, 14,
+                                             {'type': 'no_errors', 'format': border})
+
+            # worksheet 530
+            worksheet530.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheet530.set_column('A:A', 7, center)
+            worksheet530.set_column('B:B', 6, center)
+            worksheet530.set_column('C:C', 18.14, center)
+            worksheet530.set_column('D:D', 25, left)
+            worksheet530.set_column('E:E', 13.14, left)
+            worksheet530.set_column('F:F', 8.57, center)
+            worksheet530.set_column('G:R', 5, center)
+            worksheet530.merge_range(
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF POLSEK DEPOK', title)
+            worksheet530.merge_range(
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+            worksheet530.write('A5', 'LOKASI', header)
+            worksheet530.write('B5', 'TOTAL', header)
+            worksheet530.merge_range('A4:B4', 'RANK', header)
+            worksheet530.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet530.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet530.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet530.merge_range('F4:F5', 'KELAS', header)
+            worksheet530.merge_range('G4:K4', 'JUMLAH BENAR', header)
+            worksheet530.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet530.write('G5', 'MAT', body)
+            worksheet530.write('H5', 'FIS', body)
+            worksheet530.write('I5', 'KIM', body)
+            worksheet530.write('J5', 'BIO', body)
+            worksheet530.write('K5', 'JML', body)
+            worksheet530.write('L5', 'MAT', body)
+            worksheet530.write('M5', 'FIS', body)
+            worksheet530.write('N5', 'KIM', body)
+            worksheet530.write('O5', 'BIO', body)
+            worksheet530.write('P5', 'JML', body)
+
+            worksheet530.conditional_format(5, 0, row530_10+4, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            worksheet530.merge_range(
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF POLSEK DEPOK', title)
+            worksheet530.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet530.merge_range(
+                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+            worksheet530.write('A22', 'LOKASI', header)
+            worksheet530.write('B22', 'TOTAL', header)
+            worksheet530.merge_range('A21:B21', 'RANK', header)
+            worksheet530.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet530.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet530.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet530.merge_range('F21:F22', 'KELAS', header)
+            worksheet530.merge_range('G21:K21', 'JUMLAH BENAR', header)
+            worksheet530.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet530.write('G22', 'MAT', body)
+            worksheet530.write('H22', 'FIS', body)
+            worksheet530.write('I22', 'KIM', body)
+            worksheet530.write('J22', 'BIO', body)
+            worksheet530.write('K22', 'JML', body)
+            worksheet530.write('L22', 'MAT', body)
+            worksheet530.write('M22', 'FIS', body)
+            worksheet530.write('N22', 'KIM', body)
+            worksheet530.write('O22', 'BIO', body)
+            worksheet530.write('P22', 'JML', body)
+
+            worksheet530.conditional_format(22, 0, row530+21, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            # worksheet 531
+            worksheet531.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheet531.set_column('A:A', 7, center)
+            worksheet531.set_column('B:B', 6, center)
+            worksheet531.set_column('C:C', 18.14, center)
+            worksheet531.set_column('D:D', 25, left)
+            worksheet531.set_column('E:E', 13.14, left)
+            worksheet531.set_column('F:F', 8.57, center)
+            worksheet531.set_column('G:R', 5, center)
+            worksheet531.merge_range(
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF DEPOK 1', title)
+            worksheet531.merge_range(
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+            worksheet531.write('A5', 'LOKASI', header)
+            worksheet531.write('B5', 'TOTAL', header)
+            worksheet531.merge_range('A4:B4', 'RANK', header)
+            worksheet531.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet531.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet531.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet531.merge_range('F4:F5', 'KELAS', header)
+            worksheet531.merge_range('G4:K4', 'JUMLAH BENAR', header)
+            worksheet531.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet531.write('G5', 'MAT', body)
+            worksheet531.write('H5', 'FIS', body)
+            worksheet531.write('I5', 'KIM', body)
+            worksheet531.write('J5', 'BIO', body)
+            worksheet531.write('K5', 'JML', body)
+            worksheet531.write('L5', 'MAT', body)
+            worksheet531.write('M5', 'FIS', body)
+            worksheet531.write('N5', 'KIM', body)
+            worksheet531.write('O5', 'BIO', body)
+            worksheet531.write('P5', 'JML', body)
+
+            worksheet531.conditional_format(5, 0, row531_10+4, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            worksheet531.merge_range(
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF DEPOK 1', title)
+            worksheet531.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet531.merge_range(
+                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+            worksheet531.write('A22', 'LOKASI', header)
+            worksheet531.write('B22', 'TOTAL', header)
+            worksheet531.merge_range('A21:B21', 'RANK', header)
+            worksheet531.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet531.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet531.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet531.merge_range('F21:F22', 'KELAS', header)
+            worksheet531.merge_range('G21:K21', 'JUMLAH BENAR', header)
+            worksheet531.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet531.write('G22', 'MAT', body)
+            worksheet531.write('H22', 'FIS', body)
+            worksheet531.write('I22', 'KIM', body)
+            worksheet531.write('J22', 'BIO', body)
+            worksheet531.write('K22', 'JML', body)
+            worksheet531.write('L22', 'MAT', body)
+            worksheet531.write('M22', 'FIS', body)
+            worksheet531.write('N22', 'KIM', body)
+            worksheet531.write('O22', 'BIO', body)
+            worksheet531.write('P22', 'JML', body)
+
+            worksheet531.conditional_format(22, 0, row531+21, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            # worksheet 532
+            worksheet532.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheet532.set_column('A:A', 7, center)
+            worksheet532.set_column('B:B', 6, center)
+            worksheet532.set_column('C:C', 18.14, center)
+            worksheet532.set_column('D:D', 25, left)
+            worksheet532.set_column('E:E', 13.14, left)
+            worksheet532.set_column('F:F', 8.57, center)
+            worksheet532.set_column('G:R', 5, center)
+            worksheet532.merge_range(
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF PROKLAMASI DEPOK 2', title)
+            worksheet532.merge_range(
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+            worksheet532.write('A5', 'LOKASI', header)
+            worksheet532.write('B5', 'TOTAL', header)
+            worksheet532.merge_range('A4:B4', 'RANK', header)
+            worksheet532.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet532.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet532.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet532.merge_range('F4:F5', 'KELAS', header)
+            worksheet532.merge_range('G4:K4', 'JUMLAH BENAR', header)
+            worksheet532.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet532.write('G5', 'MAT', body)
+            worksheet532.write('H5', 'FIS', body)
+            worksheet532.write('I5', 'KIM', body)
+            worksheet532.write('J5', 'BIO', body)
+            worksheet532.write('K5', 'JML', body)
+            worksheet532.write('L5', 'MAT', body)
+            worksheet532.write('M5', 'FIS', body)
+            worksheet532.write('N5', 'KIM', body)
+            worksheet532.write('O5', 'BIO', body)
+            worksheet532.write('P5', 'JML', body)
+
+            worksheet532.conditional_format(5, 0, row532_10+4, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            worksheet532.merge_range(
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF PROKLAMASI DEPOK 2', title)
+            worksheet532.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet532.merge_range(
+                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+            worksheet532.write('A22', 'LOKASI', header)
+            worksheet532.write('B22', 'TOTAL', header)
+            worksheet532.merge_range('A21:B21', 'RANK', header)
+            worksheet532.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet532.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet532.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet532.merge_range('F21:F22', 'KELAS', header)
+            worksheet532.merge_range('G21:K21', 'JUMLAH BENAR', header)
+            worksheet532.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet532.write('G22', 'MAT', body)
+            worksheet532.write('H22', 'FIS', body)
+            worksheet532.write('I22', 'KIM', body)
+            worksheet532.write('J22', 'BIO', body)
+            worksheet532.write('K22', 'JML', body)
+            worksheet532.write('L22', 'MAT', body)
+            worksheet532.write('M22', 'FIS', body)
+            worksheet532.write('N22', 'KIM', body)
+            worksheet532.write('O22', 'BIO', body)
+            worksheet532.write('P22', 'JML', body)
+
+            worksheet532.conditional_format(22, 0, row532+21, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            # worksheet 534
+            worksheet534.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheet534.set_column('A:A', 7, center)
+            worksheet534.set_column('B:B', 6, center)
+            worksheet534.set_column('C:C', 18.14, center)
+            worksheet534.set_column('D:D', 25, left)
+            worksheet534.set_column('E:E', 13.14, left)
+            worksheet534.set_column('F:F', 8.57, center)
+            worksheet534.set_column('G:R', 5, center)
+            worksheet534.merge_range(
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF SAWANGAN', title)
+            worksheet534.merge_range(
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+            worksheet534.write('A5', 'LOKASI', header)
+            worksheet534.write('B5', 'TOTAL', header)
+            worksheet534.merge_range('A4:B4', 'RANK', header)
+            worksheet534.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet534.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet534.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet534.merge_range('F4:F5', 'KELAS', header)
+            worksheet534.merge_range('G4:K4', 'JUMLAH BENAR', header)
+            worksheet534.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet534.write('G5', 'MAT', body)
+            worksheet534.write('H5', 'FIS', body)
+            worksheet534.write('I5', 'KIM', body)
+            worksheet534.write('J5', 'BIO', body)
+            worksheet534.write('K5', 'JML', body)
+            worksheet534.write('L5', 'MAT', body)
+            worksheet534.write('M5', 'FIS', body)
+            worksheet534.write('N5', 'KIM', body)
+            worksheet534.write('O5', 'BIO', body)
+            worksheet534.write('P5', 'JML', body)
+
+            worksheet534.conditional_format(5, 0, row534_10+4, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            worksheet534.merge_range(
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF SAWANGAN', title)
+            worksheet534.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet534.merge_range(
+                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+            worksheet534.write('A22', 'LOKASI', header)
+            worksheet534.write('B22', 'TOTAL', header)
+            worksheet534.merge_range('A21:B21', 'RANK', header)
+            worksheet534.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet534.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet534.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet534.merge_range('F21:F22', 'KELAS', header)
+            worksheet534.merge_range('G21:K21', 'JUMLAH BENAR', header)
+            worksheet534.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet534.write('G22', 'MAT', body)
+            worksheet534.write('H22', 'FIS', body)
+            worksheet534.write('I22', 'KIM', body)
+            worksheet534.write('J22', 'BIO', body)
+            worksheet534.write('K22', 'JML', body)
+            worksheet534.write('L22', 'MAT', body)
+            worksheet534.write('M22', 'FIS', body)
+            worksheet534.write('N22', 'KIM', body)
+            worksheet534.write('O22', 'BIO', body)
+            worksheet534.write('P22', 'JML', body)
+
+            worksheet534.conditional_format(22, 0, row534+21, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            # worksheet 547
+            worksheet547.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheet547.set_column('A:A', 7, center)
+            worksheet547.set_column('B:B', 6, center)
+            worksheet547.set_column('C:C', 18.14, center)
+            worksheet547.set_column('D:D', 25, left)
+            worksheet547.set_column('E:E', 13.14, left)
+            worksheet547.set_column('F:F', 8.57, center)
+            worksheet547.set_column('G:R', 5, center)
+            worksheet547.merge_range(
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF SUKASARI', title)
+            worksheet547.merge_range(
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+            worksheet547.write('A5', 'LOKASI', header)
+            worksheet547.write('B5', 'TOTAL', header)
+            worksheet547.merge_range('A4:B4', 'RANK', header)
+            worksheet547.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet547.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet547.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet547.merge_range('F4:F5', 'KELAS', header)
+            worksheet547.merge_range('G4:K4', 'JUMLAH BENAR', header)
+            worksheet547.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet547.write('G5', 'MAT', body)
+            worksheet547.write('H5', 'FIS', body)
+            worksheet547.write('I5', 'KIM', body)
+            worksheet547.write('J5', 'BIO', body)
+            worksheet547.write('K5', 'JML', body)
+            worksheet547.write('L5', 'MAT', body)
+            worksheet547.write('M5', 'FIS', body)
+            worksheet547.write('N5', 'KIM', body)
+            worksheet547.write('O5', 'BIO', body)
+            worksheet547.write('P5', 'JML', body)
+
+            worksheet547.conditional_format(5, 0, row547_10+4, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            worksheet547.merge_range(
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF SUKASARI', title)
+            worksheet547.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet547.merge_range(
+                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+            worksheet547.write('A22', 'LOKASI', header)
+            worksheet547.write('B22', 'TOTAL', header)
+            worksheet547.merge_range('A21:B21', 'RANK', header)
+            worksheet547.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet547.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet547.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet547.merge_range('F21:F22', 'KELAS', header)
+            worksheet547.merge_range('G21:K21', 'JUMLAH BENAR', header)
+            worksheet547.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet547.write('G22', 'MAT', body)
+            worksheet547.write('H22', 'FIS', body)
+            worksheet547.write('I22', 'KIM', body)
+            worksheet547.write('J22', 'BIO', body)
+            worksheet547.write('K22', 'JML', body)
+            worksheet547.write('L22', 'MAT', body)
+            worksheet547.write('M22', 'FIS', body)
+            worksheet547.write('N22', 'KIM', body)
+            worksheet547.write('O22', 'BIO', body)
+            worksheet547.write('P22', 'JML', body)
+
+            worksheet547.conditional_format(22, 0, row547+21, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            # worksheet 556
+            worksheet556.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheet556.set_column('A:A', 7, center)
+            worksheet556.set_column('B:B', 6, center)
+            worksheet556.set_column('C:C', 18.14, center)
+            worksheet556.set_column('D:D', 25, left)
+            worksheet556.set_column('E:E', 13.14, left)
+            worksheet556.set_column('F:F', 8.57, center)
+            worksheet556.set_column('G:R', 5, center)
+            worksheet556.merge_range(
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF YASMIN', title)
+            worksheet556.merge_range(
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+            worksheet556.write('A5', 'LOKASI', header)
+            worksheet556.write('B5', 'TOTAL', header)
+            worksheet556.merge_range('A4:B4', 'RANK', header)
+            worksheet556.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet556.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet556.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet556.merge_range('F4:F5', 'KELAS', header)
+            worksheet556.merge_range('G4:K4', 'JUMLAH BENAR', header)
+            worksheet556.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet556.write('G5', 'MAT', body)
+            worksheet556.write('H5', 'FIS', body)
+            worksheet556.write('I5', 'KIM', body)
+            worksheet556.write('J5', 'BIO', body)
+            worksheet556.write('K5', 'JML', body)
+            worksheet556.write('L5', 'MAT', body)
+            worksheet556.write('M5', 'FIS', body)
+            worksheet556.write('N5', 'KIM', body)
+            worksheet556.write('O5', 'BIO', body)
+            worksheet556.write('P5', 'JML', body)
+
+            worksheet556.conditional_format(5, 0, row556_10+4, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            worksheet556.merge_range(
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF YASMIN', title)
+            worksheet556.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet556.merge_range(
+                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+            worksheet556.write('A22', 'LOKASI', header)
+            worksheet556.write('B22', 'TOTAL', header)
+            worksheet556.merge_range('A21:B21', 'RANK', header)
+            worksheet556.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet556.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet556.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet556.merge_range('F21:F22', 'KELAS', header)
+            worksheet556.merge_range('G21:K21', 'JUMLAH BENAR', header)
+            worksheet556.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet556.write('G22', 'MAT', body)
+            worksheet556.write('H22', 'FIS', body)
+            worksheet556.write('I22', 'KIM', body)
+            worksheet556.write('J22', 'BIO', body)
+            worksheet556.write('K22', 'JML', body)
+            worksheet556.write('L22', 'MAT', body)
+            worksheet556.write('M22', 'FIS', body)
+            worksheet556.write('N22', 'KIM', body)
+            worksheet556.write('O22', 'BIO', body)
+            worksheet556.write('P22', 'JML', body)
+
+            worksheet556.conditional_format(22, 0, row556+21, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            # worksheet 557
+            worksheet557.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheet557.set_column('A:A', 7, center)
+            worksheet557.set_column('B:B', 6, center)
+            worksheet557.set_column('C:C', 18.14, center)
+            worksheet557.set_column('D:D', 25, left)
+            worksheet557.set_column('E:E', 13.14, left)
+            worksheet557.set_column('F:F', 8.57, center)
+            worksheet557.set_column('G:R', 5, center)
+            worksheet557.merge_range(
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF YOGYA PLAZA', title)
+            worksheet557.merge_range(
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+            worksheet557.write('A5', 'LOKASI', header)
+            worksheet557.write('B5', 'TOTAL', header)
+            worksheet557.merge_range('A4:B4', 'RANK', header)
+            worksheet557.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet557.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet557.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet557.merge_range('F4:F5', 'KELAS', header)
+            worksheet557.merge_range('G4:K4', 'JUMLAH BENAR', header)
+            worksheet557.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet557.write('G5', 'MAT', body)
+            worksheet557.write('H5', 'FIS', body)
+            worksheet557.write('I5', 'KIM', body)
+            worksheet557.write('J5', 'BIO', body)
+            worksheet557.write('K5', 'JML', body)
+            worksheet557.write('L5', 'MAT', body)
+            worksheet557.write('M5', 'FIS', body)
+            worksheet557.write('N5', 'KIM', body)
+            worksheet557.write('O5', 'BIO', body)
+            worksheet557.write('P5', 'JML', body)
+
+            worksheet557.conditional_format(5, 0, row557_10+4, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            worksheet557.merge_range(
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF YOGYA PLAZA', title)
+            worksheet557.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet557.merge_range(
+                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+            worksheet557.write('A22', 'LOKASI', header)
+            worksheet557.write('B22', 'TOTAL', header)
+            worksheet557.merge_range('A21:B21', 'RANK', header)
+            worksheet557.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet557.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet557.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet557.merge_range('F21:F22', 'KELAS', header)
+            worksheet557.merge_range('G21:K21', 'JUMLAH BENAR', header)
+            worksheet557.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet557.write('G22', 'MAT', body)
+            worksheet557.write('H22', 'FIS', body)
+            worksheet557.write('I22', 'KIM', body)
+            worksheet557.write('J22', 'BIO', body)
+            worksheet557.write('K22', 'JML', body)
+            worksheet557.write('L22', 'MAT', body)
+            worksheet557.write('M22', 'FIS', body)
+            worksheet557.write('N22', 'KIM', body)
+            worksheet557.write('O22', 'BIO', body)
+            worksheet557.write('P22', 'JML', body)
+
+            worksheet557.conditional_format(22, 0, row557+21, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            # worksheet 575
+            worksheet575.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheet575.set_column('A:A', 7, center)
+            worksheet575.set_column('B:B', 6, center)
+            worksheet575.set_column('C:C', 18.14, center)
+            worksheet575.set_column('D:D', 25, left)
+            worksheet575.set_column('E:E', 13.14, left)
+            worksheet575.set_column('F:F', 8.57, center)
+            worksheet575.set_column('G:R', 5, center)
+            worksheet575.merge_range(
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF CINERE', title)
+            worksheet575.merge_range(
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+            worksheet575.write('A5', 'LOKASI', header)
+            worksheet575.write('B5', 'TOTAL', header)
+            worksheet575.merge_range('A4:B4', 'RANK', header)
+            worksheet575.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet575.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet575.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet575.merge_range('F4:F5', 'KELAS', header)
+            worksheet575.merge_range('G4:K4', 'JUMLAH BENAR', header)
+            worksheet575.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet575.write('G5', 'MAT', body)
+            worksheet575.write('H5', 'FIS', body)
+            worksheet575.write('I5', 'KIM', body)
+            worksheet575.write('J5', 'BIO', body)
+            worksheet575.write('K5', 'JML', body)
+            worksheet575.write('L5', 'MAT', body)
+            worksheet575.write('M5', 'FIS', body)
+            worksheet575.write('N5', 'KIM', body)
+            worksheet575.write('O5', 'BIO', body)
+            worksheet575.write('P5', 'JML', body)
+
+            worksheet575.conditional_format(5, 0, row575_10+4, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            worksheet575.merge_range(
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF CINERE', title)
+            worksheet575.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet575.merge_range(
+                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+            worksheet575.write('A22', 'LOKASI', header)
+            worksheet575.write('B22', 'TOTAL', header)
+            worksheet575.merge_range('A21:B21', 'RANK', header)
+            worksheet575.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet575.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet575.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet575.merge_range('F21:F22', 'KELAS', header)
+            worksheet575.merge_range('G21:K21', 'JUMLAH BENAR', header)
+            worksheet575.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet575.write('G22', 'MAT', body)
+            worksheet575.write('H22', 'FIS', body)
+            worksheet575.write('I22', 'KIM', body)
+            worksheet575.write('J22', 'BIO', body)
+            worksheet575.write('K22', 'JML', body)
+            worksheet575.write('L22', 'MAT', body)
+            worksheet575.write('M22', 'FIS', body)
+            worksheet575.write('N22', 'KIM', body)
+            worksheet575.write('O22', 'BIO', body)
+            worksheet575.write('P22', 'JML', body)
+
+            worksheet575.conditional_format(22, 0, row575+21, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            # worksheet 576
+            worksheet576.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheet576.set_column('A:A', 7, center)
+            worksheet576.set_column('B:B', 6, center)
+            worksheet576.set_column('C:C', 18.14, center)
+            worksheet576.set_column('D:D', 25, left)
+            worksheet576.set_column('E:E', 13.14, left)
+            worksheet576.set_column('F:F', 8.57, center)
+            worksheet576.set_column('G:R', 5, center)
+            worksheet576.merge_range(
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF CIBINONG', title)
+            worksheet576.merge_range(
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+            worksheet576.write('A5', 'LOKASI', header)
+            worksheet576.write('B5', 'TOTAL', header)
+            worksheet576.merge_range('A4:B4', 'RANK', header)
+            worksheet576.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet576.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet576.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet576.merge_range('F4:F5', 'KELAS', header)
+            worksheet576.merge_range('G4:K4', 'JUMLAH BENAR', header)
+            worksheet576.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet576.write('G5', 'MAT', body)
+            worksheet576.write('H5', 'FIS', body)
+            worksheet576.write('I5', 'KIM', body)
+            worksheet576.write('J5', 'BIO', body)
+            worksheet576.write('K5', 'JML', body)
+            worksheet576.write('L5', 'MAT', body)
+            worksheet576.write('M5', 'FIS', body)
+            worksheet576.write('N5', 'KIM', body)
+            worksheet576.write('O5', 'BIO', body)
+            worksheet576.write('P5', 'JML', body)
+
+            worksheet576.conditional_format(5, 0, row576_10+4, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            worksheet576.merge_range(
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF CIBINONG', title)
+            worksheet576.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet576.merge_range(
+                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+            worksheet576.write('A22', 'LOKASI', header)
+            worksheet576.write('B22', 'TOTAL', header)
+            worksheet576.merge_range('A21:B21', 'RANK', header)
+            worksheet576.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet576.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet576.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet576.merge_range('F21:F22', 'KELAS', header)
+            worksheet576.merge_range('G21:K21', 'JUMLAH BENAR', header)
+            worksheet576.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet576.write('G22', 'MAT', body)
+            worksheet576.write('H22', 'FIS', body)
+            worksheet576.write('I22', 'KIM', body)
+            worksheet576.write('J22', 'BIO', body)
+            worksheet576.write('K22', 'JML', body)
+            worksheet576.write('L22', 'MAT', body)
+            worksheet576.write('M22', 'FIS', body)
+            worksheet576.write('N22', 'KIM', body)
+            worksheet576.write('O22', 'BIO', body)
+            worksheet576.write('P22', 'JML', body)
+
+            worksheet576.conditional_format(22, 0, row576+21, 15,
+                                            {'type': 'no_errors', 'format': border})
+            # worksheet 588
+            worksheet588.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheet588.set_column('A:A', 7, center)
+            worksheet588.set_column('B:B', 6, center)
+            worksheet588.set_column('C:C', 18.14, center)
+            worksheet588.set_column('D:D', 25, left)
+            worksheet588.set_column('E:E', 13.14, left)
+            worksheet588.set_column('F:F', 8.57, center)
+            worksheet588.set_column('G:R', 5, center)
+            worksheet588.merge_range(
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF MAHARAJA', title)
+            worksheet588.merge_range(
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+            worksheet588.write('A5', 'LOKASI', header)
+            worksheet588.write('B5', 'TOTAL', header)
+            worksheet588.merge_range('A4:B4', 'RANK', header)
+            worksheet588.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet588.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet588.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet588.merge_range('F4:F5', 'KELAS', header)
+            worksheet588.merge_range('G4:K4', 'JUMLAH BENAR', header)
+            worksheet588.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet588.write('G5', 'MAT', body)
+            worksheet588.write('H5', 'FIS', body)
+            worksheet588.write('I5', 'KIM', body)
+            worksheet588.write('J5', 'BIO', body)
+            worksheet588.write('K5', 'JML', body)
+            worksheet588.write('L5', 'MAT', body)
+            worksheet588.write('M5', 'FIS', body)
+            worksheet588.write('N5', 'KIM', body)
+            worksheet588.write('O5', 'BIO', body)
+            worksheet588.write('P5', 'JML', body)
+
+            worksheet588.conditional_format(5, 0, row588_10+4, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            worksheet588.merge_range(
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF MAHARAJA', title)
+            worksheet588.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet588.merge_range(
+                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+            worksheet588.write('A22', 'LOKASI', header)
+            worksheet588.write('B22', 'TOTAL', header)
+            worksheet588.merge_range('A21:B21', 'RANK', header)
+            worksheet588.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet588.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet588.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet588.merge_range('F21:F22', 'KELAS', header)
+            worksheet588.merge_range('G21:K21', 'JUMLAH BENAR', header)
+            worksheet588.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet588.write('G22', 'MAT', body)
+            worksheet588.write('H22', 'FIS', body)
+            worksheet588.write('I22', 'KIM', body)
+            worksheet588.write('J22', 'BIO', body)
+            worksheet588.write('K22', 'JML', body)
+            worksheet588.write('L22', 'MAT', body)
+            worksheet588.write('M22', 'FIS', body)
+            worksheet588.write('N22', 'KIM', body)
+            worksheet588.write('O22', 'BIO', body)
+            worksheet588.write('P22', 'JML', body)
+
+            worksheet588.conditional_format(22, 0, row588+21, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            # worksheet 661
+            worksheet661.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheet661.set_column('A:A', 7, center)
+            worksheet661.set_column('B:B', 6, center)
+            worksheet661.set_column('C:C', 18.14, center)
+            worksheet661.set_column('D:D', 25, left)
+            worksheet661.set_column('E:E', 13.14, left)
+            worksheet661.set_column('F:F', 8.57, center)
+            worksheet661.set_column('G:R', 5, center)
+            worksheet661.merge_range(
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF GAJAH MADA', title)
+            worksheet661.merge_range(
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+            worksheet661.write('A5', 'LOKASI', header)
+            worksheet661.write('B5', 'TOTAL', header)
+            worksheet661.merge_range('A4:B4', 'RANK', header)
+            worksheet661.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet661.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet661.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet661.merge_range('F4:F5', 'KELAS', header)
+            worksheet661.merge_range('G4:K4', 'JUMLAH BENAR', header)
+            worksheet661.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet661.write('G5', 'MAT', body)
+            worksheet661.write('H5', 'FIS', body)
+            worksheet661.write('I5', 'KIM', body)
+            worksheet661.write('J5', 'BIO', body)
+            worksheet661.write('K5', 'JML', body)
+            worksheet661.write('L5', 'MAT', body)
+            worksheet661.write('M5', 'FIS', body)
+            worksheet661.write('N5', 'KIM', body)
+            worksheet661.write('O5', 'BIO', body)
+            worksheet661.write('P5', 'JML', body)
+
+            worksheet661.conditional_format(5, 0, row661_10+4, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            worksheet661.merge_range(
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF GAJAH MADA', title)
+            worksheet661.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet661.merge_range(
+                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+            worksheet661.write('A22', 'LOKASI', header)
+            worksheet661.write('B22', 'TOTAL', header)
+            worksheet661.merge_range('A21:B21', 'RANK', header)
+            worksheet661.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet661.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet661.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet661.merge_range('F21:F22', 'KELAS', header)
+            worksheet661.merge_range('G21:K21', 'JUMLAH BENAR', header)
+            worksheet661.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet661.write('G22', 'MAT', body)
+            worksheet661.write('H22', 'FIS', body)
+            worksheet661.write('I22', 'KIM', body)
+            worksheet661.write('J22', 'BIO', body)
+            worksheet661.write('K22', 'JML', body)
+            worksheet661.write('L22', 'MAT', body)
+            worksheet661.write('M22', 'FIS', body)
+            worksheet661.write('N22', 'KIM', body)
+            worksheet661.write('O22', 'BIO', body)
+            worksheet661.write('P22', 'JML', body)
+
+            worksheet661.conditional_format(22, 0, row661+21, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            # worksheet 662
+            worksheet662.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheet662.set_column('A:A', 7, center)
+            worksheet662.set_column('B:B', 6, center)
+            worksheet662.set_column('C:C', 18.14, center)
+            worksheet662.set_column('D:D', 25, left)
+            worksheet662.set_column('E:E', 13.14, left)
+            worksheet662.set_column('F:F', 8.57, center)
+            worksheet662.set_column('G:R', 5, center)
+            worksheet662.merge_range(
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF LOLONG BELANTI', title)
+            worksheet662.merge_range(
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+            worksheet662.write('A5', 'LOKASI', header)
+            worksheet662.write('B5', 'TOTAL', header)
+            worksheet662.merge_range('A4:B4', 'RANK', header)
+            worksheet662.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet662.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet662.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet662.merge_range('F4:F5', 'KELAS', header)
+            worksheet662.merge_range('G4:K4', 'JUMLAH BENAR', header)
+            worksheet662.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet662.write('G5', 'MAT', body)
+            worksheet662.write('H5', 'FIS', body)
+            worksheet662.write('I5', 'KIM', body)
+            worksheet662.write('J5', 'BIO', body)
+            worksheet662.write('K5', 'JML', body)
+            worksheet662.write('L5', 'MAT', body)
+            worksheet662.write('M5', 'FIS', body)
+            worksheet662.write('N5', 'KIM', body)
+            worksheet662.write('O5', 'BIO', body)
+            worksheet662.write('P5', 'JML', body)
+
+            worksheet662.conditional_format(5, 0, row662_10+4, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            worksheet662.merge_range(
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF LOLONG BELANTI', title)
+            worksheet662.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet662.merge_range(
+                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+            worksheet662.write('A22', 'LOKASI', header)
+            worksheet662.write('B22', 'TOTAL', header)
+            worksheet662.merge_range('A21:B21', 'RANK', header)
+            worksheet662.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet662.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet662.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet662.merge_range('F21:F22', 'KELAS', header)
+            worksheet662.merge_range('G21:K21', 'JUMLAH BENAR', header)
+            worksheet662.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet662.write('G22', 'MAT', body)
+            worksheet662.write('H22', 'FIS', body)
+            worksheet662.write('I22', 'KIM', body)
+            worksheet662.write('J22', 'BIO', body)
+            worksheet662.write('K22', 'JML', body)
+            worksheet662.write('L22', 'MAT', body)
+            worksheet662.write('M22', 'FIS', body)
+            worksheet662.write('N22', 'KIM', body)
+            worksheet662.write('O22', 'BIO', body)
+            worksheet662.write('P22', 'JML', body)
+
+            worksheet662.conditional_format(22, 0, row662+21, 15,
+                                            {'type': 'no_errors', 'format': border})
+
+            workbook.close()
+            st.success("File siap diunduh!")
+
+            # Tombol unduh file
+            with open(file_path, "rb") as f:
+                bytes_data = f.read()
+            st.download_button(label="Unduh File", data=bytes_data,
+                               file_name=file_name)
