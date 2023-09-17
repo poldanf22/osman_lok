@@ -35645,7 +35645,7 @@ if authentication_status:
             worksheet237.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF TASIKMALAYA', title)
             worksheet237.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet237.write('A5', 'LOKASI', header)
             worksheet237.write('B5', 'TOTAL', header)
             worksheet237.merge_range('A4:B4', 'RANK', header)
@@ -35673,7 +35673,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF TASIKMALAYA', title)
             worksheet237.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet237.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet237.write('A22', 'LOKASI', header)
             worksheet237.write('B22', 'TOTAL', header)
             worksheet237.merge_range('A21:B21', 'RANK', header)
@@ -35710,7 +35710,7 @@ if authentication_status:
             worksheet245.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF SEMARANG', title)
             worksheet245.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet245.write('A5', 'LOKASI', header)
             worksheet245.write('B5', 'TOTAL', header)
             worksheet245.merge_range('A4:B4', 'RANK', header)
@@ -35738,7 +35738,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF SEMARANG', title)
             worksheet245.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet245.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet245.write('A22', 'LOKASI', header)
             worksheet245.write('B22', 'TOTAL', header)
             worksheet245.merge_range('A21:B21', 'RANK', header)
@@ -35775,7 +35775,7 @@ if authentication_status:
             worksheet246.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF KARTASURA', title)
             worksheet246.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet246.write('A5', 'LOKASI', header)
             worksheet246.write('B5', 'TOTAL', header)
             worksheet246.merge_range('A4:B4', 'RANK', header)
@@ -35803,7 +35803,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF KARTASURA', title)
             worksheet246.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet246.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet246.write('A22', 'LOKASI', header)
             worksheet246.write('B22', 'TOTAL', header)
             worksheet246.merge_range('A21:B21', 'RANK', header)
@@ -35840,7 +35840,7 @@ if authentication_status:
             worksheet248.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF BSD BOULEVARD', title)
             worksheet248.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet248.write('A5', 'LOKASI', header)
             worksheet248.write('B5', 'TOTAL', header)
             worksheet248.merge_range('A4:B4', 'RANK', header)
@@ -35868,7 +35868,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF BSD BOULEVARD', title)
             worksheet248.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet248.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet248.write('A22', 'LOKASI', header)
             worksheet248.write('B22', 'TOTAL', header)
             worksheet248.merge_range('A21:B21', 'RANK', header)
@@ -35905,7 +35905,7 @@ if authentication_status:
             worksheet249.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF SANGIANG', title)
             worksheet249.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet249.write('A5', 'LOKASI', header)
             worksheet249.write('B5', 'TOTAL', header)
             worksheet249.merge_range('A4:B4', 'RANK', header)
@@ -35933,7 +35933,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF SANGIANG', title)
             worksheet249.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet249.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet249.write('A22', 'LOKASI', header)
             worksheet249.write('B22', 'TOTAL', header)
             worksheet249.merge_range('A21:B21', 'RANK', header)
@@ -35970,7 +35970,7 @@ if authentication_status:
             worksheet250.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF BANJAR WIJAYA', title)
             worksheet250.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet250.write('A5', 'LOKASI', header)
             worksheet250.write('B5', 'TOTAL', header)
             worksheet250.merge_range('A4:B4', 'RANK', header)
@@ -35998,7 +35998,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF BANJAR WIJAYA', title)
             worksheet250.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet250.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet250.write('A22', 'LOKASI', header)
             worksheet250.write('B22', 'TOTAL', header)
             worksheet250.merge_range('A21:B21', 'RANK', header)
@@ -36035,7 +36035,7 @@ if authentication_status:
             worksheet252.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF CIRENDEU', title)
             worksheet252.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet252.write('A5', 'LOKASI', header)
             worksheet252.write('B5', 'TOTAL', header)
             worksheet252.merge_range('A4:B4', 'RANK', header)
@@ -36063,7 +36063,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF CIRENDEU', title)
             worksheet252.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet252.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet252.write('A22', 'LOKASI', header)
             worksheet252.write('B22', 'TOTAL', header)
             worksheet252.merge_range('A21:B21', 'RANK', header)
@@ -36099,7 +36099,7 @@ if authentication_status:
             worksheet254.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF GRAHA RAYA', title)
             worksheet254.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet254.write('A5', 'LOKASI', header)
             worksheet254.write('B5', 'TOTAL', header)
             worksheet254.merge_range('A4:B4', 'RANK', header)
@@ -36127,7 +36127,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF GRAHA RAYA', title)
             worksheet254.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet254.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet254.write('A22', 'LOKASI', header)
             worksheet254.write('B22', 'TOTAL', header)
             worksheet254.merge_range('A21:B21', 'RANK', header)
@@ -36164,7 +36164,7 @@ if authentication_status:
             worksheet255.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF MERPATI', title)
             worksheet255.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet255.write('A5', 'LOKASI', header)
             worksheet255.write('B5', 'TOTAL', header)
             worksheet255.merge_range('A4:B4', 'RANK', header)
@@ -36192,7 +36192,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF MERPATI', title)
             worksheet255.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet255.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet255.write('A22', 'LOKASI', header)
             worksheet255.write('B22', 'TOTAL', header)
             worksheet255.merge_range('A21:B21', 'RANK', header)
@@ -36229,7 +36229,7 @@ if authentication_status:
             worksheet256.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF CIRUAS', title)
             worksheet256.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet256.write('A5', 'LOKASI', header)
             worksheet256.write('B5', 'TOTAL', header)
             worksheet256.merge_range('A4:B4', 'RANK', header)
@@ -36257,7 +36257,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF CIRUAS', title)
             worksheet256.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet256.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet256.write('A22', 'LOKASI', header)
             worksheet256.write('B22', 'TOTAL', header)
             worksheet256.merge_range('A21:B21', 'RANK', header)
@@ -36294,7 +36294,7 @@ if authentication_status:
             worksheet259.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF PANAM, PKU', title)
             worksheet259.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet259.write('A5', 'LOKASI', header)
             worksheet259.write('B5', 'TOTAL', header)
             worksheet259.merge_range('A4:B4', 'RANK', header)
@@ -36322,7 +36322,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF PANAM, PKU', title)
             worksheet259.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet259.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet259.write('A22', 'LOKASI', header)
             worksheet259.write('B22', 'TOTAL', header)
             worksheet259.merge_range('A21:B21', 'RANK', header)
@@ -36359,7 +36359,7 @@ if authentication_status:
             worksheet260.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF AM. SANGAJI', title)
             worksheet260.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet260.write('A5', 'LOKASI', header)
             worksheet260.write('B5', 'TOTAL', header)
             worksheet260.merge_range('A4:B4', 'RANK', header)
@@ -36387,7 +36387,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF AM. SANGAJI', title)
             worksheet260.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet260.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet260.write('A22', 'LOKASI', header)
             worksheet260.write('B22', 'TOTAL', header)
             worksheet260.merge_range('A21:B21', 'RANK', header)
@@ -36424,7 +36424,7 @@ if authentication_status:
             worksheet261.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF DURI KOSAMBI', title)
             worksheet261.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet261.write('A5', 'LOKASI', header)
             worksheet261.write('B5', 'TOTAL', header)
             worksheet261.merge_range('A4:B4', 'RANK', header)
@@ -36452,7 +36452,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF DURI KOSAMBI', title)
             worksheet261.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet261.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet261.write('A22', 'LOKASI', header)
             worksheet261.write('B22', 'TOTAL', header)
             worksheet261.merge_range('A21:B21', 'RANK', header)
@@ -36489,7 +36489,7 @@ if authentication_status:
             worksheet262.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF CITRA RAYA CIKUPA', title)
             worksheet262.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet262.write('A5', 'LOKASI', header)
             worksheet262.write('B5', 'TOTAL', header)
             worksheet262.merge_range('A4:B4', 'RANK', header)
@@ -36517,7 +36517,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF CITRA RAYA CIKUPA', title)
             worksheet262.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet262.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet262.write('A22', 'LOKASI', header)
             worksheet262.write('B22', 'TOTAL', header)
             worksheet262.merge_range('A21:B21', 'RANK', header)
@@ -36554,7 +36554,7 @@ if authentication_status:
             worksheet263.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF GRAHA PRIMA', title)
             worksheet263.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet263.write('A5', 'LOKASI', header)
             worksheet263.write('B5', 'TOTAL', header)
             worksheet263.merge_range('A4:B4', 'RANK', header)
@@ -36582,7 +36582,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF GRAHA PRIMA', title)
             worksheet263.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet263.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet263.write('A22', 'LOKASI', header)
             worksheet263.write('B22', 'TOTAL', header)
             worksheet263.merge_range('A21:B21', 'RANK', header)
@@ -36619,7 +36619,7 @@ if authentication_status:
             worksheet264.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF KARAWANG', title)
             worksheet264.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet264.write('A5', 'LOKASI', header)
             worksheet264.write('B5', 'TOTAL', header)
             worksheet264.merge_range('A4:B4', 'RANK', header)
@@ -36647,7 +36647,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF KARAWANG', title)
             worksheet264.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet264.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet264.write('A22', 'LOKASI', header)
             worksheet264.write('B22', 'TOTAL', header)
             worksheet264.merge_range('A21:B21', 'RANK', header)
@@ -36684,7 +36684,7 @@ if authentication_status:
             worksheet265.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF TAMAN WISMA ASRI', title)
             worksheet265.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet265.write('A5', 'LOKASI', header)
             worksheet265.write('B5', 'TOTAL', header)
             worksheet265.merge_range('A4:B4', 'RANK', header)
@@ -36712,7 +36712,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF TAMAN WISMA ASRI', title)
             worksheet265.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet265.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet265.write('A22', 'LOKASI', header)
             worksheet265.write('B22', 'TOTAL', header)
             worksheet265.merge_range('A21:B21', 'RANK', header)
@@ -36749,7 +36749,7 @@ if authentication_status:
             worksheet266.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF MANGUN JAYA', title)
             worksheet266.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet266.write('A5', 'LOKASI', header)
             worksheet266.write('B5', 'TOTAL', header)
             worksheet266.merge_range('A4:B4', 'RANK', header)
@@ -36777,7 +36777,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF MANGUN JAYA', title)
             worksheet266.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet266.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet266.write('A22', 'LOKASI', header)
             worksheet266.write('B22', 'TOTAL', header)
             worksheet266.merge_range('A21:B21', 'RANK', header)
@@ -36814,7 +36814,7 @@ if authentication_status:
             worksheet267.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF MARAKASH / SEKTOR 5', title)
             worksheet267.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet267.write('A5', 'LOKASI', header)
             worksheet267.write('B5', 'TOTAL', header)
             worksheet267.merge_range('A4:B4', 'RANK', header)
@@ -36842,7 +36842,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF MARAKASH / SEKTOR 5', title)
             worksheet267.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet267.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet267.write('A22', 'LOKASI', header)
             worksheet267.write('B22', 'TOTAL', header)
             worksheet267.merge_range('A21:B21', 'RANK', header)
@@ -36879,7 +36879,7 @@ if authentication_status:
             worksheet268.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF KEBALEN', title)
             worksheet268.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet268.write('A5', 'LOKASI', header)
             worksheet268.write('B5', 'TOTAL', header)
             worksheet268.merge_range('A4:B4', 'RANK', header)
@@ -36907,7 +36907,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF KEBALEN', title)
             worksheet268.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet268.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet268.write('A22', 'LOKASI', header)
             worksheet268.write('B22', 'TOTAL', header)
             worksheet268.merge_range('A21:B21', 'RANK', header)
@@ -36944,7 +36944,7 @@ if authentication_status:
             worksheet269.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF JATI RANGON', title)
             worksheet269.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet269.write('A5', 'LOKASI', header)
             worksheet269.write('B5', 'TOTAL', header)
             worksheet269.merge_range('A4:B4', 'RANK', header)
@@ -36972,7 +36972,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF JATI RANGON', title)
             worksheet269.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet269.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet269.write('A22', 'LOKASI', header)
             worksheet269.write('B22', 'TOTAL', header)
             worksheet269.merge_range('A21:B21', 'RANK', header)
@@ -37009,7 +37009,7 @@ if authentication_status:
             worksheet270.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF JATIBENING', title)
             worksheet270.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet270.write('A5', 'LOKASI', header)
             worksheet270.write('B5', 'TOTAL', header)
             worksheet270.merge_range('A4:B4', 'RANK', header)
@@ -37037,7 +37037,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF JATIBENING', title)
             worksheet270.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet270.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet270.write('A22', 'LOKASI', header)
             worksheet270.write('B22', 'TOTAL', header)
             worksheet270.merge_range('A21:B21', 'RANK', header)
@@ -37074,7 +37074,7 @@ if authentication_status:
             worksheet271.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF JATIMULYA', title)
             worksheet271.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet271.write('A5', 'LOKASI', header)
             worksheet271.write('B5', 'TOTAL', header)
             worksheet271.merge_range('A4:B4', 'RANK', header)
@@ -37102,7 +37102,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF JATIMULYA', title)
             worksheet271.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet271.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet271.write('A22', 'LOKASI', header)
             worksheet271.write('B22', 'TOTAL', header)
             worksheet271.merge_range('A21:B21', 'RANK', header)
@@ -37139,7 +37139,7 @@ if authentication_status:
             worksheet272.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF PERUMNAS 3', title)
             worksheet272.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet272.write('A5', 'LOKASI', header)
             worksheet272.write('B5', 'TOTAL', header)
             worksheet272.merge_range('A4:B4', 'RANK', header)
@@ -37167,7 +37167,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF PERUMNAS 3', title)
             worksheet272.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet272.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet272.write('A22', 'LOKASI', header)
             worksheet272.write('B22', 'TOTAL', header)
             worksheet272.merge_range('A21:B21', 'RANK', header)
@@ -37204,7 +37204,7 @@ if authentication_status:
             worksheet273.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF NAROGONG', title)
             worksheet273.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet273.write('A5', 'LOKASI', header)
             worksheet273.write('B5', 'TOTAL', header)
             worksheet273.merge_range('A4:B4', 'RANK', header)
@@ -37232,7 +37232,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF NAROGONG', title)
             worksheet273.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet273.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet273.write('A22', 'LOKASI', header)
             worksheet273.write('B22', 'TOTAL', header)
             worksheet273.merge_range('A21:B21', 'RANK', header)
@@ -37269,7 +37269,7 @@ if authentication_status:
             worksheet274.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF BEKASI TIMUR REGENCY', title)
             worksheet274.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet274.write('A5', 'LOKASI', header)
             worksheet274.write('B5', 'TOTAL', header)
             worksheet274.merge_range('A4:B4', 'RANK', header)
@@ -37297,7 +37297,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF BEKASI TIMUR REGENCY', title)
             worksheet274.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet274.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet274.write('A22', 'LOKASI', header)
             worksheet274.write('B22', 'TOTAL', header)
             worksheet274.merge_range('A21:B21', 'RANK', header)
@@ -37334,7 +37334,7 @@ if authentication_status:
             worksheet275.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF CIKARANG PILAR', title)
             worksheet275.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet275.write('A5', 'LOKASI', header)
             worksheet275.write('B5', 'TOTAL', header)
             worksheet275.merge_range('A4:B4', 'RANK', header)
@@ -37362,7 +37362,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF CIKARANG PILAR', title)
             worksheet275.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet275.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet275.write('A22', 'LOKASI', header)
             worksheet275.write('B22', 'TOTAL', header)
             worksheet275.merge_range('A21:B21', 'RANK', header)
@@ -37399,7 +37399,7 @@ if authentication_status:
             worksheet276.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF CIKARANG JABABEKA', title)
             worksheet276.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet276.write('A5', 'LOKASI', header)
             worksheet276.write('B5', 'TOTAL', header)
             worksheet276.merge_range('A4:B4', 'RANK', header)
@@ -37427,7 +37427,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF CIKARANG JABABEKA', title)
             worksheet276.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet276.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet276.write('A22', 'LOKASI', header)
             worksheet276.write('B22', 'TOTAL', header)
             worksheet276.merge_range('A21:B21', 'RANK', header)
@@ -37464,7 +37464,7 @@ if authentication_status:
             worksheet278.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF MERDUATI', title)
             worksheet278.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet278.write('A5', 'LOKASI', header)
             worksheet278.write('B5', 'TOTAL', header)
             worksheet278.merge_range('A4:B4', 'RANK', header)
@@ -37492,7 +37492,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF MERDUATI', title)
             worksheet278.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet278.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet278.write('A22', 'LOKASI', header)
             worksheet278.write('B22', 'TOTAL', header)
             worksheet278.merge_range('A21:B21', 'RANK', header)
@@ -37529,7 +37529,7 @@ if authentication_status:
             worksheet279.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF ANTAPANI', title)
             worksheet279.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet279.write('A5', 'LOKASI', header)
             worksheet279.write('B5', 'TOTAL', header)
             worksheet279.merge_range('A4:B4', 'RANK', header)
@@ -37557,7 +37557,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF ANTAPANI', title)
             worksheet279.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet279.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet279.write('A22', 'LOKASI', header)
             worksheet279.write('B22', 'TOTAL', header)
             worksheet279.merge_range('A21:B21', 'RANK', header)
@@ -39387,7 +39387,7 @@ if authentication_status:
             worksheet530.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF POLSEK DEPOK', title)
             worksheet530.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet530.write('A5', 'LOKASI', header)
             worksheet530.write('B5', 'TOTAL', header)
             worksheet530.merge_range('A4:B4', 'RANK', header)
@@ -39415,7 +39415,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF POLSEK DEPOK', title)
             worksheet530.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet530.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet530.write('A22', 'LOKASI', header)
             worksheet530.write('B22', 'TOTAL', header)
             worksheet530.merge_range('A21:B21', 'RANK', header)
@@ -39452,7 +39452,7 @@ if authentication_status:
             worksheet531.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF DEPOK 1', title)
             worksheet531.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet531.write('A5', 'LOKASI', header)
             worksheet531.write('B5', 'TOTAL', header)
             worksheet531.merge_range('A4:B4', 'RANK', header)
@@ -39480,7 +39480,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF DEPOK 1', title)
             worksheet531.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet531.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet531.write('A22', 'LOKASI', header)
             worksheet531.write('B22', 'TOTAL', header)
             worksheet531.merge_range('A21:B21', 'RANK', header)
@@ -39517,7 +39517,7 @@ if authentication_status:
             worksheet532.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF PROKLAMASI DEPOK 2', title)
             worksheet532.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet532.write('A5', 'LOKASI', header)
             worksheet532.write('B5', 'TOTAL', header)
             worksheet532.merge_range('A4:B4', 'RANK', header)
@@ -39545,7 +39545,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF PROKLAMASI DEPOK 2', title)
             worksheet532.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet532.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet532.write('A22', 'LOKASI', header)
             worksheet532.write('B22', 'TOTAL', header)
             worksheet532.merge_range('A21:B21', 'RANK', header)
@@ -39582,7 +39582,7 @@ if authentication_status:
             worksheet534.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF SAWANGAN', title)
             worksheet534.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet534.write('A5', 'LOKASI', header)
             worksheet534.write('B5', 'TOTAL', header)
             worksheet534.merge_range('A4:B4', 'RANK', header)
@@ -39610,7 +39610,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF SAWANGAN', title)
             worksheet534.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet534.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet534.write('A22', 'LOKASI', header)
             worksheet534.write('B22', 'TOTAL', header)
             worksheet534.merge_range('A21:B21', 'RANK', header)
@@ -39647,7 +39647,7 @@ if authentication_status:
             worksheet547.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF SUKASARI', title)
             worksheet547.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet547.write('A5', 'LOKASI', header)
             worksheet547.write('B5', 'TOTAL', header)
             worksheet547.merge_range('A4:B4', 'RANK', header)
@@ -39675,7 +39675,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF SUKASARI', title)
             worksheet547.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet547.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet547.write('A22', 'LOKASI', header)
             worksheet547.write('B22', 'TOTAL', header)
             worksheet547.merge_range('A21:B21', 'RANK', header)
@@ -39712,7 +39712,7 @@ if authentication_status:
             worksheet556.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF YASMIN', title)
             worksheet556.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet556.write('A5', 'LOKASI', header)
             worksheet556.write('B5', 'TOTAL', header)
             worksheet556.merge_range('A4:B4', 'RANK', header)
@@ -39740,7 +39740,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF YASMIN', title)
             worksheet556.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet556.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet556.write('A22', 'LOKASI', header)
             worksheet556.write('B22', 'TOTAL', header)
             worksheet556.merge_range('A21:B21', 'RANK', header)
@@ -39777,7 +39777,7 @@ if authentication_status:
             worksheet557.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF YOGYA PLAZA', title)
             worksheet557.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet557.write('A5', 'LOKASI', header)
             worksheet557.write('B5', 'TOTAL', header)
             worksheet557.merge_range('A4:B4', 'RANK', header)
@@ -39805,7 +39805,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF YOGYA PLAZA', title)
             worksheet557.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet557.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet557.write('A22', 'LOKASI', header)
             worksheet557.write('B22', 'TOTAL', header)
             worksheet557.merge_range('A21:B21', 'RANK', header)
@@ -39842,7 +39842,7 @@ if authentication_status:
             worksheet575.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF CINERE', title)
             worksheet575.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet575.write('A5', 'LOKASI', header)
             worksheet575.write('B5', 'TOTAL', header)
             worksheet575.merge_range('A4:B4', 'RANK', header)
@@ -39870,7 +39870,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF CINERE', title)
             worksheet575.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet575.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet575.write('A22', 'LOKASI', header)
             worksheet575.write('B22', 'TOTAL', header)
             worksheet575.merge_range('A21:B21', 'RANK', header)
@@ -39907,7 +39907,7 @@ if authentication_status:
             worksheet576.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF CIBINONG', title)
             worksheet576.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet576.write('A5', 'LOKASI', header)
             worksheet576.write('B5', 'TOTAL', header)
             worksheet576.merge_range('A4:B4', 'RANK', header)
@@ -39935,7 +39935,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF CIBINONG', title)
             worksheet576.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet576.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet576.write('A22', 'LOKASI', header)
             worksheet576.write('B22', 'TOTAL', header)
             worksheet576.merge_range('A21:B21', 'RANK', header)
@@ -39971,7 +39971,7 @@ if authentication_status:
             worksheet588.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF MAHARAJA', title)
             worksheet588.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet588.write('A5', 'LOKASI', header)
             worksheet588.write('B5', 'TOTAL', header)
             worksheet588.merge_range('A4:B4', 'RANK', header)
@@ -39999,7 +39999,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF MAHARAJA', title)
             worksheet588.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet588.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet588.write('A22', 'LOKASI', header)
             worksheet588.write('B22', 'TOTAL', header)
             worksheet588.merge_range('A21:B21', 'RANK', header)
@@ -40036,7 +40036,7 @@ if authentication_status:
             worksheet661.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF GAJAH MADA', title)
             worksheet661.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet661.write('A5', 'LOKASI', header)
             worksheet661.write('B5', 'TOTAL', header)
             worksheet661.merge_range('A4:B4', 'RANK', header)
@@ -40064,7 +40064,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF GAJAH MADA', title)
             worksheet661.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet661.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet661.write('A22', 'LOKASI', header)
             worksheet661.write('B22', 'TOTAL', header)
             worksheet661.merge_range('A21:B21', 'RANK', header)
@@ -40101,7 +40101,7 @@ if authentication_status:
             worksheet662.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF LOLONG BELANTI', title)
             worksheet662.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet662.write('A5', 'LOKASI', header)
             worksheet662.write('B5', 'TOTAL', header)
             worksheet662.merge_range('A4:B4', 'RANK', header)
@@ -40129,7 +40129,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF LOLONG BELANTI', title)
             worksheet662.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet662.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet662.write('A22', 'LOKASI', header)
             worksheet662.write('B22', 'TOTAL', header)
             worksheet662.merge_range('A21:B21', 'RANK', header)
@@ -40665,7 +40665,7 @@ if authentication_status:
             worksheet728.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI SMAS RIYADHUSSHOLIHIN', title)
             worksheet728.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet728.write('A5', 'LOKASI', header)
             worksheet728.write('B5', 'TOTAL', header)
             worksheet728.merge_range('A4:B4', 'RANK', header)
@@ -40693,7 +40693,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI SMAS RIYADHUSSHOLIHIN', title)
             worksheet728.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet728.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet728.write('A22', 'LOKASI', header)
             worksheet728.write('B22', 'TOTAL', header)
             worksheet728.merge_range('A21:B21', 'RANK', header)
@@ -40730,7 +40730,7 @@ if authentication_status:
             worksheet741.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI SMA IT NF', title)
             worksheet741.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet741.write('A5', 'LOKASI', header)
             worksheet741.write('B5', 'TOTAL', header)
             worksheet741.merge_range('A4:B4', 'RANK', header)
@@ -40758,7 +40758,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI SMA IT NF', title)
             worksheet741.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet741.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet741.write('A22', 'LOKASI', header)
             worksheet741.write('B22', 'TOTAL', header)
             worksheet741.merge_range('A21:B21', 'RANK', header)
@@ -40795,7 +40795,7 @@ if authentication_status:
             worksheet743.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI MA ALIF LAAM MIIM', title)
             worksheet743.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet743.write('A5', 'LOKASI', header)
             worksheet743.write('B5', 'TOTAL', header)
             worksheet743.merge_range('A4:B4', 'RANK', header)
@@ -40823,7 +40823,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI MA ALIF LAAM MIIM', title)
             worksheet743.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet743.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet743.write('A22', 'LOKASI', header)
             worksheet743.write('B22', 'TOTAL', header)
             worksheet743.merge_range('A21:B21', 'RANK', header)
@@ -40860,7 +40860,7 @@ if authentication_status:
             worksheet822.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI SMAIT DARUL QURAN', title)
             worksheet822.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet822.write('A5', 'LOKASI', header)
             worksheet822.write('B5', 'TOTAL', header)
             worksheet822.merge_range('A4:B4', 'RANK', header)
@@ -40888,7 +40888,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI SMAIT DARUL QURAN', title)
             worksheet822.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet822.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet822.write('A22', 'LOKASI', header)
             worksheet822.write('B22', 'TOTAL', header)
             worksheet822.merge_range('A21:B21', 'RANK', header)
@@ -40925,7 +40925,7 @@ if authentication_status:
             worksheet826.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI SMAN CMBBS', title)
             worksheet826.merge_range(
-                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}23', sub_title)
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet826.write('A5', 'LOKASI', header)
             worksheet826.write('B5', 'TOTAL', header)
             worksheet826.merge_range('A4:B4', 'RANK', header)
@@ -40953,7 +40953,7 @@ if authentication_status:
                 'A17:R17', fr'KELAS {kelas} - LOKASI SMAN CMBBS', title)
             worksheet826.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet826.merge_range(
-                'A19:R19', fr'{semester} TAHUN {tahun}23', sub_title)
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
             worksheet826.write('A22', 'LOKASI', header)
             worksheet826.write('B22', 'TOTAL', header)
             worksheet826.merge_range('A21:B21', 'RANK', header)
