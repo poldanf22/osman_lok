@@ -28582,7 +28582,7 @@ if authentication_status:
             df = df[['LOKASI', 'RANK LOK.', 'RANK NAS.', 'NOMOR NF', 'NAMA SISWA', 'NAMA SEKOLAH',
                     'KELAS', 'MAT', 'IND', 'ENG', 'IPAS', 'JML', 'S_MAT', 'S_IND', 'S_ENG', 'S_IPAS', 'S_JML']]
             # sort best ENG
-            grouped = dfgroupby('LOKASI')
+            grouped = df.groupby('LOKASI')
             dfs = []  # List kosong untuk menyimpan DataFrame yang akan digabungkan
             for name, group in grouped:
                 dfs.append(group)
@@ -33266,7 +33266,7 @@ if authentication_status:
             df = df[['LOKASI', 'RANK LOK.', 'RANK NAS.', 'NOMOR NF', 'NAMA SISWA', 'NAMA SEKOLAH',
                     'KELAS', 'MAT', 'IND', 'ENG', 'IPAS', 'JML', 'S_MAT', 'S_IND', 'S_ENG', 'S_IPAS', 'S_JML']]
             # sort best ENG
-            grouped = dfgroupby('LOKASI')
+            grouped = df.groupby('LOKASI')
             dfs = []  # List kosong untuk menyimpan DataFrame yang akan digabungkan
             for name, group in grouped:
                 dfs.append(group)
