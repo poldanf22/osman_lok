@@ -17883,7 +17883,7 @@ if authentication_status:
             
             # Create a Pandas Excel writer using XlsxWriter as the engine.
             # Path file hasil penyimpanan
-            file_name = f"{kelas}_{penilaian}_{semester}_lokasi_depok_padang.xlsx"
+            file_name = f"{kelas}_{penilaian}_{semester}_lokasi_sekolah_kerjasama.xlsx"
             file_path = tempfile.gettempdir() + '/' + file_name
 
             # Menyimpan file Excel
@@ -18154,7 +18154,7 @@ if authentication_status:
             worksheet701.set_column('F:F', 8.57, center)
             worksheet701.set_column('G:R', 5, center)
             worksheet701.merge_range(
-                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF POLSEK DEPOK', title)
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI SMPN 19 PERCONTOHAN BANDA ACEH', title)
             worksheet701.merge_range(
                 'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet701.write('A5', 'LOKASI', header)
@@ -18183,7 +18183,7 @@ if authentication_status:
                                             {'type': 'no_errors', 'format': border})
 
             worksheet701.merge_range(
-                'A17:R17', fr'KELAS {kelas} - LOKASI NF POLSEK DEPOK', title)
+                'A17:R17', fr'KELAS {kelas} - LOKASI SMPN 19 PERCONTOHAN BANDA ACEH', title)
             worksheet701.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet701.merge_range(
                 'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
