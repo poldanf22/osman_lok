@@ -17924,15 +17924,15 @@ if authentication_status:
                                  index=False,
                                  header=False)
 
-            # 710
+            # 701
             # Convert the dataframe to an XlsxWriter Excel object.
-            sort710_10.to_excel(writer, sheet_name='710',
+            sort701_10.to_excel(writer, sheet_name='701',
                                 startrow=5,
                                 startcol=0,
                                 index=False,
                                 header=False)
             # Convert the dataframe to an XlsxWriter Excel object.
-            sort710.to_excel(writer, sheet_name='710',
+            sort701.to_excel(writer, sheet_name='701',
                              startrow=22,
                              startcol=0,
                              index=False,
@@ -17944,7 +17944,7 @@ if authentication_status:
             # membuat worksheet baru
             worksheetcover = writer.sheets['cover']
             worksheetbest = writer.sheets['best_150']
-            worksheet710 = writer.sheets['710']
+            worksheet701 = writer.sheets['701']
             
             # format workbook
             titleCover = workbook.add_format({
@@ -18143,73 +18143,73 @@ if authentication_status:
             worksheetbest.conditional_format(5, 0, rowBest150_all+4, 16,
                                              {'type': 'no_errors', 'format': border})
 
-            # worksheet 710
-            worksheet710.insert_image('A1', r'logo resmi nf.jpg')
+            # worksheet 701
+            worksheet701.insert_image('A1', r'logo resmi nf.jpg')
 
-            worksheet710.set_column('A:A', 7, center)
-            worksheet710.set_column('B:B', 6, center)
-            worksheet710.set_column('C:C', 18.14, center)
-            worksheet710.set_column('D:D', 25, left)
-            worksheet710.set_column('E:E', 13.14, left)
-            worksheet710.set_column('F:F', 8.57, center)
-            worksheet710.set_column('G:R', 5, center)
-            worksheet710.merge_range(
+            worksheet701.set_column('A:A', 7, center)
+            worksheet701.set_column('B:B', 6, center)
+            worksheet701.set_column('C:C', 18.14, center)
+            worksheet701.set_column('D:D', 25, left)
+            worksheet701.set_column('E:E', 13.14, left)
+            worksheet701.set_column('F:F', 8.57, center)
+            worksheet701.set_column('G:R', 5, center)
+            worksheet701.merge_range(
                 'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF POLSEK DEPOK', title)
-            worksheet710.merge_range(
+            worksheet701.merge_range(
                 'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
-            worksheet710.write('A5', 'LOKASI', header)
-            worksheet710.write('B5', 'TOTAL', header)
-            worksheet710.merge_range('A4:B4', 'RANK', header)
-            worksheet710.merge_range('C4:C5', 'NOMOR NF', header)
-            worksheet710.merge_range('D4:D5', 'NAMA SISWA', header)
-            worksheet710.merge_range('E4:E5', 'SEKOLAH', header)
-            worksheet710.merge_range('F4:F5', 'KELAS', header)
-            worksheet710.merge_range('G4:L4', 'JUMLAH BENAR', header)
-            worksheet710.merge_range('M4:R4', 'NILAI STANDAR', header)
-            worksheet710.write('G5', 'MAT', body)
-            worksheet710.write('H5', 'IND', body)
-            worksheet710.write('I5', 'ENG', body)
-            worksheet710.write('J5', 'IPA', body)
-            worksheet710.write('K5', 'IPS', body)
-            worksheet710.write('L5', 'JML', body)
-            worksheet710.write('M5', 'MAT', body)
-            worksheet710.write('N5', 'IND', body)
-            worksheet710.write('O5', 'ENG', body)
-            worksheet710.write('P5', 'IPA', body)
-            worksheet710.write('Q5', 'IPS', body)
-            worksheet710.write('R5', 'JML', body)
+            worksheet701.write('A5', 'LOKASI', header)
+            worksheet701.write('B5', 'TOTAL', header)
+            worksheet701.merge_range('A4:B4', 'RANK', header)
+            worksheet701.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet701.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet701.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet701.merge_range('F4:F5', 'KELAS', header)
+            worksheet701.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet701.merge_range('M4:R4', 'NILAI STANDAR', header)
+            worksheet701.write('G5', 'MAT', body)
+            worksheet701.write('H5', 'IND', body)
+            worksheet701.write('I5', 'ENG', body)
+            worksheet701.write('J5', 'IPA', body)
+            worksheet701.write('K5', 'IPS', body)
+            worksheet701.write('L5', 'JML', body)
+            worksheet701.write('M5', 'MAT', body)
+            worksheet701.write('N5', 'IND', body)
+            worksheet701.write('O5', 'ENG', body)
+            worksheet701.write('P5', 'IPA', body)
+            worksheet701.write('Q5', 'IPS', body)
+            worksheet701.write('R5', 'JML', body)
 
-            worksheet710.conditional_format(5, 0, row710_10+4, 17,
+            worksheet701.conditional_format(5, 0, row701_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
-            worksheet710.merge_range(
+            worksheet701.merge_range(
                 'A17:R17', fr'KELAS {kelas} - LOKASI NF POLSEK DEPOK', title)
-            worksheet710.merge_range('A18:R18', fr'{penilaian}', subTitle)
-            worksheet710.merge_range(
+            worksheet701.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet701.merge_range(
                 'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
-            worksheet710.write('A22', 'LOKASI', header)
-            worksheet710.write('B22', 'TOTAL', header)
-            worksheet710.merge_range('A21:B21', 'RANK', header)
-            worksheet710.merge_range('C21:C22', 'NOMOR NF', header)
-            worksheet710.merge_range('D21:D22', 'NAMA SISWA', header)
-            worksheet710.merge_range('E21:E22', 'SEKOLAH', header)
-            worksheet710.merge_range('F21:F22', 'KELAS', header)
-            worksheet710.merge_range('G21:L21', 'JUMLAH BENAR', header)
-            worksheet710.merge_range('M21:R21', 'NILAI STANDAR', header)
-            worksheet710.write('G22', 'MAT', body)
-            worksheet710.write('H22', 'IND', body)
-            worksheet710.write('I22', 'ENG', body)
-            worksheet710.write('J22', 'IPA', body)
-            worksheet710.write('K22', 'IPS', body)
-            worksheet710.write('L22', 'JML', body)
-            worksheet710.write('M22', 'MAT', body)
-            worksheet710.write('N22', 'IND', body)
-            worksheet710.write('O22', 'ENG', body)
-            worksheet710.write('P22', 'IPA', body)
-            worksheet710.write('Q22', 'IPS', body)
-            worksheet710.write('R22', 'JML', body)
+            worksheet701.write('A22', 'LOKASI', header)
+            worksheet701.write('B22', 'TOTAL', header)
+            worksheet701.merge_range('A21:B21', 'RANK', header)
+            worksheet701.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet701.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet701.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet701.merge_range('F21:F22', 'KELAS', header)
+            worksheet701.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet701.merge_range('M21:R21', 'NILAI STANDAR', header)
+            worksheet701.write('G22', 'MAT', body)
+            worksheet701.write('H22', 'IND', body)
+            worksheet701.write('I22', 'ENG', body)
+            worksheet701.write('J22', 'IPA', body)
+            worksheet701.write('K22', 'IPS', body)
+            worksheet701.write('L22', 'JML', body)
+            worksheet701.write('M22', 'MAT', body)
+            worksheet701.write('N22', 'IND', body)
+            worksheet701.write('O22', 'ENG', body)
+            worksheet701.write('P22', 'IPA', body)
+            worksheet701.write('Q22', 'IPS', body)
+            worksheet701.write('R22', 'JML', body)
 
-            worksheet710.conditional_format(22, 0, row710+21, 17,
+            worksheet701.conditional_format(22, 0, row701+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             workbook.close()
