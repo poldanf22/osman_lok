@@ -1,4 +1,6 @@
-    if selected_file == "Lok. SD (KM)":
+
+
+    if selected_file == "Lok. SMP (KM SB)":
         # menghilangkan hamburger
         st.markdown("""
         <style>
@@ -15,14 +17,14 @@
 
         st.info("Jika melihat pesan error di paling bawah, silahkan refresh")
         st.title("Olahan untuk Lokasi")
-        st.header("4-5 SD")
+        st.header("SMP (KM SB)")
 
         col6 = st.container()
 
         with col6:
             KELAS = st.selectbox(
                 "KELAS",
-                ("--Pilih Kelas--", "4 SD", "5 SD"))
+                ("--Pilih Kelas--", "8 SMP SB"))
 
         col7 = st.container()
 
@@ -48,34 +50,40 @@
         TAHUN = st.text_input("Masukkan Tahun Ajaran", value="",
                               placeholder="contoh: 2022-2023")
 
-        col1, col2, col3, col4 = st.columns(4)
+        col1, col2, col3, col4, col5 = st.columns(5)
 
         with col1:
             MTK = st.selectbox(
-                "JML. SOAL MAT.",
-                (15, 20, 25, 30, 35, 40, 45, 50))
+                "JML. SOAL MAT. SB.",
+                ("--Pilih--", 25, 30, 35, 40, 45))
 
         with col2:
             IND = st.selectbox(
                 "JML. SOAL IND.",
-                (15, 20, 25, 30, 35, 40, 45, 50))
+                ("--Pilih--", 25, 30, 35, 40, 45))
 
         with col3:
             ENG = st.selectbox(
                 "JML. SOAL ENG.",
-                (15, 20, 25, 30, 35, 40, 45, 50))
+                ("--Pilih--", 25, 30, 35, 40, 45))
 
         with col4:
-            IPAS = st.selectbox(
-                "JML. SOAL IPAS.",
-                (15, 20, 25, 30, 35, 40, 45, 50))
+            IPA = st.selectbox(
+                "JML. SOAL IPA.",
+                ("--Pilih--", 25, 30, 35, 40, 45))
+
+        with col5:
+            IPS = st.selectbox(
+                "JML. SOAL IPS.",
+                ("--Pilih--", 25, 30, 35, 40, 45))
 
         JML_SOAL_MAT = MTK
         JML_SOAL_IND = IND
         JML_SOAL_ENG = ENG
-        JML_SOAL_IPAS = IPAS
+        JML_SOAL_IPA = IPA
+        JML_SOAL_IPS = IPS
 
-        kelas = KELAS.replace(" ", "")
+        kelas = KELAS
         semester = SEMESTER
         tahun = TAHUN
         penilaian = PENILAIAN
@@ -87,69 +95,76 @@
         if uploaded_file is not None:
             df = pd.read_excel(uploaded_file)
 
-            len_col = df.shape[1]
-
-            r = df.shape[0]-5  # baris average
-            s = df.shape[0]-4  # baris stdev
-            t = df.shape[0]-3  # baris max
-            u = df.shape[0]-2  # baris min
+            # 89
+            r = df.shape[0]-5
+            # 90
+            s = df.shape[0]-4
+            # 91
+            t = df.shape[0]-3
+            # 92
+            u = df.shape[0]-2
 
             # JUMLAH PESERTA
-            peserta = df.iloc[r, len_col-136]
+            peserta = df.iloc[r, 23]
 
             # rata-rata jumlah benar
-            rata_mat = df.iloc[r, len_col-20]
-            rata_ind = df.iloc[r, len_col-19]
-            rata_eng = df.iloc[r, len_col-18]
-            rata_ipas = df.iloc[r, len_col-17]
-            rata_jml = df.iloc[r, len_col-16]
+            rata_mat = df.iloc[r, 156]
+            rata_ind = df.iloc[r, 157]
+            rata_eng = df.iloc[r, 158]
+            rata_ipa = df.iloc[r, 159]
+            rata_ips = df.iloc[r, 160]
+            rata_jml = df.iloc[r, 161]
 
             # rata-rata nilai standar
-            rata_Smat = df.iloc[t, len_col-11]
-            rata_Sind = df.iloc[t, len_col-10]
-            rata_Seng = df.iloc[t, len_col-9]
-            rata_Sipas = df.iloc[t, len_col-8]
-            rata_Sjml = df.iloc[t, len_col-7]
+            rata_Smat = df.iloc[t, 167]
+            rata_Sind = df.iloc[t, 168]
+            rata_Seng = df.iloc[t, 169]
+            rata_Sipa = df.iloc[t, 170]
+            rata_Sips = df.iloc[t, 171]
+            rata_Sjml = df.iloc[t, 172]
 
-            # max jumlah benar
-            max_mat = df.iloc[t, len_col-20]
-            max_ind = df.iloc[t, len_col-19]
-            max_eng = df.iloc[t, len_col-18]
-            max_ipas = df.iloc[t, len_col-17]
-            max_jml = df.iloc[t, len_col-16]
+            max_mat = df.iloc[t, 156]
+            max_ind = df.iloc[t, 157]
+            max_eng = df.iloc[t, 158]
+            max_ipa = df.iloc[t, 159]
+            max_ips = df.iloc[t, 160]
+            max_jml = df.iloc[t, 161]
 
             # max nilai standar
-            max_Smat = df.iloc[r, len_col-11]
-            max_Sind = df.iloc[r, len_col-10]
-            max_Seng = df.iloc[r, len_col-9]
-            max_Sipas = df.iloc[r, len_col-8]
-            max_Sjml = df.iloc[r, len_col-7]
+            max_Smat = df.iloc[r, 167]
+            max_Sind = df.iloc[r, 168]
+            max_Seng = df.iloc[r, 169]
+            max_Sipa = df.iloc[r, 170]
+            max_Sips = df.iloc[r, 171]
+            max_Sjml = df.iloc[r, 172]
 
             # min jumlah benar
-            min_mat = df.iloc[u, len_col-20]
-            min_ind = df.iloc[u, len_col-19]
-            min_eng = df.iloc[u, len_col-18]
-            min_ipas = df.iloc[u, len_col-17]
-            min_jml = df.iloc[u, len_col-16]
+            min_mat = df.iloc[u, 156]
+            min_ind = df.iloc[u, 157]
+            min_eng = df.iloc[u, 158]
+            min_ipa = df.iloc[u, 159]
+            min_ips = df.iloc[u, 160]
+            min_jml = df.iloc[u, 161]
 
             # min nilai standar
-            min_Smat = df.iloc[s, len_col-11]
-            min_Sind = df.iloc[s, len_col-10]
-            min_Seng = df.iloc[s, len_col-9]
-            min_Sipas = df.iloc[s, len_col-8]
-            min_Sjml = df.iloc[s, len_col-7]
+            min_Smat = df.iloc[s, 167]
+            min_Sind = df.iloc[s, 168]
+            min_Seng = df.iloc[s, 169]
+            min_Sipa = df.iloc[s, 170]
+            min_Sips = df.iloc[s, 171]
+            min_Sjml = df.iloc[s, 172]
 
-            data_jml_benar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPAS', 'JUMLAH (JML)'],
-                              'TERENDAH': [min_mat, min_ind, min_eng, min_ipas, min_jml],
-                              'RATA-RATA': [rata_mat, rata_ind, rata_eng, rata_ipas, rata_jml],
-                              'TERTINGGI': [max_mat, max_ind, max_eng, max_ipas, max_jml]}
+            data_jml_benar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPA', 'IPS', 'JUMLAH (JML)'],
+                              'TERENDAH': [min_mat, min_ind, min_eng, min_ipa, min_ips, min_jml],
+                              'RATA-RATA': [rata_mat, rata_ind, rata_eng, rata_ipa, rata_ips, rata_jml],
+                              'TERTINGGI': [max_mat, max_ind, max_eng, max_ipa, max_ips, max_jml]}
 
             jml_benar = pd.DataFrame(data_jml_benar)
 
-            data_n_standar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPAS', 'JUMLAH (JML)'],
-                              'TERENDAH': [min_Smat, min_Sind, min_Seng, min_Sipas, min_Sjml],
-                              'RATA-RATA': [rata_Smat, rata_Sind, rata_Seng, rata_Sipas, rata_Sjml],
-                              'TERTINGGI': [max_Smat, max_Sind, max_Seng, max_Sipas, max_Sjml]}
+            data_n_standar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPA', 'IPS', 'JUMLAH (JML)'],
+                              'TERENDAH': [min_Smat, min_Sind, min_Seng, min_Sipa, min_Sips, min_Sjml],
+                              'RATA-RATA': [rata_Smat, rata_Sind, rata_Seng, rata_Sipa, rata_Sips, rata_Sjml],
+                              'TERTINGGI': [max_Smat, max_Sind, max_Seng, max_Sipa, max_Sips, max_Sjml]}
 
             n_standar = pd.DataFrame(data_n_standar)
 
@@ -157,13 +172,13 @@
 
             jml_peserta = pd.DataFrame(data_jml_peserta)
 
-            data_jml_soal = {'BIDANG STUDI': ['MAT', 'IND', 'ENG', 'IPAS'],
-                             'JUMLAH': [JML_SOAL_MAT, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_IPAS]}
+            data_jml_soal = {'BIDANG STUDI': ['MAT', 'IND', 'ENG', 'IPA', 'IPS'],
+                             'JUMLAH': [JML_SOAL_MAT, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_IPA, JML_SOAL_IPS]}
 
             jml_soal = pd.DataFrame(data_jml_soal)
 
-            df = df[['LOKASI', 'RANK LOK.', 'RANK NAS.', 'NOMOR NF', 'NAMA SISWA', 'NAMA SEKOLAH',
-                    'KELAS', 'MAT', 'IND', 'ENG', 'IPAS', 'JML', 'S_MAT', 'S_IND', 'S_ENG', 'S_IPAS', 'S_JML']]
+            df = df[['LOKASI', 'RANK LOK.', 'RANK NAS.', 'NOMOR NF', 'NAMA SISWA', 'NAMA SEKOLAH', 'KELAS',
+                    'MAT', 'IND', 'ENG', 'IPA', 'IPS', 'JML', 'S_MAT', 'S_IND', 'S_ENG', 'S_IPA', 'S_IPS', 'S_JML']]
 
             # sort best 150
             grouped = df.groupby('LOKASI')
@@ -209,6 +224,7 @@
             sort136 = df[df['LOKASI'] == 136]
             sort137 = df[df['LOKASI'] == 137]
             sort138 = df[df['LOKASI'] == 138]
+            sort139 = df[df['LOKASI'] == 139]
             sort140 = df[df['LOKASI'] == 140]
             sort141 = df[df['LOKASI'] == 141]
             sort142 = df[df['LOKASI'] == 142]
@@ -449,6 +465,12 @@
             del sort138_10['LOKASI']
             sort138_10 = sort138_10.drop(
                 sort138_10[(sort138_10['RANK LOK.'] > 10)].index)
+            # 139
+            sort139_10 = sort139.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort139_10['LOKASI']
+            sort139_10 = sort139_10.drop(
+                sort139_10[(sort139_10['RANK LOK.'] > 10)].index)
             # 140
             sort140_10 = sort140.sort_values(
                 by=['RANK LOK.'], ascending=[True])
@@ -675,6 +697,9 @@
             # All 138
             sort138 = sort138.sort_values(by=['NAMA SISWA'], ascending=[True])
             del sort138['LOKASI']
+            # All 139
+            sort139 = sort139.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort139['LOKASI']
             # All 140
             sort140 = sort140.sort_values(by=['NAMA SISWA'], ascending=[True])
             del sort140['LOKASI']
@@ -845,6 +870,9 @@
             # 138
             row138_10 = sort138_10.shape[0]
             row138 = sort138.shape[0]
+            # 139
+            row139_10 = sort139_10.shape[0]
+            row139 = sort139.shape[0]
             # 140
             row140_10 = sort140_10.shape[0]
             row140 = sort140.shape[0]
@@ -1404,6 +1432,19 @@
                              startcol=0,
                              index=False,
                              header=False)
+            # 139
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort139_10.to_excel(writer, sheet_name='139',
+                                startrow=5,
+                                startcol=0,
+                                index=False,
+                                header=False)
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort139.to_excel(writer, sheet_name='139',
+                             startrow=22,
+                             startcol=0,
+                             index=False,
+                             header=False)
             # 140
             # Convert the dataframe to an XlsxWriter Excel object.
             sort140_10.to_excel(writer, sheet_name='140',
@@ -1706,6 +1747,7 @@
             worksheet136 = writer.sheets['136']
             worksheet137 = writer.sheets['137']
             worksheet138 = writer.sheets['138']
+            worksheet139 = writer.sheets['139']
             worksheet140 = writer.sheets['140']
             worksheet141 = writer.sheets['141']
             worksheet142 = writer.sheets['142']
@@ -1792,6 +1834,7 @@
                 'font_size': 12,
                 'font_name': 'Arial',
                 'bg_color': 'FFF684'})
+
             center = workbook.add_format({
                 'align': 'center',
                 'font_size': 10,
@@ -1844,8 +1887,7 @@
                 'right': 1})
 
             # worksheet cover
-            # sampai baris 16, dari kolom 1, mulai dari baris 10, sampai kolom 3
-            worksheetcover.conditional_format(15, 0, 11, 3,
+            worksheetcover.conditional_format(16, 0, 11, 3,
                                               {'type': 'no_errors', 'format': borderCover})
 
             worksheetcover.insert_image('F1', r'logo nf.jpg')
@@ -1872,17 +1914,18 @@
             worksheetcover.merge_range(
                 'A4:F5', fr'{penilaian}', sub_titleCover)
             worksheetcover.merge_range(
-                'A6:F7', fr'{semester} TAHUN {tahun} ({kurikulum})', headerCover)
+                'A6:F7', fr'{semester} TAHUN {tahun}', headerCover)
             worksheetcover.write('A9', 'JUMLAH BENAR', sub_headerCover)
             worksheetcover.write('A19', 'NILAI STANDAR', sub_headerCover)
-            worksheetcover.merge_range('F8:G9', fr'{kelas}-{kurikulum}', kelasCover)
+            worksheetcover.merge_range(
+                'F8:G9', fr'{kelas}-{kurikulum}', kelasCover)
             worksheetcover.merge_range(
                 'F11:G12', 'JUMLAH SOAL', sub_header1Cover)
 
-            worksheetcover.conditional_format(25, 0, 21, 3,
+            worksheetcover.conditional_format(26, 0, 21, 3,
                                               {'type': 'no_errors', 'format': borderCover})
 
-            worksheetcover.conditional_format(16, 6, 13, 5,
+            worksheetcover.conditional_format(17, 6, 13, 5,
                                               {'type': 'no_errors', 'format': borderCover})
 
             worksheetcover.conditional_format(21, 5, 21, 5,
@@ -1898,28 +1941,30 @@
             worksheetbest.set_column('E:E', 7.57, left)
             worksheetbest.set_column('F:Q', 6.29, center)
             worksheetbest.merge_range(
-                'A1:O1', fr'150 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF NASIONAL', title)
+                'A1:Q1', fr'150 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF NASIONAL', title)
             worksheetbest.merge_range(
-                'A2:O2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
+                'A2:Q2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheetbest.merge_range('A4:A5', 'RANK', header)
             worksheetbest.merge_range('B4:B5', 'NOMOR NF', header)
             worksheetbest.merge_range('C4:C5', 'NAMA SISWA', header)
             worksheetbest.merge_range('D4:D5', 'SEKOLAH', header)
             worksheetbest.merge_range('E4:E5', 'KELAS', header)
-            worksheetbest.merge_range('F4:J4', 'JUMLAH BENAR', header)
-            worksheetbest.merge_range('K4:O4', 'NILAI STANDAR', header)
+            worksheetbest.merge_range('F4:K4', 'JUMLAH BENAR', header)
+            worksheetbest.merge_range('L4:Q4', 'NILAI STANDAR', header)
             worksheetbest.write('F5', 'MAT', body)
             worksheetbest.write('G5', 'IND', body)
             worksheetbest.write('H5', 'ENG', body)
-            worksheetbest.write('I5', 'IPAS', body)
-            worksheetbest.write('J5', 'JML', body)
-            worksheetbest.write('K5', 'MAT', body)
-            worksheetbest.write('L5', 'IND', body)
-            worksheetbest.write('M5', 'ENG', body)
-            worksheetbest.write('N5', 'IPAS', body)
-            worksheetbest.write('O5', 'JML', body)
+            worksheetbest.write('I5', 'IPA', body)
+            worksheetbest.write('J5', 'IPS', body)
+            worksheetbest.write('K5', 'JML', body)
+            worksheetbest.write('L5', 'MAT', body)
+            worksheetbest.write('M5', 'IND', body)
+            worksheetbest.write('N5', 'ENG', body)
+            worksheetbest.write('O5', 'IPA', body)
+            worksheetbest.write('P5', 'IPS', body)
+            worksheetbest.write('Q5', 'JML', body)
 
-            worksheetbest.conditional_format(5, 0, rowBest150_all+4, 14,
+            worksheetbest.conditional_format(5, 0, rowBest150_all+4, 16,
                                              {'type': 'no_errors', 'format': border})
 
             # worksheet 101
@@ -1943,20 +1988,22 @@
             worksheet101.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet101.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet101.merge_range('F4:F5', 'KELAS', header)
-            worksheet101.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet101.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet101.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet101.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet101.write('G5', 'MAT', body)
             worksheet101.write('H5', 'IND', body)
             worksheet101.write('I5', 'ENG', body)
-            worksheet101.write('J5', 'IPAS', body)
-            worksheet101.write('K5', 'JML', body)
-            worksheet101.write('L5', 'MAT', body)
-            worksheet101.write('M5', 'IND', body)
-            worksheet101.write('N5', 'ENG', body)
-            worksheet101.write('O5', 'IPAS', body)
-            worksheet101.write('P5', 'JML', body)
+            worksheet101.write('J5', 'IPA', body)
+            worksheet101.write('K5', 'IPS', body)
+            worksheet101.write('L5', 'JML', body)
+            worksheet101.write('M5', 'MAT', body)
+            worksheet101.write('N5', 'IND', body)
+            worksheet101.write('O5', 'ENG', body)
+            worksheet101.write('P5', 'IPA', body)
+            worksheet101.write('Q5', 'IPS', body)
+            worksheet101.write('R5', 'JML', body)
 
-            worksheet101.conditional_format(5, 0, row101_10+4, 15,
+            worksheet101.conditional_format(5, 0, row101_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet101.merge_range(
@@ -1971,20 +2018,22 @@
             worksheet101.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet101.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet101.merge_range('F21:F22', 'KELAS', header)
-            worksheet101.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet101.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet101.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet101.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet101.write('G22', 'MAT', body)
             worksheet101.write('H22', 'IND', body)
             worksheet101.write('I22', 'ENG', body)
-            worksheet101.write('J22', 'IPAS', body)
-            worksheet101.write('K22', 'JML', body)
-            worksheet101.write('L22', 'MAT', body)
-            worksheet101.write('M22', 'IND', body)
-            worksheet101.write('N22', 'ENG', body)
-            worksheet101.write('O22', 'IPAS', body)
-            worksheet101.write('P22', 'JML', body)
+            worksheet101.write('J22', 'IPA', body)
+            worksheet101.write('K22', 'IPS', body)
+            worksheet101.write('L22', 'JML', body)
+            worksheet101.write('M22', 'MAT', body)
+            worksheet101.write('N22', 'IND', body)
+            worksheet101.write('O22', 'ENG', body)
+            worksheet101.write('P22', 'IPA', body)
+            worksheet101.write('Q22', 'IPS', body)
+            worksheet101.write('R22', 'JML', body)
 
-            worksheet101.conditional_format(22, 0, row101+21, 15,
+            worksheet101.conditional_format(22, 0, row101+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 102
@@ -2008,20 +2057,22 @@
             worksheet102.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet102.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet102.merge_range('F4:F5', 'KELAS', header)
-            worksheet102.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet102.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet102.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet102.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet102.write('G5', 'MAT', body)
             worksheet102.write('H5', 'IND', body)
             worksheet102.write('I5', 'ENG', body)
-            worksheet102.write('J5', 'IPAS', body)
-            worksheet102.write('K5', 'JML', body)
-            worksheet102.write('L5', 'MAT', body)
-            worksheet102.write('M5', 'IND', body)
-            worksheet102.write('N5', 'ENG', body)
-            worksheet102.write('O5', 'IPAS', body)
-            worksheet102.write('P5', 'JML', body)
+            worksheet102.write('J5', 'IPA', body)
+            worksheet102.write('K5', 'IPS', body)
+            worksheet102.write('L5', 'JML', body)
+            worksheet102.write('M5', 'MAT', body)
+            worksheet102.write('N5', 'IND', body)
+            worksheet102.write('O5', 'ENG', body)
+            worksheet102.write('P5', 'IPA', body)
+            worksheet102.write('Q5', 'IPS', body)
+            worksheet102.write('R5', 'JML', body)
 
-            worksheet102.conditional_format(5, 0, row102_10+4, 15,
+            worksheet102.conditional_format(5, 0, row102_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet102.merge_range(
@@ -2036,20 +2087,22 @@
             worksheet102.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet102.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet102.merge_range('F21:F22', 'KELAS', header)
-            worksheet102.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet102.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet102.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet102.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet102.write('G22', 'MAT', body)
             worksheet102.write('H22', 'IND', body)
             worksheet102.write('I22', 'ENG', body)
-            worksheet102.write('J22', 'IPAS', body)
-            worksheet102.write('K22', 'JML', body)
-            worksheet102.write('L22', 'MAT', body)
-            worksheet102.write('M22', 'IND', body)
-            worksheet102.write('N22', 'ENG', body)
-            worksheet102.write('O22', 'IPAS', body)
-            worksheet102.write('P22', 'JML', body)
+            worksheet102.write('J22', 'IPA', body)
+            worksheet102.write('K22', 'IPS', body)
+            worksheet102.write('L22', 'JML', body)
+            worksheet102.write('M22', 'MAT', body)
+            worksheet102.write('N22', 'IND', body)
+            worksheet102.write('O22', 'ENG', body)
+            worksheet102.write('P22', 'IPA', body)
+            worksheet102.write('Q22', 'IPS', body)
+            worksheet102.write('R22', 'JML', body)
 
-            worksheet102.conditional_format(22, 0, row102+21, 15,
+            worksheet102.conditional_format(22, 0, row102+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 103
@@ -2073,20 +2126,22 @@
             worksheet103.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet103.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet103.merge_range('F4:F5', 'KELAS', header)
-            worksheet103.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet103.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet103.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet103.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet103.write('G5', 'MAT', body)
             worksheet103.write('H5', 'IND', body)
             worksheet103.write('I5', 'ENG', body)
-            worksheet103.write('J5', 'IPAS', body)
-            worksheet103.write('K5', 'JML', body)
-            worksheet103.write('L5', 'MAT', body)
-            worksheet103.write('M5', 'IND', body)
-            worksheet103.write('N5', 'ENG', body)
-            worksheet103.write('O5', 'IPAS', body)
-            worksheet103.write('P5', 'JML', body)
+            worksheet103.write('J5', 'IPA', body)
+            worksheet103.write('K5', 'IPS', body)
+            worksheet103.write('L5', 'JML', body)
+            worksheet103.write('M5', 'MAT', body)
+            worksheet103.write('N5', 'IND', body)
+            worksheet103.write('O5', 'ENG', body)
+            worksheet103.write('P5', 'IPA', body)
+            worksheet103.write('Q5', 'IPS', body)
+            worksheet103.write('R5', 'JML', body)
 
-            worksheet103.conditional_format(5, 0, row103_10+4, 15,
+            worksheet103.conditional_format(5, 0, row103_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet103.merge_range(
@@ -2101,20 +2156,22 @@
             worksheet103.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet103.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet103.merge_range('F21:F22', 'KELAS', header)
-            worksheet103.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet103.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet103.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet103.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet103.write('G22', 'MAT', body)
             worksheet103.write('H22', 'IND', body)
             worksheet103.write('I22', 'ENG', body)
-            worksheet103.write('J22', 'IPAS', body)
-            worksheet103.write('K22', 'JML', body)
-            worksheet103.write('L22', 'MAT', body)
-            worksheet103.write('M22', 'IND', body)
-            worksheet103.write('N22', 'ENG', body)
-            worksheet103.write('O22', 'IPAS', body)
-            worksheet103.write('P22', 'JML', body)
+            worksheet103.write('J22', 'IPA', body)
+            worksheet103.write('K22', 'IPS', body)
+            worksheet103.write('L22', 'JML', body)
+            worksheet103.write('M22', 'MAT', body)
+            worksheet103.write('N22', 'IND', body)
+            worksheet103.write('O22', 'ENG', body)
+            worksheet103.write('P22', 'IPA', body)
+            worksheet103.write('Q22', 'IPS', body)
+            worksheet103.write('R22', 'JML', body)
 
-            worksheet103.conditional_format(22, 0, row103+21, 15,
+            worksheet103.conditional_format(22, 0, row103+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 105
@@ -2138,20 +2195,22 @@
             worksheet105.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet105.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet105.merge_range('F4:F5', 'KELAS', header)
-            worksheet105.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet105.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet105.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet105.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet105.write('G5', 'MAT', body)
             worksheet105.write('H5', 'IND', body)
             worksheet105.write('I5', 'ENG', body)
-            worksheet105.write('J5', 'IPAS', body)
-            worksheet105.write('K5', 'JML', body)
-            worksheet105.write('L5', 'MAT', body)
-            worksheet105.write('M5', 'IND', body)
-            worksheet105.write('N5', 'ENG', body)
-            worksheet105.write('O5', 'IPAS', body)
-            worksheet105.write('P5', 'JML', body)
+            worksheet105.write('J5', 'IPA', body)
+            worksheet105.write('K5', 'IPS', body)
+            worksheet105.write('L5', 'JML', body)
+            worksheet105.write('M5', 'MAT', body)
+            worksheet105.write('N5', 'IND', body)
+            worksheet105.write('O5', 'ENG', body)
+            worksheet105.write('P5', 'IPA', body)
+            worksheet105.write('Q5', 'IPS', body)
+            worksheet105.write('R5', 'JML', body)
 
-            worksheet105.conditional_format(5, 0, row105_10+4, 15,
+            worksheet105.conditional_format(5, 0, row105_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet105.merge_range(
@@ -2166,20 +2225,22 @@
             worksheet105.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet105.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet105.merge_range('F21:F22', 'KELAS', header)
-            worksheet105.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet105.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet105.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet105.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet105.write('G22', 'MAT', body)
             worksheet105.write('H22', 'IND', body)
             worksheet105.write('I22', 'ENG', body)
-            worksheet105.write('J22', 'IPAS', body)
-            worksheet105.write('K22', 'JML', body)
-            worksheet105.write('L22', 'MAT', body)
-            worksheet105.write('M22', 'IND', body)
-            worksheet105.write('N22', 'ENG', body)
-            worksheet105.write('O22', 'IPAS', body)
-            worksheet105.write('P22', 'JML', body)
+            worksheet105.write('J22', 'IPA', body)
+            worksheet105.write('K22', 'IPS', body)
+            worksheet105.write('L22', 'JML', body)
+            worksheet105.write('M22', 'MAT', body)
+            worksheet105.write('N22', 'IND', body)
+            worksheet105.write('O22', 'ENG', body)
+            worksheet105.write('P22', 'IPA', body)
+            worksheet105.write('Q22', 'IPS', body)
+            worksheet105.write('R22', 'JML', body)
 
-            worksheet105.conditional_format(22, 0, row105+21, 15,
+            worksheet105.conditional_format(22, 0, row105+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 106
@@ -2203,20 +2264,22 @@
             worksheet106.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet106.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet106.merge_range('F4:F5', 'KELAS', header)
-            worksheet106.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet106.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet106.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet106.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet106.write('G5', 'MAT', body)
             worksheet106.write('H5', 'IND', body)
             worksheet106.write('I5', 'ENG', body)
-            worksheet106.write('J5', 'IPAS', body)
-            worksheet106.write('K5', 'JML', body)
-            worksheet106.write('L5', 'MAT', body)
-            worksheet106.write('M5', 'IND', body)
-            worksheet106.write('N5', 'ENG', body)
-            worksheet106.write('O5', 'IPAS', body)
-            worksheet106.write('P5', 'JML', body)
+            worksheet106.write('J5', 'IPA', body)
+            worksheet106.write('K5', 'IPS', body)
+            worksheet106.write('L5', 'JML', body)
+            worksheet106.write('M5', 'MAT', body)
+            worksheet106.write('N5', 'IND', body)
+            worksheet106.write('O5', 'ENG', body)
+            worksheet106.write('P5', 'IPA', body)
+            worksheet106.write('Q5', 'IPS', body)
+            worksheet106.write('R5', 'JML', body)
 
-            worksheet106.conditional_format(5, 0, row106_10+4, 15,
+            worksheet106.conditional_format(5, 0, row106_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet106.merge_range(
@@ -2231,20 +2294,22 @@
             worksheet106.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet106.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet106.merge_range('F21:F22', 'KELAS', header)
-            worksheet106.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet106.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet106.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet106.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet106.write('G22', 'MAT', body)
             worksheet106.write('H22', 'IND', body)
             worksheet106.write('I22', 'ENG', body)
-            worksheet106.write('J22', 'IPAS', body)
-            worksheet106.write('K22', 'JML', body)
-            worksheet106.write('L22', 'MAT', body)
-            worksheet106.write('M22', 'IND', body)
-            worksheet106.write('N22', 'ENG', body)
-            worksheet106.write('O22', 'IPAS', body)
-            worksheet106.write('P22', 'JML', body)
+            worksheet106.write('J22', 'IPA', body)
+            worksheet106.write('K22', 'IPS', body)
+            worksheet106.write('L22', 'JML', body)
+            worksheet106.write('M22', 'MAT', body)
+            worksheet106.write('N22', 'IND', body)
+            worksheet106.write('O22', 'ENG', body)
+            worksheet106.write('P22', 'IPA', body)
+            worksheet106.write('Q22', 'IPS', body)
+            worksheet106.write('R22', 'JML', body)
 
-            worksheet106.conditional_format(22, 0, row106+21, 15,
+            worksheet106.conditional_format(22, 0, row106+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 107
@@ -2268,20 +2333,22 @@
             worksheet107.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet107.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet107.merge_range('F4:F5', 'KELAS', header)
-            worksheet107.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet107.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet107.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet107.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet107.write('G5', 'MAT', body)
             worksheet107.write('H5', 'IND', body)
             worksheet107.write('I5', 'ENG', body)
-            worksheet107.write('J5', 'IPAS', body)
-            worksheet107.write('K5', 'JML', body)
-            worksheet107.write('L5', 'MAT', body)
-            worksheet107.write('M5', 'IND', body)
-            worksheet107.write('N5', 'ENG', body)
-            worksheet107.write('O5', 'IPAS', body)
-            worksheet107.write('P5', 'JML', body)
+            worksheet107.write('J5', 'IPA', body)
+            worksheet107.write('K5', 'IPS', body)
+            worksheet107.write('L5', 'JML', body)
+            worksheet107.write('M5', 'MAT', body)
+            worksheet107.write('N5', 'IND', body)
+            worksheet107.write('O5', 'ENG', body)
+            worksheet107.write('P5', 'IPA', body)
+            worksheet107.write('Q5', 'IPS', body)
+            worksheet107.write('R5', 'JML', body)
 
-            worksheet107.conditional_format(5, 0, row107_10+4, 15,
+            worksheet107.conditional_format(5, 0, row107_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet107.merge_range(
@@ -2296,20 +2363,22 @@
             worksheet107.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet107.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet107.merge_range('F21:F22', 'KELAS', header)
-            worksheet107.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet107.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet107.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet107.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet107.write('G22', 'MAT', body)
             worksheet107.write('H22', 'IND', body)
             worksheet107.write('I22', 'ENG', body)
-            worksheet107.write('J22', 'IPAS', body)
-            worksheet107.write('K22', 'JML', body)
-            worksheet107.write('L22', 'MAT', body)
-            worksheet107.write('M22', 'IND', body)
-            worksheet107.write('N22', 'ENG', body)
-            worksheet107.write('O22', 'IPAS', body)
-            worksheet107.write('P22', 'JML', body)
+            worksheet107.write('J22', 'IPA', body)
+            worksheet107.write('K22', 'IPS', body)
+            worksheet107.write('L22', 'JML', body)
+            worksheet107.write('M22', 'MAT', body)
+            worksheet107.write('N22', 'IND', body)
+            worksheet107.write('O22', 'ENG', body)
+            worksheet107.write('P22', 'IPA', body)
+            worksheet107.write('Q22', 'IPS', body)
+            worksheet107.write('R22', 'JML', body)
 
-            worksheet107.conditional_format(22, 0, row107+21, 15,
+            worksheet107.conditional_format(22, 0, row107+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 108
@@ -2333,20 +2402,22 @@
             worksheet108.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet108.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet108.merge_range('F4:F5', 'KELAS', header)
-            worksheet108.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet108.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet108.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet108.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet108.write('G5', 'MAT', body)
             worksheet108.write('H5', 'IND', body)
             worksheet108.write('I5', 'ENG', body)
-            worksheet108.write('J5', 'IPAS', body)
-            worksheet108.write('K5', 'JML', body)
-            worksheet108.write('L5', 'MAT', body)
-            worksheet108.write('M5', 'IND', body)
-            worksheet108.write('N5', 'ENG', body)
-            worksheet108.write('O5', 'IPAS', body)
-            worksheet108.write('P5', 'JML', body)
+            worksheet108.write('J5', 'IPA', body)
+            worksheet108.write('K5', 'IPS', body)
+            worksheet108.write('L5', 'JML', body)
+            worksheet108.write('M5', 'MAT', body)
+            worksheet108.write('N5', 'IND', body)
+            worksheet108.write('O5', 'ENG', body)
+            worksheet108.write('P5', 'IPA', body)
+            worksheet108.write('Q5', 'IPS', body)
+            worksheet108.write('R5', 'JML', body)
 
-            worksheet108.conditional_format(5, 0, row108_10+4, 15,
+            worksheet108.conditional_format(5, 0, row108_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet108.merge_range(
@@ -2361,20 +2432,22 @@
             worksheet108.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet108.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet108.merge_range('F21:F22', 'KELAS', header)
-            worksheet108.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet108.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet108.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet108.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet108.write('G22', 'MAT', body)
             worksheet108.write('H22', 'IND', body)
             worksheet108.write('I22', 'ENG', body)
-            worksheet108.write('J22', 'IPAS', body)
-            worksheet108.write('K22', 'JML', body)
-            worksheet108.write('L22', 'MAT', body)
-            worksheet108.write('M22', 'IND', body)
-            worksheet108.write('N22', 'ENG', body)
-            worksheet108.write('O22', 'IPAS', body)
-            worksheet108.write('P22', 'JML', body)
+            worksheet108.write('J22', 'IPA', body)
+            worksheet108.write('K22', 'IPS', body)
+            worksheet108.write('L22', 'JML', body)
+            worksheet108.write('M22', 'MAT', body)
+            worksheet108.write('N22', 'IND', body)
+            worksheet108.write('O22', 'ENG', body)
+            worksheet108.write('P22', 'IPA', body)
+            worksheet108.write('Q22', 'IPS', body)
+            worksheet108.write('R22', 'JML', body)
 
-            worksheet108.conditional_format(22, 0, row108+21, 15,
+            worksheet108.conditional_format(22, 0, row108+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 109
@@ -2398,20 +2471,22 @@
             worksheet109.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet109.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet109.merge_range('F4:F5', 'KELAS', header)
-            worksheet109.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet109.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet109.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet109.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet109.write('G5', 'MAT', body)
             worksheet109.write('H5', 'IND', body)
             worksheet109.write('I5', 'ENG', body)
-            worksheet109.write('J5', 'IPAS', body)
-            worksheet109.write('K5', 'JML', body)
-            worksheet109.write('L5', 'MAT', body)
-            worksheet109.write('M5', 'IND', body)
-            worksheet109.write('N5', 'ENG', body)
-            worksheet109.write('O5', 'IPAS', body)
-            worksheet109.write('P5', 'JML', body)
+            worksheet109.write('J5', 'IPA', body)
+            worksheet109.write('K5', 'IPS', body)
+            worksheet109.write('L5', 'JML', body)
+            worksheet109.write('M5', 'MAT', body)
+            worksheet109.write('N5', 'IND', body)
+            worksheet109.write('O5', 'ENG', body)
+            worksheet109.write('P5', 'IPA', body)
+            worksheet109.write('Q5', 'IPS', body)
+            worksheet109.write('R5', 'JML', body)
 
-            worksheet109.conditional_format(5, 0, row109_10+4, 15,
+            worksheet109.conditional_format(5, 0, row109_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet109.merge_range(
@@ -2426,20 +2501,22 @@
             worksheet109.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet109.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet109.merge_range('F21:F22', 'KELAS', header)
-            worksheet109.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet109.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet109.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet109.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet109.write('G22', 'MAT', body)
             worksheet109.write('H22', 'IND', body)
             worksheet109.write('I22', 'ENG', body)
-            worksheet109.write('J22', 'IPAS', body)
-            worksheet109.write('K22', 'JML', body)
-            worksheet109.write('L22', 'MAT', body)
-            worksheet109.write('M22', 'IND', body)
-            worksheet109.write('N22', 'ENG', body)
-            worksheet109.write('O22', 'IPAS', body)
-            worksheet109.write('P22', 'JML', body)
+            worksheet109.write('J22', 'IPA', body)
+            worksheet109.write('K22', 'IPS', body)
+            worksheet109.write('L22', 'JML', body)
+            worksheet109.write('M22', 'MAT', body)
+            worksheet109.write('N22', 'IND', body)
+            worksheet109.write('O22', 'ENG', body)
+            worksheet109.write('P22', 'IPA', body)
+            worksheet109.write('Q22', 'IPS', body)
+            worksheet109.write('R22', 'JML', body)
 
-            worksheet109.conditional_format(22, 0, row109+21, 15,
+            worksheet109.conditional_format(22, 0, row109+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 110
@@ -2463,20 +2540,22 @@
             worksheet110.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet110.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet110.merge_range('F4:F5', 'KELAS', header)
-            worksheet110.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet110.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet110.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet110.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet110.write('G5', 'MAT', body)
             worksheet110.write('H5', 'IND', body)
             worksheet110.write('I5', 'ENG', body)
-            worksheet110.write('J5', 'IPAS', body)
-            worksheet110.write('K5', 'JML', body)
-            worksheet110.write('L5', 'MAT', body)
-            worksheet110.write('M5', 'IND', body)
-            worksheet110.write('N5', 'ENG', body)
-            worksheet110.write('O5', 'IPAS', body)
-            worksheet110.write('P5', 'JML', body)
+            worksheet110.write('J5', 'IPA', body)
+            worksheet110.write('K5', 'IPS', body)
+            worksheet110.write('L5', 'JML', body)
+            worksheet110.write('M5', 'MAT', body)
+            worksheet110.write('N5', 'IND', body)
+            worksheet110.write('O5', 'ENG', body)
+            worksheet110.write('P5', 'IPA', body)
+            worksheet110.write('Q5', 'IPS', body)
+            worksheet110.write('R5', 'JML', body)
 
-            worksheet110.conditional_format(5, 0, row110_10+4, 15,
+            worksheet110.conditional_format(5, 0, row110_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet110.merge_range(
@@ -2491,20 +2570,22 @@
             worksheet110.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet110.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet110.merge_range('F21:F22', 'KELAS', header)
-            worksheet110.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet110.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet110.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet110.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet110.write('G22', 'MAT', body)
             worksheet110.write('H22', 'IND', body)
             worksheet110.write('I22', 'ENG', body)
-            worksheet110.write('J22', 'IPAS', body)
-            worksheet110.write('K22', 'JML', body)
-            worksheet110.write('L22', 'MAT', body)
-            worksheet110.write('M22', 'IND', body)
-            worksheet110.write('N22', 'ENG', body)
-            worksheet110.write('O22', 'IPAS', body)
-            worksheet110.write('P22', 'JML', body)
+            worksheet110.write('J22', 'IPA', body)
+            worksheet110.write('K22', 'IPS', body)
+            worksheet110.write('L22', 'JML', body)
+            worksheet110.write('M22', 'MAT', body)
+            worksheet110.write('N22', 'IND', body)
+            worksheet110.write('O22', 'ENG', body)
+            worksheet110.write('P22', 'IPA', body)
+            worksheet110.write('Q22', 'IPS', body)
+            worksheet110.write('R22', 'JML', body)
 
-            worksheet110.conditional_format(22, 0, row110+21, 15,
+            worksheet110.conditional_format(22, 0, row110+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 111
@@ -2528,20 +2609,22 @@
             worksheet111.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet111.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet111.merge_range('F4:F5', 'KELAS', header)
-            worksheet111.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet111.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet111.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet111.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet111.write('G5', 'MAT', body)
             worksheet111.write('H5', 'IND', body)
             worksheet111.write('I5', 'ENG', body)
-            worksheet111.write('J5', 'IPAS', body)
-            worksheet111.write('K5', 'JML', body)
-            worksheet111.write('L5', 'MAT', body)
-            worksheet111.write('M5', 'IND', body)
-            worksheet111.write('N5', 'ENG', body)
-            worksheet111.write('O5', 'IPAS', body)
-            worksheet111.write('P5', 'JML', body)
+            worksheet111.write('J5', 'IPA', body)
+            worksheet111.write('K5', 'IPS', body)
+            worksheet111.write('L5', 'JML', body)
+            worksheet111.write('M5', 'MAT', body)
+            worksheet111.write('N5', 'IND', body)
+            worksheet111.write('O5', 'ENG', body)
+            worksheet111.write('P5', 'IPA', body)
+            worksheet111.write('Q5', 'IPS', body)
+            worksheet111.write('R5', 'JML', body)
 
-            worksheet111.conditional_format(5, 0, row111_10+4, 15,
+            worksheet111.conditional_format(5, 0, row111_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet111.merge_range(
@@ -2556,20 +2639,22 @@
             worksheet111.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet111.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet111.merge_range('F21:F22', 'KELAS', header)
-            worksheet111.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet111.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet111.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet111.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet111.write('G22', 'MAT', body)
             worksheet111.write('H22', 'IND', body)
             worksheet111.write('I22', 'ENG', body)
-            worksheet111.write('J22', 'IPAS', body)
-            worksheet111.write('K22', 'JML', body)
-            worksheet111.write('L22', 'MAT', body)
-            worksheet111.write('M22', 'IND', body)
-            worksheet111.write('N22', 'ENG', body)
-            worksheet111.write('O22', 'IPAS', body)
-            worksheet111.write('P22', 'JML', body)
+            worksheet111.write('J22', 'IPA', body)
+            worksheet111.write('K22', 'IPS', body)
+            worksheet111.write('L22', 'JML', body)
+            worksheet111.write('M22', 'MAT', body)
+            worksheet111.write('N22', 'IND', body)
+            worksheet111.write('O22', 'ENG', body)
+            worksheet111.write('P22', 'IPA', body)
+            worksheet111.write('Q22', 'IPS', body)
+            worksheet111.write('R22', 'JML', body)
 
-            worksheet111.conditional_format(22, 0, row111+21, 15,
+            worksheet111.conditional_format(22, 0, row111+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 112
@@ -2593,20 +2678,22 @@
             worksheet112.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet112.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet112.merge_range('F4:F5', 'KELAS', header)
-            worksheet112.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet112.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet112.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet112.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet112.write('G5', 'MAT', body)
             worksheet112.write('H5', 'IND', body)
             worksheet112.write('I5', 'ENG', body)
-            worksheet112.write('J5', 'IPAS', body)
-            worksheet112.write('K5', 'JML', body)
-            worksheet112.write('L5', 'MAT', body)
-            worksheet112.write('M5', 'IND', body)
-            worksheet112.write('N5', 'ENG', body)
-            worksheet112.write('O5', 'IPAS', body)
-            worksheet112.write('P5', 'JML', body)
+            worksheet112.write('J5', 'IPA', body)
+            worksheet112.write('K5', 'IPS', body)
+            worksheet112.write('L5', 'JML', body)
+            worksheet112.write('M5', 'MAT', body)
+            worksheet112.write('N5', 'IND', body)
+            worksheet112.write('O5', 'ENG', body)
+            worksheet112.write('P5', 'IPA', body)
+            worksheet112.write('Q5', 'IPS', body)
+            worksheet112.write('R5', 'JML', body)
 
-            worksheet112.conditional_format(5, 0, row112_10+4, 15,
+            worksheet112.conditional_format(5, 0, row112_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet112.merge_range(
@@ -2621,20 +2708,22 @@
             worksheet112.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet112.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet112.merge_range('F21:F22', 'KELAS', header)
-            worksheet112.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet112.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet112.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet112.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet112.write('G22', 'MAT', body)
             worksheet112.write('H22', 'IND', body)
             worksheet112.write('I22', 'ENG', body)
-            worksheet112.write('J22', 'IPAS', body)
-            worksheet112.write('K22', 'JML', body)
-            worksheet112.write('L22', 'MAT', body)
-            worksheet112.write('M22', 'IND', body)
-            worksheet112.write('N22', 'ENG', body)
-            worksheet112.write('O22', 'IPAS', body)
-            worksheet112.write('P22', 'JML', body)
+            worksheet112.write('J22', 'IPA', body)
+            worksheet112.write('K22', 'IPS', body)
+            worksheet112.write('L22', 'JML', body)
+            worksheet112.write('M22', 'MAT', body)
+            worksheet112.write('N22', 'IND', body)
+            worksheet112.write('O22', 'ENG', body)
+            worksheet112.write('P22', 'IPA', body)
+            worksheet112.write('Q22', 'IPS', body)
+            worksheet112.write('R22', 'JML', body)
 
-            worksheet112.conditional_format(22, 0, row112+21, 15,
+            worksheet112.conditional_format(22, 0, row112+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 113
@@ -2658,20 +2747,22 @@
             worksheet113.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet113.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet113.merge_range('F4:F5', 'KELAS', header)
-            worksheet113.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet113.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet113.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet113.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet113.write('G5', 'MAT', body)
             worksheet113.write('H5', 'IND', body)
             worksheet113.write('I5', 'ENG', body)
-            worksheet113.write('J5', 'IPAS', body)
-            worksheet113.write('K5', 'JML', body)
-            worksheet113.write('L5', 'MAT', body)
-            worksheet113.write('M5', 'IND', body)
-            worksheet113.write('N5', 'ENG', body)
-            worksheet113.write('O5', 'IPAS', body)
-            worksheet113.write('P5', 'JML', body)
+            worksheet113.write('J5', 'IPA', body)
+            worksheet113.write('K5', 'IPS', body)
+            worksheet113.write('L5', 'JML', body)
+            worksheet113.write('M5', 'MAT', body)
+            worksheet113.write('N5', 'IND', body)
+            worksheet113.write('O5', 'ENG', body)
+            worksheet113.write('P5', 'IPA', body)
+            worksheet113.write('Q5', 'IPS', body)
+            worksheet113.write('R5', 'JML', body)
 
-            worksheet113.conditional_format(5, 0, row113_10+4, 15,
+            worksheet113.conditional_format(5, 0, row113_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet113.merge_range(
@@ -2686,20 +2777,22 @@
             worksheet113.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet113.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet113.merge_range('F21:F22', 'KELAS', header)
-            worksheet113.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet113.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet113.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet113.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet113.write('G22', 'MAT', body)
             worksheet113.write('H22', 'IND', body)
             worksheet113.write('I22', 'ENG', body)
-            worksheet113.write('J22', 'IPAS', body)
-            worksheet113.write('K22', 'JML', body)
-            worksheet113.write('L22', 'MAT', body)
-            worksheet113.write('M22', 'IND', body)
-            worksheet113.write('N22', 'ENG', body)
-            worksheet113.write('O22', 'IPAS', body)
-            worksheet113.write('P22', 'JML', body)
+            worksheet113.write('J22', 'IPA', body)
+            worksheet113.write('K22', 'IPS', body)
+            worksheet113.write('L22', 'JML', body)
+            worksheet113.write('M22', 'MAT', body)
+            worksheet113.write('N22', 'IND', body)
+            worksheet113.write('O22', 'ENG', body)
+            worksheet113.write('P22', 'IPA', body)
+            worksheet113.write('Q22', 'IPS', body)
+            worksheet113.write('R22', 'JML', body)
 
-            worksheet113.conditional_format(22, 0, row113+21, 15,
+            worksheet113.conditional_format(22, 0, row113+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 115
@@ -2723,20 +2816,22 @@
             worksheet115.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet115.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet115.merge_range('F4:F5', 'KELAS', header)
-            worksheet115.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet115.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet115.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet115.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet115.write('G5', 'MAT', body)
             worksheet115.write('H5', 'IND', body)
             worksheet115.write('I5', 'ENG', body)
-            worksheet115.write('J5', 'IPAS', body)
-            worksheet115.write('K5', 'JML', body)
-            worksheet115.write('L5', 'MAT', body)
-            worksheet115.write('M5', 'IND', body)
-            worksheet115.write('N5', 'ENG', body)
-            worksheet115.write('O5', 'IPAS', body)
-            worksheet115.write('P5', 'JML', body)
+            worksheet115.write('J5', 'IPA', body)
+            worksheet115.write('K5', 'IPS', body)
+            worksheet115.write('L5', 'JML', body)
+            worksheet115.write('M5', 'MAT', body)
+            worksheet115.write('N5', 'IND', body)
+            worksheet115.write('O5', 'ENG', body)
+            worksheet115.write('P5', 'IPA', body)
+            worksheet115.write('Q5', 'IPS', body)
+            worksheet115.write('R5', 'JML', body)
 
-            worksheet115.conditional_format(5, 0, row115_10+4, 15,
+            worksheet115.conditional_format(5, 0, row115_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet115.merge_range(
@@ -2751,20 +2846,22 @@
             worksheet115.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet115.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet115.merge_range('F21:F22', 'KELAS', header)
-            worksheet115.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet115.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet115.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet115.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet115.write('G22', 'MAT', body)
             worksheet115.write('H22', 'IND', body)
             worksheet115.write('I22', 'ENG', body)
-            worksheet115.write('J22', 'IPAS', body)
-            worksheet115.write('K22', 'JML', body)
-            worksheet115.write('L22', 'MAT', body)
-            worksheet115.write('M22', 'IND', body)
-            worksheet115.write('N22', 'ENG', body)
-            worksheet115.write('O22', 'IPAS', body)
-            worksheet115.write('P22', 'JML', body)
+            worksheet115.write('J22', 'IPA', body)
+            worksheet115.write('K22', 'IPS', body)
+            worksheet115.write('L22', 'JML', body)
+            worksheet115.write('M22', 'MAT', body)
+            worksheet115.write('N22', 'IND', body)
+            worksheet115.write('O22', 'ENG', body)
+            worksheet115.write('P22', 'IPA', body)
+            worksheet115.write('Q22', 'IPS', body)
+            worksheet115.write('R22', 'JML', body)
 
-            worksheet115.conditional_format(22, 0, row115+21, 15,
+            worksheet115.conditional_format(22, 0, row115+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 116
@@ -2788,20 +2885,22 @@
             worksheet116.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet116.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet116.merge_range('F4:F5', 'KELAS', header)
-            worksheet116.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet116.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet116.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet116.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet116.write('G5', 'MAT', body)
             worksheet116.write('H5', 'IND', body)
             worksheet116.write('I5', 'ENG', body)
-            worksheet116.write('J5', 'IPAS', body)
-            worksheet116.write('K5', 'JML', body)
-            worksheet116.write('L5', 'MAT', body)
-            worksheet116.write('M5', 'IND', body)
-            worksheet116.write('N5', 'ENG', body)
-            worksheet116.write('O5', 'IPAS', body)
-            worksheet116.write('P5', 'JML', body)
+            worksheet116.write('J5', 'IPA', body)
+            worksheet116.write('K5', 'IPS', body)
+            worksheet116.write('L5', 'JML', body)
+            worksheet116.write('M5', 'MAT', body)
+            worksheet116.write('N5', 'IND', body)
+            worksheet116.write('O5', 'ENG', body)
+            worksheet116.write('P5', 'IPA', body)
+            worksheet116.write('Q5', 'IPS', body)
+            worksheet116.write('R5', 'JML', body)
 
-            worksheet116.conditional_format(5, 0, row116_10+4, 15,
+            worksheet116.conditional_format(5, 0, row116_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet116.merge_range(
@@ -2816,20 +2915,22 @@
             worksheet116.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet116.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet116.merge_range('F21:F22', 'KELAS', header)
-            worksheet116.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet116.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet116.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet116.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet116.write('G22', 'MAT', body)
             worksheet116.write('H22', 'IND', body)
             worksheet116.write('I22', 'ENG', body)
-            worksheet116.write('J22', 'IPAS', body)
-            worksheet116.write('K22', 'JML', body)
-            worksheet116.write('L22', 'MAT', body)
-            worksheet116.write('M22', 'IND', body)
-            worksheet116.write('N22', 'ENG', body)
-            worksheet116.write('O22', 'IPAS', body)
-            worksheet116.write('P22', 'JML', body)
+            worksheet116.write('J22', 'IPA', body)
+            worksheet116.write('K22', 'IPS', body)
+            worksheet116.write('L22', 'JML', body)
+            worksheet116.write('M22', 'MAT', body)
+            worksheet116.write('N22', 'IND', body)
+            worksheet116.write('O22', 'ENG', body)
+            worksheet116.write('P22', 'IPA', body)
+            worksheet116.write('Q22', 'IPS', body)
+            worksheet116.write('R22', 'JML', body)
 
-            worksheet116.conditional_format(22, 0, row116+21, 15,
+            worksheet116.conditional_format(22, 0, row116+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 117
@@ -2853,20 +2954,22 @@
             worksheet117.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet117.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet117.merge_range('F4:F5', 'KELAS', header)
-            worksheet117.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet117.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet117.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet117.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet117.write('G5', 'MAT', body)
             worksheet117.write('H5', 'IND', body)
             worksheet117.write('I5', 'ENG', body)
-            worksheet117.write('J5', 'IPAS', body)
-            worksheet117.write('K5', 'JML', body)
-            worksheet117.write('L5', 'MAT', body)
-            worksheet117.write('M5', 'IND', body)
-            worksheet117.write('N5', 'ENG', body)
-            worksheet117.write('O5', 'IPAS', body)
-            worksheet117.write('P5', 'JML', body)
+            worksheet117.write('J5', 'IPA', body)
+            worksheet117.write('K5', 'IPS', body)
+            worksheet117.write('L5', 'JML', body)
+            worksheet117.write('M5', 'MAT', body)
+            worksheet117.write('N5', 'IND', body)
+            worksheet117.write('O5', 'ENG', body)
+            worksheet117.write('P5', 'IPA', body)
+            worksheet117.write('Q5', 'IPS', body)
+            worksheet117.write('R5', 'JML', body)
 
-            worksheet117.conditional_format(5, 0, row117_10+4, 15,
+            worksheet117.conditional_format(5, 0, row117_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet117.merge_range(
@@ -2881,20 +2984,22 @@
             worksheet117.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet117.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet117.merge_range('F21:F22', 'KELAS', header)
-            worksheet117.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet117.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet117.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet117.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet117.write('G22', 'MAT', body)
             worksheet117.write('H22', 'IND', body)
             worksheet117.write('I22', 'ENG', body)
-            worksheet117.write('J22', 'IPAS', body)
-            worksheet117.write('K22', 'JML', body)
-            worksheet117.write('L22', 'MAT', body)
-            worksheet117.write('M22', 'IND', body)
-            worksheet117.write('N22', 'ENG', body)
-            worksheet117.write('O22', 'IPAS', body)
-            worksheet117.write('P22', 'JML', body)
+            worksheet117.write('J22', 'IPA', body)
+            worksheet117.write('K22', 'IPS', body)
+            worksheet117.write('L22', 'JML', body)
+            worksheet117.write('M22', 'MAT', body)
+            worksheet117.write('N22', 'IND', body)
+            worksheet117.write('O22', 'ENG', body)
+            worksheet117.write('P22', 'IPA', body)
+            worksheet117.write('Q22', 'IPS', body)
+            worksheet117.write('R22', 'JML', body)
 
-            worksheet117.conditional_format(22, 0, row117+21, 15,
+            worksheet117.conditional_format(22, 0, row117+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 118
@@ -2918,20 +3023,22 @@
             worksheet118.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet118.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet118.merge_range('F4:F5', 'KELAS', header)
-            worksheet118.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet118.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet118.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet118.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet118.write('G5', 'MAT', body)
             worksheet118.write('H5', 'IND', body)
             worksheet118.write('I5', 'ENG', body)
-            worksheet118.write('J5', 'IPAS', body)
-            worksheet118.write('K5', 'JML', body)
-            worksheet118.write('L5', 'MAT', body)
-            worksheet118.write('M5', 'IND', body)
-            worksheet118.write('N5', 'ENG', body)
-            worksheet118.write('O5', 'IPAS', body)
-            worksheet118.write('P5', 'JML', body)
+            worksheet118.write('J5', 'IPA', body)
+            worksheet118.write('K5', 'IPS', body)
+            worksheet118.write('L5', 'JML', body)
+            worksheet118.write('M5', 'MAT', body)
+            worksheet118.write('N5', 'IND', body)
+            worksheet118.write('O5', 'ENG', body)
+            worksheet118.write('P5', 'IPA', body)
+            worksheet118.write('Q5', 'IPS', body)
+            worksheet118.write('R5', 'JML', body)
 
-            worksheet118.conditional_format(5, 0, row118_10+4, 15,
+            worksheet118.conditional_format(5, 0, row118_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet118.merge_range(
@@ -2946,20 +3053,22 @@
             worksheet118.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet118.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet118.merge_range('F21:F22', 'KELAS', header)
-            worksheet118.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet118.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet118.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet118.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet118.write('G22', 'MAT', body)
             worksheet118.write('H22', 'IND', body)
             worksheet118.write('I22', 'ENG', body)
-            worksheet118.write('J22', 'IPAS', body)
-            worksheet118.write('K22', 'JML', body)
-            worksheet118.write('L22', 'MAT', body)
-            worksheet118.write('M22', 'IND', body)
-            worksheet118.write('N22', 'ENG', body)
-            worksheet118.write('O22', 'IPAS', body)
-            worksheet118.write('P22', 'JML', body)
+            worksheet118.write('J22', 'IPA', body)
+            worksheet118.write('K22', 'IPS', body)
+            worksheet118.write('L22', 'JML', body)
+            worksheet118.write('M22', 'MAT', body)
+            worksheet118.write('N22', 'IND', body)
+            worksheet118.write('O22', 'ENG', body)
+            worksheet118.write('P22', 'IPA', body)
+            worksheet118.write('Q22', 'IPS', body)
+            worksheet118.write('R22', 'JML', body)
 
-            worksheet118.conditional_format(22, 0, row118+21, 15,
+            worksheet118.conditional_format(22, 0, row118+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 119
@@ -2983,20 +3092,22 @@
             worksheet119.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet119.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet119.merge_range('F4:F5', 'KELAS', header)
-            worksheet119.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet119.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet119.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet119.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet119.write('G5', 'MAT', body)
             worksheet119.write('H5', 'IND', body)
             worksheet119.write('I5', 'ENG', body)
-            worksheet119.write('J5', 'IPAS', body)
-            worksheet119.write('K5', 'JML', body)
-            worksheet119.write('L5', 'MAT', body)
-            worksheet119.write('M5', 'IND', body)
-            worksheet119.write('N5', 'ENG', body)
-            worksheet119.write('O5', 'IPAS', body)
-            worksheet119.write('P5', 'JML', body)
+            worksheet119.write('J5', 'IPA', body)
+            worksheet119.write('K5', 'IPS', body)
+            worksheet119.write('L5', 'JML', body)
+            worksheet119.write('M5', 'MAT', body)
+            worksheet119.write('N5', 'IND', body)
+            worksheet119.write('O5', 'ENG', body)
+            worksheet119.write('P5', 'IPA', body)
+            worksheet119.write('Q5', 'IPS', body)
+            worksheet119.write('R5', 'JML', body)
 
-            worksheet119.conditional_format(5, 0, row119_10+4, 15,
+            worksheet119.conditional_format(5, 0, row119_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet119.merge_range(
@@ -3011,20 +3122,22 @@
             worksheet119.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet119.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet119.merge_range('F21:F22', 'KELAS', header)
-            worksheet119.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet119.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet119.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet119.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet119.write('G22', 'MAT', body)
             worksheet119.write('H22', 'IND', body)
             worksheet119.write('I22', 'ENG', body)
-            worksheet119.write('J22', 'IPAS', body)
-            worksheet119.write('K22', 'JML', body)
-            worksheet119.write('L22', 'MAT', body)
-            worksheet119.write('M22', 'IND', body)
-            worksheet119.write('N22', 'ENG', body)
-            worksheet119.write('O22', 'IPAS', body)
-            worksheet119.write('P22', 'JML', body)
+            worksheet119.write('J22', 'IPA', body)
+            worksheet119.write('K22', 'IPS', body)
+            worksheet119.write('L22', 'JML', body)
+            worksheet119.write('M22', 'MAT', body)
+            worksheet119.write('N22', 'IND', body)
+            worksheet119.write('O22', 'ENG', body)
+            worksheet119.write('P22', 'IPA', body)
+            worksheet119.write('Q22', 'IPS', body)
+            worksheet119.write('R22', 'JML', body)
 
-            worksheet119.conditional_format(22, 0, row119+21, 15,
+            worksheet119.conditional_format(22, 0, row119+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 120
@@ -3048,20 +3161,22 @@
             worksheet120.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet120.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet120.merge_range('F4:F5', 'KELAS', header)
-            worksheet120.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet120.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet120.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet120.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet120.write('G5', 'MAT', body)
             worksheet120.write('H5', 'IND', body)
             worksheet120.write('I5', 'ENG', body)
-            worksheet120.write('J5', 'IPAS', body)
-            worksheet120.write('K5', 'JML', body)
-            worksheet120.write('L5', 'MAT', body)
-            worksheet120.write('M5', 'IND', body)
-            worksheet120.write('N5', 'ENG', body)
-            worksheet120.write('O5', 'IPAS', body)
-            worksheet120.write('P5', 'JML', body)
+            worksheet120.write('J5', 'IPA', body)
+            worksheet120.write('K5', 'IPS', body)
+            worksheet120.write('L5', 'JML', body)
+            worksheet120.write('M5', 'MAT', body)
+            worksheet120.write('N5', 'IND', body)
+            worksheet120.write('O5', 'ENG', body)
+            worksheet120.write('P5', 'IPA', body)
+            worksheet120.write('Q5', 'IPS', body)
+            worksheet120.write('R5', 'JML', body)
 
-            worksheet120.conditional_format(5, 0, row120_10+4, 15,
+            worksheet120.conditional_format(5, 0, row120_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet120.merge_range(
@@ -3076,20 +3191,22 @@
             worksheet120.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet120.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet120.merge_range('F21:F22', 'KELAS', header)
-            worksheet120.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet120.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet120.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet120.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet120.write('G22', 'MAT', body)
             worksheet120.write('H22', 'IND', body)
             worksheet120.write('I22', 'ENG', body)
-            worksheet120.write('J22', 'IPAS', body)
-            worksheet120.write('K22', 'JML', body)
-            worksheet120.write('L22', 'MAT', body)
-            worksheet120.write('M22', 'IND', body)
-            worksheet120.write('N22', 'ENG', body)
-            worksheet120.write('O22', 'IPAS', body)
-            worksheet120.write('P22', 'JML', body)
+            worksheet120.write('J22', 'IPA', body)
+            worksheet120.write('K22', 'IPS', body)
+            worksheet120.write('L22', 'JML', body)
+            worksheet120.write('M22', 'MAT', body)
+            worksheet120.write('N22', 'IND', body)
+            worksheet120.write('O22', 'ENG', body)
+            worksheet120.write('P22', 'IPA', body)
+            worksheet120.write('Q22', 'IPS', body)
+            worksheet120.write('R22', 'JML', body)
 
-            worksheet120.conditional_format(22, 0, row120+21, 15,
+            worksheet120.conditional_format(22, 0, row120+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 121
@@ -3113,20 +3230,22 @@
             worksheet121.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet121.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet121.merge_range('F4:F5', 'KELAS', header)
-            worksheet121.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet121.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet121.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet121.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet121.write('G5', 'MAT', body)
             worksheet121.write('H5', 'IND', body)
             worksheet121.write('I5', 'ENG', body)
-            worksheet121.write('J5', 'IPAS', body)
-            worksheet121.write('K5', 'JML', body)
-            worksheet121.write('L5', 'MAT', body)
-            worksheet121.write('M5', 'IND', body)
-            worksheet121.write('N5', 'ENG', body)
-            worksheet121.write('O5', 'IPAS', body)
-            worksheet121.write('P5', 'JML', body)
+            worksheet121.write('J5', 'IPA', body)
+            worksheet121.write('K5', 'IPS', body)
+            worksheet121.write('L5', 'JML', body)
+            worksheet121.write('M5', 'MAT', body)
+            worksheet121.write('N5', 'IND', body)
+            worksheet121.write('O5', 'ENG', body)
+            worksheet121.write('P5', 'IPA', body)
+            worksheet121.write('Q5', 'IPS', body)
+            worksheet121.write('R5', 'JML', body)
 
-            worksheet121.conditional_format(5, 0, row121_10+4, 15,
+            worksheet121.conditional_format(5, 0, row121_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet121.merge_range(
@@ -3141,20 +3260,22 @@
             worksheet121.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet121.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet121.merge_range('F21:F22', 'KELAS', header)
-            worksheet121.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet121.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet121.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet121.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet121.write('G22', 'MAT', body)
             worksheet121.write('H22', 'IND', body)
             worksheet121.write('I22', 'ENG', body)
-            worksheet121.write('J22', 'IPAS', body)
-            worksheet121.write('K22', 'JML', body)
-            worksheet121.write('L22', 'MAT', body)
-            worksheet121.write('M22', 'IND', body)
-            worksheet121.write('N22', 'ENG', body)
-            worksheet121.write('O22', 'IPAS', body)
-            worksheet121.write('P22', 'JML', body)
+            worksheet121.write('J22', 'IPA', body)
+            worksheet121.write('K22', 'IPS', body)
+            worksheet121.write('L22', 'JML', body)
+            worksheet121.write('M22', 'MAT', body)
+            worksheet121.write('N22', 'IND', body)
+            worksheet121.write('O22', 'ENG', body)
+            worksheet121.write('P22', 'IPA', body)
+            worksheet121.write('Q22', 'IPS', body)
+            worksheet121.write('R22', 'JML', body)
 
-            worksheet121.conditional_format(22, 0, row121+21, 15,
+            worksheet121.conditional_format(22, 0, row121+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 122
@@ -3178,20 +3299,22 @@
             worksheet122.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet122.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet122.merge_range('F4:F5', 'KELAS', header)
-            worksheet122.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet122.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet122.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet122.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet122.write('G5', 'MAT', body)
             worksheet122.write('H5', 'IND', body)
             worksheet122.write('I5', 'ENG', body)
-            worksheet122.write('J5', 'IPAS', body)
-            worksheet122.write('K5', 'JML', body)
-            worksheet122.write('L5', 'MAT', body)
-            worksheet122.write('M5', 'IND', body)
-            worksheet122.write('N5', 'ENG', body)
-            worksheet122.write('O5', 'IPAS', body)
-            worksheet122.write('P5', 'JML', body)
+            worksheet122.write('J5', 'IPA', body)
+            worksheet122.write('K5', 'IPS', body)
+            worksheet122.write('L5', 'JML', body)
+            worksheet122.write('M5', 'MAT', body)
+            worksheet122.write('N5', 'IND', body)
+            worksheet122.write('O5', 'ENG', body)
+            worksheet122.write('P5', 'IPA', body)
+            worksheet122.write('Q5', 'IPS', body)
+            worksheet122.write('R5', 'JML', body)
 
-            worksheet122.conditional_format(5, 0, row122_10+4, 15,
+            worksheet122.conditional_format(5, 0, row122_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet122.merge_range(
@@ -3206,20 +3329,22 @@
             worksheet122.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet122.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet122.merge_range('F21:F22', 'KELAS', header)
-            worksheet122.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet122.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet122.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet122.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet122.write('G22', 'MAT', body)
             worksheet122.write('H22', 'IND', body)
             worksheet122.write('I22', 'ENG', body)
-            worksheet122.write('J22', 'IPAS', body)
-            worksheet122.write('K22', 'JML', body)
-            worksheet122.write('L22', 'MAT', body)
-            worksheet122.write('M22', 'IND', body)
-            worksheet122.write('N22', 'ENG', body)
-            worksheet122.write('O22', 'IPAS', body)
-            worksheet122.write('P22', 'JML', body)
+            worksheet122.write('J22', 'IPA', body)
+            worksheet122.write('K22', 'IPS', body)
+            worksheet122.write('L22', 'JML', body)
+            worksheet122.write('M22', 'MAT', body)
+            worksheet122.write('N22', 'IND', body)
+            worksheet122.write('O22', 'ENG', body)
+            worksheet122.write('P22', 'IPA', body)
+            worksheet122.write('Q22', 'IPS', body)
+            worksheet122.write('R22', 'JML', body)
 
-            worksheet122.conditional_format(22, 0, row122+21, 15,
+            worksheet122.conditional_format(22, 0, row122+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 123
@@ -3243,20 +3368,22 @@
             worksheet123.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet123.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet123.merge_range('F4:F5', 'KELAS', header)
-            worksheet123.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet123.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet123.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet123.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet123.write('G5', 'MAT', body)
             worksheet123.write('H5', 'IND', body)
             worksheet123.write('I5', 'ENG', body)
-            worksheet123.write('J5', 'IPAS', body)
-            worksheet123.write('K5', 'JML', body)
-            worksheet123.write('L5', 'MAT', body)
-            worksheet123.write('M5', 'IND', body)
-            worksheet123.write('N5', 'ENG', body)
-            worksheet123.write('O5', 'IPAS', body)
-            worksheet123.write('P5', 'JML', body)
+            worksheet123.write('J5', 'IPA', body)
+            worksheet123.write('K5', 'IPS', body)
+            worksheet123.write('L5', 'JML', body)
+            worksheet123.write('M5', 'MAT', body)
+            worksheet123.write('N5', 'IND', body)
+            worksheet123.write('O5', 'ENG', body)
+            worksheet123.write('P5', 'IPA', body)
+            worksheet123.write('Q5', 'IPS', body)
+            worksheet123.write('R5', 'JML', body)
 
-            worksheet123.conditional_format(5, 0, row123_10+4, 15,
+            worksheet123.conditional_format(5, 0, row123_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet123.merge_range(
@@ -3271,20 +3398,22 @@
             worksheet123.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet123.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet123.merge_range('F21:F22', 'KELAS', header)
-            worksheet123.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet123.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet123.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet123.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet123.write('G22', 'MAT', body)
             worksheet123.write('H22', 'IND', body)
             worksheet123.write('I22', 'ENG', body)
-            worksheet123.write('J22', 'IPAS', body)
-            worksheet123.write('K22', 'JML', body)
-            worksheet123.write('L22', 'MAT', body)
-            worksheet123.write('M22', 'IND', body)
-            worksheet123.write('N22', 'ENG', body)
-            worksheet123.write('O22', 'IPAS', body)
-            worksheet123.write('P22', 'JML', body)
+            worksheet123.write('J22', 'IPA', body)
+            worksheet123.write('K22', 'IPS', body)
+            worksheet123.write('L22', 'JML', body)
+            worksheet123.write('M22', 'MAT', body)
+            worksheet123.write('N22', 'IND', body)
+            worksheet123.write('O22', 'ENG', body)
+            worksheet123.write('P22', 'IPA', body)
+            worksheet123.write('Q22', 'IPS', body)
+            worksheet123.write('R22', 'JML', body)
 
-            worksheet123.conditional_format(22, 0, row123+21, 15,
+            worksheet123.conditional_format(22, 0, row123+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 124
@@ -3308,20 +3437,22 @@
             worksheet124.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet124.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet124.merge_range('F4:F5', 'KELAS', header)
-            worksheet124.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet124.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet124.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet124.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet124.write('G5', 'MAT', body)
             worksheet124.write('H5', 'IND', body)
             worksheet124.write('I5', 'ENG', body)
-            worksheet124.write('J5', 'IPAS', body)
-            worksheet124.write('K5', 'JML', body)
-            worksheet124.write('L5', 'MAT', body)
-            worksheet124.write('M5', 'IND', body)
-            worksheet124.write('N5', 'ENG', body)
-            worksheet124.write('O5', 'IPAS', body)
-            worksheet124.write('P5', 'JML', body)
+            worksheet124.write('J5', 'IPA', body)
+            worksheet124.write('K5', 'IPS', body)
+            worksheet124.write('L5', 'JML', body)
+            worksheet124.write('M5', 'MAT', body)
+            worksheet124.write('N5', 'IND', body)
+            worksheet124.write('O5', 'ENG', body)
+            worksheet124.write('P5', 'IPA', body)
+            worksheet124.write('Q5', 'IPS', body)
+            worksheet124.write('R5', 'JML', body)
 
-            worksheet124.conditional_format(5, 0, row124_10+4, 15,
+            worksheet124.conditional_format(5, 0, row124_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet124.merge_range(
@@ -3336,20 +3467,22 @@
             worksheet124.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet124.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet124.merge_range('F21:F22', 'KELAS', header)
-            worksheet124.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet124.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet124.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet124.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet124.write('G22', 'MAT', body)
             worksheet124.write('H22', 'IND', body)
             worksheet124.write('I22', 'ENG', body)
-            worksheet124.write('J22', 'IPAS', body)
-            worksheet124.write('K22', 'JML', body)
-            worksheet124.write('L22', 'MAT', body)
-            worksheet124.write('M22', 'IND', body)
-            worksheet124.write('N22', 'ENG', body)
-            worksheet124.write('O22', 'IPAS', body)
-            worksheet124.write('P22', 'JML', body)
+            worksheet124.write('J22', 'IPA', body)
+            worksheet124.write('K22', 'IPS', body)
+            worksheet124.write('L22', 'JML', body)
+            worksheet124.write('M22', 'MAT', body)
+            worksheet124.write('N22', 'IND', body)
+            worksheet124.write('O22', 'ENG', body)
+            worksheet124.write('P22', 'IPA', body)
+            worksheet124.write('Q22', 'IPS', body)
+            worksheet124.write('R22', 'JML', body)
 
-            worksheet124.conditional_format(22, 0, row124+21, 15,
+            worksheet124.conditional_format(22, 0, row124+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 126
@@ -3373,20 +3506,22 @@
             worksheet126.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet126.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet126.merge_range('F4:F5', 'KELAS', header)
-            worksheet126.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet126.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet126.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet126.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet126.write('G5', 'MAT', body)
             worksheet126.write('H5', 'IND', body)
             worksheet126.write('I5', 'ENG', body)
-            worksheet126.write('J5', 'IPAS', body)
-            worksheet126.write('K5', 'JML', body)
-            worksheet126.write('L5', 'MAT', body)
-            worksheet126.write('M5', 'IND', body)
-            worksheet126.write('N5', 'ENG', body)
-            worksheet126.write('O5', 'IPAS', body)
-            worksheet126.write('P5', 'JML', body)
+            worksheet126.write('J5', 'IPA', body)
+            worksheet126.write('K5', 'IPS', body)
+            worksheet126.write('L5', 'JML', body)
+            worksheet126.write('M5', 'MAT', body)
+            worksheet126.write('N5', 'IND', body)
+            worksheet126.write('O5', 'ENG', body)
+            worksheet126.write('P5', 'IPA', body)
+            worksheet126.write('Q5', 'IPS', body)
+            worksheet126.write('R5', 'JML', body)
 
-            worksheet126.conditional_format(5, 0, row126_10+4, 15,
+            worksheet126.conditional_format(5, 0, row126_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet126.merge_range(
@@ -3401,20 +3536,22 @@
             worksheet126.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet126.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet126.merge_range('F21:F22', 'KELAS', header)
-            worksheet126.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet126.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet126.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet126.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet126.write('G22', 'MAT', body)
             worksheet126.write('H22', 'IND', body)
             worksheet126.write('I22', 'ENG', body)
-            worksheet126.write('J22', 'IPAS', body)
-            worksheet126.write('K22', 'JML', body)
-            worksheet126.write('L22', 'MAT', body)
-            worksheet126.write('M22', 'IND', body)
-            worksheet126.write('N22', 'ENG', body)
-            worksheet126.write('O22', 'IPAS', body)
-            worksheet126.write('P22', 'JML', body)
+            worksheet126.write('J22', 'IPA', body)
+            worksheet126.write('K22', 'IPS', body)
+            worksheet126.write('L22', 'JML', body)
+            worksheet126.write('M22', 'MAT', body)
+            worksheet126.write('N22', 'IND', body)
+            worksheet126.write('O22', 'ENG', body)
+            worksheet126.write('P22', 'IPA', body)
+            worksheet126.write('Q22', 'IPS', body)
+            worksheet126.write('R22', 'JML', body)
 
-            worksheet126.conditional_format(22, 0, row126+21, 15,
+            worksheet126.conditional_format(22, 0, row126+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 127
@@ -3438,20 +3575,22 @@
             worksheet127.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet127.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet127.merge_range('F4:F5', 'KELAS', header)
-            worksheet127.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet127.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet127.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet127.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet127.write('G5', 'MAT', body)
             worksheet127.write('H5', 'IND', body)
             worksheet127.write('I5', 'ENG', body)
-            worksheet127.write('J5', 'IPAS', body)
-            worksheet127.write('K5', 'JML', body)
-            worksheet127.write('L5', 'MAT', body)
-            worksheet127.write('M5', 'IND', body)
-            worksheet127.write('N5', 'ENG', body)
-            worksheet127.write('O5', 'IPAS', body)
-            worksheet127.write('P5', 'JML', body)
+            worksheet127.write('J5', 'IPA', body)
+            worksheet127.write('K5', 'IPS', body)
+            worksheet127.write('L5', 'JML', body)
+            worksheet127.write('M5', 'MAT', body)
+            worksheet127.write('N5', 'IND', body)
+            worksheet127.write('O5', 'ENG', body)
+            worksheet127.write('P5', 'IPA', body)
+            worksheet127.write('Q5', 'IPS', body)
+            worksheet127.write('R5', 'JML', body)
 
-            worksheet127.conditional_format(5, 0, row127_10+4, 15,
+            worksheet127.conditional_format(5, 0, row127_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet127.merge_range(
@@ -3466,20 +3605,22 @@
             worksheet127.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet127.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet127.merge_range('F21:F22', 'KELAS', header)
-            worksheet127.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet127.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet127.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet127.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet127.write('G22', 'MAT', body)
             worksheet127.write('H22', 'IND', body)
             worksheet127.write('I22', 'ENG', body)
-            worksheet127.write('J22', 'IPAS', body)
-            worksheet127.write('K22', 'JML', body)
-            worksheet127.write('L22', 'MAT', body)
-            worksheet127.write('M22', 'IND', body)
-            worksheet127.write('N22', 'ENG', body)
-            worksheet127.write('O22', 'IPAS', body)
-            worksheet127.write('P22', 'JML', body)
+            worksheet127.write('J22', 'IPA', body)
+            worksheet127.write('K22', 'IPS', body)
+            worksheet127.write('L22', 'JML', body)
+            worksheet127.write('M22', 'MAT', body)
+            worksheet127.write('N22', 'IND', body)
+            worksheet127.write('O22', 'ENG', body)
+            worksheet127.write('P22', 'IPA', body)
+            worksheet127.write('Q22', 'IPS', body)
+            worksheet127.write('R22', 'JML', body)
 
-            worksheet127.conditional_format(22, 0, row127+21, 15,
+            worksheet127.conditional_format(22, 0, row127+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 128
@@ -3503,20 +3644,22 @@
             worksheet128.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet128.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet128.merge_range('F4:F5', 'KELAS', header)
-            worksheet128.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet128.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet128.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet128.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet128.write('G5', 'MAT', body)
             worksheet128.write('H5', 'IND', body)
             worksheet128.write('I5', 'ENG', body)
-            worksheet128.write('J5', 'IPAS', body)
-            worksheet128.write('K5', 'JML', body)
-            worksheet128.write('L5', 'MAT', body)
-            worksheet128.write('M5', 'IND', body)
-            worksheet128.write('N5', 'ENG', body)
-            worksheet128.write('O5', 'IPAS', body)
-            worksheet128.write('P5', 'JML', body)
+            worksheet128.write('J5', 'IPA', body)
+            worksheet128.write('K5', 'IPS', body)
+            worksheet128.write('L5', 'JML', body)
+            worksheet128.write('M5', 'MAT', body)
+            worksheet128.write('N5', 'IND', body)
+            worksheet128.write('O5', 'ENG', body)
+            worksheet128.write('P5', 'IPA', body)
+            worksheet128.write('Q5', 'IPS', body)
+            worksheet128.write('R5', 'JML', body)
 
-            worksheet128.conditional_format(5, 0, row128_10+4, 15,
+            worksheet128.conditional_format(5, 0, row128_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet128.merge_range(
@@ -3531,20 +3674,22 @@
             worksheet128.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet128.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet128.merge_range('F21:F22', 'KELAS', header)
-            worksheet128.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet128.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet128.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet128.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet128.write('G22', 'MAT', body)
             worksheet128.write('H22', 'IND', body)
             worksheet128.write('I22', 'ENG', body)
-            worksheet128.write('J22', 'IPAS', body)
-            worksheet128.write('K22', 'JML', body)
-            worksheet128.write('L22', 'MAT', body)
-            worksheet128.write('M22', 'IND', body)
-            worksheet128.write('N22', 'ENG', body)
-            worksheet128.write('O22', 'IPAS', body)
-            worksheet128.write('P22', 'JML', body)
+            worksheet128.write('J22', 'IPA', body)
+            worksheet128.write('K22', 'IPS', body)
+            worksheet128.write('L22', 'JML', body)
+            worksheet128.write('M22', 'MAT', body)
+            worksheet128.write('N22', 'IND', body)
+            worksheet128.write('O22', 'ENG', body)
+            worksheet128.write('P22', 'IPA', body)
+            worksheet128.write('Q22', 'IPS', body)
+            worksheet128.write('R22', 'JML', body)
 
-            worksheet128.conditional_format(22, 0, row128+21, 15,
+            worksheet128.conditional_format(22, 0, row128+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 129
@@ -3568,20 +3713,22 @@
             worksheet129.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet129.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet129.merge_range('F4:F5', 'KELAS', header)
-            worksheet129.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet129.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet129.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet129.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet129.write('G5', 'MAT', body)
             worksheet129.write('H5', 'IND', body)
             worksheet129.write('I5', 'ENG', body)
-            worksheet129.write('J5', 'IPAS', body)
-            worksheet129.write('K5', 'JML', body)
-            worksheet129.write('L5', 'MAT', body)
-            worksheet129.write('M5', 'IND', body)
-            worksheet129.write('N5', 'ENG', body)
-            worksheet129.write('O5', 'IPAS', body)
-            worksheet129.write('P5', 'JML', body)
+            worksheet129.write('J5', 'IPA', body)
+            worksheet129.write('K5', 'IPS', body)
+            worksheet129.write('L5', 'JML', body)
+            worksheet129.write('M5', 'MAT', body)
+            worksheet129.write('N5', 'IND', body)
+            worksheet129.write('O5', 'ENG', body)
+            worksheet129.write('P5', 'IPA', body)
+            worksheet129.write('Q5', 'IPS', body)
+            worksheet129.write('R5', 'JML', body)
 
-            worksheet129.conditional_format(5, 0, row129_10+4, 15,
+            worksheet129.conditional_format(5, 0, row129_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet129.merge_range(
@@ -3596,20 +3743,22 @@
             worksheet129.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet129.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet129.merge_range('F21:F22', 'KELAS', header)
-            worksheet129.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet129.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet129.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet129.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet129.write('G22', 'MAT', body)
             worksheet129.write('H22', 'IND', body)
             worksheet129.write('I22', 'ENG', body)
-            worksheet129.write('J22', 'IPAS', body)
-            worksheet129.write('K22', 'JML', body)
-            worksheet129.write('L22', 'MAT', body)
-            worksheet129.write('M22', 'IND', body)
-            worksheet129.write('N22', 'ENG', body)
-            worksheet129.write('O22', 'IPAS', body)
-            worksheet129.write('P22', 'JML', body)
+            worksheet129.write('J22', 'IPA', body)
+            worksheet129.write('K22', 'IPS', body)
+            worksheet129.write('L22', 'JML', body)
+            worksheet129.write('M22', 'MAT', body)
+            worksheet129.write('N22', 'IND', body)
+            worksheet129.write('O22', 'ENG', body)
+            worksheet129.write('P22', 'IPA', body)
+            worksheet129.write('Q22', 'IPS', body)
+            worksheet129.write('R22', 'JML', body)
 
-            worksheet129.conditional_format(22, 0, row129+21, 15,
+            worksheet129.conditional_format(22, 0, row129+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 130
@@ -3633,20 +3782,22 @@
             worksheet130.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet130.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet130.merge_range('F4:F5', 'KELAS', header)
-            worksheet130.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet130.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet130.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet130.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet130.write('G5', 'MAT', body)
             worksheet130.write('H5', 'IND', body)
             worksheet130.write('I5', 'ENG', body)
-            worksheet130.write('J5', 'IPAS', body)
-            worksheet130.write('K5', 'JML', body)
-            worksheet130.write('L5', 'MAT', body)
-            worksheet130.write('M5', 'IND', body)
-            worksheet130.write('N5', 'ENG', body)
-            worksheet130.write('O5', 'IPAS', body)
-            worksheet130.write('P5', 'JML', body)
+            worksheet130.write('J5', 'IPA', body)
+            worksheet130.write('K5', 'IPS', body)
+            worksheet130.write('L5', 'JML', body)
+            worksheet130.write('M5', 'MAT', body)
+            worksheet130.write('N5', 'IND', body)
+            worksheet130.write('O5', 'ENG', body)
+            worksheet130.write('P5', 'IPA', body)
+            worksheet130.write('Q5', 'IPS', body)
+            worksheet130.write('R5', 'JML', body)
 
-            worksheet130.conditional_format(5, 0, row130_10+4, 15,
+            worksheet130.conditional_format(5, 0, row130_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet130.merge_range(
@@ -3661,20 +3812,22 @@
             worksheet130.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet130.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet130.merge_range('F21:F22', 'KELAS', header)
-            worksheet130.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet130.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet130.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet130.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet130.write('G22', 'MAT', body)
             worksheet130.write('H22', 'IND', body)
             worksheet130.write('I22', 'ENG', body)
-            worksheet130.write('J22', 'IPAS', body)
-            worksheet130.write('K22', 'JML', body)
-            worksheet130.write('L22', 'MAT', body)
-            worksheet130.write('M22', 'IND', body)
-            worksheet130.write('N22', 'ENG', body)
-            worksheet130.write('O22', 'IPAS', body)
-            worksheet130.write('P22', 'JML', body)
+            worksheet130.write('J22', 'IPA', body)
+            worksheet130.write('K22', 'IPS', body)
+            worksheet130.write('L22', 'JML', body)
+            worksheet130.write('M22', 'MAT', body)
+            worksheet130.write('N22', 'IND', body)
+            worksheet130.write('O22', 'ENG', body)
+            worksheet130.write('P22', 'IPA', body)
+            worksheet130.write('Q22', 'IPS', body)
+            worksheet130.write('R22', 'JML', body)
 
-            worksheet130.conditional_format(22, 0, row130+21, 15,
+            worksheet130.conditional_format(22, 0, row130+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 131
@@ -3698,20 +3851,22 @@
             worksheet131.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet131.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet131.merge_range('F4:F5', 'KELAS', header)
-            worksheet131.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet131.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet131.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet131.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet131.write('G5', 'MAT', body)
             worksheet131.write('H5', 'IND', body)
             worksheet131.write('I5', 'ENG', body)
-            worksheet131.write('J5', 'IPAS', body)
-            worksheet131.write('K5', 'JML', body)
-            worksheet131.write('L5', 'MAT', body)
-            worksheet131.write('M5', 'IND', body)
-            worksheet131.write('N5', 'ENG', body)
-            worksheet131.write('O5', 'IPAS', body)
-            worksheet131.write('P5', 'JML', body)
+            worksheet131.write('J5', 'IPA', body)
+            worksheet131.write('K5', 'IPS', body)
+            worksheet131.write('L5', 'JML', body)
+            worksheet131.write('M5', 'MAT', body)
+            worksheet131.write('N5', 'IND', body)
+            worksheet131.write('O5', 'ENG', body)
+            worksheet131.write('P5', 'IPA', body)
+            worksheet131.write('Q5', 'IPS', body)
+            worksheet131.write('R5', 'JML', body)
 
-            worksheet131.conditional_format(5, 0, row131_10+4, 15,
+            worksheet131.conditional_format(5, 0, row131_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet131.merge_range(
@@ -3726,20 +3881,22 @@
             worksheet131.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet131.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet131.merge_range('F21:F22', 'KELAS', header)
-            worksheet131.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet131.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet131.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet131.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet131.write('G22', 'MAT', body)
             worksheet131.write('H22', 'IND', body)
             worksheet131.write('I22', 'ENG', body)
-            worksheet131.write('J22', 'IPAS', body)
-            worksheet131.write('K22', 'JML', body)
-            worksheet131.write('L22', 'MAT', body)
-            worksheet131.write('M22', 'IND', body)
-            worksheet131.write('N22', 'ENG', body)
-            worksheet131.write('O22', 'IPAS', body)
-            worksheet131.write('P22', 'JML', body)
+            worksheet131.write('J22', 'IPA', body)
+            worksheet131.write('K22', 'IPS', body)
+            worksheet131.write('L22', 'JML', body)
+            worksheet131.write('M22', 'MAT', body)
+            worksheet131.write('N22', 'IND', body)
+            worksheet131.write('O22', 'ENG', body)
+            worksheet131.write('P22', 'IPA', body)
+            worksheet131.write('Q22', 'IPS', body)
+            worksheet131.write('R22', 'JML', body)
 
-            worksheet131.conditional_format(22, 0, row131+21, 15,
+            worksheet131.conditional_format(22, 0, row131+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 132
@@ -3763,20 +3920,22 @@
             worksheet132.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet132.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet132.merge_range('F4:F5', 'KELAS', header)
-            worksheet132.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet132.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet132.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet132.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet132.write('G5', 'MAT', body)
             worksheet132.write('H5', 'IND', body)
             worksheet132.write('I5', 'ENG', body)
-            worksheet132.write('J5', 'IPAS', body)
-            worksheet132.write('K5', 'JML', body)
-            worksheet132.write('L5', 'MAT', body)
-            worksheet132.write('M5', 'IND', body)
-            worksheet132.write('N5', 'ENG', body)
-            worksheet132.write('O5', 'IPAS', body)
-            worksheet132.write('P5', 'JML', body)
+            worksheet132.write('J5', 'IPA', body)
+            worksheet132.write('K5', 'IPS', body)
+            worksheet132.write('L5', 'JML', body)
+            worksheet132.write('M5', 'MAT', body)
+            worksheet132.write('N5', 'IND', body)
+            worksheet132.write('O5', 'ENG', body)
+            worksheet132.write('P5', 'IPA', body)
+            worksheet132.write('Q5', 'IPS', body)
+            worksheet132.write('R5', 'JML', body)
 
-            worksheet132.conditional_format(5, 0, row132_10+4, 15,
+            worksheet132.conditional_format(5, 0, row132_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet132.merge_range(
@@ -3791,20 +3950,22 @@
             worksheet132.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet132.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet132.merge_range('F21:F22', 'KELAS', header)
-            worksheet132.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet132.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet132.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet132.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet132.write('G22', 'MAT', body)
             worksheet132.write('H22', 'IND', body)
             worksheet132.write('I22', 'ENG', body)
-            worksheet132.write('J22', 'IPAS', body)
-            worksheet132.write('K22', 'JML', body)
-            worksheet132.write('L22', 'MAT', body)
-            worksheet132.write('M22', 'IND', body)
-            worksheet132.write('N22', 'ENG', body)
-            worksheet132.write('O22', 'IPAS', body)
-            worksheet132.write('P22', 'JML', body)
+            worksheet132.write('J22', 'IPA', body)
+            worksheet132.write('K22', 'IPS', body)
+            worksheet132.write('L22', 'JML', body)
+            worksheet132.write('M22', 'MAT', body)
+            worksheet132.write('N22', 'IND', body)
+            worksheet132.write('O22', 'ENG', body)
+            worksheet132.write('P22', 'IPA', body)
+            worksheet132.write('Q22', 'IPS', body)
+            worksheet132.write('R22', 'JML', body)
 
-            worksheet132.conditional_format(22, 0, row132+21, 15,
+            worksheet132.conditional_format(22, 0, row132+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 133
@@ -3828,20 +3989,22 @@
             worksheet133.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet133.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet133.merge_range('F4:F5', 'KELAS', header)
-            worksheet133.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet133.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet133.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet133.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet133.write('G5', 'MAT', body)
             worksheet133.write('H5', 'IND', body)
             worksheet133.write('I5', 'ENG', body)
-            worksheet133.write('J5', 'IPAS', body)
-            worksheet133.write('K5', 'JML', body)
-            worksheet133.write('L5', 'MAT', body)
-            worksheet133.write('M5', 'IND', body)
-            worksheet133.write('N5', 'ENG', body)
-            worksheet133.write('O5', 'IPAS', body)
-            worksheet133.write('P5', 'JML', body)
+            worksheet133.write('J5', 'IPA', body)
+            worksheet133.write('K5', 'IPS', body)
+            worksheet133.write('L5', 'JML', body)
+            worksheet133.write('M5', 'MAT', body)
+            worksheet133.write('N5', 'IND', body)
+            worksheet133.write('O5', 'ENG', body)
+            worksheet133.write('P5', 'IPA', body)
+            worksheet133.write('Q5', 'IPS', body)
+            worksheet133.write('R5', 'JML', body)
 
-            worksheet133.conditional_format(5, 0, row133_10+4, 15,
+            worksheet133.conditional_format(5, 0, row133_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet133.merge_range(
@@ -3856,20 +4019,22 @@
             worksheet133.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet133.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet133.merge_range('F21:F22', 'KELAS', header)
-            worksheet133.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet133.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet133.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet133.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet133.write('G22', 'MAT', body)
             worksheet133.write('H22', 'IND', body)
             worksheet133.write('I22', 'ENG', body)
-            worksheet133.write('J22', 'IPAS', body)
-            worksheet133.write('K22', 'JML', body)
-            worksheet133.write('L22', 'MAT', body)
-            worksheet133.write('M22', 'IND', body)
-            worksheet133.write('N22', 'ENG', body)
-            worksheet133.write('O22', 'IPAS', body)
-            worksheet133.write('P22', 'JML', body)
+            worksheet133.write('J22', 'IPA', body)
+            worksheet133.write('K22', 'IPS', body)
+            worksheet133.write('L22', 'JML', body)
+            worksheet133.write('M22', 'MAT', body)
+            worksheet133.write('N22', 'IND', body)
+            worksheet133.write('O22', 'ENG', body)
+            worksheet133.write('P22', 'IPA', body)
+            worksheet133.write('Q22', 'IPS', body)
+            worksheet133.write('R22', 'JML', body)
 
-            worksheet133.conditional_format(22, 0, row133+21, 15,
+            worksheet133.conditional_format(22, 0, row133+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 134
@@ -3893,20 +4058,22 @@
             worksheet134.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet134.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet134.merge_range('F4:F5', 'KELAS', header)
-            worksheet134.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet134.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet134.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet134.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet134.write('G5', 'MAT', body)
             worksheet134.write('H5', 'IND', body)
             worksheet134.write('I5', 'ENG', body)
-            worksheet134.write('J5', 'IPAS', body)
-            worksheet134.write('K5', 'JML', body)
-            worksheet134.write('L5', 'MAT', body)
-            worksheet134.write('M5', 'IND', body)
-            worksheet134.write('N5', 'ENG', body)
-            worksheet134.write('O5', 'IPAS', body)
-            worksheet134.write('P5', 'JML', body)
+            worksheet134.write('J5', 'IPA', body)
+            worksheet134.write('K5', 'IPS', body)
+            worksheet134.write('L5', 'JML', body)
+            worksheet134.write('M5', 'MAT', body)
+            worksheet134.write('N5', 'IND', body)
+            worksheet134.write('O5', 'ENG', body)
+            worksheet134.write('P5', 'IPA', body)
+            worksheet134.write('Q5', 'IPS', body)
+            worksheet134.write('R5', 'JML', body)
 
-            worksheet134.conditional_format(5, 0, row134_10+4, 15,
+            worksheet134.conditional_format(5, 0, row134_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet134.merge_range(
@@ -3921,20 +4088,22 @@
             worksheet134.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet134.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet134.merge_range('F21:F22', 'KELAS', header)
-            worksheet134.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet134.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet134.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet134.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet134.write('G22', 'MAT', body)
             worksheet134.write('H22', 'IND', body)
             worksheet134.write('I22', 'ENG', body)
-            worksheet134.write('J22', 'IPAS', body)
-            worksheet134.write('K22', 'JML', body)
-            worksheet134.write('L22', 'MAT', body)
-            worksheet134.write('M22', 'IND', body)
-            worksheet134.write('N22', 'ENG', body)
-            worksheet134.write('O22', 'IPAS', body)
-            worksheet134.write('P22', 'JML', body)
+            worksheet134.write('J22', 'IPA', body)
+            worksheet134.write('K22', 'IPS', body)
+            worksheet134.write('L22', 'JML', body)
+            worksheet134.write('M22', 'MAT', body)
+            worksheet134.write('N22', 'IND', body)
+            worksheet134.write('O22', 'ENG', body)
+            worksheet134.write('P22', 'IPA', body)
+            worksheet134.write('Q22', 'IPS', body)
+            worksheet134.write('R22', 'JML', body)
 
-            worksheet134.conditional_format(22, 0, row134+21, 15,
+            worksheet134.conditional_format(22, 0, row134+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 135
@@ -3958,20 +4127,22 @@
             worksheet135.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet135.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet135.merge_range('F4:F5', 'KELAS', header)
-            worksheet135.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet135.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet135.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet135.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet135.write('G5', 'MAT', body)
             worksheet135.write('H5', 'IND', body)
             worksheet135.write('I5', 'ENG', body)
-            worksheet135.write('J5', 'IPAS', body)
-            worksheet135.write('K5', 'JML', body)
-            worksheet135.write('L5', 'MAT', body)
-            worksheet135.write('M5', 'IND', body)
-            worksheet135.write('N5', 'ENG', body)
-            worksheet135.write('O5', 'IPAS', body)
-            worksheet135.write('P5', 'JML', body)
+            worksheet135.write('J5', 'IPA', body)
+            worksheet135.write('K5', 'IPS', body)
+            worksheet135.write('L5', 'JML', body)
+            worksheet135.write('M5', 'MAT', body)
+            worksheet135.write('N5', 'IND', body)
+            worksheet135.write('O5', 'ENG', body)
+            worksheet135.write('P5', 'IPA', body)
+            worksheet135.write('Q5', 'IPS', body)
+            worksheet135.write('R5', 'JML', body)
 
-            worksheet135.conditional_format(5, 0, row135_10+4, 15,
+            worksheet135.conditional_format(5, 0, row135_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet135.merge_range(
@@ -3986,20 +4157,22 @@
             worksheet135.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet135.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet135.merge_range('F21:F22', 'KELAS', header)
-            worksheet135.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet135.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet135.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet135.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet135.write('G22', 'MAT', body)
             worksheet135.write('H22', 'IND', body)
             worksheet135.write('I22', 'ENG', body)
-            worksheet135.write('J22', 'IPAS', body)
-            worksheet135.write('K22', 'JML', body)
-            worksheet135.write('L22', 'MAT', body)
-            worksheet135.write('M22', 'IND', body)
-            worksheet135.write('N22', 'ENG', body)
-            worksheet135.write('O22', 'IPAS', body)
-            worksheet135.write('P22', 'JML', body)
+            worksheet135.write('J22', 'IPA', body)
+            worksheet135.write('K22', 'IPS', body)
+            worksheet135.write('L22', 'JML', body)
+            worksheet135.write('M22', 'MAT', body)
+            worksheet135.write('N22', 'IND', body)
+            worksheet135.write('O22', 'ENG', body)
+            worksheet135.write('P22', 'IPA', body)
+            worksheet135.write('Q22', 'IPS', body)
+            worksheet135.write('R22', 'JML', body)
 
-            worksheet135.conditional_format(22, 0, row135+21, 15,
+            worksheet135.conditional_format(22, 0, row135+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 136
@@ -4023,20 +4196,22 @@
             worksheet136.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet136.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet136.merge_range('F4:F5', 'KELAS', header)
-            worksheet136.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet136.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet136.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet136.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet136.write('G5', 'MAT', body)
             worksheet136.write('H5', 'IND', body)
             worksheet136.write('I5', 'ENG', body)
-            worksheet136.write('J5', 'IPAS', body)
-            worksheet136.write('K5', 'JML', body)
-            worksheet136.write('L5', 'MAT', body)
-            worksheet136.write('M5', 'IND', body)
-            worksheet136.write('N5', 'ENG', body)
-            worksheet136.write('O5', 'IPAS', body)
-            worksheet136.write('P5', 'JML', body)
+            worksheet136.write('J5', 'IPA', body)
+            worksheet136.write('K5', 'IPS', body)
+            worksheet136.write('L5', 'JML', body)
+            worksheet136.write('M5', 'MAT', body)
+            worksheet136.write('N5', 'IND', body)
+            worksheet136.write('O5', 'ENG', body)
+            worksheet136.write('P5', 'IPA', body)
+            worksheet136.write('Q5', 'IPS', body)
+            worksheet136.write('R5', 'JML', body)
 
-            worksheet136.conditional_format(5, 0, row136_10+4, 15,
+            worksheet136.conditional_format(5, 0, row136_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet136.merge_range(
@@ -4051,20 +4226,22 @@
             worksheet136.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet136.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet136.merge_range('F21:F22', 'KELAS', header)
-            worksheet136.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet136.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet136.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet136.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet136.write('G22', 'MAT', body)
             worksheet136.write('H22', 'IND', body)
             worksheet136.write('I22', 'ENG', body)
-            worksheet136.write('J22', 'IPAS', body)
-            worksheet136.write('K22', 'JML', body)
-            worksheet136.write('L22', 'MAT', body)
-            worksheet136.write('M22', 'IND', body)
-            worksheet136.write('N22', 'ENG', body)
-            worksheet136.write('O22', 'IPAS', body)
-            worksheet136.write('P22', 'JML', body)
+            worksheet136.write('J22', 'IPA', body)
+            worksheet136.write('K22', 'IPS', body)
+            worksheet136.write('L22', 'JML', body)
+            worksheet136.write('M22', 'MAT', body)
+            worksheet136.write('N22', 'IND', body)
+            worksheet136.write('O22', 'ENG', body)
+            worksheet136.write('P22', 'IPA', body)
+            worksheet136.write('Q22', 'IPS', body)
+            worksheet136.write('R22', 'JML', body)
 
-            worksheet136.conditional_format(22, 0, row136+21, 15,
+            worksheet136.conditional_format(22, 0, row136+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 137
@@ -4088,20 +4265,22 @@
             worksheet137.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet137.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet137.merge_range('F4:F5', 'KELAS', header)
-            worksheet137.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet137.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet137.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet137.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet137.write('G5', 'MAT', body)
             worksheet137.write('H5', 'IND', body)
             worksheet137.write('I5', 'ENG', body)
-            worksheet137.write('J5', 'IPAS', body)
-            worksheet137.write('K5', 'JML', body)
-            worksheet137.write('L5', 'MAT', body)
-            worksheet137.write('M5', 'IND', body)
-            worksheet137.write('N5', 'ENG', body)
-            worksheet137.write('O5', 'IPAS', body)
-            worksheet137.write('P5', 'JML', body)
+            worksheet137.write('J5', 'IPA', body)
+            worksheet137.write('K5', 'IPS', body)
+            worksheet137.write('L5', 'JML', body)
+            worksheet137.write('M5', 'MAT', body)
+            worksheet137.write('N5', 'IND', body)
+            worksheet137.write('O5', 'ENG', body)
+            worksheet137.write('P5', 'IPA', body)
+            worksheet137.write('Q5', 'IPS', body)
+            worksheet137.write('R5', 'JML', body)
 
-            worksheet137.conditional_format(5, 0, row137_10+4, 15,
+            worksheet137.conditional_format(5, 0, row137_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet137.merge_range(
@@ -4116,20 +4295,22 @@
             worksheet137.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet137.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet137.merge_range('F21:F22', 'KELAS', header)
-            worksheet137.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet137.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet137.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet137.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet137.write('G22', 'MAT', body)
             worksheet137.write('H22', 'IND', body)
             worksheet137.write('I22', 'ENG', body)
-            worksheet137.write('J22', 'IPAS', body)
-            worksheet137.write('K22', 'JML', body)
-            worksheet137.write('L22', 'MAT', body)
-            worksheet137.write('M22', 'IND', body)
-            worksheet137.write('N22', 'ENG', body)
-            worksheet137.write('O22', 'IPAS', body)
-            worksheet137.write('P22', 'JML', body)
+            worksheet137.write('J22', 'IPA', body)
+            worksheet137.write('K22', 'IPS', body)
+            worksheet137.write('L22', 'JML', body)
+            worksheet137.write('M22', 'MAT', body)
+            worksheet137.write('N22', 'IND', body)
+            worksheet137.write('O22', 'ENG', body)
+            worksheet137.write('P22', 'IPA', body)
+            worksheet137.write('Q22', 'IPS', body)
+            worksheet137.write('R22', 'JML', body)
 
-            worksheet137.conditional_format(22, 0, row137+21, 15,
+            worksheet137.conditional_format(22, 0, row137+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 138
@@ -4153,20 +4334,22 @@
             worksheet138.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet138.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet138.merge_range('F4:F5', 'KELAS', header)
-            worksheet138.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet138.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet138.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet138.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet138.write('G5', 'MAT', body)
             worksheet138.write('H5', 'IND', body)
             worksheet138.write('I5', 'ENG', body)
-            worksheet138.write('J5', 'IPAS', body)
-            worksheet138.write('K5', 'JML', body)
-            worksheet138.write('L5', 'MAT', body)
-            worksheet138.write('M5', 'IND', body)
-            worksheet138.write('N5', 'ENG', body)
-            worksheet138.write('O5', 'IPAS', body)
-            worksheet138.write('P5', 'JML', body)
+            worksheet138.write('J5', 'IPA', body)
+            worksheet138.write('K5', 'IPS', body)
+            worksheet138.write('L5', 'JML', body)
+            worksheet138.write('M5', 'MAT', body)
+            worksheet138.write('N5', 'IND', body)
+            worksheet138.write('O5', 'ENG', body)
+            worksheet138.write('P5', 'IPA', body)
+            worksheet138.write('Q5', 'IPS', body)
+            worksheet138.write('R5', 'JML', body)
 
-            worksheet138.conditional_format(5, 0, row138_10+4, 15,
+            worksheet138.conditional_format(5, 0, row138_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet138.merge_range(
@@ -4181,20 +4364,91 @@
             worksheet138.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet138.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet138.merge_range('F21:F22', 'KELAS', header)
-            worksheet138.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet138.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet138.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet138.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet138.write('G22', 'MAT', body)
             worksheet138.write('H22', 'IND', body)
             worksheet138.write('I22', 'ENG', body)
-            worksheet138.write('J22', 'IPAS', body)
-            worksheet138.write('K22', 'JML', body)
-            worksheet138.write('L22', 'MAT', body)
-            worksheet138.write('M22', 'IND', body)
-            worksheet138.write('N22', 'ENG', body)
-            worksheet138.write('O22', 'IPAS', body)
-            worksheet138.write('P22', 'JML', body)
+            worksheet138.write('J22', 'IPA', body)
+            worksheet138.write('K22', 'IPS', body)
+            worksheet138.write('L22', 'JML', body)
+            worksheet138.write('M22', 'MAT', body)
+            worksheet138.write('N22', 'IND', body)
+            worksheet138.write('O22', 'ENG', body)
+            worksheet138.write('P22', 'IPA', body)
+            worksheet138.write('Q22', 'IPS', body)
+            worksheet138.write('R22', 'JML', body)
 
-            worksheet138.conditional_format(22, 0, row138+21, 15,
+            worksheet138.conditional_format(22, 0, row138+21, 17,
+                                            {'type': 'no_errors', 'format': border})
+
+            # worksheet 139
+            worksheet139.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheet139.set_column('A:A', 7, center)
+            worksheet139.set_column('B:B', 6, center)
+            worksheet139.set_column('C:C', 18.14, center)
+            worksheet139.set_column('D:D', 25, left)
+            worksheet139.set_column('E:E', 13.14, left)
+            worksheet139.set_column('F:F', 8.57, center)
+            worksheet139.set_column('G:R', 5, center)
+            worksheet139.merge_range(
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF SARIJADI', title)
+            worksheet139.merge_range(
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
+            worksheet139.write('A5', 'LOKASI', header)
+            worksheet139.write('B5', 'TOTAL', header)
+            worksheet139.merge_range('A4:B4', 'RANK', header)
+            worksheet139.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet139.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet139.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet139.merge_range('F4:F5', 'KELAS', header)
+            worksheet139.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet139.merge_range('M4:R4', 'NILAI STANDAR', header)
+            worksheet139.write('G5', 'MAT', body)
+            worksheet139.write('H5', 'IND', body)
+            worksheet139.write('I5', 'ENG', body)
+            worksheet139.write('J5', 'IPA', body)
+            worksheet139.write('K5', 'IPS', body)
+            worksheet139.write('L5', 'JML', body)
+            worksheet139.write('M5', 'MAT', body)
+            worksheet139.write('N5', 'IND', body)
+            worksheet139.write('O5', 'ENG', body)
+            worksheet139.write('P5', 'IPA', body)
+            worksheet139.write('Q5', 'IPS', body)
+            worksheet139.write('R5', 'JML', body)
+
+            worksheet139.conditional_format(5, 0, row139_10+4, 17,
+                                            {'type': 'no_errors', 'format': border})
+
+            worksheet139.merge_range(
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF SARIJADI', title)
+            worksheet139.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet139.merge_range(
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
+            worksheet139.write('A22', 'LOKASI', header)
+            worksheet139.write('B22', 'TOTAL', header)
+            worksheet139.merge_range('A21:B21', 'RANK', header)
+            worksheet139.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet139.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet139.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet139.merge_range('F21:F22', 'KELAS', header)
+            worksheet139.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet139.merge_range('M21:R21', 'NILAI STANDAR', header)
+            worksheet139.write('G22', 'MAT', body)
+            worksheet139.write('H22', 'IND', body)
+            worksheet139.write('I22', 'ENG', body)
+            worksheet139.write('J22', 'IPA', body)
+            worksheet139.write('K22', 'IPS', body)
+            worksheet139.write('L22', 'JML', body)
+            worksheet139.write('M22', 'MAT', body)
+            worksheet139.write('N22', 'IND', body)
+            worksheet139.write('O22', 'ENG', body)
+            worksheet139.write('P22', 'IPA', body)
+            worksheet139.write('Q22', 'IPS', body)
+            worksheet139.write('R22', 'JML', body)
+
+            worksheet139.conditional_format(22, 0, row139+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 140
@@ -4218,20 +4472,22 @@
             worksheet140.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet140.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet140.merge_range('F4:F5', 'KELAS', header)
-            worksheet140.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet140.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet140.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet140.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet140.write('G5', 'MAT', body)
             worksheet140.write('H5', 'IND', body)
             worksheet140.write('I5', 'ENG', body)
-            worksheet140.write('J5', 'IPAS', body)
-            worksheet140.write('K5', 'JML', body)
-            worksheet140.write('L5', 'MAT', body)
-            worksheet140.write('M5', 'IND', body)
-            worksheet140.write('N5', 'ENG', body)
-            worksheet140.write('O5', 'IPAS', body)
-            worksheet140.write('P5', 'JML', body)
+            worksheet140.write('J5', 'IPA', body)
+            worksheet140.write('K5', 'IPS', body)
+            worksheet140.write('L5', 'JML', body)
+            worksheet140.write('M5', 'MAT', body)
+            worksheet140.write('N5', 'IND', body)
+            worksheet140.write('O5', 'ENG', body)
+            worksheet140.write('P5', 'IPA', body)
+            worksheet140.write('Q5', 'IPS', body)
+            worksheet140.write('R5', 'JML', body)
 
-            worksheet140.conditional_format(5, 0, row140_10+4, 15,
+            worksheet140.conditional_format(5, 0, row140_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet140.merge_range(
@@ -4246,20 +4502,22 @@
             worksheet140.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet140.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet140.merge_range('F21:F22', 'KELAS', header)
-            worksheet140.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet140.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet140.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet140.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet140.write('G22', 'MAT', body)
             worksheet140.write('H22', 'IND', body)
             worksheet140.write('I22', 'ENG', body)
-            worksheet140.write('J22', 'IPAS', body)
-            worksheet140.write('K22', 'JML', body)
-            worksheet140.write('L22', 'MAT', body)
-            worksheet140.write('M22', 'IND', body)
-            worksheet140.write('N22', 'ENG', body)
-            worksheet140.write('O22', 'IPAS', body)
-            worksheet140.write('P22', 'JML', body)
+            worksheet140.write('J22', 'IPA', body)
+            worksheet140.write('K22', 'IPS', body)
+            worksheet140.write('L22', 'JML', body)
+            worksheet140.write('M22', 'MAT', body)
+            worksheet140.write('N22', 'IND', body)
+            worksheet140.write('O22', 'ENG', body)
+            worksheet140.write('P22', 'IPA', body)
+            worksheet140.write('Q22', 'IPS', body)
+            worksheet140.write('R22', 'JML', body)
 
-            worksheet140.conditional_format(22, 0, row140+21, 15,
+            worksheet140.conditional_format(22, 0, row140+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 141
@@ -4283,20 +4541,22 @@
             worksheet141.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet141.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet141.merge_range('F4:F5', 'KELAS', header)
-            worksheet141.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet141.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet141.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet141.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet141.write('G5', 'MAT', body)
             worksheet141.write('H5', 'IND', body)
             worksheet141.write('I5', 'ENG', body)
-            worksheet141.write('J5', 'IPAS', body)
-            worksheet141.write('K5', 'JML', body)
-            worksheet141.write('L5', 'MAT', body)
-            worksheet141.write('M5', 'IND', body)
-            worksheet141.write('N5', 'ENG', body)
-            worksheet141.write('O5', 'IPAS', body)
-            worksheet141.write('P5', 'JML', body)
+            worksheet141.write('J5', 'IPA', body)
+            worksheet141.write('K5', 'IPS', body)
+            worksheet141.write('L5', 'JML', body)
+            worksheet141.write('M5', 'MAT', body)
+            worksheet141.write('N5', 'IND', body)
+            worksheet141.write('O5', 'ENG', body)
+            worksheet141.write('P5', 'IPA', body)
+            worksheet141.write('Q5', 'IPS', body)
+            worksheet141.write('R5', 'JML', body)
 
-            worksheet141.conditional_format(5, 0, row141_10+4, 15,
+            worksheet141.conditional_format(5, 0, row141_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet141.merge_range(
@@ -4311,20 +4571,22 @@
             worksheet141.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet141.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet141.merge_range('F21:F22', 'KELAS', header)
-            worksheet141.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet141.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet141.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet141.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet141.write('G22', 'MAT', body)
             worksheet141.write('H22', 'IND', body)
             worksheet141.write('I22', 'ENG', body)
-            worksheet141.write('J22', 'IPAS', body)
-            worksheet141.write('K22', 'JML', body)
-            worksheet141.write('L22', 'MAT', body)
-            worksheet141.write('M22', 'IND', body)
-            worksheet141.write('N22', 'ENG', body)
-            worksheet141.write('O22', 'IPAS', body)
-            worksheet141.write('P22', 'JML', body)
+            worksheet141.write('J22', 'IPA', body)
+            worksheet141.write('K22', 'IPS', body)
+            worksheet141.write('L22', 'JML', body)
+            worksheet141.write('M22', 'MAT', body)
+            worksheet141.write('N22', 'IND', body)
+            worksheet141.write('O22', 'ENG', body)
+            worksheet141.write('P22', 'IPA', body)
+            worksheet141.write('Q22', 'IPS', body)
+            worksheet141.write('R22', 'JML', body)
 
-            worksheet141.conditional_format(22, 0, row141+21, 15,
+            worksheet141.conditional_format(22, 0, row141+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 142
@@ -4348,20 +4610,22 @@
             worksheet142.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet142.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet142.merge_range('F4:F5', 'KELAS', header)
-            worksheet142.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet142.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet142.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet142.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet142.write('G5', 'MAT', body)
             worksheet142.write('H5', 'IND', body)
             worksheet142.write('I5', 'ENG', body)
-            worksheet142.write('J5', 'IPAS', body)
-            worksheet142.write('K5', 'JML', body)
-            worksheet142.write('L5', 'MAT', body)
-            worksheet142.write('M5', 'IND', body)
-            worksheet142.write('N5', 'ENG', body)
-            worksheet142.write('O5', 'IPAS', body)
-            worksheet142.write('P5', 'JML', body)
+            worksheet142.write('J5', 'IPA', body)
+            worksheet142.write('K5', 'IPS', body)
+            worksheet142.write('L5', 'JML', body)
+            worksheet142.write('M5', 'MAT', body)
+            worksheet142.write('N5', 'IND', body)
+            worksheet142.write('O5', 'ENG', body)
+            worksheet142.write('P5', 'IPA', body)
+            worksheet142.write('Q5', 'IPS', body)
+            worksheet142.write('R5', 'JML', body)
 
-            worksheet142.conditional_format(5, 0, row142_10+4, 15,
+            worksheet142.conditional_format(5, 0, row142_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet142.merge_range(
@@ -4376,20 +4640,22 @@
             worksheet142.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet142.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet142.merge_range('F21:F22', 'KELAS', header)
-            worksheet142.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet142.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet142.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet142.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet142.write('G22', 'MAT', body)
             worksheet142.write('H22', 'IND', body)
             worksheet142.write('I22', 'ENG', body)
-            worksheet142.write('J22', 'IPAS', body)
-            worksheet142.write('K22', 'JML', body)
-            worksheet142.write('L22', 'MAT', body)
-            worksheet142.write('M22', 'IND', body)
-            worksheet142.write('N22', 'ENG', body)
-            worksheet142.write('O22', 'IPAS', body)
-            worksheet142.write('P22', 'JML', body)
+            worksheet142.write('J22', 'IPA', body)
+            worksheet142.write('K22', 'IPS', body)
+            worksheet142.write('L22', 'JML', body)
+            worksheet142.write('M22', 'MAT', body)
+            worksheet142.write('N22', 'IND', body)
+            worksheet142.write('O22', 'ENG', body)
+            worksheet142.write('P22', 'IPA', body)
+            worksheet142.write('Q22', 'IPS', body)
+            worksheet142.write('R22', 'JML', body)
 
-            worksheet142.conditional_format(22, 0, row142+21, 15,
+            worksheet142.conditional_format(22, 0, row142+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 143
@@ -4413,20 +4679,22 @@
             worksheet143.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet143.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet143.merge_range('F4:F5', 'KELAS', header)
-            worksheet143.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet143.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet143.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet143.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet143.write('G5', 'MAT', body)
             worksheet143.write('H5', 'IND', body)
             worksheet143.write('I5', 'ENG', body)
-            worksheet143.write('J5', 'IPAS', body)
-            worksheet143.write('K5', 'JML', body)
-            worksheet143.write('L5', 'MAT', body)
-            worksheet143.write('M5', 'IND', body)
-            worksheet143.write('N5', 'ENG', body)
-            worksheet143.write('O5', 'IPAS', body)
-            worksheet143.write('P5', 'JML', body)
+            worksheet143.write('J5', 'IPA', body)
+            worksheet143.write('K5', 'IPS', body)
+            worksheet143.write('L5', 'JML', body)
+            worksheet143.write('M5', 'MAT', body)
+            worksheet143.write('N5', 'IND', body)
+            worksheet143.write('O5', 'ENG', body)
+            worksheet143.write('P5', 'IPA', body)
+            worksheet143.write('Q5', 'IPS', body)
+            worksheet143.write('R5', 'JML', body)
 
-            worksheet143.conditional_format(5, 0, row143_10+4, 15,
+            worksheet143.conditional_format(5, 0, row143_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet143.merge_range(
@@ -4441,20 +4709,22 @@
             worksheet143.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet143.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet143.merge_range('F21:F22', 'KELAS', header)
-            worksheet143.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet143.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet143.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet143.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet143.write('G22', 'MAT', body)
             worksheet143.write('H22', 'IND', body)
             worksheet143.write('I22', 'ENG', body)
-            worksheet143.write('J22', 'IPAS', body)
-            worksheet143.write('K22', 'JML', body)
-            worksheet143.write('L22', 'MAT', body)
-            worksheet143.write('M22', 'IND', body)
-            worksheet143.write('N22', 'ENG', body)
-            worksheet143.write('O22', 'IPAS', body)
-            worksheet143.write('P22', 'JML', body)
+            worksheet143.write('J22', 'IPA', body)
+            worksheet143.write('K22', 'IPS', body)
+            worksheet143.write('L22', 'JML', body)
+            worksheet143.write('M22', 'MAT', body)
+            worksheet143.write('N22', 'IND', body)
+            worksheet143.write('O22', 'ENG', body)
+            worksheet143.write('P22', 'IPA', body)
+            worksheet143.write('Q22', 'IPS', body)
+            worksheet143.write('R22', 'JML', body)
 
-            worksheet143.conditional_format(22, 0, row143+21, 15,
+            worksheet143.conditional_format(22, 0, row143+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 144
@@ -4478,20 +4748,22 @@
             worksheet144.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet144.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet144.merge_range('F4:F5', 'KELAS', header)
-            worksheet144.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet144.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet144.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet144.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet144.write('G5', 'MAT', body)
             worksheet144.write('H5', 'IND', body)
             worksheet144.write('I5', 'ENG', body)
-            worksheet144.write('J5', 'IPAS', body)
-            worksheet144.write('K5', 'JML', body)
-            worksheet144.write('L5', 'MAT', body)
-            worksheet144.write('M5', 'IND', body)
-            worksheet144.write('N5', 'ENG', body)
-            worksheet144.write('O5', 'IPAS', body)
-            worksheet144.write('P5', 'JML', body)
+            worksheet144.write('J5', 'IPA', body)
+            worksheet144.write('K5', 'IPS', body)
+            worksheet144.write('L5', 'JML', body)
+            worksheet144.write('M5', 'MAT', body)
+            worksheet144.write('N5', 'IND', body)
+            worksheet144.write('O5', 'ENG', body)
+            worksheet144.write('P5', 'IPA', body)
+            worksheet144.write('Q5', 'IPS', body)
+            worksheet144.write('R5', 'JML', body)
 
-            worksheet144.conditional_format(5, 0, row144_10+4, 15,
+            worksheet144.conditional_format(5, 0, row144_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet144.merge_range(
@@ -4506,20 +4778,22 @@
             worksheet144.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet144.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet144.merge_range('F21:F22', 'KELAS', header)
-            worksheet144.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet144.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet144.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet144.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet144.write('G22', 'MAT', body)
             worksheet144.write('H22', 'IND', body)
             worksheet144.write('I22', 'ENG', body)
-            worksheet144.write('J22', 'IPAS', body)
-            worksheet144.write('K22', 'JML', body)
-            worksheet144.write('L22', 'MAT', body)
-            worksheet144.write('M22', 'IND', body)
-            worksheet144.write('N22', 'ENG', body)
-            worksheet144.write('O22', 'IPAS', body)
-            worksheet144.write('P22', 'JML', body)
+            worksheet144.write('J22', 'IPA', body)
+            worksheet144.write('K22', 'IPS', body)
+            worksheet144.write('L22', 'JML', body)
+            worksheet144.write('M22', 'MAT', body)
+            worksheet144.write('N22', 'IND', body)
+            worksheet144.write('O22', 'ENG', body)
+            worksheet144.write('P22', 'IPA', body)
+            worksheet144.write('Q22', 'IPS', body)
+            worksheet144.write('R22', 'JML', body)
 
-            worksheet144.conditional_format(22, 0, row144+21, 15,
+            worksheet144.conditional_format(22, 0, row144+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 145
@@ -4543,20 +4817,22 @@
             worksheet145.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet145.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet145.merge_range('F4:F5', 'KELAS', header)
-            worksheet145.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet145.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet145.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet145.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet145.write('G5', 'MAT', body)
             worksheet145.write('H5', 'IND', body)
             worksheet145.write('I5', 'ENG', body)
-            worksheet145.write('J5', 'IPAS', body)
-            worksheet145.write('K5', 'JML', body)
-            worksheet145.write('L5', 'MAT', body)
-            worksheet145.write('M5', 'IND', body)
-            worksheet145.write('N5', 'ENG', body)
-            worksheet145.write('O5', 'IPAS', body)
-            worksheet145.write('P5', 'JML', body)
+            worksheet145.write('J5', 'IPA', body)
+            worksheet145.write('K5', 'IPS', body)
+            worksheet145.write('L5', 'JML', body)
+            worksheet145.write('M5', 'MAT', body)
+            worksheet145.write('N5', 'IND', body)
+            worksheet145.write('O5', 'ENG', body)
+            worksheet145.write('P5', 'IPA', body)
+            worksheet145.write('Q5', 'IPS', body)
+            worksheet145.write('R5', 'JML', body)
 
-            worksheet145.conditional_format(5, 0, row145_10+4, 15,
+            worksheet145.conditional_format(5, 0, row145_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet145.merge_range(
@@ -4571,20 +4847,22 @@
             worksheet145.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet145.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet145.merge_range('F21:F22', 'KELAS', header)
-            worksheet145.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet145.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet145.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet145.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet145.write('G22', 'MAT', body)
             worksheet145.write('H22', 'IND', body)
             worksheet145.write('I22', 'ENG', body)
-            worksheet145.write('J22', 'IPAS', body)
-            worksheet145.write('K22', 'JML', body)
-            worksheet145.write('L22', 'MAT', body)
-            worksheet145.write('M22', 'IND', body)
-            worksheet145.write('N22', 'ENG', body)
-            worksheet145.write('O22', 'IPAS', body)
-            worksheet145.write('P22', 'JML', body)
+            worksheet145.write('J22', 'IPA', body)
+            worksheet145.write('K22', 'IPS', body)
+            worksheet145.write('L22', 'JML', body)
+            worksheet145.write('M22', 'MAT', body)
+            worksheet145.write('N22', 'IND', body)
+            worksheet145.write('O22', 'ENG', body)
+            worksheet145.write('P22', 'IPA', body)
+            worksheet145.write('Q22', 'IPS', body)
+            worksheet145.write('R22', 'JML', body)
 
-            worksheet145.conditional_format(22, 0, row145+21, 15,
+            worksheet145.conditional_format(22, 0, row145+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 146
@@ -4608,20 +4886,22 @@
             worksheet146.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet146.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet146.merge_range('F4:F5', 'KELAS', header)
-            worksheet146.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet146.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet146.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet146.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet146.write('G5', 'MAT', body)
             worksheet146.write('H5', 'IND', body)
             worksheet146.write('I5', 'ENG', body)
-            worksheet146.write('J5', 'IPAS', body)
-            worksheet146.write('K5', 'JML', body)
-            worksheet146.write('L5', 'MAT', body)
-            worksheet146.write('M5', 'IND', body)
-            worksheet146.write('N5', 'ENG', body)
-            worksheet146.write('O5', 'IPAS', body)
-            worksheet146.write('P5', 'JML', body)
+            worksheet146.write('J5', 'IPA', body)
+            worksheet146.write('K5', 'IPS', body)
+            worksheet146.write('L5', 'JML', body)
+            worksheet146.write('M5', 'MAT', body)
+            worksheet146.write('N5', 'IND', body)
+            worksheet146.write('O5', 'ENG', body)
+            worksheet146.write('P5', 'IPA', body)
+            worksheet146.write('Q5', 'IPS', body)
+            worksheet146.write('R5', 'JML', body)
 
-            worksheet146.conditional_format(5, 0, row146_10+4, 15,
+            worksheet146.conditional_format(5, 0, row146_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet146.merge_range(
@@ -4636,22 +4916,24 @@
             worksheet146.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet146.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet146.merge_range('F21:F22', 'KELAS', header)
-            worksheet146.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet146.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet146.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet146.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet146.write('G22', 'MAT', body)
             worksheet146.write('H22', 'IND', body)
             worksheet146.write('I22', 'ENG', body)
-            worksheet146.write('J22', 'IPAS', body)
-            worksheet146.write('K22', 'JML', body)
-            worksheet146.write('L22', 'MAT', body)
-            worksheet146.write('M22', 'IND', body)
-            worksheet146.write('N22', 'ENG', body)
-            worksheet146.write('O22', 'IPAS', body)
-            worksheet146.write('P22', 'JML', body)
+            worksheet146.write('J22', 'IPA', body)
+            worksheet146.write('K22', 'IPS', body)
+            worksheet146.write('L22', 'JML', body)
+            worksheet146.write('M22', 'MAT', body)
+            worksheet146.write('N22', 'IND', body)
+            worksheet146.write('O22', 'ENG', body)
+            worksheet146.write('P22', 'IPA', body)
+            worksheet146.write('Q22', 'IPS', body)
+            worksheet146.write('R22', 'JML', body)
 
-            worksheet146.conditional_format(22, 0, row146+21, 15,
+            worksheet146.conditional_format(22, 0, row146+21, 17,
                                             {'type': 'no_errors', 'format': border})
-            
+
             # worksheet 147
             worksheet147.insert_image('A1', r'logo resmi nf.jpg')
 
@@ -4663,7 +4945,7 @@
             worksheet147.set_column('F:F', 8.57, center)
             worksheet147.set_column('G:R', 5, center)
             worksheet147.merge_range(
-                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF CIKEAS', title)
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF JATIASIH', title)
             worksheet147.merge_range(
                 'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet147.write('A5', 'LOKASI', header)
@@ -4673,24 +4955,26 @@
             worksheet147.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet147.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet147.merge_range('F4:F5', 'KELAS', header)
-            worksheet147.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet147.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet147.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet147.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet147.write('G5', 'MAT', body)
             worksheet147.write('H5', 'IND', body)
             worksheet147.write('I5', 'ENG', body)
-            worksheet147.write('J5', 'IPAS', body)
-            worksheet147.write('K5', 'JML', body)
-            worksheet147.write('L5', 'MAT', body)
-            worksheet147.write('M5', 'IND', body)
-            worksheet147.write('N5', 'ENG', body)
-            worksheet147.write('O5', 'IPAS', body)
-            worksheet147.write('P5', 'JML', body)
+            worksheet147.write('J5', 'IPA', body)
+            worksheet147.write('K5', 'IPS', body)
+            worksheet147.write('L5', 'JML', body)
+            worksheet147.write('M5', 'MAT', body)
+            worksheet147.write('N5', 'IND', body)
+            worksheet147.write('O5', 'ENG', body)
+            worksheet147.write('P5', 'IPA', body)
+            worksheet147.write('Q5', 'IPS', body)
+            worksheet147.write('R5', 'JML', body)
 
-            worksheet147.conditional_format(5, 0, row147_10+4, 15,
+            worksheet147.conditional_format(5, 0, row147_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet147.merge_range(
-                'A17:R17', fr'KELAS {kelas} - LOKASI NF CIKEAS', title)
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF JATIASIH', title)
             worksheet147.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet147.merge_range(
                 'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
@@ -4701,20 +4985,22 @@
             worksheet147.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet147.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet147.merge_range('F21:F22', 'KELAS', header)
-            worksheet147.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet147.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet147.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet147.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet147.write('G22', 'MAT', body)
             worksheet147.write('H22', 'IND', body)
             worksheet147.write('I22', 'ENG', body)
-            worksheet147.write('J22', 'IPAS', body)
-            worksheet147.write('K22', 'JML', body)
-            worksheet147.write('L22', 'MAT', body)
-            worksheet147.write('M22', 'IND', body)
-            worksheet147.write('N22', 'ENG', body)
-            worksheet147.write('O22', 'IPAS', body)
-            worksheet147.write('P22', 'JML', body)
+            worksheet147.write('J22', 'IPA', body)
+            worksheet147.write('K22', 'IPS', body)
+            worksheet147.write('L22', 'JML', body)
+            worksheet147.write('M22', 'MAT', body)
+            worksheet147.write('N22', 'IND', body)
+            worksheet147.write('O22', 'ENG', body)
+            worksheet147.write('P22', 'IPA', body)
+            worksheet147.write('Q22', 'IPS', body)
+            worksheet147.write('R22', 'JML', body)
 
-            worksheet147.conditional_format(22, 0, row147+21, 15,
+            worksheet147.conditional_format(22, 0, row147+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 148
@@ -4738,20 +5024,22 @@
             worksheet148.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet148.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet148.merge_range('F4:F5', 'KELAS', header)
-            worksheet148.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet148.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet148.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet148.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet148.write('G5', 'MAT', body)
             worksheet148.write('H5', 'IND', body)
             worksheet148.write('I5', 'ENG', body)
-            worksheet148.write('J5', 'IPAS', body)
-            worksheet148.write('K5', 'JML', body)
-            worksheet148.write('L5', 'MAT', body)
-            worksheet148.write('M5', 'IND', body)
-            worksheet148.write('N5', 'ENG', body)
-            worksheet148.write('O5', 'IPAS', body)
-            worksheet148.write('P5', 'JML', body)
+            worksheet148.write('J5', 'IPA', body)
+            worksheet148.write('K5', 'IPS', body)
+            worksheet148.write('L5', 'JML', body)
+            worksheet148.write('M5', 'MAT', body)
+            worksheet148.write('N5', 'IND', body)
+            worksheet148.write('O5', 'ENG', body)
+            worksheet148.write('P5', 'IPA', body)
+            worksheet148.write('Q5', 'IPS', body)
+            worksheet148.write('R5', 'JML', body)
 
-            worksheet148.conditional_format(5, 0, row148_10+4, 15,
+            worksheet148.conditional_format(5, 0, row148_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet148.merge_range(
@@ -4766,20 +5054,22 @@
             worksheet148.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet148.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet148.merge_range('F21:F22', 'KELAS', header)
-            worksheet148.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet148.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet148.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet148.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet148.write('G22', 'MAT', body)
             worksheet148.write('H22', 'IND', body)
             worksheet148.write('I22', 'ENG', body)
-            worksheet148.write('J22', 'IPAS', body)
-            worksheet148.write('K22', 'JML', body)
-            worksheet148.write('L22', 'MAT', body)
-            worksheet148.write('M22', 'IND', body)
-            worksheet148.write('N22', 'ENG', body)
-            worksheet148.write('O22', 'IPAS', body)
-            worksheet148.write('P22', 'JML', body)
+            worksheet148.write('J22', 'IPA', body)
+            worksheet148.write('K22', 'IPS', body)
+            worksheet148.write('L22', 'JML', body)
+            worksheet148.write('M22', 'MAT', body)
+            worksheet148.write('N22', 'IND', body)
+            worksheet148.write('O22', 'ENG', body)
+            worksheet148.write('P22', 'IPA', body)
+            worksheet148.write('Q22', 'IPS', body)
+            worksheet148.write('R22', 'JML', body)
 
-            worksheet148.conditional_format(22, 0, row148+21, 15,
+            worksheet148.conditional_format(22, 0, row148+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 149
@@ -4803,20 +5093,22 @@
             worksheet149.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet149.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet149.merge_range('F4:F5', 'KELAS', header)
-            worksheet149.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet149.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet149.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet149.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet149.write('G5', 'MAT', body)
             worksheet149.write('H5', 'IND', body)
             worksheet149.write('I5', 'ENG', body)
-            worksheet149.write('J5', 'IPAS', body)
-            worksheet149.write('K5', 'JML', body)
-            worksheet149.write('L5', 'MAT', body)
-            worksheet149.write('M5', 'IND', body)
-            worksheet149.write('N5', 'ENG', body)
-            worksheet149.write('O5', 'IPAS', body)
-            worksheet149.write('P5', 'JML', body)
+            worksheet149.write('J5', 'IPA', body)
+            worksheet149.write('K5', 'IPS', body)
+            worksheet149.write('L5', 'JML', body)
+            worksheet149.write('M5', 'MAT', body)
+            worksheet149.write('N5', 'IND', body)
+            worksheet149.write('O5', 'ENG', body)
+            worksheet149.write('P5', 'IPA', body)
+            worksheet149.write('Q5', 'IPS', body)
+            worksheet149.write('R5', 'JML', body)
 
-            worksheet149.conditional_format(5, 0, row149_10+4, 15,
+            worksheet149.conditional_format(5, 0, row149_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet149.merge_range(
@@ -4831,20 +5123,22 @@
             worksheet149.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet149.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet149.merge_range('F21:F22', 'KELAS', header)
-            worksheet149.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet149.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet149.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet149.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet149.write('G22', 'MAT', body)
             worksheet149.write('H22', 'IND', body)
             worksheet149.write('I22', 'ENG', body)
-            worksheet149.write('J22', 'IPAS', body)
-            worksheet149.write('K22', 'JML', body)
-            worksheet149.write('L22', 'MAT', body)
-            worksheet149.write('M22', 'IND', body)
-            worksheet149.write('N22', 'ENG', body)
-            worksheet149.write('O22', 'IPAS', body)
-            worksheet149.write('P22', 'JML', body)
+            worksheet149.write('J22', 'IPA', body)
+            worksheet149.write('K22', 'IPS', body)
+            worksheet149.write('L22', 'JML', body)
+            worksheet149.write('M22', 'MAT', body)
+            worksheet149.write('N22', 'IND', body)
+            worksheet149.write('O22', 'ENG', body)
+            worksheet149.write('P22', 'IPA', body)
+            worksheet149.write('Q22', 'IPS', body)
+            worksheet149.write('R22', 'JML', body)
 
-            worksheet149.conditional_format(22, 0, row149+21, 15,
+            worksheet149.conditional_format(22, 0, row149+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 151
@@ -4868,20 +5162,22 @@
             worksheet151.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet151.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet151.merge_range('F4:F5', 'KELAS', header)
-            worksheet151.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet151.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet151.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet151.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet151.write('G5', 'MAT', body)
             worksheet151.write('H5', 'IND', body)
             worksheet151.write('I5', 'ENG', body)
-            worksheet151.write('J5', 'IPAS', body)
-            worksheet151.write('K5', 'JML', body)
-            worksheet151.write('L5', 'MAT', body)
-            worksheet151.write('M5', 'IND', body)
-            worksheet151.write('N5', 'ENG', body)
-            worksheet151.write('O5', 'IPAS', body)
-            worksheet151.write('P5', 'JML', body)
+            worksheet151.write('J5', 'IPA', body)
+            worksheet151.write('K5', 'IPS', body)
+            worksheet151.write('L5', 'JML', body)
+            worksheet151.write('M5', 'MAT', body)
+            worksheet151.write('N5', 'IND', body)
+            worksheet151.write('O5', 'ENG', body)
+            worksheet151.write('P5', 'IPA', body)
+            worksheet151.write('Q5', 'IPS', body)
+            worksheet151.write('R5', 'JML', body)
 
-            worksheet151.conditional_format(5, 0, row151_10+4, 15,
+            worksheet151.conditional_format(5, 0, row151_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet151.merge_range(
@@ -4896,20 +5192,22 @@
             worksheet151.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet151.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet151.merge_range('F21:F22', 'KELAS', header)
-            worksheet151.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet151.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet151.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet151.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet151.write('G22', 'MAT', body)
             worksheet151.write('H22', 'IND', body)
             worksheet151.write('I22', 'ENG', body)
-            worksheet151.write('J22', 'IPAS', body)
-            worksheet151.write('K22', 'JML', body)
-            worksheet151.write('L22', 'MAT', body)
-            worksheet151.write('M22', 'IND', body)
-            worksheet151.write('N22', 'ENG', body)
-            worksheet151.write('O22', 'IPAS', body)
-            worksheet151.write('P22', 'JML', body)
+            worksheet151.write('J22', 'IPA', body)
+            worksheet151.write('K22', 'IPS', body)
+            worksheet151.write('L22', 'JML', body)
+            worksheet151.write('M22', 'MAT', body)
+            worksheet151.write('N22', 'IND', body)
+            worksheet151.write('O22', 'ENG', body)
+            worksheet151.write('P22', 'IPA', body)
+            worksheet151.write('Q22', 'IPS', body)
+            worksheet151.write('R22', 'JML', body)
 
-            worksheet151.conditional_format(22, 0, row151+21, 15,
+            worksheet151.conditional_format(22, 0, row151+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 152
@@ -4933,20 +5231,22 @@
             worksheet152.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet152.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet152.merge_range('F4:F5', 'KELAS', header)
-            worksheet152.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet152.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet152.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet152.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet152.write('G5', 'MAT', body)
             worksheet152.write('H5', 'IND', body)
             worksheet152.write('I5', 'ENG', body)
-            worksheet152.write('J5', 'IPAS', body)
-            worksheet152.write('K5', 'JML', body)
-            worksheet152.write('L5', 'MAT', body)
-            worksheet152.write('M5', 'IND', body)
-            worksheet152.write('N5', 'ENG', body)
-            worksheet152.write('O5', 'IPAS', body)
-            worksheet152.write('P5', 'JML', body)
+            worksheet152.write('J5', 'IPA', body)
+            worksheet152.write('K5', 'IPS', body)
+            worksheet152.write('L5', 'JML', body)
+            worksheet152.write('M5', 'MAT', body)
+            worksheet152.write('N5', 'IND', body)
+            worksheet152.write('O5', 'ENG', body)
+            worksheet152.write('P5', 'IPA', body)
+            worksheet152.write('Q5', 'IPS', body)
+            worksheet152.write('R5', 'JML', body)
 
-            worksheet152.conditional_format(5, 0, row152_10+4, 15,
+            worksheet152.conditional_format(5, 0, row152_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet152.merge_range(
@@ -4961,20 +5261,22 @@
             worksheet152.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet152.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet152.merge_range('F21:F22', 'KELAS', header)
-            worksheet152.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet152.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet152.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet152.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet152.write('G22', 'MAT', body)
             worksheet152.write('H22', 'IND', body)
             worksheet152.write('I22', 'ENG', body)
-            worksheet152.write('J22', 'IPAS', body)
-            worksheet152.write('K22', 'JML', body)
-            worksheet152.write('L22', 'MAT', body)
-            worksheet152.write('M22', 'IND', body)
-            worksheet152.write('N22', 'ENG', body)
-            worksheet152.write('O22', 'IPAS', body)
-            worksheet152.write('P22', 'JML', body)
+            worksheet152.write('J22', 'IPA', body)
+            worksheet152.write('K22', 'IPS', body)
+            worksheet152.write('L22', 'JML', body)
+            worksheet152.write('M22', 'MAT', body)
+            worksheet152.write('N22', 'IND', body)
+            worksheet152.write('O22', 'ENG', body)
+            worksheet152.write('P22', 'IPA', body)
+            worksheet152.write('Q22', 'IPS', body)
+            worksheet152.write('R22', 'JML', body)
 
-            worksheet152.conditional_format(22, 0, row152+21, 15,
+            worksheet152.conditional_format(22, 0, row152+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 153
@@ -4998,20 +5300,22 @@
             worksheet153.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet153.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet153.merge_range('F4:F5', 'KELAS', header)
-            worksheet153.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet153.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet153.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet153.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet153.write('G5', 'MAT', body)
             worksheet153.write('H5', 'IND', body)
             worksheet153.write('I5', 'ENG', body)
-            worksheet153.write('J5', 'IPAS', body)
-            worksheet153.write('K5', 'JML', body)
-            worksheet153.write('L5', 'MAT', body)
-            worksheet153.write('M5', 'IND', body)
-            worksheet153.write('N5', 'ENG', body)
-            worksheet153.write('O5', 'IPAS', body)
-            worksheet153.write('P5', 'JML', body)
+            worksheet153.write('J5', 'IPA', body)
+            worksheet153.write('K5', 'IPS', body)
+            worksheet153.write('L5', 'JML', body)
+            worksheet153.write('M5', 'MAT', body)
+            worksheet153.write('N5', 'IND', body)
+            worksheet153.write('O5', 'ENG', body)
+            worksheet153.write('P5', 'IPA', body)
+            worksheet153.write('Q5', 'IPS', body)
+            worksheet153.write('R5', 'JML', body)
 
-            worksheet153.conditional_format(5, 0, row153_10+4, 15,
+            worksheet153.conditional_format(5, 0, row153_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet153.merge_range(
@@ -5026,20 +5330,22 @@
             worksheet153.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet153.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet153.merge_range('F21:F22', 'KELAS', header)
-            worksheet153.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet153.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet153.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet153.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet153.write('G22', 'MAT', body)
             worksheet153.write('H22', 'IND', body)
             worksheet153.write('I22', 'ENG', body)
-            worksheet153.write('J22', 'IPAS', body)
-            worksheet153.write('K22', 'JML', body)
-            worksheet153.write('L22', 'MAT', body)
-            worksheet153.write('M22', 'IND', body)
-            worksheet153.write('N22', 'ENG', body)
-            worksheet153.write('O22', 'IPAS', body)
-            worksheet153.write('P22', 'JML', body)
+            worksheet153.write('J22', 'IPA', body)
+            worksheet153.write('K22', 'IPS', body)
+            worksheet153.write('L22', 'JML', body)
+            worksheet153.write('M22', 'MAT', body)
+            worksheet153.write('N22', 'IND', body)
+            worksheet153.write('O22', 'ENG', body)
+            worksheet153.write('P22', 'IPA', body)
+            worksheet153.write('Q22', 'IPS', body)
+            worksheet153.write('R22', 'JML', body)
 
-            worksheet153.conditional_format(22, 0, row153+21, 15,
+            worksheet153.conditional_format(22, 0, row153+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 154
@@ -5063,20 +5369,22 @@
             worksheet154.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet154.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet154.merge_range('F4:F5', 'KELAS', header)
-            worksheet154.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet154.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet154.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet154.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet154.write('G5', 'MAT', body)
             worksheet154.write('H5', 'IND', body)
             worksheet154.write('I5', 'ENG', body)
-            worksheet154.write('J5', 'IPAS', body)
-            worksheet154.write('K5', 'JML', body)
-            worksheet154.write('L5', 'MAT', body)
-            worksheet154.write('M5', 'IND', body)
-            worksheet154.write('N5', 'ENG', body)
-            worksheet154.write('O5', 'IPAS', body)
-            worksheet154.write('P5', 'JML', body)
+            worksheet154.write('J5', 'IPA', body)
+            worksheet154.write('K5', 'IPS', body)
+            worksheet154.write('L5', 'JML', body)
+            worksheet154.write('M5', 'MAT', body)
+            worksheet154.write('N5', 'IND', body)
+            worksheet154.write('O5', 'ENG', body)
+            worksheet154.write('P5', 'IPA', body)
+            worksheet154.write('Q5', 'IPS', body)
+            worksheet154.write('R5', 'JML', body)
 
-            worksheet154.conditional_format(5, 0, row154_10+4, 15,
+            worksheet154.conditional_format(5, 0, row154_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet154.merge_range(
@@ -5091,20 +5399,22 @@
             worksheet154.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet154.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet154.merge_range('F21:F22', 'KELAS', header)
-            worksheet154.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet154.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet154.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet154.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet154.write('G22', 'MAT', body)
             worksheet154.write('H22', 'IND', body)
             worksheet154.write('I22', 'ENG', body)
-            worksheet154.write('J22', 'IPAS', body)
-            worksheet154.write('K22', 'JML', body)
-            worksheet154.write('L22', 'MAT', body)
-            worksheet154.write('M22', 'IND', body)
-            worksheet154.write('N22', 'ENG', body)
-            worksheet154.write('O22', 'IPAS', body)
-            worksheet154.write('P22', 'JML', body)
+            worksheet154.write('J22', 'IPA', body)
+            worksheet154.write('K22', 'IPS', body)
+            worksheet154.write('L22', 'JML', body)
+            worksheet154.write('M22', 'MAT', body)
+            worksheet154.write('N22', 'IND', body)
+            worksheet154.write('O22', 'ENG', body)
+            worksheet154.write('P22', 'IPA', body)
+            worksheet154.write('Q22', 'IPS', body)
+            worksheet154.write('R22', 'JML', body)
 
-            worksheet154.conditional_format(22, 0, row154+21, 15,
+            worksheet154.conditional_format(22, 0, row154+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 155
@@ -5128,20 +5438,22 @@
             worksheet155.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet155.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet155.merge_range('F4:F5', 'KELAS', header)
-            worksheet155.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet155.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet155.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet155.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet155.write('G5', 'MAT', body)
             worksheet155.write('H5', 'IND', body)
             worksheet155.write('I5', 'ENG', body)
-            worksheet155.write('J5', 'IPAS', body)
-            worksheet155.write('K5', 'JML', body)
-            worksheet155.write('L5', 'MAT', body)
-            worksheet155.write('M5', 'IND', body)
-            worksheet155.write('N5', 'ENG', body)
-            worksheet155.write('O5', 'IPAS', body)
-            worksheet155.write('P5', 'JML', body)
+            worksheet155.write('J5', 'IPA', body)
+            worksheet155.write('K5', 'IPS', body)
+            worksheet155.write('L5', 'JML', body)
+            worksheet155.write('M5', 'MAT', body)
+            worksheet155.write('N5', 'IND', body)
+            worksheet155.write('O5', 'ENG', body)
+            worksheet155.write('P5', 'IPA', body)
+            worksheet155.write('Q5', 'IPS', body)
+            worksheet155.write('R5', 'JML', body)
 
-            worksheet155.conditional_format(5, 0, row155_10+4, 15,
+            worksheet155.conditional_format(5, 0, row155_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet155.merge_range(
@@ -5156,20 +5468,22 @@
             worksheet155.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet155.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet155.merge_range('F21:F22', 'KELAS', header)
-            worksheet155.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet155.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet155.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet155.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet155.write('G22', 'MAT', body)
             worksheet155.write('H22', 'IND', body)
             worksheet155.write('I22', 'ENG', body)
-            worksheet155.write('J22', 'IPAS', body)
-            worksheet155.write('K22', 'JML', body)
-            worksheet155.write('L22', 'MAT', body)
-            worksheet155.write('M22', 'IND', body)
-            worksheet155.write('N22', 'ENG', body)
-            worksheet155.write('O22', 'IPAS', body)
-            worksheet155.write('P22', 'JML', body)
+            worksheet155.write('J22', 'IPA', body)
+            worksheet155.write('K22', 'IPS', body)
+            worksheet155.write('L22', 'JML', body)
+            worksheet155.write('M22', 'MAT', body)
+            worksheet155.write('N22', 'IND', body)
+            worksheet155.write('O22', 'ENG', body)
+            worksheet155.write('P22', 'IPA', body)
+            worksheet155.write('Q22', 'IPS', body)
+            worksheet155.write('R22', 'JML', body)
 
-            worksheet155.conditional_format(22, 0, row155+21, 15,
+            worksheet155.conditional_format(22, 0, row155+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 156
@@ -5193,20 +5507,22 @@
             worksheet156.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet156.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet156.merge_range('F4:F5', 'KELAS', header)
-            worksheet156.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet156.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet156.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet156.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet156.write('G5', 'MAT', body)
             worksheet156.write('H5', 'IND', body)
             worksheet156.write('I5', 'ENG', body)
-            worksheet156.write('J5', 'IPAS', body)
-            worksheet156.write('K5', 'JML', body)
-            worksheet156.write('L5', 'MAT', body)
-            worksheet156.write('M5', 'IND', body)
-            worksheet156.write('N5', 'ENG', body)
-            worksheet156.write('O5', 'IPAS', body)
-            worksheet156.write('P5', 'JML', body)
+            worksheet156.write('J5', 'IPA', body)
+            worksheet156.write('K5', 'IPS', body)
+            worksheet156.write('L5', 'JML', body)
+            worksheet156.write('M5', 'MAT', body)
+            worksheet156.write('N5', 'IND', body)
+            worksheet156.write('O5', 'ENG', body)
+            worksheet156.write('P5', 'IPA', body)
+            worksheet156.write('Q5', 'IPS', body)
+            worksheet156.write('R5', 'JML', body)
 
-            worksheet156.conditional_format(5, 0, row156_10+4, 15,
+            worksheet156.conditional_format(5, 0, row156_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet156.merge_range(
@@ -5221,20 +5537,22 @@
             worksheet156.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet156.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet156.merge_range('F21:F22', 'KELAS', header)
-            worksheet156.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet156.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet156.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet156.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet156.write('G22', 'MAT', body)
             worksheet156.write('H22', 'IND', body)
             worksheet156.write('I22', 'ENG', body)
-            worksheet156.write('J22', 'IPAS', body)
-            worksheet156.write('K22', 'JML', body)
-            worksheet156.write('L22', 'MAT', body)
-            worksheet156.write('M22', 'IND', body)
-            worksheet156.write('N22', 'ENG', body)
-            worksheet156.write('O22', 'IPAS', body)
-            worksheet156.write('P22', 'JML', body)
+            worksheet156.write('J22', 'IPA', body)
+            worksheet156.write('K22', 'IPS', body)
+            worksheet156.write('L22', 'JML', body)
+            worksheet156.write('M22', 'MAT', body)
+            worksheet156.write('N22', 'IND', body)
+            worksheet156.write('O22', 'ENG', body)
+            worksheet156.write('P22', 'IPA', body)
+            worksheet156.write('Q22', 'IPS', body)
+            worksheet156.write('R22', 'JML', body)
 
-            worksheet156.conditional_format(22, 0, row156+21, 15,
+            worksheet156.conditional_format(22, 0, row156+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 157
@@ -5258,20 +5576,22 @@
             worksheet157.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet157.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet157.merge_range('F4:F5', 'KELAS', header)
-            worksheet157.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet157.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet157.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet157.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet157.write('G5', 'MAT', body)
             worksheet157.write('H5', 'IND', body)
             worksheet157.write('I5', 'ENG', body)
-            worksheet157.write('J5', 'IPAS', body)
-            worksheet157.write('K5', 'JML', body)
-            worksheet157.write('L5', 'MAT', body)
-            worksheet157.write('M5', 'IND', body)
-            worksheet157.write('N5', 'ENG', body)
-            worksheet157.write('O5', 'IPAS', body)
-            worksheet157.write('P5', 'JML', body)
+            worksheet157.write('J5', 'IPA', body)
+            worksheet157.write('K5', 'IPS', body)
+            worksheet157.write('L5', 'JML', body)
+            worksheet157.write('M5', 'MAT', body)
+            worksheet157.write('N5', 'IND', body)
+            worksheet157.write('O5', 'ENG', body)
+            worksheet157.write('P5', 'IPA', body)
+            worksheet157.write('Q5', 'IPS', body)
+            worksheet157.write('R5', 'JML', body)
 
-            worksheet157.conditional_format(5, 0, row157_10+4, 15,
+            worksheet157.conditional_format(5, 0, row157_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet157.merge_range(
@@ -5286,20 +5606,22 @@
             worksheet157.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet157.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet157.merge_range('F21:F22', 'KELAS', header)
-            worksheet157.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet157.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet157.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet157.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet157.write('G22', 'MAT', body)
             worksheet157.write('H22', 'IND', body)
             worksheet157.write('I22', 'ENG', body)
-            worksheet157.write('J22', 'IPAS', body)
-            worksheet157.write('K22', 'JML', body)
-            worksheet157.write('L22', 'MAT', body)
-            worksheet157.write('M22', 'IND', body)
-            worksheet157.write('N22', 'ENG', body)
-            worksheet157.write('O22', 'IPAS', body)
-            worksheet157.write('P22', 'JML', body)
+            worksheet157.write('J22', 'IPA', body)
+            worksheet157.write('K22', 'IPS', body)
+            worksheet157.write('L22', 'JML', body)
+            worksheet157.write('M22', 'MAT', body)
+            worksheet157.write('N22', 'IND', body)
+            worksheet157.write('O22', 'ENG', body)
+            worksheet157.write('P22', 'IPA', body)
+            worksheet157.write('Q22', 'IPS', body)
+            worksheet157.write('R22', 'JML', body)
 
-            worksheet157.conditional_format(22, 0, row157+21, 15,
+            worksheet157.conditional_format(22, 0, row157+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 158
@@ -5323,20 +5645,22 @@
             worksheet158.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet158.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet158.merge_range('F4:F5', 'KELAS', header)
-            worksheet158.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet158.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet158.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet158.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet158.write('G5', 'MAT', body)
             worksheet158.write('H5', 'IND', body)
             worksheet158.write('I5', 'ENG', body)
-            worksheet158.write('J5', 'IPAS', body)
-            worksheet158.write('K5', 'JML', body)
-            worksheet158.write('L5', 'MAT', body)
-            worksheet158.write('M5', 'IND', body)
-            worksheet158.write('N5', 'ENG', body)
-            worksheet158.write('O5', 'IPAS', body)
-            worksheet158.write('P5', 'JML', body)
+            worksheet158.write('J5', 'IPA', body)
+            worksheet158.write('K5', 'IPS', body)
+            worksheet158.write('L5', 'JML', body)
+            worksheet158.write('M5', 'MAT', body)
+            worksheet158.write('N5', 'IND', body)
+            worksheet158.write('O5', 'ENG', body)
+            worksheet158.write('P5', 'IPA', body)
+            worksheet158.write('Q5', 'IPS', body)
+            worksheet158.write('R5', 'JML', body)
 
-            worksheet158.conditional_format(5, 0, row158_10+4, 15,
+            worksheet158.conditional_format(5, 0, row158_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet158.merge_range(
@@ -5351,20 +5675,22 @@
             worksheet158.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet158.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet158.merge_range('F21:F22', 'KELAS', header)
-            worksheet158.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet158.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet158.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet158.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet158.write('G22', 'MAT', body)
             worksheet158.write('H22', 'IND', body)
             worksheet158.write('I22', 'ENG', body)
-            worksheet158.write('J22', 'IPAS', body)
-            worksheet158.write('K22', 'JML', body)
-            worksheet158.write('L22', 'MAT', body)
-            worksheet158.write('M22', 'IND', body)
-            worksheet158.write('N22', 'ENG', body)
-            worksheet158.write('O22', 'IPAS', body)
-            worksheet158.write('P22', 'JML', body)
+            worksheet158.write('J22', 'IPA', body)
+            worksheet158.write('K22', 'IPS', body)
+            worksheet158.write('L22', 'JML', body)
+            worksheet158.write('M22', 'MAT', body)
+            worksheet158.write('N22', 'IND', body)
+            worksheet158.write('O22', 'ENG', body)
+            worksheet158.write('P22', 'IPA', body)
+            worksheet158.write('Q22', 'IPS', body)
+            worksheet158.write('R22', 'JML', body)
 
-            worksheet158.conditional_format(22, 0, row158+21, 15,
+            worksheet158.conditional_format(22, 0, row158+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 159
@@ -5388,20 +5714,22 @@
             worksheet159.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet159.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet159.merge_range('F4:F5', 'KELAS', header)
-            worksheet159.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet159.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet159.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet159.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet159.write('G5', 'MAT', body)
             worksheet159.write('H5', 'IND', body)
             worksheet159.write('I5', 'ENG', body)
-            worksheet159.write('J5', 'IPAS', body)
-            worksheet159.write('K5', 'JML', body)
-            worksheet159.write('L5', 'MAT', body)
-            worksheet159.write('M5', 'IND', body)
-            worksheet159.write('N5', 'ENG', body)
-            worksheet159.write('O5', 'IPAS', body)
-            worksheet159.write('P5', 'JML', body)
+            worksheet159.write('J5', 'IPA', body)
+            worksheet159.write('K5', 'IPS', body)
+            worksheet159.write('L5', 'JML', body)
+            worksheet159.write('M5', 'MAT', body)
+            worksheet159.write('N5', 'IND', body)
+            worksheet159.write('O5', 'ENG', body)
+            worksheet159.write('P5', 'IPA', body)
+            worksheet159.write('Q5', 'IPS', body)
+            worksheet159.write('R5', 'JML', body)
 
-            worksheet159.conditional_format(5, 0, row159_10+4, 15,
+            worksheet159.conditional_format(5, 0, row159_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet159.merge_range(
@@ -5416,20 +5744,22 @@
             worksheet159.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet159.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet159.merge_range('F21:F22', 'KELAS', header)
-            worksheet159.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet159.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet159.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet159.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet159.write('G22', 'MAT', body)
             worksheet159.write('H22', 'IND', body)
             worksheet159.write('I22', 'ENG', body)
-            worksheet159.write('J22', 'IPAS', body)
-            worksheet159.write('K22', 'JML', body)
-            worksheet159.write('L22', 'MAT', body)
-            worksheet159.write('M22', 'IND', body)
-            worksheet159.write('N22', 'ENG', body)
-            worksheet159.write('O22', 'IPAS', body)
-            worksheet159.write('P22', 'JML', body)
+            worksheet159.write('J22', 'IPA', body)
+            worksheet159.write('K22', 'IPS', body)
+            worksheet159.write('L22', 'JML', body)
+            worksheet159.write('M22', 'MAT', body)
+            worksheet159.write('N22', 'IND', body)
+            worksheet159.write('O22', 'ENG', body)
+            worksheet159.write('P22', 'IPA', body)
+            worksheet159.write('Q22', 'IPS', body)
+            worksheet159.write('R22', 'JML', body)
 
-            worksheet159.conditional_format(22, 0, row159+21, 15,
+            worksheet159.conditional_format(22, 0, row159+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 160
@@ -5453,20 +5783,22 @@
             worksheet160.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet160.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet160.merge_range('F4:F5', 'KELAS', header)
-            worksheet160.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet160.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet160.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet160.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet160.write('G5', 'MAT', body)
             worksheet160.write('H5', 'IND', body)
             worksheet160.write('I5', 'ENG', body)
-            worksheet160.write('J5', 'IPAS', body)
-            worksheet160.write('K5', 'JML', body)
-            worksheet160.write('L5', 'MAT', body)
-            worksheet160.write('M5', 'IND', body)
-            worksheet160.write('N5', 'ENG', body)
-            worksheet160.write('O5', 'IPAS', body)
-            worksheet160.write('P5', 'JML', body)
+            worksheet160.write('J5', 'IPA', body)
+            worksheet160.write('K5', 'IPS', body)
+            worksheet160.write('L5', 'JML', body)
+            worksheet160.write('M5', 'MAT', body)
+            worksheet160.write('N5', 'IND', body)
+            worksheet160.write('O5', 'ENG', body)
+            worksheet160.write('P5', 'IPA', body)
+            worksheet160.write('Q5', 'IPS', body)
+            worksheet160.write('R5', 'JML', body)
 
-            worksheet160.conditional_format(5, 0, row160_10+4, 15,
+            worksheet160.conditional_format(5, 0, row160_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet160.merge_range(
@@ -5481,20 +5813,22 @@
             worksheet160.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet160.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet160.merge_range('F21:F22', 'KELAS', header)
-            worksheet160.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet160.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet160.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet160.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet160.write('G22', 'MAT', body)
             worksheet160.write('H22', 'IND', body)
             worksheet160.write('I22', 'ENG', body)
-            worksheet160.write('J22', 'IPAS', body)
-            worksheet160.write('K22', 'JML', body)
-            worksheet160.write('L22', 'MAT', body)
-            worksheet160.write('M22', 'IND', body)
-            worksheet160.write('N22', 'ENG', body)
-            worksheet160.write('O22', 'IPAS', body)
-            worksheet160.write('P22', 'JML', body)
+            worksheet160.write('J22', 'IPA', body)
+            worksheet160.write('K22', 'IPS', body)
+            worksheet160.write('L22', 'JML', body)
+            worksheet160.write('M22', 'MAT', body)
+            worksheet160.write('N22', 'IND', body)
+            worksheet160.write('O22', 'ENG', body)
+            worksheet160.write('P22', 'IPA', body)
+            worksheet160.write('Q22', 'IPS', body)
+            worksheet160.write('R22', 'JML', body)
 
-            worksheet160.conditional_format(22, 0, row160+21, 15,
+            worksheet160.conditional_format(22, 0, row160+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             workbook.close()
@@ -5512,69 +5846,76 @@
         if uploaded_file is not None:
             df = pd.read_excel(uploaded_file)
 
-            len_col = df.shape[1]
-
-            r = df.shape[0]-5  # baris average
-            s = df.shape[0]-4  # baris stdev
-            t = df.shape[0]-3  # baris max
-            u = df.shape[0]-2  # baris min
+            # 89
+            r = df.shape[0]-5
+            # 90
+            s = df.shape[0]-4
+            # 91
+            t = df.shape[0]-3
+            # 92
+            u = df.shape[0]-2
 
             # JUMLAH PESERTA
-            peserta = df.iloc[r, len_col-136]
+            peserta = df.iloc[r, 23]
 
             # rata-rata jumlah benar
-            rata_mat = df.iloc[r, len_col-20]
-            rata_ind = df.iloc[r, len_col-19]
-            rata_eng = df.iloc[r, len_col-18]
-            rata_ipas = df.iloc[r, len_col-17]
-            rata_jml = df.iloc[r, len_col-16]
+            rata_mat = df.iloc[r, 156]
+            rata_ind = df.iloc[r, 157]
+            rata_eng = df.iloc[r, 158]
+            rata_ipa = df.iloc[r, 159]
+            rata_ips = df.iloc[r, 160]
+            rata_jml = df.iloc[r, 161]
 
             # rata-rata nilai standar
-            rata_Smat = df.iloc[t, len_col-11]
-            rata_Sind = df.iloc[t, len_col-10]
-            rata_Seng = df.iloc[t, len_col-9]
-            rata_Sipas = df.iloc[t, len_col-8]
-            rata_Sjml = df.iloc[t, len_col-7]
+            rata_Smat = df.iloc[t, 167]
+            rata_Sind = df.iloc[t, 168]
+            rata_Seng = df.iloc[t, 169]
+            rata_Sipa = df.iloc[t, 170]
+            rata_Sips = df.iloc[t, 171]
+            rata_Sjml = df.iloc[t, 172]
 
-            # max jumlah benar
-            max_mat = df.iloc[t, len_col-20]
-            max_ind = df.iloc[t, len_col-19]
-            max_eng = df.iloc[t, len_col-18]
-            max_ipas = df.iloc[t, len_col-17]
-            max_jml = df.iloc[t, len_col-16]
+            max_mat = df.iloc[t, 156]
+            max_ind = df.iloc[t, 157]
+            max_eng = df.iloc[t, 158]
+            max_ipa = df.iloc[t, 159]
+            max_ips = df.iloc[t, 160]
+            max_jml = df.iloc[t, 161]
 
             # max nilai standar
-            max_Smat = df.iloc[r, len_col-11]
-            max_Sind = df.iloc[r, len_col-10]
-            max_Seng = df.iloc[r, len_col-9]
-            max_Sipas = df.iloc[r, len_col-8]
-            max_Sjml = df.iloc[r, len_col-7]
+            max_Smat = df.iloc[r, 167]
+            max_Sind = df.iloc[r, 168]
+            max_Seng = df.iloc[r, 169]
+            max_Sipa = df.iloc[r, 170]
+            max_Sips = df.iloc[r, 171]
+            max_Sjml = df.iloc[r, 172]
 
             # min jumlah benar
-            min_mat = df.iloc[u, len_col-20]
-            min_ind = df.iloc[u, len_col-19]
-            min_eng = df.iloc[u, len_col-18]
-            min_ipas = df.iloc[u, len_col-17]
-            min_jml = df.iloc[u, len_col-16]
+            min_mat = df.iloc[u, 156]
+            min_ind = df.iloc[u, 157]
+            min_eng = df.iloc[u, 158]
+            min_ipa = df.iloc[u, 159]
+            min_ips = df.iloc[u, 160]
+            min_jml = df.iloc[u, 161]
 
             # min nilai standar
-            min_Smat = df.iloc[s, len_col-11]
-            min_Sind = df.iloc[s, len_col-10]
-            min_Seng = df.iloc[s, len_col-9]
-            min_Sipas = df.iloc[s, len_col-8]
-            min_Sjml = df.iloc[s, len_col-7]
+            min_Smat = df.iloc[s, 167]
+            min_Sind = df.iloc[s, 168]
+            min_Seng = df.iloc[s, 169]
+            min_Sipa = df.iloc[s, 170]
+            min_Sips = df.iloc[s, 171]
+            min_Sjml = df.iloc[s, 172]
 
-            data_jml_benar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPAS', 'JUMLAH (JML)'],
-                              'TERENDAH': [min_mat, min_ind, min_eng, min_ipas, min_jml],
-                              'RATA-RATA': [rata_mat, rata_ind, rata_eng, rata_ipas, rata_jml],
-                              'TERTINGGI': [max_mat, max_ind, max_eng, max_ipas, max_jml]}
+            data_jml_benar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPA', 'IPS', 'JUMLAH (JML)'],
+                              'TERENDAH': [min_mat, min_ind, min_eng, min_ipa, min_ips, min_jml],
+                              'RATA-RATA': [rata_mat, rata_ind, rata_eng, rata_ipa, rata_ips, rata_jml],
+                              'TERTINGGI': [max_mat, max_ind, max_eng, max_ipa, max_ips, max_jml]}
 
             jml_benar = pd.DataFrame(data_jml_benar)
 
-            data_n_standar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPAS', 'JUMLAH (JML)'],
-                              'TERENDAH': [min_Smat, min_Sind, min_Seng, min_Sipas, min_Sjml],
-                              'RATA-RATA': [rata_Smat, rata_Sind, rata_Seng, rata_Sipas, rata_Sjml],
-                              'TERTINGGI': [max_Smat, max_Sind, max_Seng, max_Sipas, max_Sjml]}
+            data_n_standar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPA', 'IPS', 'JUMLAH (JML)'],
+                              'TERENDAH': [min_Smat, min_Sind, min_Seng, min_Sipa, min_Sips, min_Sjml],
+                              'RATA-RATA': [rata_Smat, rata_Sind, rata_Seng, rata_Sipa, rata_Sips, rata_Sjml],
+                              'TERTINGGI': [max_Smat, max_Sind, max_Seng, max_Sipa, max_Sips, max_Sjml]}
 
             n_standar = pd.DataFrame(data_n_standar)
 
@@ -5582,13 +5923,13 @@
 
             jml_peserta = pd.DataFrame(data_jml_peserta)
 
-            data_jml_soal = {'BIDANG STUDI': ['MAT', 'IND', 'ENG', 'IPAS'],
-                             'JUMLAH': [JML_SOAL_MAT, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_IPAS]}
+            data_jml_soal = {'BIDANG STUDI': ['MAT', 'IND', 'ENG', 'IPA', 'IPS'],
+                             'JUMLAH': [JML_SOAL_MAT, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_IPA, JML_SOAL_IPS]}
 
             jml_soal = pd.DataFrame(data_jml_soal)
 
-            df = df[['LOKASI', 'RANK LOK.', 'RANK NAS.', 'NOMOR NF', 'NAMA SISWA', 'NAMA SEKOLAH',
-                    'KELAS', 'MAT', 'IND', 'ENG', 'IPAS', 'JML', 'S_MAT', 'S_IND', 'S_ENG', 'S_IPAS', 'S_JML']]
+            df = df[['LOKASI', 'RANK LOK.', 'RANK NAS.', 'NOMOR NF', 'NAMA SISWA', 'NAMA SEKOLAH', 'KELAS',
+                    'MAT', 'IND', 'ENG', 'IPA', 'IPS', 'JML', 'S_MAT', 'S_IND', 'S_ENG', 'S_IPA', 'S_IPS', 'S_JML']]
 
             # sort best 150
             grouped = df.groupby('LOKASI')
@@ -7140,7 +7481,7 @@
                 'border': 1,
                 'align': 'center',
                 'valign': 'vcenter',
-                'font_size': 40,
+                'font_size': 35,
                 'font_name': 'Arial Rounded MT Bold'})
             borderCover = workbook.add_format({
                 'bottom': 1,
@@ -7216,7 +7557,7 @@
                 'right': 1})
 
             # worksheet cover
-            worksheetcover.conditional_format(15, 0, 11, 3,
+            worksheetcover.conditional_format(16, 0, 11, 3,
                                               {'type': 'no_errors', 'format': borderCover})
 
             worksheetcover.insert_image('F1', r'logo nf.jpg')
@@ -7243,17 +7584,17 @@
             worksheetcover.merge_range(
                 'A4:F5', fr'{penilaian}', sub_titleCover)
             worksheetcover.merge_range(
-                'A6:F7', fr'{semester} TAHUN {tahun} ({kurikulum})', headerCover)
+                'A6:F7', fr'{semester} TAHUN {tahun}', headerCover)
             worksheetcover.write('A9', 'JUMLAH BENAR', sub_headerCover)
             worksheetcover.write('A19', 'NILAI STANDAR', sub_headerCover)
-            worksheetcover.merge_range('F8:G9', fr'{kelas}', kelasCover)
+            worksheetcover.merge_range('F8:G9', fr'{kelas}-{kurikulum}', kelasCover)
             worksheetcover.merge_range(
                 'F11:G12', 'JUMLAH SOAL', sub_header1Cover)
 
-            worksheetcover.conditional_format(25, 0, 21, 3,
+            worksheetcover.conditional_format(26, 0, 21, 3,
                                               {'type': 'no_errors', 'format': borderCover})
 
-            worksheetcover.conditional_format(16, 6, 13, 5,
+            worksheetcover.conditional_format(17, 6, 13, 5,
                                               {'type': 'no_errors', 'format': borderCover})
 
             worksheetcover.conditional_format(21, 5, 21, 5,
@@ -7269,28 +7610,30 @@
             worksheetbest.set_column('E:E', 7.57, left)
             worksheetbest.set_column('F:Q', 6.29, center)
             worksheetbest.merge_range(
-                'A1:O1', fr'150 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF NASIONAL', title)
+                'A1:Q1', fr'150 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF NASIONAL', title)
             worksheetbest.merge_range(
-                'A2:O2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
+                'A2:Q2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheetbest.merge_range('A4:A5', 'RANK', header)
             worksheetbest.merge_range('B4:B5', 'NOMOR NF', header)
             worksheetbest.merge_range('C4:C5', 'NAMA SISWA', header)
             worksheetbest.merge_range('D4:D5', 'SEKOLAH', header)
             worksheetbest.merge_range('E4:E5', 'KELAS', header)
-            worksheetbest.merge_range('F4:J4', 'JUMLAH BENAR', header)
-            worksheetbest.merge_range('K4:O4', 'NILAI STANDAR', header)
+            worksheetbest.merge_range('F4:K4', 'JUMLAH BENAR', header)
+            worksheetbest.merge_range('L4:Q4', 'NILAI STANDAR', header)
             worksheetbest.write('F5', 'MAT', body)
             worksheetbest.write('G5', 'IND', body)
             worksheetbest.write('H5', 'ENG', body)
-            worksheetbest.write('I5', 'IPAS', body)
-            worksheetbest.write('J5', 'JML', body)
-            worksheetbest.write('K5', 'MAT', body)
-            worksheetbest.write('L5', 'IND', body)
-            worksheetbest.write('M5', 'ENG', body)
-            worksheetbest.write('N5', 'IPAS', body)
-            worksheetbest.write('O5', 'JML', body)
+            worksheetbest.write('I5', 'IPA', body)
+            worksheetbest.write('J5', 'IPS', body)
+            worksheetbest.write('K5', 'JML', body)
+            worksheetbest.write('L5', 'MAT', body)
+            worksheetbest.write('M5', 'IND', body)
+            worksheetbest.write('N5', 'ENG', body)
+            worksheetbest.write('O5', 'IPA', body)
+            worksheetbest.write('P5', 'IPS', body)
+            worksheetbest.write('Q5', 'JML', body)
 
-            worksheetbest.conditional_format(5, 0, rowBest150_all+4, 14,
+            worksheetbest.conditional_format(5, 0, rowBest150_all+4, 16,
                                              {'type': 'no_errors', 'format': border})
 
             # worksheet 162
@@ -7314,20 +7657,22 @@
             worksheet162.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet162.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet162.merge_range('F4:F5', 'KELAS', header)
-            worksheet162.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet162.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet162.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet162.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet162.write('G5', 'MAT', body)
             worksheet162.write('H5', 'IND', body)
             worksheet162.write('I5', 'ENG', body)
-            worksheet162.write('J5', 'IPAS', body)
-            worksheet162.write('K5', 'JML', body)
-            worksheet162.write('L5', 'MAT', body)
-            worksheet162.write('M5', 'IND', body)
-            worksheet162.write('N5', 'ENG', body)
-            worksheet162.write('O5', 'IPAS', body)
-            worksheet162.write('P5', 'JML', body)
+            worksheet162.write('J5', 'IPA', body)
+            worksheet162.write('K5', 'IPS', body)
+            worksheet162.write('L5', 'JML', body)
+            worksheet162.write('M5', 'MAT', body)
+            worksheet162.write('N5', 'IND', body)
+            worksheet162.write('O5', 'ENG', body)
+            worksheet162.write('P5', 'IPA', body)
+            worksheet162.write('Q5', 'IPS', body)
+            worksheet162.write('R5', 'JML', body)
 
-            worksheet162.conditional_format(5, 0, row162_10+4, 15,
+            worksheet162.conditional_format(5, 0, row162_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet162.merge_range(
@@ -7342,20 +7687,22 @@
             worksheet162.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet162.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet162.merge_range('F21:F22', 'KELAS', header)
-            worksheet162.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet162.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet162.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet162.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet162.write('G22', 'MAT', body)
             worksheet162.write('H22', 'IND', body)
             worksheet162.write('I22', 'ENG', body)
-            worksheet162.write('J22', 'IPAS', body)
-            worksheet162.write('K22', 'JML', body)
-            worksheet162.write('L22', 'MAT', body)
-            worksheet162.write('M22', 'IND', body)
-            worksheet162.write('N22', 'ENG', body)
-            worksheet162.write('O22', 'IPAS', body)
-            worksheet162.write('P22', 'JML', body)
+            worksheet162.write('J22', 'IPA', body)
+            worksheet162.write('K22', 'IPS', body)
+            worksheet162.write('L22', 'JML', body)
+            worksheet162.write('M22', 'MAT', body)
+            worksheet162.write('N22', 'IND', body)
+            worksheet162.write('O22', 'ENG', body)
+            worksheet162.write('P22', 'IPA', body)
+            worksheet162.write('Q22', 'IPS', body)
+            worksheet162.write('R22', 'JML', body)
 
-            worksheet162.conditional_format(22, 0, row162+21, 15,
+            worksheet162.conditional_format(22, 0, row162+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 163
@@ -7379,20 +7726,22 @@
             worksheet163.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet163.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet163.merge_range('F4:F5', 'KELAS', header)
-            worksheet163.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet163.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet163.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet163.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet163.write('G5', 'MAT', body)
             worksheet163.write('H5', 'IND', body)
             worksheet163.write('I5', 'ENG', body)
-            worksheet163.write('J5', 'IPAS', body)
-            worksheet163.write('K5', 'JML', body)
-            worksheet163.write('L5', 'MAT', body)
-            worksheet163.write('M5', 'IND', body)
-            worksheet163.write('N5', 'ENG', body)
-            worksheet163.write('O5', 'IPAS', body)
-            worksheet163.write('P5', 'JML', body)
+            worksheet163.write('J5', 'IPA', body)
+            worksheet163.write('K5', 'IPS', body)
+            worksheet163.write('L5', 'JML', body)
+            worksheet163.write('M5', 'MAT', body)
+            worksheet163.write('N5', 'IND', body)
+            worksheet163.write('O5', 'ENG', body)
+            worksheet163.write('P5', 'IPA', body)
+            worksheet163.write('Q5', 'IPS', body)
+            worksheet163.write('R5', 'JML', body)
 
-            worksheet163.conditional_format(5, 0, row163_10+4, 15,
+            worksheet163.conditional_format(5, 0, row163_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet163.merge_range(
@@ -7407,20 +7756,22 @@
             worksheet163.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet163.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet163.merge_range('F21:F22', 'KELAS', header)
-            worksheet163.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet163.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet163.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet163.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet163.write('G22', 'MAT', body)
             worksheet163.write('H22', 'IND', body)
             worksheet163.write('I22', 'ENG', body)
-            worksheet163.write('J22', 'IPAS', body)
-            worksheet163.write('K22', 'JML', body)
-            worksheet163.write('L22', 'MAT', body)
-            worksheet163.write('M22', 'IND', body)
-            worksheet163.write('N22', 'ENG', body)
-            worksheet163.write('O22', 'IPAS', body)
-            worksheet163.write('P22', 'JML', body)
+            worksheet163.write('J22', 'IPA', body)
+            worksheet163.write('K22', 'IPS', body)
+            worksheet163.write('L22', 'JML', body)
+            worksheet163.write('M22', 'MAT', body)
+            worksheet163.write('N22', 'IND', body)
+            worksheet163.write('O22', 'ENG', body)
+            worksheet163.write('P22', 'IPA', body)
+            worksheet163.write('Q22', 'IPS', body)
+            worksheet163.write('R22', 'JML', body)
 
-            worksheet163.conditional_format(22, 0, row163+21, 15,
+            worksheet163.conditional_format(22, 0, row163+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 164
@@ -7444,20 +7795,22 @@
             worksheet164.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet164.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet164.merge_range('F4:F5', 'KELAS', header)
-            worksheet164.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet164.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet164.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet164.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet164.write('G5', 'MAT', body)
             worksheet164.write('H5', 'IND', body)
             worksheet164.write('I5', 'ENG', body)
-            worksheet164.write('J5', 'IPAS', body)
-            worksheet164.write('K5', 'JML', body)
-            worksheet164.write('L5', 'MAT', body)
-            worksheet164.write('M5', 'IND', body)
-            worksheet164.write('N5', 'ENG', body)
-            worksheet164.write('O5', 'IPAS', body)
-            worksheet164.write('P5', 'JML', body)
+            worksheet164.write('J5', 'IPA', body)
+            worksheet164.write('K5', 'IPS', body)
+            worksheet164.write('L5', 'JML', body)
+            worksheet164.write('M5', 'MAT', body)
+            worksheet164.write('N5', 'IND', body)
+            worksheet164.write('O5', 'ENG', body)
+            worksheet164.write('P5', 'IPA', body)
+            worksheet164.write('Q5', 'IPS', body)
+            worksheet164.write('R5', 'JML', body)
 
-            worksheet164.conditional_format(5, 0, row164_10+4, 15,
+            worksheet164.conditional_format(5, 0, row164_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet164.merge_range(
@@ -7472,20 +7825,22 @@
             worksheet164.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet164.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet164.merge_range('F21:F22', 'KELAS', header)
-            worksheet164.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet164.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet164.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet164.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet164.write('G22', 'MAT', body)
             worksheet164.write('H22', 'IND', body)
             worksheet164.write('I22', 'ENG', body)
-            worksheet164.write('J22', 'IPAS', body)
-            worksheet164.write('K22', 'JML', body)
-            worksheet164.write('L22', 'MAT', body)
-            worksheet164.write('M22', 'IND', body)
-            worksheet164.write('N22', 'ENG', body)
-            worksheet164.write('O22', 'IPAS', body)
-            worksheet164.write('P22', 'JML', body)
+            worksheet164.write('J22', 'IPA', body)
+            worksheet164.write('K22', 'IPS', body)
+            worksheet164.write('L22', 'JML', body)
+            worksheet164.write('M22', 'MAT', body)
+            worksheet164.write('N22', 'IND', body)
+            worksheet164.write('O22', 'ENG', body)
+            worksheet164.write('P22', 'IPA', body)
+            worksheet164.write('Q22', 'IPS', body)
+            worksheet164.write('R22', 'JML', body)
 
-            worksheet164.conditional_format(22, 0, row164+21, 15,
+            worksheet164.conditional_format(22, 0, row164+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 165
@@ -7509,20 +7864,22 @@
             worksheet165.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet165.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet165.merge_range('F4:F5', 'KELAS', header)
-            worksheet165.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet165.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet165.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet165.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet165.write('G5', 'MAT', body)
             worksheet165.write('H5', 'IND', body)
             worksheet165.write('I5', 'ENG', body)
-            worksheet165.write('J5', 'IPAS', body)
-            worksheet165.write('K5', 'JML', body)
-            worksheet165.write('L5', 'MAT', body)
-            worksheet165.write('M5', 'IND', body)
-            worksheet165.write('N5', 'ENG', body)
-            worksheet165.write('O5', 'IPAS', body)
-            worksheet165.write('P5', 'JML', body)
+            worksheet165.write('J5', 'IPA', body)
+            worksheet165.write('K5', 'IPS', body)
+            worksheet165.write('L5', 'JML', body)
+            worksheet165.write('M5', 'MAT', body)
+            worksheet165.write('N5', 'IND', body)
+            worksheet165.write('O5', 'ENG', body)
+            worksheet165.write('P5', 'IPA', body)
+            worksheet165.write('Q5', 'IPS', body)
+            worksheet165.write('R5', 'JML', body)
 
-            worksheet165.conditional_format(5, 0, row165_10+4, 15,
+            worksheet165.conditional_format(5, 0, row165_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet165.merge_range(
@@ -7537,20 +7894,22 @@
             worksheet165.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet165.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet165.merge_range('F21:F22', 'KELAS', header)
-            worksheet165.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet165.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet165.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet165.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet165.write('G22', 'MAT', body)
             worksheet165.write('H22', 'IND', body)
             worksheet165.write('I22', 'ENG', body)
-            worksheet165.write('J22', 'IPAS', body)
-            worksheet165.write('K22', 'JML', body)
-            worksheet165.write('L22', 'MAT', body)
-            worksheet165.write('M22', 'IND', body)
-            worksheet165.write('N22', 'ENG', body)
-            worksheet165.write('O22', 'IPAS', body)
-            worksheet165.write('P22', 'JML', body)
+            worksheet165.write('J22', 'IPA', body)
+            worksheet165.write('K22', 'IPS', body)
+            worksheet165.write('L22', 'JML', body)
+            worksheet165.write('M22', 'MAT', body)
+            worksheet165.write('N22', 'IND', body)
+            worksheet165.write('O22', 'ENG', body)
+            worksheet165.write('P22', 'IPA', body)
+            worksheet165.write('Q22', 'IPS', body)
+            worksheet165.write('R22', 'JML', body)
 
-            worksheet165.conditional_format(22, 0, row165+21, 15,
+            worksheet165.conditional_format(22, 0, row165+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 167
@@ -7574,20 +7933,22 @@
             worksheet167.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet167.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet167.merge_range('F4:F5', 'KELAS', header)
-            worksheet167.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet167.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet167.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet167.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet167.write('G5', 'MAT', body)
             worksheet167.write('H5', 'IND', body)
             worksheet167.write('I5', 'ENG', body)
-            worksheet167.write('J5', 'IPAS', body)
-            worksheet167.write('K5', 'JML', body)
-            worksheet167.write('L5', 'MAT', body)
-            worksheet167.write('M5', 'IND', body)
-            worksheet167.write('N5', 'ENG', body)
-            worksheet167.write('O5', 'IPAS', body)
-            worksheet167.write('P5', 'JML', body)
+            worksheet167.write('J5', 'IPA', body)
+            worksheet167.write('K5', 'IPS', body)
+            worksheet167.write('L5', 'JML', body)
+            worksheet167.write('M5', 'MAT', body)
+            worksheet167.write('N5', 'IND', body)
+            worksheet167.write('O5', 'ENG', body)
+            worksheet167.write('P5', 'IPA', body)
+            worksheet167.write('Q5', 'IPS', body)
+            worksheet167.write('R5', 'JML', body)
 
-            worksheet167.conditional_format(5, 0, row167_10+4, 15,
+            worksheet167.conditional_format(5, 0, row167_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet167.merge_range(
@@ -7602,20 +7963,22 @@
             worksheet167.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet167.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet167.merge_range('F21:F22', 'KELAS', header)
-            worksheet167.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet167.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet167.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet167.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet167.write('G22', 'MAT', body)
             worksheet167.write('H22', 'IND', body)
             worksheet167.write('I22', 'ENG', body)
-            worksheet167.write('J22', 'IPAS', body)
-            worksheet167.write('K22', 'JML', body)
-            worksheet167.write('L22', 'MAT', body)
-            worksheet167.write('M22', 'IND', body)
-            worksheet167.write('N22', 'ENG', body)
-            worksheet167.write('O22', 'IPAS', body)
-            worksheet167.write('P22', 'JML', body)
+            worksheet167.write('J22', 'IPA', body)
+            worksheet167.write('K22', 'IPS', body)
+            worksheet167.write('L22', 'JML', body)
+            worksheet167.write('M22', 'MAT', body)
+            worksheet167.write('N22', 'IND', body)
+            worksheet167.write('O22', 'ENG', body)
+            worksheet167.write('P22', 'IPA', body)
+            worksheet167.write('Q22', 'IPS', body)
+            worksheet167.write('R22', 'JML', body)
 
-            worksheet167.conditional_format(22, 0, row167+21, 15,
+            worksheet167.conditional_format(22, 0, row167+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 168
@@ -7639,20 +8002,22 @@
             worksheet168.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet168.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet168.merge_range('F4:F5', 'KELAS', header)
-            worksheet168.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet168.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet168.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet168.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet168.write('G5', 'MAT', body)
             worksheet168.write('H5', 'IND', body)
             worksheet168.write('I5', 'ENG', body)
-            worksheet168.write('J5', 'IPAS', body)
-            worksheet168.write('K5', 'JML', body)
-            worksheet168.write('L5', 'MAT', body)
-            worksheet168.write('M5', 'IND', body)
-            worksheet168.write('N5', 'ENG', body)
-            worksheet168.write('O5', 'IPAS', body)
-            worksheet168.write('P5', 'JML', body)
+            worksheet168.write('J5', 'IPA', body)
+            worksheet168.write('K5', 'IPS', body)
+            worksheet168.write('L5', 'JML', body)
+            worksheet168.write('M5', 'MAT', body)
+            worksheet168.write('N5', 'IND', body)
+            worksheet168.write('O5', 'ENG', body)
+            worksheet168.write('P5', 'IPA', body)
+            worksheet168.write('Q5', 'IPS', body)
+            worksheet168.write('R5', 'JML', body)
 
-            worksheet168.conditional_format(5, 0, row168_10+4, 15,
+            worksheet168.conditional_format(5, 0, row168_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet168.merge_range(
@@ -7667,20 +8032,22 @@
             worksheet168.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet168.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet168.merge_range('F21:F22', 'KELAS', header)
-            worksheet168.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet168.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet168.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet168.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet168.write('G22', 'MAT', body)
             worksheet168.write('H22', 'IND', body)
             worksheet168.write('I22', 'ENG', body)
-            worksheet168.write('J22', 'IPAS', body)
-            worksheet168.write('K22', 'JML', body)
-            worksheet168.write('L22', 'MAT', body)
-            worksheet168.write('M22', 'IND', body)
-            worksheet168.write('N22', 'ENG', body)
-            worksheet168.write('O22', 'IPAS', body)
-            worksheet168.write('P22', 'JML', body)
+            worksheet168.write('J22', 'IPA', body)
+            worksheet168.write('K22', 'IPS', body)
+            worksheet168.write('L22', 'JML', body)
+            worksheet168.write('M22', 'MAT', body)
+            worksheet168.write('N22', 'IND', body)
+            worksheet168.write('O22', 'ENG', body)
+            worksheet168.write('P22', 'IPA', body)
+            worksheet168.write('Q22', 'IPS', body)
+            worksheet168.write('R22', 'JML', body)
 
-            worksheet168.conditional_format(22, 0, row168+21, 15,
+            worksheet168.conditional_format(22, 0, row168+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 169
@@ -7704,20 +8071,22 @@
             worksheet169.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet169.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet169.merge_range('F4:F5', 'KELAS', header)
-            worksheet169.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet169.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet169.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet169.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet169.write('G5', 'MAT', body)
             worksheet169.write('H5', 'IND', body)
             worksheet169.write('I5', 'ENG', body)
-            worksheet169.write('J5', 'IPAS', body)
-            worksheet169.write('K5', 'JML', body)
-            worksheet169.write('L5', 'MAT', body)
-            worksheet169.write('M5', 'IND', body)
-            worksheet169.write('N5', 'ENG', body)
-            worksheet169.write('O5', 'IPAS', body)
-            worksheet169.write('P5', 'JML', body)
+            worksheet169.write('J5', 'IPA', body)
+            worksheet169.write('K5', 'IPS', body)
+            worksheet169.write('L5', 'JML', body)
+            worksheet169.write('M5', 'MAT', body)
+            worksheet169.write('N5', 'IND', body)
+            worksheet169.write('O5', 'ENG', body)
+            worksheet169.write('P5', 'IPA', body)
+            worksheet169.write('Q5', 'IPS', body)
+            worksheet169.write('R5', 'JML', body)
 
-            worksheet169.conditional_format(5, 0, row169_10+4, 15,
+            worksheet169.conditional_format(5, 0, row169_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet169.merge_range(
@@ -7732,20 +8101,22 @@
             worksheet169.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet169.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet169.merge_range('F21:F22', 'KELAS', header)
-            worksheet169.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet169.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet169.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet169.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet169.write('G22', 'MAT', body)
             worksheet169.write('H22', 'IND', body)
             worksheet169.write('I22', 'ENG', body)
-            worksheet169.write('J22', 'IPAS', body)
-            worksheet169.write('K22', 'JML', body)
-            worksheet169.write('L22', 'MAT', body)
-            worksheet169.write('M22', 'IND', body)
-            worksheet169.write('N22', 'ENG', body)
-            worksheet169.write('O22', 'IPAS', body)
-            worksheet169.write('P22', 'JML', body)
+            worksheet169.write('J22', 'IPA', body)
+            worksheet169.write('K22', 'IPS', body)
+            worksheet169.write('L22', 'JML', body)
+            worksheet169.write('M22', 'MAT', body)
+            worksheet169.write('N22', 'IND', body)
+            worksheet169.write('O22', 'ENG', body)
+            worksheet169.write('P22', 'IPA', body)
+            worksheet169.write('Q22', 'IPS', body)
+            worksheet169.write('R22', 'JML', body)
 
-            worksheet169.conditional_format(22, 0, row169+21, 15,
+            worksheet169.conditional_format(22, 0, row169+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 171
@@ -7769,20 +8140,22 @@
             worksheet171.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet171.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet171.merge_range('F4:F5', 'KELAS', header)
-            worksheet171.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet171.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet171.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet171.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet171.write('G5', 'MAT', body)
             worksheet171.write('H5', 'IND', body)
             worksheet171.write('I5', 'ENG', body)
-            worksheet171.write('J5', 'IPAS', body)
-            worksheet171.write('K5', 'JML', body)
-            worksheet171.write('L5', 'MAT', body)
-            worksheet171.write('M5', 'IND', body)
-            worksheet171.write('N5', 'ENG', body)
-            worksheet171.write('O5', 'IPAS', body)
-            worksheet171.write('P5', 'JML', body)
+            worksheet171.write('J5', 'IPA', body)
+            worksheet171.write('K5', 'IPS', body)
+            worksheet171.write('L5', 'JML', body)
+            worksheet171.write('M5', 'MAT', body)
+            worksheet171.write('N5', 'IND', body)
+            worksheet171.write('O5', 'ENG', body)
+            worksheet171.write('P5', 'IPA', body)
+            worksheet171.write('Q5', 'IPS', body)
+            worksheet171.write('R5', 'JML', body)
 
-            worksheet171.conditional_format(5, 0, row171_10+4, 15,
+            worksheet171.conditional_format(5, 0, row171_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet171.merge_range(
@@ -7797,20 +8170,22 @@
             worksheet171.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet171.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet171.merge_range('F21:F22', 'KELAS', header)
-            worksheet171.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet171.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet171.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet171.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet171.write('G22', 'MAT', body)
             worksheet171.write('H22', 'IND', body)
             worksheet171.write('I22', 'ENG', body)
-            worksheet171.write('J22', 'IPAS', body)
-            worksheet171.write('K22', 'JML', body)
-            worksheet171.write('L22', 'MAT', body)
-            worksheet171.write('M22', 'IND', body)
-            worksheet171.write('N22', 'ENG', body)
-            worksheet171.write('O22', 'IPAS', body)
-            worksheet171.write('P22', 'JML', body)
+            worksheet171.write('J22', 'IPA', body)
+            worksheet171.write('K22', 'IPS', body)
+            worksheet171.write('L22', 'JML', body)
+            worksheet171.write('M22', 'MAT', body)
+            worksheet171.write('N22', 'IND', body)
+            worksheet171.write('O22', 'ENG', body)
+            worksheet171.write('P22', 'IPA', body)
+            worksheet171.write('Q22', 'IPS', body)
+            worksheet171.write('R22', 'JML', body)
 
-            worksheet171.conditional_format(22, 0, row171+21, 15,
+            worksheet171.conditional_format(22, 0, row171+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 173
@@ -7834,20 +8209,22 @@
             worksheet173.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet173.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet173.merge_range('F4:F5', 'KELAS', header)
-            worksheet173.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet173.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet173.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet173.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet173.write('G5', 'MAT', body)
             worksheet173.write('H5', 'IND', body)
             worksheet173.write('I5', 'ENG', body)
-            worksheet173.write('J5', 'IPAS', body)
-            worksheet173.write('K5', 'JML', body)
-            worksheet173.write('L5', 'MAT', body)
-            worksheet173.write('M5', 'IND', body)
-            worksheet173.write('N5', 'ENG', body)
-            worksheet173.write('O5', 'IPAS', body)
-            worksheet173.write('P5', 'JML', body)
+            worksheet173.write('J5', 'IPA', body)
+            worksheet173.write('K5', 'IPS', body)
+            worksheet173.write('L5', 'JML', body)
+            worksheet173.write('M5', 'MAT', body)
+            worksheet173.write('N5', 'IND', body)
+            worksheet173.write('O5', 'ENG', body)
+            worksheet173.write('P5', 'IPA', body)
+            worksheet173.write('Q5', 'IPS', body)
+            worksheet173.write('R5', 'JML', body)
 
-            worksheet173.conditional_format(5, 0, row173_10+4, 15,
+            worksheet173.conditional_format(5, 0, row173_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet173.merge_range(
@@ -7862,20 +8239,22 @@
             worksheet173.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet173.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet173.merge_range('F21:F22', 'KELAS', header)
-            worksheet173.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet173.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet173.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet173.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet173.write('G22', 'MAT', body)
             worksheet173.write('H22', 'IND', body)
             worksheet173.write('I22', 'ENG', body)
-            worksheet173.write('J22', 'IPAS', body)
-            worksheet173.write('K22', 'JML', body)
-            worksheet173.write('L22', 'MAT', body)
-            worksheet173.write('M22', 'IND', body)
-            worksheet173.write('N22', 'ENG', body)
-            worksheet173.write('O22', 'IPAS', body)
-            worksheet173.write('P22', 'JML', body)
+            worksheet173.write('J22', 'IPA', body)
+            worksheet173.write('K22', 'IPS', body)
+            worksheet173.write('L22', 'JML', body)
+            worksheet173.write('M22', 'MAT', body)
+            worksheet173.write('N22', 'IND', body)
+            worksheet173.write('O22', 'ENG', body)
+            worksheet173.write('P22', 'IPA', body)
+            worksheet173.write('Q22', 'IPS', body)
+            worksheet173.write('R22', 'JML', body)
 
-            worksheet173.conditional_format(22, 0, row173+21, 15,
+            worksheet173.conditional_format(22, 0, row173+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 174
@@ -7899,20 +8278,22 @@
             worksheet174.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet174.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet174.merge_range('F4:F5', 'KELAS', header)
-            worksheet174.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet174.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet174.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet174.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet174.write('G5', 'MAT', body)
             worksheet174.write('H5', 'IND', body)
             worksheet174.write('I5', 'ENG', body)
-            worksheet174.write('J5', 'IPAS', body)
-            worksheet174.write('K5', 'JML', body)
-            worksheet174.write('L5', 'MAT', body)
-            worksheet174.write('M5', 'IND', body)
-            worksheet174.write('N5', 'ENG', body)
-            worksheet174.write('O5', 'IPAS', body)
-            worksheet174.write('P5', 'JML', body)
+            worksheet174.write('J5', 'IPA', body)
+            worksheet174.write('K5', 'IPS', body)
+            worksheet174.write('L5', 'JML', body)
+            worksheet174.write('M5', 'MAT', body)
+            worksheet174.write('N5', 'IND', body)
+            worksheet174.write('O5', 'ENG', body)
+            worksheet174.write('P5', 'IPA', body)
+            worksheet174.write('Q5', 'IPS', body)
+            worksheet174.write('R5', 'JML', body)
 
-            worksheet174.conditional_format(5, 0, row174_10+4, 15,
+            worksheet174.conditional_format(5, 0, row174_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet174.merge_range(
@@ -7927,20 +8308,22 @@
             worksheet174.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet174.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet174.merge_range('F21:F22', 'KELAS', header)
-            worksheet174.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet174.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet174.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet174.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet174.write('G22', 'MAT', body)
             worksheet174.write('H22', 'IND', body)
             worksheet174.write('I22', 'ENG', body)
-            worksheet174.write('J22', 'IPAS', body)
-            worksheet174.write('K22', 'JML', body)
-            worksheet174.write('L22', 'MAT', body)
-            worksheet174.write('M22', 'IND', body)
-            worksheet174.write('N22', 'ENG', body)
-            worksheet174.write('O22', 'IPAS', body)
-            worksheet174.write('P22', 'JML', body)
+            worksheet174.write('J22', 'IPA', body)
+            worksheet174.write('K22', 'IPS', body)
+            worksheet174.write('L22', 'JML', body)
+            worksheet174.write('M22', 'MAT', body)
+            worksheet174.write('N22', 'IND', body)
+            worksheet174.write('O22', 'ENG', body)
+            worksheet174.write('P22', 'IPA', body)
+            worksheet174.write('Q22', 'IPS', body)
+            worksheet174.write('R22', 'JML', body)
 
-            worksheet174.conditional_format(22, 0, row174+21, 15,
+            worksheet174.conditional_format(22, 0, row174+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 175
@@ -7964,20 +8347,22 @@
             worksheet175.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet175.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet175.merge_range('F4:F5', 'KELAS', header)
-            worksheet175.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet175.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet175.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet175.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet175.write('G5', 'MAT', body)
             worksheet175.write('H5', 'IND', body)
             worksheet175.write('I5', 'ENG', body)
-            worksheet175.write('J5', 'IPAS', body)
-            worksheet175.write('K5', 'JML', body)
-            worksheet175.write('L5', 'MAT', body)
-            worksheet175.write('M5', 'IND', body)
-            worksheet175.write('N5', 'ENG', body)
-            worksheet175.write('O5', 'IPAS', body)
-            worksheet175.write('P5', 'JML', body)
+            worksheet175.write('J5', 'IPA', body)
+            worksheet175.write('K5', 'IPS', body)
+            worksheet175.write('L5', 'JML', body)
+            worksheet175.write('M5', 'MAT', body)
+            worksheet175.write('N5', 'IND', body)
+            worksheet175.write('O5', 'ENG', body)
+            worksheet175.write('P5', 'IPA', body)
+            worksheet175.write('Q5', 'IPS', body)
+            worksheet175.write('R5', 'JML', body)
 
-            worksheet175.conditional_format(5, 0, row175_10+4, 15,
+            worksheet175.conditional_format(5, 0, row175_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet175.merge_range(
@@ -7992,20 +8377,22 @@
             worksheet175.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet175.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet175.merge_range('F21:F22', 'KELAS', header)
-            worksheet175.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet175.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet175.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet175.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet175.write('G22', 'MAT', body)
             worksheet175.write('H22', 'IND', body)
             worksheet175.write('I22', 'ENG', body)
-            worksheet175.write('J22', 'IPAS', body)
-            worksheet175.write('K22', 'JML', body)
-            worksheet175.write('L22', 'MAT', body)
-            worksheet175.write('M22', 'IND', body)
-            worksheet175.write('N22', 'ENG', body)
-            worksheet175.write('O22', 'IPAS', body)
-            worksheet175.write('P22', 'JML', body)
+            worksheet175.write('J22', 'IPA', body)
+            worksheet175.write('K22', 'IPS', body)
+            worksheet175.write('L22', 'JML', body)
+            worksheet175.write('M22', 'MAT', body)
+            worksheet175.write('N22', 'IND', body)
+            worksheet175.write('O22', 'ENG', body)
+            worksheet175.write('P22', 'IPA', body)
+            worksheet175.write('Q22', 'IPS', body)
+            worksheet175.write('R22', 'JML', body)
 
-            worksheet175.conditional_format(22, 0, row175+21, 15,
+            worksheet175.conditional_format(22, 0, row175+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 176
@@ -8029,20 +8416,22 @@
             worksheet176.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet176.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet176.merge_range('F4:F5', 'KELAS', header)
-            worksheet176.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet176.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet176.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet176.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet176.write('G5', 'MAT', body)
             worksheet176.write('H5', 'IND', body)
             worksheet176.write('I5', 'ENG', body)
-            worksheet176.write('J5', 'IPAS', body)
-            worksheet176.write('K5', 'JML', body)
-            worksheet176.write('L5', 'MAT', body)
-            worksheet176.write('M5', 'IND', body)
-            worksheet176.write('N5', 'ENG', body)
-            worksheet176.write('O5', 'IPAS', body)
-            worksheet176.write('P5', 'JML', body)
+            worksheet176.write('J5', 'IPA', body)
+            worksheet176.write('K5', 'IPS', body)
+            worksheet176.write('L5', 'JML', body)
+            worksheet176.write('M5', 'MAT', body)
+            worksheet176.write('N5', 'IND', body)
+            worksheet176.write('O5', 'ENG', body)
+            worksheet176.write('P5', 'IPA', body)
+            worksheet176.write('Q5', 'IPS', body)
+            worksheet176.write('R5', 'JML', body)
 
-            worksheet176.conditional_format(5, 0, row176_10+4, 15,
+            worksheet176.conditional_format(5, 0, row176_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet176.merge_range(
@@ -8057,20 +8446,22 @@
             worksheet176.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet176.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet176.merge_range('F21:F22', 'KELAS', header)
-            worksheet176.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet176.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet176.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet176.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet176.write('G22', 'MAT', body)
             worksheet176.write('H22', 'IND', body)
             worksheet176.write('I22', 'ENG', body)
-            worksheet176.write('J22', 'IPAS', body)
-            worksheet176.write('K22', 'JML', body)
-            worksheet176.write('L22', 'MAT', body)
-            worksheet176.write('M22', 'IND', body)
-            worksheet176.write('N22', 'ENG', body)
-            worksheet176.write('O22', 'IPAS', body)
-            worksheet176.write('P22', 'JML', body)
+            worksheet176.write('J22', 'IPA', body)
+            worksheet176.write('K22', 'IPS', body)
+            worksheet176.write('L22', 'JML', body)
+            worksheet176.write('M22', 'MAT', body)
+            worksheet176.write('N22', 'IND', body)
+            worksheet176.write('O22', 'ENG', body)
+            worksheet176.write('P22', 'IPA', body)
+            worksheet176.write('Q22', 'IPS', body)
+            worksheet176.write('R22', 'JML', body)
 
-            worksheet176.conditional_format(22, 0, row176+21, 15,
+            worksheet176.conditional_format(22, 0, row176+21, 17,
                                             {'type': 'no_errors', 'format': border})
             # worksheet 177
             worksheet177.insert_image('A1', r'logo resmi nf.jpg')
@@ -8093,20 +8484,22 @@
             worksheet177.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet177.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet177.merge_range('F4:F5', 'KELAS', header)
-            worksheet177.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet177.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet177.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet177.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet177.write('G5', 'MAT', body)
             worksheet177.write('H5', 'IND', body)
             worksheet177.write('I5', 'ENG', body)
-            worksheet177.write('J5', 'IPAS', body)
-            worksheet177.write('K5', 'JML', body)
-            worksheet177.write('L5', 'MAT', body)
-            worksheet177.write('M5', 'IND', body)
-            worksheet177.write('N5', 'ENG', body)
-            worksheet177.write('O5', 'IPAS', body)
-            worksheet177.write('P5', 'JML', body)
+            worksheet177.write('J5', 'IPA', body)
+            worksheet177.write('K5', 'IPS', body)
+            worksheet177.write('L5', 'JML', body)
+            worksheet177.write('M5', 'MAT', body)
+            worksheet177.write('N5', 'IND', body)
+            worksheet177.write('O5', 'ENG', body)
+            worksheet177.write('P5', 'IPA', body)
+            worksheet177.write('Q5', 'IPS', body)
+            worksheet177.write('R5', 'JML', body)
 
-            worksheet177.conditional_format(5, 0, row177_10+4, 15,
+            worksheet177.conditional_format(5, 0, row177_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet177.merge_range(
@@ -8121,20 +8514,22 @@
             worksheet177.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet177.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet177.merge_range('F21:F22', 'KELAS', header)
-            worksheet177.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet177.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet177.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet177.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet177.write('G22', 'MAT', body)
             worksheet177.write('H22', 'IND', body)
             worksheet177.write('I22', 'ENG', body)
-            worksheet177.write('J22', 'IPAS', body)
-            worksheet177.write('K22', 'JML', body)
-            worksheet177.write('L22', 'MAT', body)
-            worksheet177.write('M22', 'IND', body)
-            worksheet177.write('N22', 'ENG', body)
-            worksheet177.write('O22', 'IPAS', body)
-            worksheet177.write('P22', 'JML', body)
+            worksheet177.write('J22', 'IPA', body)
+            worksheet177.write('K22', 'IPS', body)
+            worksheet177.write('L22', 'JML', body)
+            worksheet177.write('M22', 'MAT', body)
+            worksheet177.write('N22', 'IND', body)
+            worksheet177.write('O22', 'ENG', body)
+            worksheet177.write('P22', 'IPA', body)
+            worksheet177.write('Q22', 'IPS', body)
+            worksheet177.write('R22', 'JML', body)
 
-            worksheet177.conditional_format(22, 0, row177+21, 15,
+            worksheet177.conditional_format(22, 0, row177+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 178
@@ -8158,20 +8553,22 @@
             worksheet178.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet178.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet178.merge_range('F4:F5', 'KELAS', header)
-            worksheet178.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet178.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet178.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet178.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet178.write('G5', 'MAT', body)
             worksheet178.write('H5', 'IND', body)
             worksheet178.write('I5', 'ENG', body)
-            worksheet178.write('J5', 'IPAS', body)
-            worksheet178.write('K5', 'JML', body)
-            worksheet178.write('L5', 'MAT', body)
-            worksheet178.write('M5', 'IND', body)
-            worksheet178.write('N5', 'ENG', body)
-            worksheet178.write('O5', 'IPAS', body)
-            worksheet178.write('P5', 'JML', body)
+            worksheet178.write('J5', 'IPA', body)
+            worksheet178.write('K5', 'IPS', body)
+            worksheet178.write('L5', 'JML', body)
+            worksheet178.write('M5', 'MAT', body)
+            worksheet178.write('N5', 'IND', body)
+            worksheet178.write('O5', 'ENG', body)
+            worksheet178.write('P5', 'IPA', body)
+            worksheet178.write('Q5', 'IPS', body)
+            worksheet178.write('R5', 'JML', body)
 
-            worksheet178.conditional_format(5, 0, row178_10+4, 15,
+            worksheet178.conditional_format(5, 0, row178_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet178.merge_range(
@@ -8186,20 +8583,22 @@
             worksheet178.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet178.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet178.merge_range('F21:F22', 'KELAS', header)
-            worksheet178.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet178.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet178.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet178.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet178.write('G22', 'MAT', body)
             worksheet178.write('H22', 'IND', body)
             worksheet178.write('I22', 'ENG', body)
-            worksheet178.write('J22', 'IPAS', body)
-            worksheet178.write('K22', 'JML', body)
-            worksheet178.write('L22', 'MAT', body)
-            worksheet178.write('M22', 'IND', body)
-            worksheet178.write('N22', 'ENG', body)
-            worksheet178.write('O22', 'IPAS', body)
-            worksheet178.write('P22', 'JML', body)
+            worksheet178.write('J22', 'IPA', body)
+            worksheet178.write('K22', 'IPS', body)
+            worksheet178.write('L22', 'JML', body)
+            worksheet178.write('M22', 'MAT', body)
+            worksheet178.write('N22', 'IND', body)
+            worksheet178.write('O22', 'ENG', body)
+            worksheet178.write('P22', 'IPA', body)
+            worksheet178.write('Q22', 'IPS', body)
+            worksheet178.write('R22', 'JML', body)
 
-            worksheet178.conditional_format(22, 0, row178+21, 15,
+            worksheet178.conditional_format(22, 0, row178+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 179
@@ -8223,20 +8622,22 @@
             worksheet179.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet179.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet179.merge_range('F4:F5', 'KELAS', header)
-            worksheet179.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet179.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet179.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet179.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet179.write('G5', 'MAT', body)
             worksheet179.write('H5', 'IND', body)
             worksheet179.write('I5', 'ENG', body)
-            worksheet179.write('J5', 'IPAS', body)
-            worksheet179.write('K5', 'JML', body)
-            worksheet179.write('L5', 'MAT', body)
-            worksheet179.write('M5', 'IND', body)
-            worksheet179.write('N5', 'ENG', body)
-            worksheet179.write('O5', 'IPAS', body)
-            worksheet179.write('P5', 'JML', body)
+            worksheet179.write('J5', 'IPA', body)
+            worksheet179.write('K5', 'IPS', body)
+            worksheet179.write('L5', 'JML', body)
+            worksheet179.write('M5', 'MAT', body)
+            worksheet179.write('N5', 'IND', body)
+            worksheet179.write('O5', 'ENG', body)
+            worksheet179.write('P5', 'IPA', body)
+            worksheet179.write('Q5', 'IPS', body)
+            worksheet179.write('R5', 'JML', body)
 
-            worksheet179.conditional_format(5, 0, row179_10+4, 15,
+            worksheet179.conditional_format(5, 0, row179_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet179.merge_range(
@@ -8251,20 +8652,22 @@
             worksheet179.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet179.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet179.merge_range('F21:F22', 'KELAS', header)
-            worksheet179.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet179.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet179.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet179.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet179.write('G22', 'MAT', body)
             worksheet179.write('H22', 'IND', body)
             worksheet179.write('I22', 'ENG', body)
-            worksheet179.write('J22', 'IPAS', body)
-            worksheet179.write('K22', 'JML', body)
-            worksheet179.write('L22', 'MAT', body)
-            worksheet179.write('M22', 'IND', body)
-            worksheet179.write('N22', 'ENG', body)
-            worksheet179.write('O22', 'IPAS', body)
-            worksheet179.write('P22', 'JML', body)
+            worksheet179.write('J22', 'IPA', body)
+            worksheet179.write('K22', 'IPS', body)
+            worksheet179.write('L22', 'JML', body)
+            worksheet179.write('M22', 'MAT', body)
+            worksheet179.write('N22', 'IND', body)
+            worksheet179.write('O22', 'ENG', body)
+            worksheet179.write('P22', 'IPA', body)
+            worksheet179.write('Q22', 'IPS', body)
+            worksheet179.write('R22', 'JML', body)
 
-            worksheet179.conditional_format(22, 0, row179+21, 15,
+            worksheet179.conditional_format(22, 0, row179+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 180
@@ -8288,20 +8691,22 @@
             worksheet180.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet180.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet180.merge_range('F4:F5', 'KELAS', header)
-            worksheet180.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet180.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet180.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet180.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet180.write('G5', 'MAT', body)
             worksheet180.write('H5', 'IND', body)
             worksheet180.write('I5', 'ENG', body)
-            worksheet180.write('J5', 'IPAS', body)
-            worksheet180.write('K5', 'JML', body)
-            worksheet180.write('L5', 'MAT', body)
-            worksheet180.write('M5', 'IND', body)
-            worksheet180.write('N5', 'ENG', body)
-            worksheet180.write('O5', 'IPAS', body)
-            worksheet180.write('P5', 'JML', body)
+            worksheet180.write('J5', 'IPA', body)
+            worksheet180.write('K5', 'IPS', body)
+            worksheet180.write('L5', 'JML', body)
+            worksheet180.write('M5', 'MAT', body)
+            worksheet180.write('N5', 'IND', body)
+            worksheet180.write('O5', 'ENG', body)
+            worksheet180.write('P5', 'IPA', body)
+            worksheet180.write('Q5', 'IPS', body)
+            worksheet180.write('R5', 'JML', body)
 
-            worksheet180.conditional_format(5, 0, row180_10+4, 15,
+            worksheet180.conditional_format(5, 0, row180_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet180.merge_range(
@@ -8316,20 +8721,22 @@
             worksheet180.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet180.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet180.merge_range('F21:F22', 'KELAS', header)
-            worksheet180.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet180.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet180.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet180.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet180.write('G22', 'MAT', body)
             worksheet180.write('H22', 'IND', body)
             worksheet180.write('I22', 'ENG', body)
-            worksheet180.write('J22', 'IPAS', body)
-            worksheet180.write('K22', 'JML', body)
-            worksheet180.write('L22', 'MAT', body)
-            worksheet180.write('M22', 'IND', body)
-            worksheet180.write('N22', 'ENG', body)
-            worksheet180.write('O22', 'IPAS', body)
-            worksheet180.write('P22', 'JML', body)
+            worksheet180.write('J22', 'IPA', body)
+            worksheet180.write('K22', 'IPS', body)
+            worksheet180.write('L22', 'JML', body)
+            worksheet180.write('M22', 'MAT', body)
+            worksheet180.write('N22', 'IND', body)
+            worksheet180.write('O22', 'ENG', body)
+            worksheet180.write('P22', 'IPA', body)
+            worksheet180.write('Q22', 'IPS', body)
+            worksheet180.write('R22', 'JML', body)
 
-            worksheet180.conditional_format(22, 0, row180+21, 15,
+            worksheet180.conditional_format(22, 0, row180+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 181
@@ -8353,20 +8760,22 @@
             worksheet181.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet181.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet181.merge_range('F4:F5', 'KELAS', header)
-            worksheet181.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet181.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet181.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet181.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet181.write('G5', 'MAT', body)
             worksheet181.write('H5', 'IND', body)
             worksheet181.write('I5', 'ENG', body)
-            worksheet181.write('J5', 'IPAS', body)
-            worksheet181.write('K5', 'JML', body)
-            worksheet181.write('L5', 'MAT', body)
-            worksheet181.write('M5', 'IND', body)
-            worksheet181.write('N5', 'ENG', body)
-            worksheet181.write('O5', 'IPAS', body)
-            worksheet181.write('P5', 'JML', body)
+            worksheet181.write('J5', 'IPA', body)
+            worksheet181.write('K5', 'IPS', body)
+            worksheet181.write('L5', 'JML', body)
+            worksheet181.write('M5', 'MAT', body)
+            worksheet181.write('N5', 'IND', body)
+            worksheet181.write('O5', 'ENG', body)
+            worksheet181.write('P5', 'IPA', body)
+            worksheet181.write('Q5', 'IPS', body)
+            worksheet181.write('R5', 'JML', body)
 
-            worksheet181.conditional_format(5, 0, row181_10+4, 15,
+            worksheet181.conditional_format(5, 0, row181_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet181.merge_range(
@@ -8381,20 +8790,22 @@
             worksheet181.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet181.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet181.merge_range('F21:F22', 'KELAS', header)
-            worksheet181.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet181.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet181.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet181.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet181.write('G22', 'MAT', body)
             worksheet181.write('H22', 'IND', body)
             worksheet181.write('I22', 'ENG', body)
-            worksheet181.write('J22', 'IPAS', body)
-            worksheet181.write('K22', 'JML', body)
-            worksheet181.write('L22', 'MAT', body)
-            worksheet181.write('M22', 'IND', body)
-            worksheet181.write('N22', 'ENG', body)
-            worksheet181.write('O22', 'IPAS', body)
-            worksheet181.write('P22', 'JML', body)
+            worksheet181.write('J22', 'IPA', body)
+            worksheet181.write('K22', 'IPS', body)
+            worksheet181.write('L22', 'JML', body)
+            worksheet181.write('M22', 'MAT', body)
+            worksheet181.write('N22', 'IND', body)
+            worksheet181.write('O22', 'ENG', body)
+            worksheet181.write('P22', 'IPA', body)
+            worksheet181.write('Q22', 'IPS', body)
+            worksheet181.write('R22', 'JML', body)
 
-            worksheet181.conditional_format(22, 0, row181+21, 15,
+            worksheet181.conditional_format(22, 0, row181+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 182
@@ -8418,20 +8829,22 @@
             worksheet182.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet182.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet182.merge_range('F4:F5', 'KELAS', header)
-            worksheet182.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet182.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet182.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet182.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet182.write('G5', 'MAT', body)
             worksheet182.write('H5', 'IND', body)
             worksheet182.write('I5', 'ENG', body)
-            worksheet182.write('J5', 'IPAS', body)
-            worksheet182.write('K5', 'JML', body)
-            worksheet182.write('L5', 'MAT', body)
-            worksheet182.write('M5', 'IND', body)
-            worksheet182.write('N5', 'ENG', body)
-            worksheet182.write('O5', 'IPAS', body)
-            worksheet182.write('P5', 'JML', body)
+            worksheet182.write('J5', 'IPA', body)
+            worksheet182.write('K5', 'IPS', body)
+            worksheet182.write('L5', 'JML', body)
+            worksheet182.write('M5', 'MAT', body)
+            worksheet182.write('N5', 'IND', body)
+            worksheet182.write('O5', 'ENG', body)
+            worksheet182.write('P5', 'IPA', body)
+            worksheet182.write('Q5', 'IPS', body)
+            worksheet182.write('R5', 'JML', body)
 
-            worksheet182.conditional_format(5, 0, row182_10+4, 15,
+            worksheet182.conditional_format(5, 0, row182_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet182.merge_range(
@@ -8446,20 +8859,22 @@
             worksheet182.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet182.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet182.merge_range('F21:F22', 'KELAS', header)
-            worksheet182.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet182.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet182.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet182.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet182.write('G22', 'MAT', body)
             worksheet182.write('H22', 'IND', body)
             worksheet182.write('I22', 'ENG', body)
-            worksheet182.write('J22', 'IPAS', body)
-            worksheet182.write('K22', 'JML', body)
-            worksheet182.write('L22', 'MAT', body)
-            worksheet182.write('M22', 'IND', body)
-            worksheet182.write('N22', 'ENG', body)
-            worksheet182.write('O22', 'IPAS', body)
-            worksheet182.write('P22', 'JML', body)
+            worksheet182.write('J22', 'IPA', body)
+            worksheet182.write('K22', 'IPS', body)
+            worksheet182.write('L22', 'JML', body)
+            worksheet182.write('M22', 'MAT', body)
+            worksheet182.write('N22', 'IND', body)
+            worksheet182.write('O22', 'ENG', body)
+            worksheet182.write('P22', 'IPA', body)
+            worksheet182.write('Q22', 'IPS', body)
+            worksheet182.write('R22', 'JML', body)
 
-            worksheet182.conditional_format(22, 0, row182+21, 15,
+            worksheet182.conditional_format(22, 0, row182+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 183
@@ -8483,20 +8898,22 @@
             worksheet183.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet183.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet183.merge_range('F4:F5', 'KELAS', header)
-            worksheet183.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet183.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet183.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet183.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet183.write('G5', 'MAT', body)
             worksheet183.write('H5', 'IND', body)
             worksheet183.write('I5', 'ENG', body)
-            worksheet183.write('J5', 'IPAS', body)
-            worksheet183.write('K5', 'JML', body)
-            worksheet183.write('L5', 'MAT', body)
-            worksheet183.write('M5', 'IND', body)
-            worksheet183.write('N5', 'ENG', body)
-            worksheet183.write('O5', 'IPAS', body)
-            worksheet183.write('P5', 'JML', body)
+            worksheet183.write('J5', 'IPA', body)
+            worksheet183.write('K5', 'IPS', body)
+            worksheet183.write('L5', 'JML', body)
+            worksheet183.write('M5', 'MAT', body)
+            worksheet183.write('N5', 'IND', body)
+            worksheet183.write('O5', 'ENG', body)
+            worksheet183.write('P5', 'IPA', body)
+            worksheet183.write('Q5', 'IPS', body)
+            worksheet183.write('R5', 'JML', body)
 
-            worksheet183.conditional_format(5, 0, row183_10+4, 15,
+            worksheet183.conditional_format(5, 0, row183_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet183.merge_range(
@@ -8511,20 +8928,22 @@
             worksheet183.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet183.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet183.merge_range('F21:F22', 'KELAS', header)
-            worksheet183.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet183.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet183.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet183.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet183.write('G22', 'MAT', body)
             worksheet183.write('H22', 'IND', body)
             worksheet183.write('I22', 'ENG', body)
-            worksheet183.write('J22', 'IPAS', body)
-            worksheet183.write('K22', 'JML', body)
-            worksheet183.write('L22', 'MAT', body)
-            worksheet183.write('M22', 'IND', body)
-            worksheet183.write('N22', 'ENG', body)
-            worksheet183.write('O22', 'IPAS', body)
-            worksheet183.write('P22', 'JML', body)
+            worksheet183.write('J22', 'IPA', body)
+            worksheet183.write('K22', 'IPS', body)
+            worksheet183.write('L22', 'JML', body)
+            worksheet183.write('M22', 'MAT', body)
+            worksheet183.write('N22', 'IND', body)
+            worksheet183.write('O22', 'ENG', body)
+            worksheet183.write('P22', 'IPA', body)
+            worksheet183.write('Q22', 'IPS', body)
+            worksheet183.write('R22', 'JML', body)
 
-            worksheet183.conditional_format(22, 0, row183+21, 15,
+            worksheet183.conditional_format(22, 0, row183+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 184
@@ -8538,7 +8957,7 @@
             worksheet184.set_column('F:F', 8.57, center)
             worksheet184.set_column('G:R', 5, center)
             worksheet184.merge_range(
-                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF KARANG AKHIR', title)
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF KARANG TENGAH', title)
             worksheet184.merge_range(
                 'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheet184.write('A5', 'LOKASI', header)
@@ -8548,24 +8967,26 @@
             worksheet184.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet184.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet184.merge_range('F4:F5', 'KELAS', header)
-            worksheet184.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet184.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet184.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet184.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet184.write('G5', 'MAT', body)
             worksheet184.write('H5', 'IND', body)
             worksheet184.write('I5', 'ENG', body)
-            worksheet184.write('J5', 'IPAS', body)
-            worksheet184.write('K5', 'JML', body)
-            worksheet184.write('L5', 'MAT', body)
-            worksheet184.write('M5', 'IND', body)
-            worksheet184.write('N5', 'ENG', body)
-            worksheet184.write('O5', 'IPAS', body)
-            worksheet184.write('P5', 'JML', body)
+            worksheet184.write('J5', 'IPA', body)
+            worksheet184.write('K5', 'IPS', body)
+            worksheet184.write('L5', 'JML', body)
+            worksheet184.write('M5', 'MAT', body)
+            worksheet184.write('N5', 'IND', body)
+            worksheet184.write('O5', 'ENG', body)
+            worksheet184.write('P5', 'IPA', body)
+            worksheet184.write('Q5', 'IPS', body)
+            worksheet184.write('R5', 'JML', body)
 
-            worksheet184.conditional_format(5, 0, row184_10+4, 15,
+            worksheet184.conditional_format(5, 0, row184_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet184.merge_range(
-                'A17:R17', fr'KELAS {kelas} - LOKASI NF KARANG AKHIR', title)
+                'A17:R17', fr'KELAS {kelas} - LOKASI NF KARANG TENGAH', title)
             worksheet184.merge_range('A18:R18', fr'{penilaian}', subTitle)
             worksheet184.merge_range(
                 'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
@@ -8576,20 +8997,22 @@
             worksheet184.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet184.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet184.merge_range('F21:F22', 'KELAS', header)
-            worksheet184.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet184.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet184.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet184.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet184.write('G22', 'MAT', body)
             worksheet184.write('H22', 'IND', body)
             worksheet184.write('I22', 'ENG', body)
-            worksheet184.write('J22', 'IPAS', body)
-            worksheet184.write('K22', 'JML', body)
-            worksheet184.write('L22', 'MAT', body)
-            worksheet184.write('M22', 'IND', body)
-            worksheet184.write('N22', 'ENG', body)
-            worksheet184.write('O22', 'IPAS', body)
-            worksheet184.write('P22', 'JML', body)
+            worksheet184.write('J22', 'IPA', body)
+            worksheet184.write('K22', 'IPS', body)
+            worksheet184.write('L22', 'JML', body)
+            worksheet184.write('M22', 'MAT', body)
+            worksheet184.write('N22', 'IND', body)
+            worksheet184.write('O22', 'ENG', body)
+            worksheet184.write('P22', 'IPA', body)
+            worksheet184.write('Q22', 'IPS', body)
+            worksheet184.write('R22', 'JML', body)
 
-            worksheet184.conditional_format(22, 0, row184+21, 15,
+            worksheet184.conditional_format(22, 0, row184+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 185
@@ -8613,20 +9036,22 @@
             worksheet185.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet185.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet185.merge_range('F4:F5', 'KELAS', header)
-            worksheet185.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet185.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet185.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet185.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet185.write('G5', 'MAT', body)
             worksheet185.write('H5', 'IND', body)
             worksheet185.write('I5', 'ENG', body)
-            worksheet185.write('J5', 'IPAS', body)
-            worksheet185.write('K5', 'JML', body)
-            worksheet185.write('L5', 'MAT', body)
-            worksheet185.write('M5', 'IND', body)
-            worksheet185.write('N5', 'ENG', body)
-            worksheet185.write('O5', 'IPAS', body)
-            worksheet185.write('P5', 'JML', body)
+            worksheet185.write('J5', 'IPA', body)
+            worksheet185.write('K5', 'IPS', body)
+            worksheet185.write('L5', 'JML', body)
+            worksheet185.write('M5', 'MAT', body)
+            worksheet185.write('N5', 'IND', body)
+            worksheet185.write('O5', 'ENG', body)
+            worksheet185.write('P5', 'IPA', body)
+            worksheet185.write('Q5', 'IPS', body)
+            worksheet185.write('R5', 'JML', body)
 
-            worksheet185.conditional_format(5, 0, row185_10+4, 15,
+            worksheet185.conditional_format(5, 0, row185_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet185.merge_range(
@@ -8641,20 +9066,22 @@
             worksheet185.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet185.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet185.merge_range('F21:F22', 'KELAS', header)
-            worksheet185.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet185.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet185.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet185.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet185.write('G22', 'MAT', body)
             worksheet185.write('H22', 'IND', body)
             worksheet185.write('I22', 'ENG', body)
-            worksheet185.write('J22', 'IPAS', body)
-            worksheet185.write('K22', 'JML', body)
-            worksheet185.write('L22', 'MAT', body)
-            worksheet185.write('M22', 'IND', body)
-            worksheet185.write('N22', 'ENG', body)
-            worksheet185.write('O22', 'IPAS', body)
-            worksheet185.write('P22', 'JML', body)
+            worksheet185.write('J22', 'IPA', body)
+            worksheet185.write('K22', 'IPS', body)
+            worksheet185.write('L22', 'JML', body)
+            worksheet185.write('M22', 'MAT', body)
+            worksheet185.write('N22', 'IND', body)
+            worksheet185.write('O22', 'ENG', body)
+            worksheet185.write('P22', 'IPA', body)
+            worksheet185.write('Q22', 'IPS', body)
+            worksheet185.write('R22', 'JML', body)
 
-            worksheet185.conditional_format(22, 0, row185+21, 15,
+            worksheet185.conditional_format(22, 0, row185+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 186
@@ -8678,20 +9105,22 @@
             worksheet186.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet186.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet186.merge_range('F4:F5', 'KELAS', header)
-            worksheet186.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet186.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet186.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet186.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet186.write('G5', 'MAT', body)
             worksheet186.write('H5', 'IND', body)
             worksheet186.write('I5', 'ENG', body)
-            worksheet186.write('J5', 'IPAS', body)
-            worksheet186.write('K5', 'JML', body)
-            worksheet186.write('L5', 'MAT', body)
-            worksheet186.write('M5', 'IND', body)
-            worksheet186.write('N5', 'ENG', body)
-            worksheet186.write('O5', 'IPAS', body)
-            worksheet186.write('P5', 'JML', body)
+            worksheet186.write('J5', 'IPA', body)
+            worksheet186.write('K5', 'IPS', body)
+            worksheet186.write('L5', 'JML', body)
+            worksheet186.write('M5', 'MAT', body)
+            worksheet186.write('N5', 'IND', body)
+            worksheet186.write('O5', 'ENG', body)
+            worksheet186.write('P5', 'IPA', body)
+            worksheet186.write('Q5', 'IPS', body)
+            worksheet186.write('R5', 'JML', body)
 
-            worksheet186.conditional_format(5, 0, row186_10+4, 15,
+            worksheet186.conditional_format(5, 0, row186_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet186.merge_range(
@@ -8706,20 +9135,22 @@
             worksheet186.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet186.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet186.merge_range('F21:F22', 'KELAS', header)
-            worksheet186.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet186.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet186.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet186.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet186.write('G22', 'MAT', body)
             worksheet186.write('H22', 'IND', body)
             worksheet186.write('I22', 'ENG', body)
-            worksheet186.write('J22', 'IPAS', body)
-            worksheet186.write('K22', 'JML', body)
-            worksheet186.write('L22', 'MAT', body)
-            worksheet186.write('M22', 'IND', body)
-            worksheet186.write('N22', 'ENG', body)
-            worksheet186.write('O22', 'IPAS', body)
-            worksheet186.write('P22', 'JML', body)
+            worksheet186.write('J22', 'IPA', body)
+            worksheet186.write('K22', 'IPS', body)
+            worksheet186.write('L22', 'JML', body)
+            worksheet186.write('M22', 'MAT', body)
+            worksheet186.write('N22', 'IND', body)
+            worksheet186.write('O22', 'ENG', body)
+            worksheet186.write('P22', 'IPA', body)
+            worksheet186.write('Q22', 'IPS', body)
+            worksheet186.write('R22', 'JML', body)
 
-            worksheet186.conditional_format(22, 0, row186+21, 15,
+            worksheet186.conditional_format(22, 0, row186+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 187
@@ -8743,20 +9174,22 @@
             worksheet187.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet187.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet187.merge_range('F4:F5', 'KELAS', header)
-            worksheet187.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet187.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet187.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet187.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet187.write('G5', 'MAT', body)
             worksheet187.write('H5', 'IND', body)
             worksheet187.write('I5', 'ENG', body)
-            worksheet187.write('J5', 'IPAS', body)
-            worksheet187.write('K5', 'JML', body)
-            worksheet187.write('L5', 'MAT', body)
-            worksheet187.write('M5', 'IND', body)
-            worksheet187.write('N5', 'ENG', body)
-            worksheet187.write('O5', 'IPAS', body)
-            worksheet187.write('P5', 'JML', body)
+            worksheet187.write('J5', 'IPA', body)
+            worksheet187.write('K5', 'IPS', body)
+            worksheet187.write('L5', 'JML', body)
+            worksheet187.write('M5', 'MAT', body)
+            worksheet187.write('N5', 'IND', body)
+            worksheet187.write('O5', 'ENG', body)
+            worksheet187.write('P5', 'IPA', body)
+            worksheet187.write('Q5', 'IPS', body)
+            worksheet187.write('R5', 'JML', body)
 
-            worksheet187.conditional_format(5, 0, row187_10+4, 15,
+            worksheet187.conditional_format(5, 0, row187_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet187.merge_range(
@@ -8771,20 +9204,22 @@
             worksheet187.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet187.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet187.merge_range('F21:F22', 'KELAS', header)
-            worksheet187.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet187.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet187.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet187.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet187.write('G22', 'MAT', body)
             worksheet187.write('H22', 'IND', body)
             worksheet187.write('I22', 'ENG', body)
-            worksheet187.write('J22', 'IPAS', body)
-            worksheet187.write('K22', 'JML', body)
-            worksheet187.write('L22', 'MAT', body)
-            worksheet187.write('M22', 'IND', body)
-            worksheet187.write('N22', 'ENG', body)
-            worksheet187.write('O22', 'IPAS', body)
-            worksheet187.write('P22', 'JML', body)
+            worksheet187.write('J22', 'IPA', body)
+            worksheet187.write('K22', 'IPS', body)
+            worksheet187.write('L22', 'JML', body)
+            worksheet187.write('M22', 'MAT', body)
+            worksheet187.write('N22', 'IND', body)
+            worksheet187.write('O22', 'ENG', body)
+            worksheet187.write('P22', 'IPA', body)
+            worksheet187.write('Q22', 'IPS', body)
+            worksheet187.write('R22', 'JML', body)
 
-            worksheet187.conditional_format(22, 0, row187+21, 15,
+            worksheet187.conditional_format(22, 0, row187+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 189
@@ -8808,20 +9243,22 @@
             worksheet189.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet189.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet189.merge_range('F4:F5', 'KELAS', header)
-            worksheet189.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet189.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet189.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet189.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet189.write('G5', 'MAT', body)
             worksheet189.write('H5', 'IND', body)
             worksheet189.write('I5', 'ENG', body)
-            worksheet189.write('J5', 'IPAS', body)
-            worksheet189.write('K5', 'JML', body)
-            worksheet189.write('L5', 'MAT', body)
-            worksheet189.write('M5', 'IND', body)
-            worksheet189.write('N5', 'ENG', body)
-            worksheet189.write('O5', 'IPAS', body)
-            worksheet189.write('P5', 'JML', body)
+            worksheet189.write('J5', 'IPA', body)
+            worksheet189.write('K5', 'IPS', body)
+            worksheet189.write('L5', 'JML', body)
+            worksheet189.write('M5', 'MAT', body)
+            worksheet189.write('N5', 'IND', body)
+            worksheet189.write('O5', 'ENG', body)
+            worksheet189.write('P5', 'IPA', body)
+            worksheet189.write('Q5', 'IPS', body)
+            worksheet189.write('R5', 'JML', body)
 
-            worksheet189.conditional_format(5, 0, row189_10+4, 15,
+            worksheet189.conditional_format(5, 0, row189_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet189.merge_range(
@@ -8836,20 +9273,22 @@
             worksheet189.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet189.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet189.merge_range('F21:F22', 'KELAS', header)
-            worksheet189.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet189.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet189.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet189.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet189.write('G22', 'MAT', body)
             worksheet189.write('H22', 'IND', body)
             worksheet189.write('I22', 'ENG', body)
-            worksheet189.write('J22', 'IPAS', body)
-            worksheet189.write('K22', 'JML', body)
-            worksheet189.write('L22', 'MAT', body)
-            worksheet189.write('M22', 'IND', body)
-            worksheet189.write('N22', 'ENG', body)
-            worksheet189.write('O22', 'IPAS', body)
-            worksheet189.write('P22', 'JML', body)
+            worksheet189.write('J22', 'IPA', body)
+            worksheet189.write('K22', 'IPS', body)
+            worksheet189.write('L22', 'JML', body)
+            worksheet189.write('M22', 'MAT', body)
+            worksheet189.write('N22', 'IND', body)
+            worksheet189.write('O22', 'ENG', body)
+            worksheet189.write('P22', 'IPA', body)
+            worksheet189.write('Q22', 'IPS', body)
+            worksheet189.write('R22', 'JML', body)
 
-            worksheet189.conditional_format(22, 0, row189+21, 15,
+            worksheet189.conditional_format(22, 0, row189+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 190
@@ -8873,20 +9312,22 @@
             worksheet190.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet190.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet190.merge_range('F4:F5', 'KELAS', header)
-            worksheet190.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet190.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet190.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet190.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet190.write('G5', 'MAT', body)
             worksheet190.write('H5', 'IND', body)
             worksheet190.write('I5', 'ENG', body)
-            worksheet190.write('J5', 'IPAS', body)
-            worksheet190.write('K5', 'JML', body)
-            worksheet190.write('L5', 'MAT', body)
-            worksheet190.write('M5', 'IND', body)
-            worksheet190.write('N5', 'ENG', body)
-            worksheet190.write('O5', 'IPAS', body)
-            worksheet190.write('P5', 'JML', body)
+            worksheet190.write('J5', 'IPA', body)
+            worksheet190.write('K5', 'IPS', body)
+            worksheet190.write('L5', 'JML', body)
+            worksheet190.write('M5', 'MAT', body)
+            worksheet190.write('N5', 'IND', body)
+            worksheet190.write('O5', 'ENG', body)
+            worksheet190.write('P5', 'IPA', body)
+            worksheet190.write('Q5', 'IPS', body)
+            worksheet190.write('R5', 'JML', body)
 
-            worksheet190.conditional_format(5, 0, row190_10+4, 15,
+            worksheet190.conditional_format(5, 0, row190_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet190.merge_range(
@@ -8901,20 +9342,22 @@
             worksheet190.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet190.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet190.merge_range('F21:F22', 'KELAS', header)
-            worksheet190.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet190.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet190.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet190.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet190.write('G22', 'MAT', body)
             worksheet190.write('H22', 'IND', body)
             worksheet190.write('I22', 'ENG', body)
-            worksheet190.write('J22', 'IPAS', body)
-            worksheet190.write('K22', 'JML', body)
-            worksheet190.write('L22', 'MAT', body)
-            worksheet190.write('M22', 'IND', body)
-            worksheet190.write('N22', 'ENG', body)
-            worksheet190.write('O22', 'IPAS', body)
-            worksheet190.write('P22', 'JML', body)
+            worksheet190.write('J22', 'IPA', body)
+            worksheet190.write('K22', 'IPS', body)
+            worksheet190.write('L22', 'JML', body)
+            worksheet190.write('M22', 'MAT', body)
+            worksheet190.write('N22', 'IND', body)
+            worksheet190.write('O22', 'ENG', body)
+            worksheet190.write('P22', 'IPA', body)
+            worksheet190.write('Q22', 'IPS', body)
+            worksheet190.write('R22', 'JML', body)
 
-            worksheet190.conditional_format(22, 0, row190+21, 15,
+            worksheet190.conditional_format(22, 0, row190+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 191
@@ -8938,20 +9381,22 @@
             worksheet191.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet191.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet191.merge_range('F4:F5', 'KELAS', header)
-            worksheet191.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet191.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet191.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet191.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet191.write('G5', 'MAT', body)
             worksheet191.write('H5', 'IND', body)
             worksheet191.write('I5', 'ENG', body)
-            worksheet191.write('J5', 'IPAS', body)
-            worksheet191.write('K5', 'JML', body)
-            worksheet191.write('L5', 'MAT', body)
-            worksheet191.write('M5', 'IND', body)
-            worksheet191.write('N5', 'ENG', body)
-            worksheet191.write('O5', 'IPAS', body)
-            worksheet191.write('P5', 'JML', body)
+            worksheet191.write('J5', 'IPA', body)
+            worksheet191.write('K5', 'IPS', body)
+            worksheet191.write('L5', 'JML', body)
+            worksheet191.write('M5', 'MAT', body)
+            worksheet191.write('N5', 'IND', body)
+            worksheet191.write('O5', 'ENG', body)
+            worksheet191.write('P5', 'IPA', body)
+            worksheet191.write('Q5', 'IPS', body)
+            worksheet191.write('R5', 'JML', body)
 
-            worksheet191.conditional_format(5, 0, row191_10+4, 15,
+            worksheet191.conditional_format(5, 0, row191_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet191.merge_range(
@@ -8966,20 +9411,22 @@
             worksheet191.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet191.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet191.merge_range('F21:F22', 'KELAS', header)
-            worksheet191.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet191.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet191.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet191.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet191.write('G22', 'MAT', body)
             worksheet191.write('H22', 'IND', body)
             worksheet191.write('I22', 'ENG', body)
-            worksheet191.write('J22', 'IPAS', body)
-            worksheet191.write('K22', 'JML', body)
-            worksheet191.write('L22', 'MAT', body)
-            worksheet191.write('M22', 'IND', body)
-            worksheet191.write('N22', 'ENG', body)
-            worksheet191.write('O22', 'IPAS', body)
-            worksheet191.write('P22', 'JML', body)
+            worksheet191.write('J22', 'IPA', body)
+            worksheet191.write('K22', 'IPS', body)
+            worksheet191.write('L22', 'JML', body)
+            worksheet191.write('M22', 'MAT', body)
+            worksheet191.write('N22', 'IND', body)
+            worksheet191.write('O22', 'ENG', body)
+            worksheet191.write('P22', 'IPA', body)
+            worksheet191.write('Q22', 'IPS', body)
+            worksheet191.write('R22', 'JML', body)
 
-            worksheet191.conditional_format(22, 0, row191+21, 15,
+            worksheet191.conditional_format(22, 0, row191+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 192
@@ -9003,20 +9450,22 @@
             worksheet192.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet192.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet192.merge_range('F4:F5', 'KELAS', header)
-            worksheet192.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet192.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet192.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet192.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet192.write('G5', 'MAT', body)
             worksheet192.write('H5', 'IND', body)
             worksheet192.write('I5', 'ENG', body)
-            worksheet192.write('J5', 'IPAS', body)
-            worksheet192.write('K5', 'JML', body)
-            worksheet192.write('L5', 'MAT', body)
-            worksheet192.write('M5', 'IND', body)
-            worksheet192.write('N5', 'ENG', body)
-            worksheet192.write('O5', 'IPAS', body)
-            worksheet192.write('P5', 'JML', body)
+            worksheet192.write('J5', 'IPA', body)
+            worksheet192.write('K5', 'IPS', body)
+            worksheet192.write('L5', 'JML', body)
+            worksheet192.write('M5', 'MAT', body)
+            worksheet192.write('N5', 'IND', body)
+            worksheet192.write('O5', 'ENG', body)
+            worksheet192.write('P5', 'IPA', body)
+            worksheet192.write('Q5', 'IPS', body)
+            worksheet192.write('R5', 'JML', body)
 
-            worksheet192.conditional_format(5, 0, row192_10+4, 15,
+            worksheet192.conditional_format(5, 0, row192_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet192.merge_range(
@@ -9031,20 +9480,22 @@
             worksheet192.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet192.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet192.merge_range('F21:F22', 'KELAS', header)
-            worksheet192.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet192.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet192.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet192.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet192.write('G22', 'MAT', body)
             worksheet192.write('H22', 'IND', body)
             worksheet192.write('I22', 'ENG', body)
-            worksheet192.write('J22', 'IPAS', body)
-            worksheet192.write('K22', 'JML', body)
-            worksheet192.write('L22', 'MAT', body)
-            worksheet192.write('M22', 'IND', body)
-            worksheet192.write('N22', 'ENG', body)
-            worksheet192.write('O22', 'IPAS', body)
-            worksheet192.write('P22', 'JML', body)
+            worksheet192.write('J22', 'IPA', body)
+            worksheet192.write('K22', 'IPS', body)
+            worksheet192.write('L22', 'JML', body)
+            worksheet192.write('M22', 'MAT', body)
+            worksheet192.write('N22', 'IND', body)
+            worksheet192.write('O22', 'ENG', body)
+            worksheet192.write('P22', 'IPA', body)
+            worksheet192.write('Q22', 'IPS', body)
+            worksheet192.write('R22', 'JML', body)
 
-            worksheet192.conditional_format(22, 0, row192+21, 15,
+            worksheet192.conditional_format(22, 0, row192+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 193
@@ -9068,20 +9519,22 @@
             worksheet193.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet193.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet193.merge_range('F4:F5', 'KELAS', header)
-            worksheet193.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet193.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet193.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet193.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet193.write('G5', 'MAT', body)
             worksheet193.write('H5', 'IND', body)
             worksheet193.write('I5', 'ENG', body)
-            worksheet193.write('J5', 'IPAS', body)
-            worksheet193.write('K5', 'JML', body)
-            worksheet193.write('L5', 'MAT', body)
-            worksheet193.write('M5', 'IND', body)
-            worksheet193.write('N5', 'ENG', body)
-            worksheet193.write('O5', 'IPAS', body)
-            worksheet193.write('P5', 'JML', body)
+            worksheet193.write('J5', 'IPA', body)
+            worksheet193.write('K5', 'IPS', body)
+            worksheet193.write('L5', 'JML', body)
+            worksheet193.write('M5', 'MAT', body)
+            worksheet193.write('N5', 'IND', body)
+            worksheet193.write('O5', 'ENG', body)
+            worksheet193.write('P5', 'IPA', body)
+            worksheet193.write('Q5', 'IPS', body)
+            worksheet193.write('R5', 'JML', body)
 
-            worksheet193.conditional_format(5, 0, row193_10+4, 15,
+            worksheet193.conditional_format(5, 0, row193_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet193.merge_range(
@@ -9096,20 +9549,22 @@
             worksheet193.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet193.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet193.merge_range('F21:F22', 'KELAS', header)
-            worksheet193.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet193.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet193.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet193.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet193.write('G22', 'MAT', body)
             worksheet193.write('H22', 'IND', body)
             worksheet193.write('I22', 'ENG', body)
-            worksheet193.write('J22', 'IPAS', body)
-            worksheet193.write('K22', 'JML', body)
-            worksheet193.write('L22', 'MAT', body)
-            worksheet193.write('M22', 'IND', body)
-            worksheet193.write('N22', 'ENG', body)
-            worksheet193.write('O22', 'IPAS', body)
-            worksheet193.write('P22', 'JML', body)
+            worksheet193.write('J22', 'IPA', body)
+            worksheet193.write('K22', 'IPS', body)
+            worksheet193.write('L22', 'JML', body)
+            worksheet193.write('M22', 'MAT', body)
+            worksheet193.write('N22', 'IND', body)
+            worksheet193.write('O22', 'ENG', body)
+            worksheet193.write('P22', 'IPA', body)
+            worksheet193.write('Q22', 'IPS', body)
+            worksheet193.write('R22', 'JML', body)
 
-            worksheet193.conditional_format(22, 0, row193+21, 15,
+            worksheet193.conditional_format(22, 0, row193+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 194
@@ -9133,20 +9588,22 @@
             worksheet194.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet194.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet194.merge_range('F4:F5', 'KELAS', header)
-            worksheet194.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet194.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet194.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet194.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet194.write('G5', 'MAT', body)
             worksheet194.write('H5', 'IND', body)
             worksheet194.write('I5', 'ENG', body)
-            worksheet194.write('J5', 'IPAS', body)
-            worksheet194.write('K5', 'JML', body)
-            worksheet194.write('L5', 'MAT', body)
-            worksheet194.write('M5', 'IND', body)
-            worksheet194.write('N5', 'ENG', body)
-            worksheet194.write('O5', 'IPAS', body)
-            worksheet194.write('P5', 'JML', body)
+            worksheet194.write('J5', 'IPA', body)
+            worksheet194.write('K5', 'IPS', body)
+            worksheet194.write('L5', 'JML', body)
+            worksheet194.write('M5', 'MAT', body)
+            worksheet194.write('N5', 'IND', body)
+            worksheet194.write('O5', 'ENG', body)
+            worksheet194.write('P5', 'IPA', body)
+            worksheet194.write('Q5', 'IPS', body)
+            worksheet194.write('R5', 'JML', body)
 
-            worksheet194.conditional_format(5, 0, row194_10+4, 15,
+            worksheet194.conditional_format(5, 0, row194_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet194.merge_range(
@@ -9161,20 +9618,22 @@
             worksheet194.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet194.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet194.merge_range('F21:F22', 'KELAS', header)
-            worksheet194.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet194.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet194.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet194.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet194.write('G22', 'MAT', body)
             worksheet194.write('H22', 'IND', body)
             worksheet194.write('I22', 'ENG', body)
-            worksheet194.write('J22', 'IPAS', body)
-            worksheet194.write('K22', 'JML', body)
-            worksheet194.write('L22', 'MAT', body)
-            worksheet194.write('M22', 'IND', body)
-            worksheet194.write('N22', 'ENG', body)
-            worksheet194.write('O22', 'IPAS', body)
-            worksheet194.write('P22', 'JML', body)
+            worksheet194.write('J22', 'IPA', body)
+            worksheet194.write('K22', 'IPS', body)
+            worksheet194.write('L22', 'JML', body)
+            worksheet194.write('M22', 'MAT', body)
+            worksheet194.write('N22', 'IND', body)
+            worksheet194.write('O22', 'ENG', body)
+            worksheet194.write('P22', 'IPA', body)
+            worksheet194.write('Q22', 'IPS', body)
+            worksheet194.write('R22', 'JML', body)
 
-            worksheet194.conditional_format(22, 0, row194+21, 15,
+            worksheet194.conditional_format(22, 0, row194+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 195
@@ -9198,20 +9657,22 @@
             worksheet195.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet195.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet195.merge_range('F4:F5', 'KELAS', header)
-            worksheet195.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet195.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet195.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet195.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet195.write('G5', 'MAT', body)
             worksheet195.write('H5', 'IND', body)
             worksheet195.write('I5', 'ENG', body)
-            worksheet195.write('J5', 'IPAS', body)
-            worksheet195.write('K5', 'JML', body)
-            worksheet195.write('L5', 'MAT', body)
-            worksheet195.write('M5', 'IND', body)
-            worksheet195.write('N5', 'ENG', body)
-            worksheet195.write('O5', 'IPAS', body)
-            worksheet195.write('P5', 'JML', body)
+            worksheet195.write('J5', 'IPA', body)
+            worksheet195.write('K5', 'IPS', body)
+            worksheet195.write('L5', 'JML', body)
+            worksheet195.write('M5', 'MAT', body)
+            worksheet195.write('N5', 'IND', body)
+            worksheet195.write('O5', 'ENG', body)
+            worksheet195.write('P5', 'IPA', body)
+            worksheet195.write('Q5', 'IPS', body)
+            worksheet195.write('R5', 'JML', body)
 
-            worksheet195.conditional_format(5, 0, row195_10+4, 15,
+            worksheet195.conditional_format(5, 0, row195_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet195.merge_range(
@@ -9226,20 +9687,22 @@
             worksheet195.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet195.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet195.merge_range('F21:F22', 'KELAS', header)
-            worksheet195.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet195.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet195.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet195.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet195.write('G22', 'MAT', body)
             worksheet195.write('H22', 'IND', body)
             worksheet195.write('I22', 'ENG', body)
-            worksheet195.write('J22', 'IPAS', body)
-            worksheet195.write('K22', 'JML', body)
-            worksheet195.write('L22', 'MAT', body)
-            worksheet195.write('M22', 'IND', body)
-            worksheet195.write('N22', 'ENG', body)
-            worksheet195.write('O22', 'IPAS', body)
-            worksheet195.write('P22', 'JML', body)
+            worksheet195.write('J22', 'IPA', body)
+            worksheet195.write('K22', 'IPS', body)
+            worksheet195.write('L22', 'JML', body)
+            worksheet195.write('M22', 'MAT', body)
+            worksheet195.write('N22', 'IND', body)
+            worksheet195.write('O22', 'ENG', body)
+            worksheet195.write('P22', 'IPA', body)
+            worksheet195.write('Q22', 'IPS', body)
+            worksheet195.write('R22', 'JML', body)
 
-            worksheet195.conditional_format(22, 0, row195+21, 15,
+            worksheet195.conditional_format(22, 0, row195+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 196
@@ -9263,20 +9726,22 @@
             worksheet196.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet196.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet196.merge_range('F4:F5', 'KELAS', header)
-            worksheet196.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet196.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet196.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet196.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet196.write('G5', 'MAT', body)
             worksheet196.write('H5', 'IND', body)
             worksheet196.write('I5', 'ENG', body)
-            worksheet196.write('J5', 'IPAS', body)
-            worksheet196.write('K5', 'JML', body)
-            worksheet196.write('L5', 'MAT', body)
-            worksheet196.write('M5', 'IND', body)
-            worksheet196.write('N5', 'ENG', body)
-            worksheet196.write('O5', 'IPAS', body)
-            worksheet196.write('P5', 'JML', body)
+            worksheet196.write('J5', 'IPA', body)
+            worksheet196.write('K5', 'IPS', body)
+            worksheet196.write('L5', 'JML', body)
+            worksheet196.write('M5', 'MAT', body)
+            worksheet196.write('N5', 'IND', body)
+            worksheet196.write('O5', 'ENG', body)
+            worksheet196.write('P5', 'IPA', body)
+            worksheet196.write('Q5', 'IPS', body)
+            worksheet196.write('R5', 'JML', body)
 
-            worksheet196.conditional_format(5, 0, row196_10+4, 15,
+            worksheet196.conditional_format(5, 0, row196_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet196.merge_range(
@@ -9291,20 +9756,22 @@
             worksheet196.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet196.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet196.merge_range('F21:F22', 'KELAS', header)
-            worksheet196.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet196.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet196.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet196.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet196.write('G22', 'MAT', body)
             worksheet196.write('H22', 'IND', body)
             worksheet196.write('I22', 'ENG', body)
-            worksheet196.write('J22', 'IPAS', body)
-            worksheet196.write('K22', 'JML', body)
-            worksheet196.write('L22', 'MAT', body)
-            worksheet196.write('M22', 'IND', body)
-            worksheet196.write('N22', 'ENG', body)
-            worksheet196.write('O22', 'IPAS', body)
-            worksheet196.write('P22', 'JML', body)
+            worksheet196.write('J22', 'IPA', body)
+            worksheet196.write('K22', 'IPS', body)
+            worksheet196.write('L22', 'JML', body)
+            worksheet196.write('M22', 'MAT', body)
+            worksheet196.write('N22', 'IND', body)
+            worksheet196.write('O22', 'ENG', body)
+            worksheet196.write('P22', 'IPA', body)
+            worksheet196.write('Q22', 'IPS', body)
+            worksheet196.write('R22', 'JML', body)
 
-            worksheet196.conditional_format(22, 0, row196+21, 15,
+            worksheet196.conditional_format(22, 0, row196+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 197
@@ -9328,20 +9795,22 @@
             worksheet197.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet197.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet197.merge_range('F4:F5', 'KELAS', header)
-            worksheet197.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet197.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet197.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet197.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet197.write('G5', 'MAT', body)
             worksheet197.write('H5', 'IND', body)
             worksheet197.write('I5', 'ENG', body)
-            worksheet197.write('J5', 'IPAS', body)
-            worksheet197.write('K5', 'JML', body)
-            worksheet197.write('L5', 'MAT', body)
-            worksheet197.write('M5', 'IND', body)
-            worksheet197.write('N5', 'ENG', body)
-            worksheet197.write('O5', 'IPAS', body)
-            worksheet197.write('P5', 'JML', body)
+            worksheet197.write('J5', 'IPA', body)
+            worksheet197.write('K5', 'IPS', body)
+            worksheet197.write('L5', 'JML', body)
+            worksheet197.write('M5', 'MAT', body)
+            worksheet197.write('N5', 'IND', body)
+            worksheet197.write('O5', 'ENG', body)
+            worksheet197.write('P5', 'IPA', body)
+            worksheet197.write('Q5', 'IPS', body)
+            worksheet197.write('R5', 'JML', body)
 
-            worksheet197.conditional_format(5, 0, row197_10+4, 15,
+            worksheet197.conditional_format(5, 0, row197_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet197.merge_range(
@@ -9356,20 +9825,22 @@
             worksheet197.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet197.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet197.merge_range('F21:F22', 'KELAS', header)
-            worksheet197.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet197.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet197.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet197.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet197.write('G22', 'MAT', body)
             worksheet197.write('H22', 'IND', body)
             worksheet197.write('I22', 'ENG', body)
-            worksheet197.write('J22', 'IPAS', body)
-            worksheet197.write('K22', 'JML', body)
-            worksheet197.write('L22', 'MAT', body)
-            worksheet197.write('M22', 'IND', body)
-            worksheet197.write('N22', 'ENG', body)
-            worksheet197.write('O22', 'IPAS', body)
-            worksheet197.write('P22', 'JML', body)
+            worksheet197.write('J22', 'IPA', body)
+            worksheet197.write('K22', 'IPS', body)
+            worksheet197.write('L22', 'JML', body)
+            worksheet197.write('M22', 'MAT', body)
+            worksheet197.write('N22', 'IND', body)
+            worksheet197.write('O22', 'ENG', body)
+            worksheet197.write('P22', 'IPA', body)
+            worksheet197.write('Q22', 'IPS', body)
+            worksheet197.write('R22', 'JML', body)
 
-            worksheet197.conditional_format(22, 0, row197+21, 15,
+            worksheet197.conditional_format(22, 0, row197+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 198
@@ -9393,20 +9864,22 @@
             worksheet198.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet198.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet198.merge_range('F4:F5', 'KELAS', header)
-            worksheet198.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet198.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet198.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet198.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet198.write('G5', 'MAT', body)
             worksheet198.write('H5', 'IND', body)
             worksheet198.write('I5', 'ENG', body)
-            worksheet198.write('J5', 'IPAS', body)
-            worksheet198.write('K5', 'JML', body)
-            worksheet198.write('L5', 'MAT', body)
-            worksheet198.write('M5', 'IND', body)
-            worksheet198.write('N5', 'ENG', body)
-            worksheet198.write('O5', 'IPAS', body)
-            worksheet198.write('P5', 'JML', body)
+            worksheet198.write('J5', 'IPA', body)
+            worksheet198.write('K5', 'IPS', body)
+            worksheet198.write('L5', 'JML', body)
+            worksheet198.write('M5', 'MAT', body)
+            worksheet198.write('N5', 'IND', body)
+            worksheet198.write('O5', 'ENG', body)
+            worksheet198.write('P5', 'IPA', body)
+            worksheet198.write('Q5', 'IPS', body)
+            worksheet198.write('R5', 'JML', body)
 
-            worksheet198.conditional_format(5, 0, row198_10+4, 15,
+            worksheet198.conditional_format(5, 0, row198_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet198.merge_range(
@@ -9421,20 +9894,22 @@
             worksheet198.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet198.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet198.merge_range('F21:F22', 'KELAS', header)
-            worksheet198.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet198.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet198.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet198.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet198.write('G22', 'MAT', body)
             worksheet198.write('H22', 'IND', body)
             worksheet198.write('I22', 'ENG', body)
-            worksheet198.write('J22', 'IPAS', body)
-            worksheet198.write('K22', 'JML', body)
-            worksheet198.write('L22', 'MAT', body)
-            worksheet198.write('M22', 'IND', body)
-            worksheet198.write('N22', 'ENG', body)
-            worksheet198.write('O22', 'IPAS', body)
-            worksheet198.write('P22', 'JML', body)
+            worksheet198.write('J22', 'IPA', body)
+            worksheet198.write('K22', 'IPS', body)
+            worksheet198.write('L22', 'JML', body)
+            worksheet198.write('M22', 'MAT', body)
+            worksheet198.write('N22', 'IND', body)
+            worksheet198.write('O22', 'ENG', body)
+            worksheet198.write('P22', 'IPA', body)
+            worksheet198.write('Q22', 'IPS', body)
+            worksheet198.write('R22', 'JML', body)
 
-            worksheet198.conditional_format(22, 0, row198+21, 15,
+            worksheet198.conditional_format(22, 0, row198+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 199
@@ -9458,20 +9933,22 @@
             worksheet199.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet199.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet199.merge_range('F4:F5', 'KELAS', header)
-            worksheet199.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet199.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet199.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet199.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet199.write('G5', 'MAT', body)
             worksheet199.write('H5', 'IND', body)
             worksheet199.write('I5', 'ENG', body)
-            worksheet199.write('J5', 'IPAS', body)
-            worksheet199.write('K5', 'JML', body)
-            worksheet199.write('L5', 'MAT', body)
-            worksheet199.write('M5', 'IND', body)
-            worksheet199.write('N5', 'ENG', body)
-            worksheet199.write('O5', 'IPAS', body)
-            worksheet199.write('P5', 'JML', body)
+            worksheet199.write('J5', 'IPA', body)
+            worksheet199.write('K5', 'IPS', body)
+            worksheet199.write('L5', 'JML', body)
+            worksheet199.write('M5', 'MAT', body)
+            worksheet199.write('N5', 'IND', body)
+            worksheet199.write('O5', 'ENG', body)
+            worksheet199.write('P5', 'IPA', body)
+            worksheet199.write('Q5', 'IPS', body)
+            worksheet199.write('R5', 'JML', body)
 
-            worksheet199.conditional_format(5, 0, row199_10+4, 15,
+            worksheet199.conditional_format(5, 0, row199_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet199.merge_range(
@@ -9486,20 +9963,22 @@
             worksheet199.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet199.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet199.merge_range('F21:F22', 'KELAS', header)
-            worksheet199.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet199.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet199.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet199.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet199.write('G22', 'MAT', body)
             worksheet199.write('H22', 'IND', body)
             worksheet199.write('I22', 'ENG', body)
-            worksheet199.write('J22', 'IPAS', body)
-            worksheet199.write('K22', 'JML', body)
-            worksheet199.write('L22', 'MAT', body)
-            worksheet199.write('M22', 'IND', body)
-            worksheet199.write('N22', 'ENG', body)
-            worksheet199.write('O22', 'IPAS', body)
-            worksheet199.write('P22', 'JML', body)
+            worksheet199.write('J22', 'IPA', body)
+            worksheet199.write('K22', 'IPS', body)
+            worksheet199.write('L22', 'JML', body)
+            worksheet199.write('M22', 'MAT', body)
+            worksheet199.write('N22', 'IND', body)
+            worksheet199.write('O22', 'ENG', body)
+            worksheet199.write('P22', 'IPA', body)
+            worksheet199.write('Q22', 'IPS', body)
+            worksheet199.write('R22', 'JML', body)
 
-            worksheet199.conditional_format(22, 0, row199+21, 15,
+            worksheet199.conditional_format(22, 0, row199+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 201
@@ -9523,20 +10002,22 @@
             worksheet201.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet201.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet201.merge_range('F4:F5', 'KELAS', header)
-            worksheet201.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet201.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet201.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet201.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet201.write('G5', 'MAT', body)
             worksheet201.write('H5', 'IND', body)
             worksheet201.write('I5', 'ENG', body)
-            worksheet201.write('J5', 'IPAS', body)
-            worksheet201.write('K5', 'JML', body)
-            worksheet201.write('L5', 'MAT', body)
-            worksheet201.write('M5', 'IND', body)
-            worksheet201.write('N5', 'ENG', body)
-            worksheet201.write('O5', 'IPAS', body)
-            worksheet201.write('P5', 'JML', body)
+            worksheet201.write('J5', 'IPA', body)
+            worksheet201.write('K5', 'IPS', body)
+            worksheet201.write('L5', 'JML', body)
+            worksheet201.write('M5', 'MAT', body)
+            worksheet201.write('N5', 'IND', body)
+            worksheet201.write('O5', 'ENG', body)
+            worksheet201.write('P5', 'IPA', body)
+            worksheet201.write('Q5', 'IPS', body)
+            worksheet201.write('R5', 'JML', body)
 
-            worksheet201.conditional_format(5, 0, row201_10+4, 15,
+            worksheet201.conditional_format(5, 0, row201_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet201.merge_range(
@@ -9551,20 +10032,22 @@
             worksheet201.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet201.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet201.merge_range('F21:F22', 'KELAS', header)
-            worksheet201.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet201.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet201.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet201.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet201.write('G22', 'MAT', body)
             worksheet201.write('H22', 'IND', body)
             worksheet201.write('I22', 'ENG', body)
-            worksheet201.write('J22', 'IPAS', body)
-            worksheet201.write('K22', 'JML', body)
-            worksheet201.write('L22', 'MAT', body)
-            worksheet201.write('M22', 'IND', body)
-            worksheet201.write('N22', 'ENG', body)
-            worksheet201.write('O22', 'IPAS', body)
-            worksheet201.write('P22', 'JML', body)
+            worksheet201.write('J22', 'IPA', body)
+            worksheet201.write('K22', 'IPS', body)
+            worksheet201.write('L22', 'JML', body)
+            worksheet201.write('M22', 'MAT', body)
+            worksheet201.write('N22', 'IND', body)
+            worksheet201.write('O22', 'ENG', body)
+            worksheet201.write('P22', 'IPA', body)
+            worksheet201.write('Q22', 'IPS', body)
+            worksheet201.write('R22', 'JML', body)
 
-            worksheet201.conditional_format(22, 0, row201+21, 15,
+            worksheet201.conditional_format(22, 0, row201+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 202
@@ -9588,20 +10071,22 @@
             worksheet202.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet202.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet202.merge_range('F4:F5', 'KELAS', header)
-            worksheet202.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet202.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet202.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet202.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet202.write('G5', 'MAT', body)
             worksheet202.write('H5', 'IND', body)
             worksheet202.write('I5', 'ENG', body)
-            worksheet202.write('J5', 'IPAS', body)
-            worksheet202.write('K5', 'JML', body)
-            worksheet202.write('L5', 'MAT', body)
-            worksheet202.write('M5', 'IND', body)
-            worksheet202.write('N5', 'ENG', body)
-            worksheet202.write('O5', 'IPAS', body)
-            worksheet202.write('P5', 'JML', body)
+            worksheet202.write('J5', 'IPA', body)
+            worksheet202.write('K5', 'IPS', body)
+            worksheet202.write('L5', 'JML', body)
+            worksheet202.write('M5', 'MAT', body)
+            worksheet202.write('N5', 'IND', body)
+            worksheet202.write('O5', 'ENG', body)
+            worksheet202.write('P5', 'IPA', body)
+            worksheet202.write('Q5', 'IPS', body)
+            worksheet202.write('R5', 'JML', body)
 
-            worksheet202.conditional_format(5, 0, row202_10+4, 15,
+            worksheet202.conditional_format(5, 0, row202_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet202.merge_range(
@@ -9616,20 +10101,22 @@
             worksheet202.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet202.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet202.merge_range('F21:F22', 'KELAS', header)
-            worksheet202.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet202.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet202.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet202.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet202.write('G22', 'MAT', body)
             worksheet202.write('H22', 'IND', body)
             worksheet202.write('I22', 'ENG', body)
-            worksheet202.write('J22', 'IPAS', body)
-            worksheet202.write('K22', 'JML', body)
-            worksheet202.write('L22', 'MAT', body)
-            worksheet202.write('M22', 'IND', body)
-            worksheet202.write('N22', 'ENG', body)
-            worksheet202.write('O22', 'IPAS', body)
-            worksheet202.write('P22', 'JML', body)
+            worksheet202.write('J22', 'IPA', body)
+            worksheet202.write('K22', 'IPS', body)
+            worksheet202.write('L22', 'JML', body)
+            worksheet202.write('M22', 'MAT', body)
+            worksheet202.write('N22', 'IND', body)
+            worksheet202.write('O22', 'ENG', body)
+            worksheet202.write('P22', 'IPA', body)
+            worksheet202.write('Q22', 'IPS', body)
+            worksheet202.write('R22', 'JML', body)
 
-            worksheet202.conditional_format(22, 0, row202+21, 15,
+            worksheet202.conditional_format(22, 0, row202+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 203
@@ -9653,20 +10140,22 @@
             worksheet203.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet203.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet203.merge_range('F4:F5', 'KELAS', header)
-            worksheet203.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet203.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet203.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet203.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet203.write('G5', 'MAT', body)
             worksheet203.write('H5', 'IND', body)
             worksheet203.write('I5', 'ENG', body)
-            worksheet203.write('J5', 'IPAS', body)
-            worksheet203.write('K5', 'JML', body)
-            worksheet203.write('L5', 'MAT', body)
-            worksheet203.write('M5', 'IND', body)
-            worksheet203.write('N5', 'ENG', body)
-            worksheet203.write('O5', 'IPAS', body)
-            worksheet203.write('P5', 'JML', body)
+            worksheet203.write('J5', 'IPA', body)
+            worksheet203.write('K5', 'IPS', body)
+            worksheet203.write('L5', 'JML', body)
+            worksheet203.write('M5', 'MAT', body)
+            worksheet203.write('N5', 'IND', body)
+            worksheet203.write('O5', 'ENG', body)
+            worksheet203.write('P5', 'IPA', body)
+            worksheet203.write('Q5', 'IPS', body)
+            worksheet203.write('R5', 'JML', body)
 
-            worksheet203.conditional_format(5, 0, row203_10+4, 15,
+            worksheet203.conditional_format(5, 0, row203_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet203.merge_range(
@@ -9681,20 +10170,22 @@
             worksheet203.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet203.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet203.merge_range('F21:F22', 'KELAS', header)
-            worksheet203.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet203.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet203.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet203.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet203.write('G22', 'MAT', body)
             worksheet203.write('H22', 'IND', body)
             worksheet203.write('I22', 'ENG', body)
-            worksheet203.write('J22', 'IPAS', body)
-            worksheet203.write('K22', 'JML', body)
-            worksheet203.write('L22', 'MAT', body)
-            worksheet203.write('M22', 'IND', body)
-            worksheet203.write('N22', 'ENG', body)
-            worksheet203.write('O22', 'IPAS', body)
-            worksheet203.write('P22', 'JML', body)
+            worksheet203.write('J22', 'IPA', body)
+            worksheet203.write('K22', 'IPS', body)
+            worksheet203.write('L22', 'JML', body)
+            worksheet203.write('M22', 'MAT', body)
+            worksheet203.write('N22', 'IND', body)
+            worksheet203.write('O22', 'ENG', body)
+            worksheet203.write('P22', 'IPA', body)
+            worksheet203.write('Q22', 'IPS', body)
+            worksheet203.write('R22', 'JML', body)
 
-            worksheet203.conditional_format(22, 0, row203+21, 15,
+            worksheet203.conditional_format(22, 0, row203+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 210
@@ -9718,20 +10209,22 @@
             worksheet210.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet210.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet210.merge_range('F4:F5', 'KELAS', header)
-            worksheet210.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet210.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet210.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet210.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet210.write('G5', 'MAT', body)
             worksheet210.write('H5', 'IND', body)
             worksheet210.write('I5', 'ENG', body)
-            worksheet210.write('J5', 'IPAS', body)
-            worksheet210.write('K5', 'JML', body)
-            worksheet210.write('L5', 'MAT', body)
-            worksheet210.write('M5', 'IND', body)
-            worksheet210.write('N5', 'ENG', body)
-            worksheet210.write('O5', 'IPAS', body)
-            worksheet210.write('P5', 'JML', body)
+            worksheet210.write('J5', 'IPA', body)
+            worksheet210.write('K5', 'IPS', body)
+            worksheet210.write('L5', 'JML', body)
+            worksheet210.write('M5', 'MAT', body)
+            worksheet210.write('N5', 'IND', body)
+            worksheet210.write('O5', 'ENG', body)
+            worksheet210.write('P5', 'IPA', body)
+            worksheet210.write('Q5', 'IPS', body)
+            worksheet210.write('R5', 'JML', body)
 
-            worksheet210.conditional_format(5, 0, row210_10+4, 15,
+            worksheet210.conditional_format(5, 0, row210_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet210.merge_range(
@@ -9746,20 +10239,22 @@
             worksheet210.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet210.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet210.merge_range('F21:F22', 'KELAS', header)
-            worksheet210.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet210.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet210.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet210.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet210.write('G22', 'MAT', body)
             worksheet210.write('H22', 'IND', body)
             worksheet210.write('I22', 'ENG', body)
-            worksheet210.write('J22', 'IPAS', body)
-            worksheet210.write('K22', 'JML', body)
-            worksheet210.write('L22', 'MAT', body)
-            worksheet210.write('M22', 'IND', body)
-            worksheet210.write('N22', 'ENG', body)
-            worksheet210.write('O22', 'IPAS', body)
-            worksheet210.write('P22', 'JML', body)
+            worksheet210.write('J22', 'IPA', body)
+            worksheet210.write('K22', 'IPS', body)
+            worksheet210.write('L22', 'JML', body)
+            worksheet210.write('M22', 'MAT', body)
+            worksheet210.write('N22', 'IND', body)
+            worksheet210.write('O22', 'ENG', body)
+            worksheet210.write('P22', 'IPA', body)
+            worksheet210.write('Q22', 'IPS', body)
+            worksheet210.write('R22', 'JML', body)
 
-            worksheet210.conditional_format(22, 0, row210+21, 15,
+            worksheet210.conditional_format(22, 0, row210+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 211
@@ -9783,20 +10278,22 @@
             worksheet211.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet211.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet211.merge_range('F4:F5', 'KELAS', header)
-            worksheet211.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet211.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet211.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet211.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet211.write('G5', 'MAT', body)
             worksheet211.write('H5', 'IND', body)
             worksheet211.write('I5', 'ENG', body)
-            worksheet211.write('J5', 'IPAS', body)
-            worksheet211.write('K5', 'JML', body)
-            worksheet211.write('L5', 'MAT', body)
-            worksheet211.write('M5', 'IND', body)
-            worksheet211.write('N5', 'ENG', body)
-            worksheet211.write('O5', 'IPAS', body)
-            worksheet211.write('P5', 'JML', body)
+            worksheet211.write('J5', 'IPA', body)
+            worksheet211.write('K5', 'IPS', body)
+            worksheet211.write('L5', 'JML', body)
+            worksheet211.write('M5', 'MAT', body)
+            worksheet211.write('N5', 'IND', body)
+            worksheet211.write('O5', 'ENG', body)
+            worksheet211.write('P5', 'IPA', body)
+            worksheet211.write('Q5', 'IPS', body)
+            worksheet211.write('R5', 'JML', body)
 
-            worksheet211.conditional_format(5, 0, row211_10+4, 15,
+            worksheet211.conditional_format(5, 0, row211_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet211.merge_range(
@@ -9811,20 +10308,22 @@
             worksheet211.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet211.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet211.merge_range('F21:F22', 'KELAS', header)
-            worksheet211.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet211.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet211.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet211.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet211.write('G22', 'MAT', body)
             worksheet211.write('H22', 'IND', body)
             worksheet211.write('I22', 'ENG', body)
-            worksheet211.write('J22', 'IPAS', body)
-            worksheet211.write('K22', 'JML', body)
-            worksheet211.write('L22', 'MAT', body)
-            worksheet211.write('M22', 'IND', body)
-            worksheet211.write('N22', 'ENG', body)
-            worksheet211.write('O22', 'IPAS', body)
-            worksheet211.write('P22', 'JML', body)
+            worksheet211.write('J22', 'IPA', body)
+            worksheet211.write('K22', 'IPS', body)
+            worksheet211.write('L22', 'JML', body)
+            worksheet211.write('M22', 'MAT', body)
+            worksheet211.write('N22', 'IND', body)
+            worksheet211.write('O22', 'ENG', body)
+            worksheet211.write('P22', 'IPA', body)
+            worksheet211.write('Q22', 'IPS', body)
+            worksheet211.write('R22', 'JML', body)
 
-            worksheet211.conditional_format(22, 0, row211+21, 15,
+            worksheet211.conditional_format(22, 0, row211+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 212
@@ -9848,20 +10347,22 @@
             worksheet212.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet212.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet212.merge_range('F4:F5', 'KELAS', header)
-            worksheet212.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet212.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet212.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet212.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet212.write('G5', 'MAT', body)
             worksheet212.write('H5', 'IND', body)
             worksheet212.write('I5', 'ENG', body)
-            worksheet212.write('J5', 'IPAS', body)
-            worksheet212.write('K5', 'JML', body)
-            worksheet212.write('L5', 'MAT', body)
-            worksheet212.write('M5', 'IND', body)
-            worksheet212.write('N5', 'ENG', body)
-            worksheet212.write('O5', 'IPAS', body)
-            worksheet212.write('P5', 'JML', body)
+            worksheet212.write('J5', 'IPA', body)
+            worksheet212.write('K5', 'IPS', body)
+            worksheet212.write('L5', 'JML', body)
+            worksheet212.write('M5', 'MAT', body)
+            worksheet212.write('N5', 'IND', body)
+            worksheet212.write('O5', 'ENG', body)
+            worksheet212.write('P5', 'IPA', body)
+            worksheet212.write('Q5', 'IPS', body)
+            worksheet212.write('R5', 'JML', body)
 
-            worksheet212.conditional_format(5, 0, row212_10+4, 15,
+            worksheet212.conditional_format(5, 0, row212_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet212.merge_range(
@@ -9876,20 +10377,22 @@
             worksheet212.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet212.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet212.merge_range('F21:F22', 'KELAS', header)
-            worksheet212.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet212.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet212.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet212.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet212.write('G22', 'MAT', body)
             worksheet212.write('H22', 'IND', body)
             worksheet212.write('I22', 'ENG', body)
-            worksheet212.write('J22', 'IPAS', body)
-            worksheet212.write('K22', 'JML', body)
-            worksheet212.write('L22', 'MAT', body)
-            worksheet212.write('M22', 'IND', body)
-            worksheet212.write('N22', 'ENG', body)
-            worksheet212.write('O22', 'IPAS', body)
-            worksheet212.write('P22', 'JML', body)
+            worksheet212.write('J22', 'IPA', body)
+            worksheet212.write('K22', 'IPS', body)
+            worksheet212.write('L22', 'JML', body)
+            worksheet212.write('M22', 'MAT', body)
+            worksheet212.write('N22', 'IND', body)
+            worksheet212.write('O22', 'ENG', body)
+            worksheet212.write('P22', 'IPA', body)
+            worksheet212.write('Q22', 'IPS', body)
+            worksheet212.write('R22', 'JML', body)
 
-            worksheet212.conditional_format(22, 0, row212+21, 15,
+            worksheet212.conditional_format(22, 0, row212+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 216
@@ -9913,20 +10416,22 @@
             worksheet216.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet216.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet216.merge_range('F4:F5', 'KELAS', header)
-            worksheet216.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet216.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet216.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet216.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet216.write('G5', 'MAT', body)
             worksheet216.write('H5', 'IND', body)
             worksheet216.write('I5', 'ENG', body)
-            worksheet216.write('J5', 'IPAS', body)
-            worksheet216.write('K5', 'JML', body)
-            worksheet216.write('L5', 'MAT', body)
-            worksheet216.write('M5', 'IND', body)
-            worksheet216.write('N5', 'ENG', body)
-            worksheet216.write('O5', 'IPAS', body)
-            worksheet216.write('P5', 'JML', body)
+            worksheet216.write('J5', 'IPA', body)
+            worksheet216.write('K5', 'IPS', body)
+            worksheet216.write('L5', 'JML', body)
+            worksheet216.write('M5', 'MAT', body)
+            worksheet216.write('N5', 'IND', body)
+            worksheet216.write('O5', 'ENG', body)
+            worksheet216.write('P5', 'IPA', body)
+            worksheet216.write('Q5', 'IPS', body)
+            worksheet216.write('R5', 'JML', body)
 
-            worksheet216.conditional_format(5, 0, row216_10+4, 15,
+            worksheet216.conditional_format(5, 0, row216_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet216.merge_range(
@@ -9941,20 +10446,22 @@
             worksheet216.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet216.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet216.merge_range('F21:F22', 'KELAS', header)
-            worksheet216.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet216.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet216.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet216.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet216.write('G22', 'MAT', body)
             worksheet216.write('H22', 'IND', body)
             worksheet216.write('I22', 'ENG', body)
-            worksheet216.write('J22', 'IPAS', body)
-            worksheet216.write('K22', 'JML', body)
-            worksheet216.write('L22', 'MAT', body)
-            worksheet216.write('M22', 'IND', body)
-            worksheet216.write('N22', 'ENG', body)
-            worksheet216.write('O22', 'IPAS', body)
-            worksheet216.write('P22', 'JML', body)
+            worksheet216.write('J22', 'IPA', body)
+            worksheet216.write('K22', 'IPS', body)
+            worksheet216.write('L22', 'JML', body)
+            worksheet216.write('M22', 'MAT', body)
+            worksheet216.write('N22', 'IND', body)
+            worksheet216.write('O22', 'ENG', body)
+            worksheet216.write('P22', 'IPA', body)
+            worksheet216.write('Q22', 'IPS', body)
+            worksheet216.write('R22', 'JML', body)
 
-            worksheet216.conditional_format(22, 0, row216+21, 15,
+            worksheet216.conditional_format(22, 0, row216+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 218
@@ -9978,20 +10485,22 @@
             worksheet218.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet218.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet218.merge_range('F4:F5', 'KELAS', header)
-            worksheet218.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet218.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet218.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet218.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet218.write('G5', 'MAT', body)
             worksheet218.write('H5', 'IND', body)
             worksheet218.write('I5', 'ENG', body)
-            worksheet218.write('J5', 'IPAS', body)
-            worksheet218.write('K5', 'JML', body)
-            worksheet218.write('L5', 'MAT', body)
-            worksheet218.write('M5', 'IND', body)
-            worksheet218.write('N5', 'ENG', body)
-            worksheet218.write('O5', 'IPAS', body)
-            worksheet218.write('P5', 'JML', body)
+            worksheet218.write('J5', 'IPA', body)
+            worksheet218.write('K5', 'IPS', body)
+            worksheet218.write('L5', 'JML', body)
+            worksheet218.write('M5', 'MAT', body)
+            worksheet218.write('N5', 'IND', body)
+            worksheet218.write('O5', 'ENG', body)
+            worksheet218.write('P5', 'IPA', body)
+            worksheet218.write('Q5', 'IPS', body)
+            worksheet218.write('R5', 'JML', body)
 
-            worksheet218.conditional_format(5, 0, row218_10+4, 15,
+            worksheet218.conditional_format(5, 0, row218_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet218.merge_range(
@@ -10006,20 +10515,22 @@
             worksheet218.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet218.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet218.merge_range('F21:F22', 'KELAS', header)
-            worksheet218.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet218.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet218.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet218.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet218.write('G22', 'MAT', body)
             worksheet218.write('H22', 'IND', body)
             worksheet218.write('I22', 'ENG', body)
-            worksheet218.write('J22', 'IPAS', body)
-            worksheet218.write('K22', 'JML', body)
-            worksheet218.write('L22', 'MAT', body)
-            worksheet218.write('M22', 'IND', body)
-            worksheet218.write('N22', 'ENG', body)
-            worksheet218.write('O22', 'IPAS', body)
-            worksheet218.write('P22', 'JML', body)
+            worksheet218.write('J22', 'IPA', body)
+            worksheet218.write('K22', 'IPS', body)
+            worksheet218.write('L22', 'JML', body)
+            worksheet218.write('M22', 'MAT', body)
+            worksheet218.write('N22', 'IND', body)
+            worksheet218.write('O22', 'ENG', body)
+            worksheet218.write('P22', 'IPA', body)
+            worksheet218.write('Q22', 'IPS', body)
+            worksheet218.write('R22', 'JML', body)
 
-            worksheet218.conditional_format(22, 0, row218+21, 15,
+            worksheet218.conditional_format(22, 0, row218+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 219
@@ -10043,20 +10554,22 @@
             worksheet219.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet219.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet219.merge_range('F4:F5', 'KELAS', header)
-            worksheet219.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet219.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet219.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet219.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet219.write('G5', 'MAT', body)
             worksheet219.write('H5', 'IND', body)
             worksheet219.write('I5', 'ENG', body)
-            worksheet219.write('J5', 'IPAS', body)
-            worksheet219.write('K5', 'JML', body)
-            worksheet219.write('L5', 'MAT', body)
-            worksheet219.write('M5', 'IND', body)
-            worksheet219.write('N5', 'ENG', body)
-            worksheet219.write('O5', 'IPAS', body)
-            worksheet219.write('P5', 'JML', body)
+            worksheet219.write('J5', 'IPA', body)
+            worksheet219.write('K5', 'IPS', body)
+            worksheet219.write('L5', 'JML', body)
+            worksheet219.write('M5', 'MAT', body)
+            worksheet219.write('N5', 'IND', body)
+            worksheet219.write('O5', 'ENG', body)
+            worksheet219.write('P5', 'IPA', body)
+            worksheet219.write('Q5', 'IPS', body)
+            worksheet219.write('R5', 'JML', body)
 
-            worksheet219.conditional_format(5, 0, row219_10+4, 15,
+            worksheet219.conditional_format(5, 0, row219_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet219.merge_range(
@@ -10071,20 +10584,22 @@
             worksheet219.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet219.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet219.merge_range('F21:F22', 'KELAS', header)
-            worksheet219.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet219.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet219.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet219.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet219.write('G22', 'MAT', body)
             worksheet219.write('H22', 'IND', body)
             worksheet219.write('I22', 'ENG', body)
-            worksheet219.write('J22', 'IPAS', body)
-            worksheet219.write('K22', 'JML', body)
-            worksheet219.write('L22', 'MAT', body)
-            worksheet219.write('M22', 'IND', body)
-            worksheet219.write('N22', 'ENG', body)
-            worksheet219.write('O22', 'IPAS', body)
-            worksheet219.write('P22', 'JML', body)
+            worksheet219.write('J22', 'IPA', body)
+            worksheet219.write('K22', 'IPS', body)
+            worksheet219.write('L22', 'JML', body)
+            worksheet219.write('M22', 'MAT', body)
+            worksheet219.write('N22', 'IND', body)
+            worksheet219.write('O22', 'ENG', body)
+            worksheet219.write('P22', 'IPA', body)
+            worksheet219.write('Q22', 'IPS', body)
+            worksheet219.write('R22', 'JML', body)
 
-            worksheet219.conditional_format(22, 0, row219+21, 15,
+            worksheet219.conditional_format(22, 0, row219+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 226
@@ -10108,20 +10623,22 @@
             worksheet226.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet226.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet226.merge_range('F4:F5', 'KELAS', header)
-            worksheet226.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet226.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet226.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet226.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet226.write('G5', 'MAT', body)
             worksheet226.write('H5', 'IND', body)
             worksheet226.write('I5', 'ENG', body)
-            worksheet226.write('J5', 'IPAS', body)
-            worksheet226.write('K5', 'JML', body)
-            worksheet226.write('L5', 'MAT', body)
-            worksheet226.write('M5', 'IND', body)
-            worksheet226.write('N5', 'ENG', body)
-            worksheet226.write('O5', 'IPAS', body)
-            worksheet226.write('P5', 'JML', body)
+            worksheet226.write('J5', 'IPA', body)
+            worksheet226.write('K5', 'IPS', body)
+            worksheet226.write('L5', 'JML', body)
+            worksheet226.write('M5', 'MAT', body)
+            worksheet226.write('N5', 'IND', body)
+            worksheet226.write('O5', 'ENG', body)
+            worksheet226.write('P5', 'IPA', body)
+            worksheet226.write('Q5', 'IPS', body)
+            worksheet226.write('R5', 'JML', body)
 
-            worksheet226.conditional_format(5, 0, row226_10+4, 15,
+            worksheet226.conditional_format(5, 0, row226_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet226.merge_range(
@@ -10136,20 +10653,22 @@
             worksheet226.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet226.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet226.merge_range('F21:F22', 'KELAS', header)
-            worksheet226.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet226.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet226.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet226.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet226.write('G22', 'MAT', body)
             worksheet226.write('H22', 'IND', body)
             worksheet226.write('I22', 'ENG', body)
-            worksheet226.write('J22', 'IPAS', body)
-            worksheet226.write('K22', 'JML', body)
-            worksheet226.write('L22', 'MAT', body)
-            worksheet226.write('M22', 'IND', body)
-            worksheet226.write('N22', 'ENG', body)
-            worksheet226.write('O22', 'IPAS', body)
-            worksheet226.write('P22', 'JML', body)
+            worksheet226.write('J22', 'IPA', body)
+            worksheet226.write('K22', 'IPS', body)
+            worksheet226.write('L22', 'JML', body)
+            worksheet226.write('M22', 'MAT', body)
+            worksheet226.write('N22', 'IND', body)
+            worksheet226.write('O22', 'ENG', body)
+            worksheet226.write('P22', 'IPA', body)
+            worksheet226.write('Q22', 'IPS', body)
+            worksheet226.write('R22', 'JML', body)
 
-            worksheet226.conditional_format(22, 0, row226+21, 15,
+            worksheet226.conditional_format(22, 0, row226+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 227
@@ -10173,20 +10692,22 @@
             worksheet227.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet227.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet227.merge_range('F4:F5', 'KELAS', header)
-            worksheet227.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet227.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet227.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet227.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet227.write('G5', 'MAT', body)
             worksheet227.write('H5', 'IND', body)
             worksheet227.write('I5', 'ENG', body)
-            worksheet227.write('J5', 'IPAS', body)
-            worksheet227.write('K5', 'JML', body)
-            worksheet227.write('L5', 'MAT', body)
-            worksheet227.write('M5', 'IND', body)
-            worksheet227.write('N5', 'ENG', body)
-            worksheet227.write('O5', 'IPAS', body)
-            worksheet227.write('P5', 'JML', body)
+            worksheet227.write('J5', 'IPA', body)
+            worksheet227.write('K5', 'IPS', body)
+            worksheet227.write('L5', 'JML', body)
+            worksheet227.write('M5', 'MAT', body)
+            worksheet227.write('N5', 'IND', body)
+            worksheet227.write('O5', 'ENG', body)
+            worksheet227.write('P5', 'IPA', body)
+            worksheet227.write('Q5', 'IPS', body)
+            worksheet227.write('R5', 'JML', body)
 
-            worksheet227.conditional_format(5, 0, row227_10+4, 15,
+            worksheet227.conditional_format(5, 0, row227_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet227.merge_range(
@@ -10201,20 +10722,22 @@
             worksheet227.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet227.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet227.merge_range('F21:F22', 'KELAS', header)
-            worksheet227.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet227.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet227.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet227.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet227.write('G22', 'MAT', body)
             worksheet227.write('H22', 'IND', body)
             worksheet227.write('I22', 'ENG', body)
-            worksheet227.write('J22', 'IPAS', body)
-            worksheet227.write('K22', 'JML', body)
-            worksheet227.write('L22', 'MAT', body)
-            worksheet227.write('M22', 'IND', body)
-            worksheet227.write('N22', 'ENG', body)
-            worksheet227.write('O22', 'IPAS', body)
-            worksheet227.write('P22', 'JML', body)
+            worksheet227.write('J22', 'IPA', body)
+            worksheet227.write('K22', 'IPS', body)
+            worksheet227.write('L22', 'JML', body)
+            worksheet227.write('M22', 'MAT', body)
+            worksheet227.write('N22', 'IND', body)
+            worksheet227.write('O22', 'ENG', body)
+            worksheet227.write('P22', 'IPA', body)
+            worksheet227.write('Q22', 'IPS', body)
+            worksheet227.write('R22', 'JML', body)
 
-            worksheet227.conditional_format(22, 0, row227+21, 15,
+            worksheet227.conditional_format(22, 0, row227+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 228
@@ -10238,20 +10761,22 @@
             worksheet228.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet228.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet228.merge_range('F4:F5', 'KELAS', header)
-            worksheet228.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet228.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet228.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet228.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet228.write('G5', 'MAT', body)
             worksheet228.write('H5', 'IND', body)
             worksheet228.write('I5', 'ENG', body)
-            worksheet228.write('J5', 'IPAS', body)
-            worksheet228.write('K5', 'JML', body)
-            worksheet228.write('L5', 'MAT', body)
-            worksheet228.write('M5', 'IND', body)
-            worksheet228.write('N5', 'ENG', body)
-            worksheet228.write('O5', 'IPAS', body)
-            worksheet228.write('P5', 'JML', body)
+            worksheet228.write('J5', 'IPA', body)
+            worksheet228.write('K5', 'IPS', body)
+            worksheet228.write('L5', 'JML', body)
+            worksheet228.write('M5', 'MAT', body)
+            worksheet228.write('N5', 'IND', body)
+            worksheet228.write('O5', 'ENG', body)
+            worksheet228.write('P5', 'IPA', body)
+            worksheet228.write('Q5', 'IPS', body)
+            worksheet228.write('R5', 'JML', body)
 
-            worksheet228.conditional_format(5, 0, row228_10+4, 15,
+            worksheet228.conditional_format(5, 0, row228_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet228.merge_range(
@@ -10266,20 +10791,22 @@
             worksheet228.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet228.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet228.merge_range('F21:F22', 'KELAS', header)
-            worksheet228.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet228.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet228.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet228.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet228.write('G22', 'MAT', body)
             worksheet228.write('H22', 'IND', body)
             worksheet228.write('I22', 'ENG', body)
-            worksheet228.write('J22', 'IPAS', body)
-            worksheet228.write('K22', 'JML', body)
-            worksheet228.write('L22', 'MAT', body)
-            worksheet228.write('M22', 'IND', body)
-            worksheet228.write('N22', 'ENG', body)
-            worksheet228.write('O22', 'IPAS', body)
-            worksheet228.write('P22', 'JML', body)
+            worksheet228.write('J22', 'IPA', body)
+            worksheet228.write('K22', 'IPS', body)
+            worksheet228.write('L22', 'JML', body)
+            worksheet228.write('M22', 'MAT', body)
+            worksheet228.write('N22', 'IND', body)
+            worksheet228.write('O22', 'ENG', body)
+            worksheet228.write('P22', 'IPA', body)
+            worksheet228.write('Q22', 'IPS', body)
+            worksheet228.write('R22', 'JML', body)
 
-            worksheet228.conditional_format(22, 0, row228+21, 15,
+            worksheet228.conditional_format(22, 0, row228+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 229
@@ -10303,20 +10830,22 @@
             worksheet229.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet229.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet229.merge_range('F4:F5', 'KELAS', header)
-            worksheet229.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet229.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet229.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet229.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet229.write('G5', 'MAT', body)
             worksheet229.write('H5', 'IND', body)
             worksheet229.write('I5', 'ENG', body)
-            worksheet229.write('J5', 'IPAS', body)
-            worksheet229.write('K5', 'JML', body)
-            worksheet229.write('L5', 'MAT', body)
-            worksheet229.write('M5', 'IND', body)
-            worksheet229.write('N5', 'ENG', body)
-            worksheet229.write('O5', 'IPAS', body)
-            worksheet229.write('P5', 'JML', body)
+            worksheet229.write('J5', 'IPA', body)
+            worksheet229.write('K5', 'IPS', body)
+            worksheet229.write('L5', 'JML', body)
+            worksheet229.write('M5', 'MAT', body)
+            worksheet229.write('N5', 'IND', body)
+            worksheet229.write('O5', 'ENG', body)
+            worksheet229.write('P5', 'IPA', body)
+            worksheet229.write('Q5', 'IPS', body)
+            worksheet229.write('R5', 'JML', body)
 
-            worksheet229.conditional_format(5, 0, row229_10+4, 15,
+            worksheet229.conditional_format(5, 0, row229_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet229.merge_range(
@@ -10331,20 +10860,22 @@
             worksheet229.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet229.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet229.merge_range('F21:F22', 'KELAS', header)
-            worksheet229.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet229.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet229.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet229.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet229.write('G22', 'MAT', body)
             worksheet229.write('H22', 'IND', body)
             worksheet229.write('I22', 'ENG', body)
-            worksheet229.write('J22', 'IPAS', body)
-            worksheet229.write('K22', 'JML', body)
-            worksheet229.write('L22', 'MAT', body)
-            worksheet229.write('M22', 'IND', body)
-            worksheet229.write('N22', 'ENG', body)
-            worksheet229.write('O22', 'IPAS', body)
-            worksheet229.write('P22', 'JML', body)
+            worksheet229.write('J22', 'IPA', body)
+            worksheet229.write('K22', 'IPS', body)
+            worksheet229.write('L22', 'JML', body)
+            worksheet229.write('M22', 'MAT', body)
+            worksheet229.write('N22', 'IND', body)
+            worksheet229.write('O22', 'ENG', body)
+            worksheet229.write('P22', 'IPA', body)
+            worksheet229.write('Q22', 'IPS', body)
+            worksheet229.write('R22', 'JML', body)
 
-            worksheet229.conditional_format(22, 0, row229+21, 15,
+            worksheet229.conditional_format(22, 0, row229+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 230
@@ -10368,20 +10899,22 @@
             worksheet230.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet230.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet230.merge_range('F4:F5', 'KELAS', header)
-            worksheet230.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet230.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet230.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet230.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet230.write('G5', 'MAT', body)
             worksheet230.write('H5', 'IND', body)
             worksheet230.write('I5', 'ENG', body)
-            worksheet230.write('J5', 'IPAS', body)
-            worksheet230.write('K5', 'JML', body)
-            worksheet230.write('L5', 'MAT', body)
-            worksheet230.write('M5', 'IND', body)
-            worksheet230.write('N5', 'ENG', body)
-            worksheet230.write('O5', 'IPAS', body)
-            worksheet230.write('P5', 'JML', body)
+            worksheet230.write('J5', 'IPA', body)
+            worksheet230.write('K5', 'IPS', body)
+            worksheet230.write('L5', 'JML', body)
+            worksheet230.write('M5', 'MAT', body)
+            worksheet230.write('N5', 'IND', body)
+            worksheet230.write('O5', 'ENG', body)
+            worksheet230.write('P5', 'IPA', body)
+            worksheet230.write('Q5', 'IPS', body)
+            worksheet230.write('R5', 'JML', body)
 
-            worksheet230.conditional_format(5, 0, row230_10+4, 15,
+            worksheet230.conditional_format(5, 0, row230_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet230.merge_range(
@@ -10396,20 +10929,22 @@
             worksheet230.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet230.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet230.merge_range('F21:F22', 'KELAS', header)
-            worksheet230.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet230.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet230.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet230.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet230.write('G22', 'MAT', body)
             worksheet230.write('H22', 'IND', body)
             worksheet230.write('I22', 'ENG', body)
-            worksheet230.write('J22', 'IPAS', body)
-            worksheet230.write('K22', 'JML', body)
-            worksheet230.write('L22', 'MAT', body)
-            worksheet230.write('M22', 'IND', body)
-            worksheet230.write('N22', 'ENG', body)
-            worksheet230.write('O22', 'IPAS', body)
-            worksheet230.write('P22', 'JML', body)
+            worksheet230.write('J22', 'IPA', body)
+            worksheet230.write('K22', 'IPS', body)
+            worksheet230.write('L22', 'JML', body)
+            worksheet230.write('M22', 'MAT', body)
+            worksheet230.write('N22', 'IND', body)
+            worksheet230.write('O22', 'ENG', body)
+            worksheet230.write('P22', 'IPA', body)
+            worksheet230.write('Q22', 'IPS', body)
+            worksheet230.write('R22', 'JML', body)
 
-            worksheet230.conditional_format(22, 0, row230+21, 15,
+            worksheet230.conditional_format(22, 0, row230+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 231
@@ -10433,20 +10968,22 @@
             worksheet231.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet231.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet231.merge_range('F4:F5', 'KELAS', header)
-            worksheet231.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet231.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet231.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet231.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet231.write('G5', 'MAT', body)
             worksheet231.write('H5', 'IND', body)
             worksheet231.write('I5', 'ENG', body)
-            worksheet231.write('J5', 'IPAS', body)
-            worksheet231.write('K5', 'JML', body)
-            worksheet231.write('L5', 'MAT', body)
-            worksheet231.write('M5', 'IND', body)
-            worksheet231.write('N5', 'ENG', body)
-            worksheet231.write('O5', 'IPAS', body)
-            worksheet231.write('P5', 'JML', body)
+            worksheet231.write('J5', 'IPA', body)
+            worksheet231.write('K5', 'IPS', body)
+            worksheet231.write('L5', 'JML', body)
+            worksheet231.write('M5', 'MAT', body)
+            worksheet231.write('N5', 'IND', body)
+            worksheet231.write('O5', 'ENG', body)
+            worksheet231.write('P5', 'IPA', body)
+            worksheet231.write('Q5', 'IPS', body)
+            worksheet231.write('R5', 'JML', body)
 
-            worksheet231.conditional_format(5, 0, row231_10+4, 15,
+            worksheet231.conditional_format(5, 0, row231_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet231.merge_range(
@@ -10461,20 +10998,22 @@
             worksheet231.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet231.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet231.merge_range('F21:F22', 'KELAS', header)
-            worksheet231.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet231.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet231.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet231.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet231.write('G22', 'MAT', body)
             worksheet231.write('H22', 'IND', body)
             worksheet231.write('I22', 'ENG', body)
-            worksheet231.write('J22', 'IPAS', body)
-            worksheet231.write('K22', 'JML', body)
-            worksheet231.write('L22', 'MAT', body)
-            worksheet231.write('M22', 'IND', body)
-            worksheet231.write('N22', 'ENG', body)
-            worksheet231.write('O22', 'IPAS', body)
-            worksheet231.write('P22', 'JML', body)
+            worksheet231.write('J22', 'IPA', body)
+            worksheet231.write('K22', 'IPS', body)
+            worksheet231.write('L22', 'JML', body)
+            worksheet231.write('M22', 'MAT', body)
+            worksheet231.write('N22', 'IND', body)
+            worksheet231.write('O22', 'ENG', body)
+            worksheet231.write('P22', 'IPA', body)
+            worksheet231.write('Q22', 'IPS', body)
+            worksheet231.write('R22', 'JML', body)
 
-            worksheet231.conditional_format(22, 0, row231+21, 15,
+            worksheet231.conditional_format(22, 0, row231+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 233
@@ -10498,20 +11037,22 @@
             worksheet233.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet233.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet233.merge_range('F4:F5', 'KELAS', header)
-            worksheet233.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet233.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet233.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet233.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet233.write('G5', 'MAT', body)
             worksheet233.write('H5', 'IND', body)
             worksheet233.write('I5', 'ENG', body)
-            worksheet233.write('J5', 'IPAS', body)
-            worksheet233.write('K5', 'JML', body)
-            worksheet233.write('L5', 'MAT', body)
-            worksheet233.write('M5', 'IND', body)
-            worksheet233.write('N5', 'ENG', body)
-            worksheet233.write('O5', 'IPAS', body)
-            worksheet233.write('P5', 'JML', body)
+            worksheet233.write('J5', 'IPA', body)
+            worksheet233.write('K5', 'IPS', body)
+            worksheet233.write('L5', 'JML', body)
+            worksheet233.write('M5', 'MAT', body)
+            worksheet233.write('N5', 'IND', body)
+            worksheet233.write('O5', 'ENG', body)
+            worksheet233.write('P5', 'IPA', body)
+            worksheet233.write('Q5', 'IPS', body)
+            worksheet233.write('R5', 'JML', body)
 
-            worksheet233.conditional_format(5, 0, row233_10+4, 15,
+            worksheet233.conditional_format(5, 0, row233_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet233.merge_range(
@@ -10526,20 +11067,22 @@
             worksheet233.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet233.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet233.merge_range('F21:F22', 'KELAS', header)
-            worksheet233.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet233.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet233.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet233.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet233.write('G22', 'MAT', body)
             worksheet233.write('H22', 'IND', body)
             worksheet233.write('I22', 'ENG', body)
-            worksheet233.write('J22', 'IPAS', body)
-            worksheet233.write('K22', 'JML', body)
-            worksheet233.write('L22', 'MAT', body)
-            worksheet233.write('M22', 'IND', body)
-            worksheet233.write('N22', 'ENG', body)
-            worksheet233.write('O22', 'IPAS', body)
-            worksheet233.write('P22', 'JML', body)
+            worksheet233.write('J22', 'IPA', body)
+            worksheet233.write('K22', 'IPS', body)
+            worksheet233.write('L22', 'JML', body)
+            worksheet233.write('M22', 'MAT', body)
+            worksheet233.write('N22', 'IND', body)
+            worksheet233.write('O22', 'ENG', body)
+            worksheet233.write('P22', 'IPA', body)
+            worksheet233.write('Q22', 'IPS', body)
+            worksheet233.write('R22', 'JML', body)
 
-            worksheet233.conditional_format(22, 0, row233+21, 15,
+            worksheet233.conditional_format(22, 0, row233+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 234
@@ -10563,20 +11106,22 @@
             worksheet234.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet234.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet234.merge_range('F4:F5', 'KELAS', header)
-            worksheet234.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet234.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet234.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet234.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet234.write('G5', 'MAT', body)
             worksheet234.write('H5', 'IND', body)
             worksheet234.write('I5', 'ENG', body)
-            worksheet234.write('J5', 'IPAS', body)
-            worksheet234.write('K5', 'JML', body)
-            worksheet234.write('L5', 'MAT', body)
-            worksheet234.write('M5', 'IND', body)
-            worksheet234.write('N5', 'ENG', body)
-            worksheet234.write('O5', 'IPAS', body)
-            worksheet234.write('P5', 'JML', body)
+            worksheet234.write('J5', 'IPA', body)
+            worksheet234.write('K5', 'IPS', body)
+            worksheet234.write('L5', 'JML', body)
+            worksheet234.write('M5', 'MAT', body)
+            worksheet234.write('N5', 'IND', body)
+            worksheet234.write('O5', 'ENG', body)
+            worksheet234.write('P5', 'IPA', body)
+            worksheet234.write('Q5', 'IPS', body)
+            worksheet234.write('R5', 'JML', body)
 
-            worksheet234.conditional_format(5, 0, row234_10+4, 15,
+            worksheet234.conditional_format(5, 0, row234_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet234.merge_range(
@@ -10591,20 +11136,22 @@
             worksheet234.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet234.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet234.merge_range('F21:F22', 'KELAS', header)
-            worksheet234.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet234.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet234.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet234.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet234.write('G22', 'MAT', body)
             worksheet234.write('H22', 'IND', body)
             worksheet234.write('I22', 'ENG', body)
-            worksheet234.write('J22', 'IPAS', body)
-            worksheet234.write('K22', 'JML', body)
-            worksheet234.write('L22', 'MAT', body)
-            worksheet234.write('M22', 'IND', body)
-            worksheet234.write('N22', 'ENG', body)
-            worksheet234.write('O22', 'IPAS', body)
-            worksheet234.write('P22', 'JML', body)
+            worksheet234.write('J22', 'IPA', body)
+            worksheet234.write('K22', 'IPS', body)
+            worksheet234.write('L22', 'JML', body)
+            worksheet234.write('M22', 'MAT', body)
+            worksheet234.write('N22', 'IND', body)
+            worksheet234.write('O22', 'ENG', body)
+            worksheet234.write('P22', 'IPA', body)
+            worksheet234.write('Q22', 'IPS', body)
+            worksheet234.write('R22', 'JML', body)
 
-            worksheet234.conditional_format(22, 0, row234+21, 15,
+            worksheet234.conditional_format(22, 0, row234+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 235
@@ -10628,20 +11175,22 @@
             worksheet235.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet235.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet235.merge_range('F4:F5', 'KELAS', header)
-            worksheet235.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet235.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet235.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet235.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet235.write('G5', 'MAT', body)
             worksheet235.write('H5', 'IND', body)
             worksheet235.write('I5', 'ENG', body)
-            worksheet235.write('J5', 'IPAS', body)
-            worksheet235.write('K5', 'JML', body)
-            worksheet235.write('L5', 'MAT', body)
-            worksheet235.write('M5', 'IND', body)
-            worksheet235.write('N5', 'ENG', body)
-            worksheet235.write('O5', 'IPAS', body)
-            worksheet235.write('P5', 'JML', body)
+            worksheet235.write('J5', 'IPA', body)
+            worksheet235.write('K5', 'IPS', body)
+            worksheet235.write('L5', 'JML', body)
+            worksheet235.write('M5', 'MAT', body)
+            worksheet235.write('N5', 'IND', body)
+            worksheet235.write('O5', 'ENG', body)
+            worksheet235.write('P5', 'IPA', body)
+            worksheet235.write('Q5', 'IPS', body)
+            worksheet235.write('R5', 'JML', body)
 
-            worksheet235.conditional_format(5, 0, row235_10+4, 15,
+            worksheet235.conditional_format(5, 0, row235_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet235.merge_range(
@@ -10656,20 +11205,22 @@
             worksheet235.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet235.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet235.merge_range('F21:F22', 'KELAS', header)
-            worksheet235.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet235.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet235.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet235.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet235.write('G22', 'MAT', body)
             worksheet235.write('H22', 'IND', body)
             worksheet235.write('I22', 'ENG', body)
-            worksheet235.write('J22', 'IPAS', body)
-            worksheet235.write('K22', 'JML', body)
-            worksheet235.write('L22', 'MAT', body)
-            worksheet235.write('M22', 'IND', body)
-            worksheet235.write('N22', 'ENG', body)
-            worksheet235.write('O22', 'IPAS', body)
-            worksheet235.write('P22', 'JML', body)
+            worksheet235.write('J22', 'IPA', body)
+            worksheet235.write('K22', 'IPS', body)
+            worksheet235.write('L22', 'JML', body)
+            worksheet235.write('M22', 'MAT', body)
+            worksheet235.write('N22', 'IND', body)
+            worksheet235.write('O22', 'ENG', body)
+            worksheet235.write('P22', 'IPA', body)
+            worksheet235.write('Q22', 'IPS', body)
+            worksheet235.write('R22', 'JML', body)
 
-            worksheet235.conditional_format(22, 0, row235+21, 15,
+            worksheet235.conditional_format(22, 0, row235+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 236
@@ -10693,20 +11244,22 @@
             worksheet236.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet236.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet236.merge_range('F4:F5', 'KELAS', header)
-            worksheet236.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet236.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet236.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet236.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet236.write('G5', 'MAT', body)
             worksheet236.write('H5', 'IND', body)
             worksheet236.write('I5', 'ENG', body)
-            worksheet236.write('J5', 'IPAS', body)
-            worksheet236.write('K5', 'JML', body)
-            worksheet236.write('L5', 'MAT', body)
-            worksheet236.write('M5', 'IND', body)
-            worksheet236.write('N5', 'ENG', body)
-            worksheet236.write('O5', 'IPAS', body)
-            worksheet236.write('P5', 'JML', body)
+            worksheet236.write('J5', 'IPA', body)
+            worksheet236.write('K5', 'IPS', body)
+            worksheet236.write('L5', 'JML', body)
+            worksheet236.write('M5', 'MAT', body)
+            worksheet236.write('N5', 'IND', body)
+            worksheet236.write('O5', 'ENG', body)
+            worksheet236.write('P5', 'IPA', body)
+            worksheet236.write('Q5', 'IPS', body)
+            worksheet236.write('R5', 'JML', body)
 
-            worksheet236.conditional_format(5, 0, row236_10+4, 15,
+            worksheet236.conditional_format(5, 0, row236_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet236.merge_range(
@@ -10721,20 +11274,22 @@
             worksheet236.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet236.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet236.merge_range('F21:F22', 'KELAS', header)
-            worksheet236.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet236.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet236.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet236.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet236.write('G22', 'MAT', body)
             worksheet236.write('H22', 'IND', body)
             worksheet236.write('I22', 'ENG', body)
-            worksheet236.write('J22', 'IPAS', body)
-            worksheet236.write('K22', 'JML', body)
-            worksheet236.write('L22', 'MAT', body)
-            worksheet236.write('M22', 'IND', body)
-            worksheet236.write('N22', 'ENG', body)
-            worksheet236.write('O22', 'IPAS', body)
-            worksheet236.write('P22', 'JML', body)
+            worksheet236.write('J22', 'IPA', body)
+            worksheet236.write('K22', 'IPS', body)
+            worksheet236.write('L22', 'JML', body)
+            worksheet236.write('M22', 'MAT', body)
+            worksheet236.write('N22', 'IND', body)
+            worksheet236.write('O22', 'ENG', body)
+            worksheet236.write('P22', 'IPA', body)
+            worksheet236.write('Q22', 'IPS', body)
+            worksheet236.write('R22', 'JML', body)
 
-            worksheet236.conditional_format(22, 0, row236+21, 15,
+            worksheet236.conditional_format(22, 0, row236+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             workbook.close()
@@ -10752,69 +11307,76 @@
         if uploaded_file is not None:
             df = pd.read_excel(uploaded_file)
 
-            len_col = df.shape[1]
-
-            r = df.shape[0]-5  # baris average
-            s = df.shape[0]-4  # baris stdev
-            t = df.shape[0]-3  # baris max
-            u = df.shape[0]-2  # baris min
+            # 89
+            r = df.shape[0]-5
+            # 90
+            s = df.shape[0]-4
+            # 91
+            t = df.shape[0]-3
+            # 92
+            u = df.shape[0]-2
 
             # JUMLAH PESERTA
-            peserta = df.iloc[r, len_col-136]
+            peserta = df.iloc[r, 23]
 
             # rata-rata jumlah benar
-            rata_mat = df.iloc[r, len_col-20]
-            rata_ind = df.iloc[r, len_col-19]
-            rata_eng = df.iloc[r, len_col-18]
-            rata_ipas = df.iloc[r, len_col-17]
-            rata_jml = df.iloc[r, len_col-16]
+            rata_mat = df.iloc[r, 156]
+            rata_ind = df.iloc[r, 157]
+            rata_eng = df.iloc[r, 158]
+            rata_ipa = df.iloc[r, 159]
+            rata_ips = df.iloc[r, 160]
+            rata_jml = df.iloc[r, 161]
 
             # rata-rata nilai standar
-            rata_Smat = df.iloc[t, len_col-11]
-            rata_Seko = df.iloc[t, len_col-10]
-            rata_Ssej = df.iloc[t, len_col-9]
-            rata_Ssos = df.iloc[t, len_col-8]
-            rata_Sjml = df.iloc[t, len_col-7]
+            rata_Smat = df.iloc[t, 167]
+            rata_Sind = df.iloc[t, 168]
+            rata_Seng = df.iloc[t, 169]
+            rata_Sipa = df.iloc[t, 170]
+            rata_Sips = df.iloc[t, 171]
+            rata_Sjml = df.iloc[t, 172]
 
-            # max jumlah benar
-            max_mat = df.iloc[t, len_col-20]
-            max_ind = df.iloc[t, len_col-19]
-            max_eng = df.iloc[t, len_col-18]
-            max_ipas = df.iloc[t, len_col-17]
-            max_jml = df.iloc[t, len_col-16]
+            max_mat = df.iloc[t, 156]
+            max_ind = df.iloc[t, 157]
+            max_eng = df.iloc[t, 158]
+            max_ipa = df.iloc[t, 159]
+            max_ips = df.iloc[t, 160]
+            max_jml = df.iloc[t, 161]
 
             # max nilai standar
-            max_Smat = df.iloc[r, len_col-11]
-            max_Seko = df.iloc[r, len_col-10]
-            max_Ssej = df.iloc[r, len_col-9]
-            max_Ssos = df.iloc[r, len_col-8]
-            max_Sjml = df.iloc[r, len_col-7]
+            max_Smat = df.iloc[r, 167]
+            max_Sind = df.iloc[r, 168]
+            max_Seng = df.iloc[r, 169]
+            max_Sipa = df.iloc[r, 170]
+            max_Sips = df.iloc[r, 171]
+            max_Sjml = df.iloc[r, 172]
 
             # min jumlah benar
-            min_mat = df.iloc[u, len_col-20]
-            min_ind = df.iloc[u, len_col-19]
-            min_eng = df.iloc[u, len_col-18]
-            min_ipas = df.iloc[u, len_col-17]
-            min_jml = df.iloc[u, len_col-16]
+            min_mat = df.iloc[u, 156]
+            min_ind = df.iloc[u, 157]
+            min_eng = df.iloc[u, 158]
+            min_ipa = df.iloc[u, 159]
+            min_ips = df.iloc[u, 160]
+            min_jml = df.iloc[u, 161]
 
             # min nilai standar
-            min_Smat = df.iloc[s, len_col-11]
-            min_Seko = df.iloc[s, len_col-10]
-            min_Ssej = df.iloc[s, len_col-9]
-            min_Ssos = df.iloc[s, len_col-8]
-            min_Sjml = df.iloc[s, len_col-7]
+            min_Smat = df.iloc[s, 167]
+            min_Sind = df.iloc[s, 168]
+            min_Seng = df.iloc[s, 169]
+            min_Sipa = df.iloc[s, 170]
+            min_Sips = df.iloc[s, 171]
+            min_Sjml = df.iloc[s, 172]
 
-            data_jml_benar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPAS', 'JUMLAH (JML)'],
-                              'TERENDAH': [min_mat, min_ind, min_eng, min_ipas, min_jml],
-                              'RATA-RATA': [rata_mat, rata_ind, rata_eng, rata_ipas, rata_jml],
-                              'TERTINGGI': [max_mat, max_ind, max_eng, max_ipas, max_jml]}
+            data_jml_benar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPA', 'IPS', 'JUMLAH (JML)'],
+                              'TERENDAH': [min_mat, min_ind, min_eng, min_ipa, min_ips, min_jml],
+                              'RATA-RATA': [rata_mat, rata_ind, rata_eng, rata_ipa, rata_ips, rata_jml],
+                              'TERTINGGI': [max_mat, max_ind, max_eng, max_ipa, max_ips, max_jml]}
 
             jml_benar = pd.DataFrame(data_jml_benar)
 
-            data_n_standar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPAS', 'JUMLAH (JML)'],
-                              'TERENDAH': [min_Smat, min_Seko, min_Ssej, min_Ssos, min_Sjml],
-                              'RATA-RATA': [rata_Smat, rata_Seko, rata_Ssej, rata_Ssos, rata_Sjml],
-                              'TERTINGGI': [max_Smat, max_Seko, max_Ssej, max_Ssos, max_Sjml]}
+            data_n_standar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPA', 'IPS', 'JUMLAH (JML)'],
+                              'TERENDAH': [min_Smat, min_Sind, min_Seng, min_Sipa, min_Sips, min_Sjml],
+                              'RATA-RATA': [rata_Smat, rata_Sind, rata_Seng, rata_Sipa, rata_Sips, rata_Sjml],
+                              'TERTINGGI': [max_Smat, max_Sind, max_Seng, max_Sipa, max_Sips, max_Sjml]}
 
             n_standar = pd.DataFrame(data_n_standar)
 
@@ -10822,19 +11384,23 @@
 
             jml_peserta = pd.DataFrame(data_jml_peserta)
 
-            data_jml_soal = {'BIDANG STUDI': ['MAT', 'EKO', 'SEJ', 'SOS'],
-                             'JUMLAH': [JML_SOAINDAT, JML_SOAL_EKO, JML_SOAL_SEJ, JML_SOAL_SOSIND
-            jml_soal = pd.DataFrame(data_jml_soEIPAS
-            df = df[['LOKASI', 'RANK LOK.', 'RANK NAS.', 'NOMOR NF', 'NAMA SISWA', 'NAMA SEKOLAH',
-                    'KELAS', 'MAT', 'EKO', 'SEJ', 'SOS', 'JML', 'S_MAT', 'S_EKO', 'S_SEJ', 'S_SOS', 'S_JML'IND
-            # sort best ENG
-            grouped = dfIPASoupby('LOKASI')
+            data_jml_soal = {'BIDANG STUDI': ['MAT', 'IND', 'ENG', 'IPA', 'IPS'],
+                             'JUMLAH': [JML_SOAL_MAT, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_IPA, JML_SOAL_IPS]}
+
+            jml_soal = pd.DataFrame(data_jml_soal)
+
+            df = df[['LOKASI', 'RANK LOK.', 'RANK NAS.', 'NOMOR NF', 'NAMA SISWA', 'NAMA SEKOLAH', 'KELAS',
+                    'MAT', 'IND', 'ENG', 'IPA', 'IPS', 'JML', 'S_MAT', 'S_IND', 'S_ENG', 'S_IPA', 'S_IPS', 'S_JML']]
+
+            # sort best 150
+            grouped = df.groupby('LOKASI')
             dfs = []  # List kosong untuk menyimpan DataFrame yang akan digabungkan
             for name, group in grouped:
                 dfs.append(group)
             best150 = pd.concat(dfs)
 
             # sort setiap lokasi
+            # tanpa 238, 240, 241, 243, 244, 247, 251, 253, 258, 277, 281, 296, 297
             sort237 = df[df['LOKASI'] == 237]
             sort245 = df[df['LOKASI'] == 245]
             sort246 = df[df['LOKASI'] == 246]
@@ -12290,7 +12856,7 @@
                 'right': 1})
 
             # worksheet cover
-            worksheetcover.conditional_format(15, 0, 11, 3,
+            worksheetcover.conditional_format(16, 0, 11, 3,
                                               {'type': 'no_errors', 'format': borderCover})
 
             worksheetcover.insert_image('F1', r'logo nf.jpg')
@@ -12317,17 +12883,17 @@
             worksheetcover.merge_range(
                 'A4:F5', fr'{penilaian}', sub_titleCover)
             worksheetcover.merge_range(
-                'A6:F7', fr'{semester} TAHUN {tahun} ({kurikulum})', headerCover)
+                'A6:F7', fr'{semester} TAHUN {tahun}', headerCover)
             worksheetcover.write('A9', 'JUMLAH BENAR', sub_headerCover)
             worksheetcover.write('A19', 'NILAI STANDAR', sub_headerCover)
-            worksheetcover.merge_range('F8:G9', fr'{kelas}', kelasCover)
+            worksheetcover.merge_range('F8:G9', fr'{kelas}-{kurikulum}', kelasCover)
             worksheetcover.merge_range(
                 'F11:G12', 'JUMLAH SOAL', sub_header1Cover)
 
-            worksheetcover.conditional_format(25, 0, 21, 3,
+            worksheetcover.conditional_format(26, 0, 21, 3,
                                               {'type': 'no_errors', 'format': borderCover})
 
-            worksheetcover.conditional_format(16, 6, 13, 5,
+            worksheetcover.conditional_format(17, 6, 13, 5,
                                               {'type': 'no_errors', 'format': borderCover})
 
             worksheetcover.conditional_format(21, 5, 21, 5,
@@ -12343,28 +12909,30 @@
             worksheetbest.set_column('E:E', 7.57, left)
             worksheetbest.set_column('F:Q', 6.29, center)
             worksheetbest.merge_range(
-                'A1:O1', fr'150 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF NASIONAL', title)
+                'A1:Q1', fr'150 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF NASIONAL', title)
             worksheetbest.merge_range(
-                'A2:O2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
+                'A2:Q2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheetbest.merge_range('A4:A5', 'RANK', header)
             worksheetbest.merge_range('B4:B5', 'NOMOR NF', header)
             worksheetbest.merge_range('C4:C5', 'NAMA SISWA', header)
             worksheetbest.merge_range('D4:D5', 'SEKOLAH', header)
             worksheetbest.merge_range('E4:E5', 'KELAS', header)
-            worksheetbest.merge_range('F4:J4', 'JUMLAH BENAR', header)
-            worksheetbest.merge_range('K4:O4', 'NILAI STANDAR', header)
+            worksheetbest.merge_range('F4:K4', 'JUMLAH BENAR', header)
+            worksheetbest.merge_range('L4:Q4', 'NILAI STANDAR', header)
             worksheetbest.write('F5', 'MAT', body)
             worksheetbest.write('G5', 'IND', body)
             worksheetbest.write('H5', 'ENG', body)
-            worksheetbest.write('I5', 'IPAS', body)
-            worksheetbest.write('J5', 'JML', body)
-            worksheetbest.write('K5', 'MAT', body)
-            worksheetbest.write('L5', 'IND', body)
-            worksheetbest.write('M5', 'ENG', body)
-            worksheetbest.write('N5', 'IPAS', body)
-            worksheetbest.write('O5', 'JML', body)
+            worksheetbest.write('I5', 'IPA', body)
+            worksheetbest.write('J5', 'IPS', body)
+            worksheetbest.write('K5', 'JML', body)
+            worksheetbest.write('L5', 'MAT', body)
+            worksheetbest.write('M5', 'IND', body)
+            worksheetbest.write('N5', 'ENG', body)
+            worksheetbest.write('O5', 'IPA', body)
+            worksheetbest.write('P5', 'IPS', body)
+            worksheetbest.write('Q5', 'JML', body)
 
-            worksheetbest.conditional_format(5, 0, rowBest150_all+4, 14,
+            worksheetbest.conditional_format(5, 0, rowBest150_all+4, 16,
                                              {'type': 'no_errors', 'format': border})
 
             # worksheet 237
@@ -12388,20 +12956,22 @@
             worksheet237.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet237.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet237.merge_range('F4:F5', 'KELAS', header)
-            worksheet237.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet237.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet237.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet237.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet237.write('G5', 'MAT', body)
             worksheet237.write('H5', 'IND', body)
             worksheet237.write('I5', 'ENG', body)
-            worksheet237.write('J5', 'IPAS', body)
-            worksheet237.write('K5', 'JML', body)
-            worksheet237.write('L5', 'MAT', body)
-            worksheet237.write('M5', 'IND', body)
-            worksheet237.write('N5', 'ENG', body)
-            worksheet237.write('O5', 'IPAS', body)
-            worksheet237.write('P5', 'JML', body)
+            worksheet237.write('J5', 'IPA', body)
+            worksheet237.write('K5', 'IPS', body)
+            worksheet237.write('L5', 'JML', body)
+            worksheet237.write('M5', 'MAT', body)
+            worksheet237.write('N5', 'IND', body)
+            worksheet237.write('O5', 'ENG', body)
+            worksheet237.write('P5', 'IPA', body)
+            worksheet237.write('Q5', 'IPS', body)
+            worksheet237.write('R5', 'JML', body)
 
-            worksheet237.conditional_format(5, 0, row237_10+4, 15,
+            worksheet237.conditional_format(5, 0, row237_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet237.merge_range(
@@ -12416,20 +12986,22 @@
             worksheet237.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet237.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet237.merge_range('F21:F22', 'KELAS', header)
-            worksheet237.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet237.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet237.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet237.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet237.write('G22', 'MAT', body)
             worksheet237.write('H22', 'IND', body)
             worksheet237.write('I22', 'ENG', body)
-            worksheet237.write('J22', 'IPAS', body)
-            worksheet237.write('K22', 'JML', body)
-            worksheet237.write('L22', 'MAT', body)
-            worksheet237.write('M22', 'IND', body)
-            worksheet237.write('N22', 'ENG', body)
-            worksheet237.write('O22', 'IPAS', body)
-            worksheet237.write('P22', 'JML', body)
+            worksheet237.write('J22', 'IPA', body)
+            worksheet237.write('K22', 'IPS', body)
+            worksheet237.write('L22', 'JML', body)
+            worksheet237.write('M22', 'MAT', body)
+            worksheet237.write('N22', 'IND', body)
+            worksheet237.write('O22', 'ENG', body)
+            worksheet237.write('P22', 'IPA', body)
+            worksheet237.write('Q22', 'IPS', body)
+            worksheet237.write('R22', 'JML', body)
 
-            worksheet237.conditional_format(22, 0, row237+21, 15,
+            worksheet237.conditional_format(22, 0, row237+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 245
@@ -12453,20 +13025,22 @@
             worksheet245.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet245.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet245.merge_range('F4:F5', 'KELAS', header)
-            worksheet245.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet245.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet245.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet245.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet245.write('G5', 'MAT', body)
             worksheet245.write('H5', 'IND', body)
             worksheet245.write('I5', 'ENG', body)
-            worksheet245.write('J5', 'IPAS', body)
-            worksheet245.write('K5', 'JML', body)
-            worksheet245.write('L5', 'MAT', body)
-            worksheet245.write('M5', 'IND', body)
-            worksheet245.write('N5', 'ENG', body)
-            worksheet245.write('O5', 'IPAS', body)
-            worksheet245.write('P5', 'JML', body)
+            worksheet245.write('J5', 'IPA', body)
+            worksheet245.write('K5', 'IPS', body)
+            worksheet245.write('L5', 'JML', body)
+            worksheet245.write('M5', 'MAT', body)
+            worksheet245.write('N5', 'IND', body)
+            worksheet245.write('O5', 'ENG', body)
+            worksheet245.write('P5', 'IPA', body)
+            worksheet245.write('Q5', 'IPS', body)
+            worksheet245.write('R5', 'JML', body)
 
-            worksheet245.conditional_format(5, 0, row245_10+4, 15,
+            worksheet245.conditional_format(5, 0, row245_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet245.merge_range(
@@ -12481,20 +13055,22 @@
             worksheet245.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet245.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet245.merge_range('F21:F22', 'KELAS', header)
-            worksheet245.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet245.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet245.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet245.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet245.write('G22', 'MAT', body)
             worksheet245.write('H22', 'IND', body)
             worksheet245.write('I22', 'ENG', body)
-            worksheet245.write('J22', 'IPAS', body)
-            worksheet245.write('K22', 'JML', body)
-            worksheet245.write('L22', 'MAT', body)
-            worksheet245.write('M22', 'IND', body)
-            worksheet245.write('N22', 'ENG', body)
-            worksheet245.write('O22', 'IPAS', body)
-            worksheet245.write('P22', 'JML', body)
+            worksheet245.write('J22', 'IPA', body)
+            worksheet245.write('K22', 'IPS', body)
+            worksheet245.write('L22', 'JML', body)
+            worksheet245.write('M22', 'MAT', body)
+            worksheet245.write('N22', 'IND', body)
+            worksheet245.write('O22', 'ENG', body)
+            worksheet245.write('P22', 'IPA', body)
+            worksheet245.write('Q22', 'IPS', body)
+            worksheet245.write('R22', 'JML', body)
 
-            worksheet245.conditional_format(22, 0, row245+21, 15,
+            worksheet245.conditional_format(22, 0, row245+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 246
@@ -12518,20 +13094,22 @@
             worksheet246.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet246.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet246.merge_range('F4:F5', 'KELAS', header)
-            worksheet246.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet246.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet246.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet246.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet246.write('G5', 'MAT', body)
             worksheet246.write('H5', 'IND', body)
             worksheet246.write('I5', 'ENG', body)
-            worksheet246.write('J5', 'IPAS', body)
-            worksheet246.write('K5', 'JML', body)
-            worksheet246.write('L5', 'MAT', body)
-            worksheet246.write('M5', 'IND', body)
-            worksheet246.write('N5', 'ENG', body)
-            worksheet246.write('O5', 'IPAS', body)
-            worksheet246.write('P5', 'JML', body)
+            worksheet246.write('J5', 'IPA', body)
+            worksheet246.write('K5', 'IPS', body)
+            worksheet246.write('L5', 'JML', body)
+            worksheet246.write('M5', 'MAT', body)
+            worksheet246.write('N5', 'IND', body)
+            worksheet246.write('O5', 'ENG', body)
+            worksheet246.write('P5', 'IPA', body)
+            worksheet246.write('Q5', 'IPS', body)
+            worksheet246.write('R5', 'JML', body)
 
-            worksheet246.conditional_format(5, 0, row246_10+4, 15,
+            worksheet246.conditional_format(5, 0, row246_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet246.merge_range(
@@ -12546,20 +13124,22 @@
             worksheet246.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet246.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet246.merge_range('F21:F22', 'KELAS', header)
-            worksheet246.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet246.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet246.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet246.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet246.write('G22', 'MAT', body)
             worksheet246.write('H22', 'IND', body)
             worksheet246.write('I22', 'ENG', body)
-            worksheet246.write('J22', 'IPAS', body)
-            worksheet246.write('K22', 'JML', body)
-            worksheet246.write('L22', 'MAT', body)
-            worksheet246.write('M22', 'IND', body)
-            worksheet246.write('N22', 'ENG', body)
-            worksheet246.write('O22', 'IPAS', body)
-            worksheet246.write('P22', 'JML', body)
+            worksheet246.write('J22', 'IPA', body)
+            worksheet246.write('K22', 'IPS', body)
+            worksheet246.write('L22', 'JML', body)
+            worksheet246.write('M22', 'MAT', body)
+            worksheet246.write('N22', 'IND', body)
+            worksheet246.write('O22', 'ENG', body)
+            worksheet246.write('P22', 'IPA', body)
+            worksheet246.write('Q22', 'IPS', body)
+            worksheet246.write('R22', 'JML', body)
 
-            worksheet246.conditional_format(22, 0, row246+21, 15,
+            worksheet246.conditional_format(22, 0, row246+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 248
@@ -12583,20 +13163,22 @@
             worksheet248.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet248.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet248.merge_range('F4:F5', 'KELAS', header)
-            worksheet248.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet248.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet248.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet248.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet248.write('G5', 'MAT', body)
             worksheet248.write('H5', 'IND', body)
             worksheet248.write('I5', 'ENG', body)
-            worksheet248.write('J5', 'IPAS', body)
-            worksheet248.write('K5', 'JML', body)
-            worksheet248.write('L5', 'MAT', body)
-            worksheet248.write('M5', 'IND', body)
-            worksheet248.write('N5', 'ENG', body)
-            worksheet248.write('O5', 'IPAS', body)
-            worksheet248.write('P5', 'JML', body)
+            worksheet248.write('J5', 'IPA', body)
+            worksheet248.write('K5', 'IPS', body)
+            worksheet248.write('L5', 'JML', body)
+            worksheet248.write('M5', 'MAT', body)
+            worksheet248.write('N5', 'IND', body)
+            worksheet248.write('O5', 'ENG', body)
+            worksheet248.write('P5', 'IPA', body)
+            worksheet248.write('Q5', 'IPS', body)
+            worksheet248.write('R5', 'JML', body)
 
-            worksheet248.conditional_format(5, 0, row248_10+4, 15,
+            worksheet248.conditional_format(5, 0, row248_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet248.merge_range(
@@ -12611,20 +13193,22 @@
             worksheet248.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet248.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet248.merge_range('F21:F22', 'KELAS', header)
-            worksheet248.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet248.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet248.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet248.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet248.write('G22', 'MAT', body)
             worksheet248.write('H22', 'IND', body)
             worksheet248.write('I22', 'ENG', body)
-            worksheet248.write('J22', 'IPAS', body)
-            worksheet248.write('K22', 'JML', body)
-            worksheet248.write('L22', 'MAT', body)
-            worksheet248.write('M22', 'IND', body)
-            worksheet248.write('N22', 'ENG', body)
-            worksheet248.write('O22', 'IPAS', body)
-            worksheet248.write('P22', 'JML', body)
+            worksheet248.write('J22', 'IPA', body)
+            worksheet248.write('K22', 'IPS', body)
+            worksheet248.write('L22', 'JML', body)
+            worksheet248.write('M22', 'MAT', body)
+            worksheet248.write('N22', 'IND', body)
+            worksheet248.write('O22', 'ENG', body)
+            worksheet248.write('P22', 'IPA', body)
+            worksheet248.write('Q22', 'IPS', body)
+            worksheet248.write('R22', 'JML', body)
 
-            worksheet248.conditional_format(22, 0, row248+21, 15,
+            worksheet248.conditional_format(22, 0, row248+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 249
@@ -12648,20 +13232,22 @@
             worksheet249.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet249.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet249.merge_range('F4:F5', 'KELAS', header)
-            worksheet249.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet249.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet249.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet249.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet249.write('G5', 'MAT', body)
             worksheet249.write('H5', 'IND', body)
             worksheet249.write('I5', 'ENG', body)
-            worksheet249.write('J5', 'IPAS', body)
-            worksheet249.write('K5', 'JML', body)
-            worksheet249.write('L5', 'MAT', body)
-            worksheet249.write('M5', 'IND', body)
-            worksheet249.write('N5', 'ENG', body)
-            worksheet249.write('O5', 'IPAS', body)
-            worksheet249.write('P5', 'JML', body)
+            worksheet249.write('J5', 'IPA', body)
+            worksheet249.write('K5', 'IPS', body)
+            worksheet249.write('L5', 'JML', body)
+            worksheet249.write('M5', 'MAT', body)
+            worksheet249.write('N5', 'IND', body)
+            worksheet249.write('O5', 'ENG', body)
+            worksheet249.write('P5', 'IPA', body)
+            worksheet249.write('Q5', 'IPS', body)
+            worksheet249.write('R5', 'JML', body)
 
-            worksheet249.conditional_format(5, 0, row249_10+4, 15,
+            worksheet249.conditional_format(5, 0, row249_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet249.merge_range(
@@ -12676,20 +13262,22 @@
             worksheet249.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet249.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet249.merge_range('F21:F22', 'KELAS', header)
-            worksheet249.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet249.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet249.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet249.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet249.write('G22', 'MAT', body)
             worksheet249.write('H22', 'IND', body)
             worksheet249.write('I22', 'ENG', body)
-            worksheet249.write('J22', 'IPAS', body)
-            worksheet249.write('K22', 'JML', body)
-            worksheet249.write('L22', 'MAT', body)
-            worksheet249.write('M22', 'IND', body)
-            worksheet249.write('N22', 'ENG', body)
-            worksheet249.write('O22', 'IPAS', body)
-            worksheet249.write('P22', 'JML', body)
+            worksheet249.write('J22', 'IPA', body)
+            worksheet249.write('K22', 'IPS', body)
+            worksheet249.write('L22', 'JML', body)
+            worksheet249.write('M22', 'MAT', body)
+            worksheet249.write('N22', 'IND', body)
+            worksheet249.write('O22', 'ENG', body)
+            worksheet249.write('P22', 'IPA', body)
+            worksheet249.write('Q22', 'IPS', body)
+            worksheet249.write('R22', 'JML', body)
 
-            worksheet249.conditional_format(22, 0, row249+21, 15,
+            worksheet249.conditional_format(22, 0, row249+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 250
@@ -12713,20 +13301,22 @@
             worksheet250.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet250.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet250.merge_range('F4:F5', 'KELAS', header)
-            worksheet250.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet250.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet250.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet250.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet250.write('G5', 'MAT', body)
             worksheet250.write('H5', 'IND', body)
             worksheet250.write('I5', 'ENG', body)
-            worksheet250.write('J5', 'IPAS', body)
-            worksheet250.write('K5', 'JML', body)
-            worksheet250.write('L5', 'MAT', body)
-            worksheet250.write('M5', 'IND', body)
-            worksheet250.write('N5', 'ENG', body)
-            worksheet250.write('O5', 'IPAS', body)
-            worksheet250.write('P5', 'JML', body)
+            worksheet250.write('J5', 'IPA', body)
+            worksheet250.write('K5', 'IPS', body)
+            worksheet250.write('L5', 'JML', body)
+            worksheet250.write('M5', 'MAT', body)
+            worksheet250.write('N5', 'IND', body)
+            worksheet250.write('O5', 'ENG', body)
+            worksheet250.write('P5', 'IPA', body)
+            worksheet250.write('Q5', 'IPS', body)
+            worksheet250.write('R5', 'JML', body)
 
-            worksheet250.conditional_format(5, 0, row250_10+4, 15,
+            worksheet250.conditional_format(5, 0, row250_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet250.merge_range(
@@ -12741,20 +13331,22 @@
             worksheet250.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet250.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet250.merge_range('F21:F22', 'KELAS', header)
-            worksheet250.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet250.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet250.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet250.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet250.write('G22', 'MAT', body)
             worksheet250.write('H22', 'IND', body)
             worksheet250.write('I22', 'ENG', body)
-            worksheet250.write('J22', 'IPAS', body)
-            worksheet250.write('K22', 'JML', body)
-            worksheet250.write('L22', 'MAT', body)
-            worksheet250.write('M22', 'IND', body)
-            worksheet250.write('N22', 'ENG', body)
-            worksheet250.write('O22', 'IPAS', body)
-            worksheet250.write('P22', 'JML', body)
+            worksheet250.write('J22', 'IPA', body)
+            worksheet250.write('K22', 'IPS', body)
+            worksheet250.write('L22', 'JML', body)
+            worksheet250.write('M22', 'MAT', body)
+            worksheet250.write('N22', 'IND', body)
+            worksheet250.write('O22', 'ENG', body)
+            worksheet250.write('P22', 'IPA', body)
+            worksheet250.write('Q22', 'IPS', body)
+            worksheet250.write('R22', 'JML', body)
 
-            worksheet250.conditional_format(22, 0, row250+21, 15,
+            worksheet250.conditional_format(22, 0, row250+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 252
@@ -12778,20 +13370,22 @@
             worksheet252.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet252.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet252.merge_range('F4:F5', 'KELAS', header)
-            worksheet252.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet252.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet252.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet252.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet252.write('G5', 'MAT', body)
             worksheet252.write('H5', 'IND', body)
             worksheet252.write('I5', 'ENG', body)
-            worksheet252.write('J5', 'IPAS', body)
-            worksheet252.write('K5', 'JML', body)
-            worksheet252.write('L5', 'MAT', body)
-            worksheet252.write('M5', 'IND', body)
-            worksheet252.write('N5', 'ENG', body)
-            worksheet252.write('O5', 'IPAS', body)
-            worksheet252.write('P5', 'JML', body)
+            worksheet252.write('J5', 'IPA', body)
+            worksheet252.write('K5', 'IPS', body)
+            worksheet252.write('L5', 'JML', body)
+            worksheet252.write('M5', 'MAT', body)
+            worksheet252.write('N5', 'IND', body)
+            worksheet252.write('O5', 'ENG', body)
+            worksheet252.write('P5', 'IPA', body)
+            worksheet252.write('Q5', 'IPS', body)
+            worksheet252.write('R5', 'JML', body)
 
-            worksheet252.conditional_format(5, 0, row252_10+4, 15,
+            worksheet252.conditional_format(5, 0, row252_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet252.merge_range(
@@ -12806,20 +13400,22 @@
             worksheet252.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet252.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet252.merge_range('F21:F22', 'KELAS', header)
-            worksheet252.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet252.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet252.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet252.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet252.write('G22', 'MAT', body)
             worksheet252.write('H22', 'IND', body)
             worksheet252.write('I22', 'ENG', body)
-            worksheet252.write('J22', 'IPAS', body)
-            worksheet252.write('K22', 'JML', body)
-            worksheet252.write('L22', 'MAT', body)
-            worksheet252.write('M22', 'IND', body)
-            worksheet252.write('N22', 'ENG', body)
-            worksheet252.write('O22', 'IPAS', body)
-            worksheet252.write('P22', 'JML', body)
+            worksheet252.write('J22', 'IPA', body)
+            worksheet252.write('K22', 'IPS', body)
+            worksheet252.write('L22', 'JML', body)
+            worksheet252.write('M22', 'MAT', body)
+            worksheet252.write('N22', 'IND', body)
+            worksheet252.write('O22', 'ENG', body)
+            worksheet252.write('P22', 'IPA', body)
+            worksheet252.write('Q22', 'IPS', body)
+            worksheet252.write('R22', 'JML', body)
 
-            worksheet252.conditional_format(22, 0, row252+21, 15,
+            worksheet252.conditional_format(22, 0, row252+21, 17,
                                             {'type': 'no_errors', 'format': border})
             # worksheet 254
             worksheet254.insert_image('A1', r'logo resmi nf.jpg')
@@ -12842,20 +13438,22 @@
             worksheet254.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet254.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet254.merge_range('F4:F5', 'KELAS', header)
-            worksheet254.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet254.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet254.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet254.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet254.write('G5', 'MAT', body)
             worksheet254.write('H5', 'IND', body)
             worksheet254.write('I5', 'ENG', body)
-            worksheet254.write('J5', 'IPAS', body)
-            worksheet254.write('K5', 'JML', body)
-            worksheet254.write('L5', 'MAT', body)
-            worksheet254.write('M5', 'IND', body)
-            worksheet254.write('N5', 'ENG', body)
-            worksheet254.write('O5', 'IPAS', body)
-            worksheet254.write('P5', 'JML', body)
+            worksheet254.write('J5', 'IPA', body)
+            worksheet254.write('K5', 'IPS', body)
+            worksheet254.write('L5', 'JML', body)
+            worksheet254.write('M5', 'MAT', body)
+            worksheet254.write('N5', 'IND', body)
+            worksheet254.write('O5', 'ENG', body)
+            worksheet254.write('P5', 'IPA', body)
+            worksheet254.write('Q5', 'IPS', body)
+            worksheet254.write('R5', 'JML', body)
 
-            worksheet254.conditional_format(5, 0, row254_10+4, 15,
+            worksheet254.conditional_format(5, 0, row254_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet254.merge_range(
@@ -12870,20 +13468,22 @@
             worksheet254.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet254.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet254.merge_range('F21:F22', 'KELAS', header)
-            worksheet254.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet254.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet254.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet254.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet254.write('G22', 'MAT', body)
             worksheet254.write('H22', 'IND', body)
             worksheet254.write('I22', 'ENG', body)
-            worksheet254.write('J22', 'IPAS', body)
-            worksheet254.write('K22', 'JML', body)
-            worksheet254.write('L22', 'MAT', body)
-            worksheet254.write('M22', 'IND', body)
-            worksheet254.write('N22', 'ENG', body)
-            worksheet254.write('O22', 'IPAS', body)
-            worksheet254.write('P22', 'JML', body)
+            worksheet254.write('J22', 'IPA', body)
+            worksheet254.write('K22', 'IPS', body)
+            worksheet254.write('L22', 'JML', body)
+            worksheet254.write('M22', 'MAT', body)
+            worksheet254.write('N22', 'IND', body)
+            worksheet254.write('O22', 'ENG', body)
+            worksheet254.write('P22', 'IPA', body)
+            worksheet254.write('Q22', 'IPS', body)
+            worksheet254.write('R22', 'JML', body)
 
-            worksheet254.conditional_format(22, 0, row254+21, 15,
+            worksheet254.conditional_format(22, 0, row254+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 255
@@ -12907,20 +13507,22 @@
             worksheet255.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet255.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet255.merge_range('F4:F5', 'KELAS', header)
-            worksheet255.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet255.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet255.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet255.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet255.write('G5', 'MAT', body)
             worksheet255.write('H5', 'IND', body)
             worksheet255.write('I5', 'ENG', body)
-            worksheet255.write('J5', 'IPAS', body)
-            worksheet255.write('K5', 'JML', body)
-            worksheet255.write('L5', 'MAT', body)
-            worksheet255.write('M5', 'IND', body)
-            worksheet255.write('N5', 'ENG', body)
-            worksheet255.write('O5', 'IPAS', body)
-            worksheet255.write('P5', 'JML', body)
+            worksheet255.write('J5', 'IPA', body)
+            worksheet255.write('K5', 'IPS', body)
+            worksheet255.write('L5', 'JML', body)
+            worksheet255.write('M5', 'MAT', body)
+            worksheet255.write('N5', 'IND', body)
+            worksheet255.write('O5', 'ENG', body)
+            worksheet255.write('P5', 'IPA', body)
+            worksheet255.write('Q5', 'IPS', body)
+            worksheet255.write('R5', 'JML', body)
 
-            worksheet255.conditional_format(5, 0, row255_10+4, 15,
+            worksheet255.conditional_format(5, 0, row255_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet255.merge_range(
@@ -12935,20 +13537,22 @@
             worksheet255.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet255.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet255.merge_range('F21:F22', 'KELAS', header)
-            worksheet255.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet255.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet255.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet255.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet255.write('G22', 'MAT', body)
             worksheet255.write('H22', 'IND', body)
             worksheet255.write('I22', 'ENG', body)
-            worksheet255.write('J22', 'IPAS', body)
-            worksheet255.write('K22', 'JML', body)
-            worksheet255.write('L22', 'MAT', body)
-            worksheet255.write('M22', 'IND', body)
-            worksheet255.write('N22', 'ENG', body)
-            worksheet255.write('O22', 'IPAS', body)
-            worksheet255.write('P22', 'JML', body)
+            worksheet255.write('J22', 'IPA', body)
+            worksheet255.write('K22', 'IPS', body)
+            worksheet255.write('L22', 'JML', body)
+            worksheet255.write('M22', 'MAT', body)
+            worksheet255.write('N22', 'IND', body)
+            worksheet255.write('O22', 'ENG', body)
+            worksheet255.write('P22', 'IPA', body)
+            worksheet255.write('Q22', 'IPS', body)
+            worksheet255.write('R22', 'JML', body)
 
-            worksheet255.conditional_format(22, 0, row255+21, 15,
+            worksheet255.conditional_format(22, 0, row255+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 256
@@ -12972,20 +13576,22 @@
             worksheet256.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet256.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet256.merge_range('F4:F5', 'KELAS', header)
-            worksheet256.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet256.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet256.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet256.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet256.write('G5', 'MAT', body)
             worksheet256.write('H5', 'IND', body)
             worksheet256.write('I5', 'ENG', body)
-            worksheet256.write('J5', 'IPAS', body)
-            worksheet256.write('K5', 'JML', body)
-            worksheet256.write('L5', 'MAT', body)
-            worksheet256.write('M5', 'IND', body)
-            worksheet256.write('N5', 'ENG', body)
-            worksheet256.write('O5', 'IPAS', body)
-            worksheet256.write('P5', 'JML', body)
+            worksheet256.write('J5', 'IPA', body)
+            worksheet256.write('K5', 'IPS', body)
+            worksheet256.write('L5', 'JML', body)
+            worksheet256.write('M5', 'MAT', body)
+            worksheet256.write('N5', 'IND', body)
+            worksheet256.write('O5', 'ENG', body)
+            worksheet256.write('P5', 'IPA', body)
+            worksheet256.write('Q5', 'IPS', body)
+            worksheet256.write('R5', 'JML', body)
 
-            worksheet256.conditional_format(5, 0, row256_10+4, 15,
+            worksheet256.conditional_format(5, 0, row256_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet256.merge_range(
@@ -13000,20 +13606,22 @@
             worksheet256.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet256.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet256.merge_range('F21:F22', 'KELAS', header)
-            worksheet256.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet256.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet256.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet256.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet256.write('G22', 'MAT', body)
             worksheet256.write('H22', 'IND', body)
             worksheet256.write('I22', 'ENG', body)
-            worksheet256.write('J22', 'IPAS', body)
-            worksheet256.write('K22', 'JML', body)
-            worksheet256.write('L22', 'MAT', body)
-            worksheet256.write('M22', 'IND', body)
-            worksheet256.write('N22', 'ENG', body)
-            worksheet256.write('O22', 'IPAS', body)
-            worksheet256.write('P22', 'JML', body)
+            worksheet256.write('J22', 'IPA', body)
+            worksheet256.write('K22', 'IPS', body)
+            worksheet256.write('L22', 'JML', body)
+            worksheet256.write('M22', 'MAT', body)
+            worksheet256.write('N22', 'IND', body)
+            worksheet256.write('O22', 'ENG', body)
+            worksheet256.write('P22', 'IPA', body)
+            worksheet256.write('Q22', 'IPS', body)
+            worksheet256.write('R22', 'JML', body)
 
-            worksheet256.conditional_format(22, 0, row256+21, 15,
+            worksheet256.conditional_format(22, 0, row256+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 259
@@ -13037,20 +13645,22 @@
             worksheet259.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet259.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet259.merge_range('F4:F5', 'KELAS', header)
-            worksheet259.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet259.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet259.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet259.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet259.write('G5', 'MAT', body)
             worksheet259.write('H5', 'IND', body)
             worksheet259.write('I5', 'ENG', body)
-            worksheet259.write('J5', 'IPAS', body)
-            worksheet259.write('K5', 'JML', body)
-            worksheet259.write('L5', 'MAT', body)
-            worksheet259.write('M5', 'IND', body)
-            worksheet259.write('N5', 'ENG', body)
-            worksheet259.write('O5', 'IPAS', body)
-            worksheet259.write('P5', 'JML', body)
+            worksheet259.write('J5', 'IPA', body)
+            worksheet259.write('K5', 'IPS', body)
+            worksheet259.write('L5', 'JML', body)
+            worksheet259.write('M5', 'MAT', body)
+            worksheet259.write('N5', 'IND', body)
+            worksheet259.write('O5', 'ENG', body)
+            worksheet259.write('P5', 'IPA', body)
+            worksheet259.write('Q5', 'IPS', body)
+            worksheet259.write('R5', 'JML', body)
 
-            worksheet259.conditional_format(5, 0, row259_10+4, 15,
+            worksheet259.conditional_format(5, 0, row259_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet259.merge_range(
@@ -13065,20 +13675,22 @@
             worksheet259.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet259.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet259.merge_range('F21:F22', 'KELAS', header)
-            worksheet259.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet259.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet259.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet259.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet259.write('G22', 'MAT', body)
             worksheet259.write('H22', 'IND', body)
             worksheet259.write('I22', 'ENG', body)
-            worksheet259.write('J22', 'IPAS', body)
-            worksheet259.write('K22', 'JML', body)
-            worksheet259.write('L22', 'MAT', body)
-            worksheet259.write('M22', 'IND', body)
-            worksheet259.write('N22', 'ENG', body)
-            worksheet259.write('O22', 'IPAS', body)
-            worksheet259.write('P22', 'JML', body)
+            worksheet259.write('J22', 'IPA', body)
+            worksheet259.write('K22', 'IPS', body)
+            worksheet259.write('L22', 'JML', body)
+            worksheet259.write('M22', 'MAT', body)
+            worksheet259.write('N22', 'IND', body)
+            worksheet259.write('O22', 'ENG', body)
+            worksheet259.write('P22', 'IPA', body)
+            worksheet259.write('Q22', 'IPS', body)
+            worksheet259.write('R22', 'JML', body)
 
-            worksheet259.conditional_format(22, 0, row259+21, 15,
+            worksheet259.conditional_format(22, 0, row259+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 260
@@ -13102,20 +13714,22 @@
             worksheet260.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet260.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet260.merge_range('F4:F5', 'KELAS', header)
-            worksheet260.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet260.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet260.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet260.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet260.write('G5', 'MAT', body)
             worksheet260.write('H5', 'IND', body)
             worksheet260.write('I5', 'ENG', body)
-            worksheet260.write('J5', 'IPAS', body)
-            worksheet260.write('K5', 'JML', body)
-            worksheet260.write('L5', 'MAT', body)
-            worksheet260.write('M5', 'IND', body)
-            worksheet260.write('N5', 'ENG', body)
-            worksheet260.write('O5', 'IPAS', body)
-            worksheet260.write('P5', 'JML', body)
+            worksheet260.write('J5', 'IPA', body)
+            worksheet260.write('K5', 'IPS', body)
+            worksheet260.write('L5', 'JML', body)
+            worksheet260.write('M5', 'MAT', body)
+            worksheet260.write('N5', 'IND', body)
+            worksheet260.write('O5', 'ENG', body)
+            worksheet260.write('P5', 'IPA', body)
+            worksheet260.write('Q5', 'IPS', body)
+            worksheet260.write('R5', 'JML', body)
 
-            worksheet260.conditional_format(5, 0, row260_10+4, 15,
+            worksheet260.conditional_format(5, 0, row260_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet260.merge_range(
@@ -13130,20 +13744,22 @@
             worksheet260.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet260.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet260.merge_range('F21:F22', 'KELAS', header)
-            worksheet260.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet260.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet260.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet260.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet260.write('G22', 'MAT', body)
             worksheet260.write('H22', 'IND', body)
             worksheet260.write('I22', 'ENG', body)
-            worksheet260.write('J22', 'IPAS', body)
-            worksheet260.write('K22', 'JML', body)
-            worksheet260.write('L22', 'MAT', body)
-            worksheet260.write('M22', 'IND', body)
-            worksheet260.write('N22', 'ENG', body)
-            worksheet260.write('O22', 'IPAS', body)
-            worksheet260.write('P22', 'JML', body)
+            worksheet260.write('J22', 'IPA', body)
+            worksheet260.write('K22', 'IPS', body)
+            worksheet260.write('L22', 'JML', body)
+            worksheet260.write('M22', 'MAT', body)
+            worksheet260.write('N22', 'IND', body)
+            worksheet260.write('O22', 'ENG', body)
+            worksheet260.write('P22', 'IPA', body)
+            worksheet260.write('Q22', 'IPS', body)
+            worksheet260.write('R22', 'JML', body)
 
-            worksheet260.conditional_format(22, 0, row260+21, 15,
+            worksheet260.conditional_format(22, 0, row260+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 261
@@ -13167,20 +13783,22 @@
             worksheet261.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet261.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet261.merge_range('F4:F5', 'KELAS', header)
-            worksheet261.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet261.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet261.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet261.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet261.write('G5', 'MAT', body)
             worksheet261.write('H5', 'IND', body)
             worksheet261.write('I5', 'ENG', body)
-            worksheet261.write('J5', 'IPAS', body)
-            worksheet261.write('K5', 'JML', body)
-            worksheet261.write('L5', 'MAT', body)
-            worksheet261.write('M5', 'IND', body)
-            worksheet261.write('N5', 'ENG', body)
-            worksheet261.write('O5', 'IPAS', body)
-            worksheet261.write('P5', 'JML', body)
+            worksheet261.write('J5', 'IPA', body)
+            worksheet261.write('K5', 'IPS', body)
+            worksheet261.write('L5', 'JML', body)
+            worksheet261.write('M5', 'MAT', body)
+            worksheet261.write('N5', 'IND', body)
+            worksheet261.write('O5', 'ENG', body)
+            worksheet261.write('P5', 'IPA', body)
+            worksheet261.write('Q5', 'IPS', body)
+            worksheet261.write('R5', 'JML', body)
 
-            worksheet261.conditional_format(5, 0, row261_10+4, 15,
+            worksheet261.conditional_format(5, 0, row261_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet261.merge_range(
@@ -13195,20 +13813,22 @@
             worksheet261.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet261.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet261.merge_range('F21:F22', 'KELAS', header)
-            worksheet261.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet261.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet261.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet261.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet261.write('G22', 'MAT', body)
             worksheet261.write('H22', 'IND', body)
             worksheet261.write('I22', 'ENG', body)
-            worksheet261.write('J22', 'IPAS', body)
-            worksheet261.write('K22', 'JML', body)
-            worksheet261.write('L22', 'MAT', body)
-            worksheet261.write('M22', 'IND', body)
-            worksheet261.write('N22', 'ENG', body)
-            worksheet261.write('O22', 'IPAS', body)
-            worksheet261.write('P22', 'JML', body)
+            worksheet261.write('J22', 'IPA', body)
+            worksheet261.write('K22', 'IPS', body)
+            worksheet261.write('L22', 'JML', body)
+            worksheet261.write('M22', 'MAT', body)
+            worksheet261.write('N22', 'IND', body)
+            worksheet261.write('O22', 'ENG', body)
+            worksheet261.write('P22', 'IPA', body)
+            worksheet261.write('Q22', 'IPS', body)
+            worksheet261.write('R22', 'JML', body)
 
-            worksheet261.conditional_format(22, 0, row261+21, 15,
+            worksheet261.conditional_format(22, 0, row261+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 262
@@ -13232,20 +13852,22 @@
             worksheet262.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet262.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet262.merge_range('F4:F5', 'KELAS', header)
-            worksheet262.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet262.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet262.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet262.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet262.write('G5', 'MAT', body)
             worksheet262.write('H5', 'IND', body)
             worksheet262.write('I5', 'ENG', body)
-            worksheet262.write('J5', 'IPAS', body)
-            worksheet262.write('K5', 'JML', body)
-            worksheet262.write('L5', 'MAT', body)
-            worksheet262.write('M5', 'IND', body)
-            worksheet262.write('N5', 'ENG', body)
-            worksheet262.write('O5', 'IPAS', body)
-            worksheet262.write('P5', 'JML', body)
+            worksheet262.write('J5', 'IPA', body)
+            worksheet262.write('K5', 'IPS', body)
+            worksheet262.write('L5', 'JML', body)
+            worksheet262.write('M5', 'MAT', body)
+            worksheet262.write('N5', 'IND', body)
+            worksheet262.write('O5', 'ENG', body)
+            worksheet262.write('P5', 'IPA', body)
+            worksheet262.write('Q5', 'IPS', body)
+            worksheet262.write('R5', 'JML', body)
 
-            worksheet262.conditional_format(5, 0, row262_10+4, 15,
+            worksheet262.conditional_format(5, 0, row262_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet262.merge_range(
@@ -13260,22 +13882,24 @@
             worksheet262.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet262.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet262.merge_range('F21:F22', 'KELAS', header)
-            worksheet262.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet262.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet262.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet262.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet262.write('G22', 'MAT', body)
             worksheet262.write('H22', 'IND', body)
             worksheet262.write('I22', 'ENG', body)
-            worksheet262.write('J22', 'IPAS', body)
-            worksheet262.write('K22', 'JML', body)
-            worksheet262.write('L22', 'MAT', body)
-            worksheet262.write('M22', 'IND', body)
-            worksheet262.write('N22', 'ENG', body)
-            worksheet262.write('O22', 'IPAS', body)
-            worksheet262.write('P22', 'JML', body)
+            worksheet262.write('J22', 'IPA', body)
+            worksheet262.write('K22', 'IPS', body)
+            worksheet262.write('L22', 'JML', body)
+            worksheet262.write('M22', 'MAT', body)
+            worksheet262.write('N22', 'IND', body)
+            worksheet262.write('O22', 'ENG', body)
+            worksheet262.write('P22', 'IPA', body)
+            worksheet262.write('Q22', 'IPS', body)
+            worksheet262.write('R22', 'JML', body)
 
-            worksheet262.conditional_format(22, 0, row262+21, 15,
+            worksheet262.conditional_format(22, 0, row262+21, 17,
                                             {'type': 'no_errors', 'format': border})
-
+            
             # worksheet 263
             worksheet263.insert_image('A1', r'logo resmi nf.jpg')
 
@@ -13297,20 +13921,22 @@
             worksheet263.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet263.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet263.merge_range('F4:F5', 'KELAS', header)
-            worksheet263.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet263.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet263.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet263.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet263.write('G5', 'MAT', body)
             worksheet263.write('H5', 'IND', body)
             worksheet263.write('I5', 'ENG', body)
-            worksheet263.write('J5', 'IPAS', body)
-            worksheet263.write('K5', 'JML', body)
-            worksheet263.write('L5', 'MAT', body)
-            worksheet263.write('M5', 'IND', body)
-            worksheet263.write('N5', 'ENG', body)
-            worksheet263.write('O5', 'IPAS', body)
-            worksheet263.write('P5', 'JML', body)
+            worksheet263.write('J5', 'IPA', body)
+            worksheet263.write('K5', 'IPS', body)
+            worksheet263.write('L5', 'JML', body)
+            worksheet263.write('M5', 'MAT', body)
+            worksheet263.write('N5', 'IND', body)
+            worksheet263.write('O5', 'ENG', body)
+            worksheet263.write('P5', 'IPA', body)
+            worksheet263.write('Q5', 'IPS', body)
+            worksheet263.write('R5', 'JML', body)
 
-            worksheet263.conditional_format(5, 0, row263_10+4, 15,
+            worksheet263.conditional_format(5, 0, row263_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet263.merge_range(
@@ -13325,20 +13951,22 @@
             worksheet263.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet263.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet263.merge_range('F21:F22', 'KELAS', header)
-            worksheet263.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet263.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet263.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet263.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet263.write('G22', 'MAT', body)
             worksheet263.write('H22', 'IND', body)
             worksheet263.write('I22', 'ENG', body)
-            worksheet263.write('J22', 'IPAS', body)
-            worksheet263.write('K22', 'JML', body)
-            worksheet263.write('L22', 'MAT', body)
-            worksheet263.write('M22', 'IND', body)
-            worksheet263.write('N22', 'ENG', body)
-            worksheet263.write('O22', 'IPAS', body)
-            worksheet263.write('P22', 'JML', body)
+            worksheet263.write('J22', 'IPA', body)
+            worksheet263.write('K22', 'IPS', body)
+            worksheet263.write('L22', 'JML', body)
+            worksheet263.write('M22', 'MAT', body)
+            worksheet263.write('N22', 'IND', body)
+            worksheet263.write('O22', 'ENG', body)
+            worksheet263.write('P22', 'IPA', body)
+            worksheet263.write('Q22', 'IPS', body)
+            worksheet263.write('R22', 'JML', body)
 
-            worksheet263.conditional_format(22, 0, row263+21, 15,
+            worksheet263.conditional_format(22, 0, row263+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 264
@@ -13362,20 +13990,22 @@
             worksheet264.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet264.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet264.merge_range('F4:F5', 'KELAS', header)
-            worksheet264.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet264.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet264.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet264.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet264.write('G5', 'MAT', body)
             worksheet264.write('H5', 'IND', body)
             worksheet264.write('I5', 'ENG', body)
-            worksheet264.write('J5', 'IPAS', body)
-            worksheet264.write('K5', 'JML', body)
-            worksheet264.write('L5', 'MAT', body)
-            worksheet264.write('M5', 'IND', body)
-            worksheet264.write('N5', 'ENG', body)
-            worksheet264.write('O5', 'IPAS', body)
-            worksheet264.write('P5', 'JML', body)
+            worksheet264.write('J5', 'IPA', body)
+            worksheet264.write('K5', 'IPS', body)
+            worksheet264.write('L5', 'JML', body)
+            worksheet264.write('M5', 'MAT', body)
+            worksheet264.write('N5', 'IND', body)
+            worksheet264.write('O5', 'ENG', body)
+            worksheet264.write('P5', 'IPA', body)
+            worksheet264.write('Q5', 'IPS', body)
+            worksheet264.write('R5', 'JML', body)
 
-            worksheet264.conditional_format(5, 0, row264_10+4, 15,
+            worksheet264.conditional_format(5, 0, row264_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet264.merge_range(
@@ -13390,20 +14020,22 @@
             worksheet264.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet264.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet264.merge_range('F21:F22', 'KELAS', header)
-            worksheet264.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet264.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet264.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet264.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet264.write('G22', 'MAT', body)
             worksheet264.write('H22', 'IND', body)
             worksheet264.write('I22', 'ENG', body)
-            worksheet264.write('J22', 'IPAS', body)
-            worksheet264.write('K22', 'JML', body)
-            worksheet264.write('L22', 'MAT', body)
-            worksheet264.write('M22', 'IND', body)
-            worksheet264.write('N22', 'ENG', body)
-            worksheet264.write('O22', 'IPAS', body)
-            worksheet264.write('P22', 'JML', body)
+            worksheet264.write('J22', 'IPA', body)
+            worksheet264.write('K22', 'IPS', body)
+            worksheet264.write('L22', 'JML', body)
+            worksheet264.write('M22', 'MAT', body)
+            worksheet264.write('N22', 'IND', body)
+            worksheet264.write('O22', 'ENG', body)
+            worksheet264.write('P22', 'IPA', body)
+            worksheet264.write('Q22', 'IPS', body)
+            worksheet264.write('R22', 'JML', body)
 
-            worksheet264.conditional_format(22, 0, row264+21, 15,
+            worksheet264.conditional_format(22, 0, row264+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 265
@@ -13427,20 +14059,22 @@
             worksheet265.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet265.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet265.merge_range('F4:F5', 'KELAS', header)
-            worksheet265.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet265.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet265.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet265.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet265.write('G5', 'MAT', body)
             worksheet265.write('H5', 'IND', body)
             worksheet265.write('I5', 'ENG', body)
-            worksheet265.write('J5', 'IPAS', body)
-            worksheet265.write('K5', 'JML', body)
-            worksheet265.write('L5', 'MAT', body)
-            worksheet265.write('M5', 'IND', body)
-            worksheet265.write('N5', 'ENG', body)
-            worksheet265.write('O5', 'IPAS', body)
-            worksheet265.write('P5', 'JML', body)
+            worksheet265.write('J5', 'IPA', body)
+            worksheet265.write('K5', 'IPS', body)
+            worksheet265.write('L5', 'JML', body)
+            worksheet265.write('M5', 'MAT', body)
+            worksheet265.write('N5', 'IND', body)
+            worksheet265.write('O5', 'ENG', body)
+            worksheet265.write('P5', 'IPA', body)
+            worksheet265.write('Q5', 'IPS', body)
+            worksheet265.write('R5', 'JML', body)
 
-            worksheet265.conditional_format(5, 0, row265_10+4, 15,
+            worksheet265.conditional_format(5, 0, row265_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet265.merge_range(
@@ -13455,20 +14089,22 @@
             worksheet265.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet265.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet265.merge_range('F21:F22', 'KELAS', header)
-            worksheet265.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet265.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet265.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet265.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet265.write('G22', 'MAT', body)
             worksheet265.write('H22', 'IND', body)
             worksheet265.write('I22', 'ENG', body)
-            worksheet265.write('J22', 'IPAS', body)
-            worksheet265.write('K22', 'JML', body)
-            worksheet265.write('L22', 'MAT', body)
-            worksheet265.write('M22', 'IND', body)
-            worksheet265.write('N22', 'ENG', body)
-            worksheet265.write('O22', 'IPAS', body)
-            worksheet265.write('P22', 'JML', body)
+            worksheet265.write('J22', 'IPA', body)
+            worksheet265.write('K22', 'IPS', body)
+            worksheet265.write('L22', 'JML', body)
+            worksheet265.write('M22', 'MAT', body)
+            worksheet265.write('N22', 'IND', body)
+            worksheet265.write('O22', 'ENG', body)
+            worksheet265.write('P22', 'IPA', body)
+            worksheet265.write('Q22', 'IPS', body)
+            worksheet265.write('R22', 'JML', body)
 
-            worksheet265.conditional_format(22, 0, row265+21, 15,
+            worksheet265.conditional_format(22, 0, row265+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 266
@@ -13492,20 +14128,22 @@
             worksheet266.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet266.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet266.merge_range('F4:F5', 'KELAS', header)
-            worksheet266.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet266.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet266.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet266.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet266.write('G5', 'MAT', body)
             worksheet266.write('H5', 'IND', body)
             worksheet266.write('I5', 'ENG', body)
-            worksheet266.write('J5', 'IPAS', body)
-            worksheet266.write('K5', 'JML', body)
-            worksheet266.write('L5', 'MAT', body)
-            worksheet266.write('M5', 'IND', body)
-            worksheet266.write('N5', 'ENG', body)
-            worksheet266.write('O5', 'IPAS', body)
-            worksheet266.write('P5', 'JML', body)
+            worksheet266.write('J5', 'IPA', body)
+            worksheet266.write('K5', 'IPS', body)
+            worksheet266.write('L5', 'JML', body)
+            worksheet266.write('M5', 'MAT', body)
+            worksheet266.write('N5', 'IND', body)
+            worksheet266.write('O5', 'ENG', body)
+            worksheet266.write('P5', 'IPA', body)
+            worksheet266.write('Q5', 'IPS', body)
+            worksheet266.write('R5', 'JML', body)
 
-            worksheet266.conditional_format(5, 0, row266_10+4, 15,
+            worksheet266.conditional_format(5, 0, row266_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet266.merge_range(
@@ -13520,20 +14158,22 @@
             worksheet266.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet266.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet266.merge_range('F21:F22', 'KELAS', header)
-            worksheet266.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet266.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet266.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet266.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet266.write('G22', 'MAT', body)
             worksheet266.write('H22', 'IND', body)
             worksheet266.write('I22', 'ENG', body)
-            worksheet266.write('J22', 'IPAS', body)
-            worksheet266.write('K22', 'JML', body)
-            worksheet266.write('L22', 'MAT', body)
-            worksheet266.write('M22', 'IND', body)
-            worksheet266.write('N22', 'ENG', body)
-            worksheet266.write('O22', 'IPAS', body)
-            worksheet266.write('P22', 'JML', body)
+            worksheet266.write('J22', 'IPA', body)
+            worksheet266.write('K22', 'IPS', body)
+            worksheet266.write('L22', 'JML', body)
+            worksheet266.write('M22', 'MAT', body)
+            worksheet266.write('N22', 'IND', body)
+            worksheet266.write('O22', 'ENG', body)
+            worksheet266.write('P22', 'IPA', body)
+            worksheet266.write('Q22', 'IPS', body)
+            worksheet266.write('R22', 'JML', body)
 
-            worksheet266.conditional_format(22, 0, row266+21, 15,
+            worksheet266.conditional_format(22, 0, row266+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 267
@@ -13557,20 +14197,22 @@
             worksheet267.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet267.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet267.merge_range('F4:F5', 'KELAS', header)
-            worksheet267.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet267.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet267.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet267.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet267.write('G5', 'MAT', body)
             worksheet267.write('H5', 'IND', body)
             worksheet267.write('I5', 'ENG', body)
-            worksheet267.write('J5', 'IPAS', body)
-            worksheet267.write('K5', 'JML', body)
-            worksheet267.write('L5', 'MAT', body)
-            worksheet267.write('M5', 'IND', body)
-            worksheet267.write('N5', 'ENG', body)
-            worksheet267.write('O5', 'IPAS', body)
-            worksheet267.write('P5', 'JML', body)
+            worksheet267.write('J5', 'IPA', body)
+            worksheet267.write('K5', 'IPS', body)
+            worksheet267.write('L5', 'JML', body)
+            worksheet267.write('M5', 'MAT', body)
+            worksheet267.write('N5', 'IND', body)
+            worksheet267.write('O5', 'ENG', body)
+            worksheet267.write('P5', 'IPA', body)
+            worksheet267.write('Q5', 'IPS', body)
+            worksheet267.write('R5', 'JML', body)
 
-            worksheet267.conditional_format(5, 0, row267_10+4, 15,
+            worksheet267.conditional_format(5, 0, row267_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet267.merge_range(
@@ -13585,20 +14227,22 @@
             worksheet267.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet267.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet267.merge_range('F21:F22', 'KELAS', header)
-            worksheet267.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet267.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet267.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet267.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet267.write('G22', 'MAT', body)
             worksheet267.write('H22', 'IND', body)
             worksheet267.write('I22', 'ENG', body)
-            worksheet267.write('J22', 'IPAS', body)
-            worksheet267.write('K22', 'JML', body)
-            worksheet267.write('L22', 'MAT', body)
-            worksheet267.write('M22', 'IND', body)
-            worksheet267.write('N22', 'ENG', body)
-            worksheet267.write('O22', 'IPAS', body)
-            worksheet267.write('P22', 'JML', body)
+            worksheet267.write('J22', 'IPA', body)
+            worksheet267.write('K22', 'IPS', body)
+            worksheet267.write('L22', 'JML', body)
+            worksheet267.write('M22', 'MAT', body)
+            worksheet267.write('N22', 'IND', body)
+            worksheet267.write('O22', 'ENG', body)
+            worksheet267.write('P22', 'IPA', body)
+            worksheet267.write('Q22', 'IPS', body)
+            worksheet267.write('R22', 'JML', body)
 
-            worksheet267.conditional_format(22, 0, row267+21, 15,
+            worksheet267.conditional_format(22, 0, row267+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 268
@@ -13622,20 +14266,22 @@
             worksheet268.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet268.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet268.merge_range('F4:F5', 'KELAS', header)
-            worksheet268.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet268.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet268.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet268.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet268.write('G5', 'MAT', body)
             worksheet268.write('H5', 'IND', body)
             worksheet268.write('I5', 'ENG', body)
-            worksheet268.write('J5', 'IPAS', body)
-            worksheet268.write('K5', 'JML', body)
-            worksheet268.write('L5', 'MAT', body)
-            worksheet268.write('M5', 'IND', body)
-            worksheet268.write('N5', 'ENG', body)
-            worksheet268.write('O5', 'IPAS', body)
-            worksheet268.write('P5', 'JML', body)
+            worksheet268.write('J5', 'IPA', body)
+            worksheet268.write('K5', 'IPS', body)
+            worksheet268.write('L5', 'JML', body)
+            worksheet268.write('M5', 'MAT', body)
+            worksheet268.write('N5', 'IND', body)
+            worksheet268.write('O5', 'ENG', body)
+            worksheet268.write('P5', 'IPA', body)
+            worksheet268.write('Q5', 'IPS', body)
+            worksheet268.write('R5', 'JML', body)
 
-            worksheet268.conditional_format(5, 0, row268_10+4, 15,
+            worksheet268.conditional_format(5, 0, row268_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet268.merge_range(
@@ -13650,20 +14296,22 @@
             worksheet268.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet268.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet268.merge_range('F21:F22', 'KELAS', header)
-            worksheet268.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet268.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet268.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet268.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet268.write('G22', 'MAT', body)
             worksheet268.write('H22', 'IND', body)
             worksheet268.write('I22', 'ENG', body)
-            worksheet268.write('J22', 'IPAS', body)
-            worksheet268.write('K22', 'JML', body)
-            worksheet268.write('L22', 'MAT', body)
-            worksheet268.write('M22', 'IND', body)
-            worksheet268.write('N22', 'ENG', body)
-            worksheet268.write('O22', 'IPAS', body)
-            worksheet268.write('P22', 'JML', body)
+            worksheet268.write('J22', 'IPA', body)
+            worksheet268.write('K22', 'IPS', body)
+            worksheet268.write('L22', 'JML', body)
+            worksheet268.write('M22', 'MAT', body)
+            worksheet268.write('N22', 'IND', body)
+            worksheet268.write('O22', 'ENG', body)
+            worksheet268.write('P22', 'IPA', body)
+            worksheet268.write('Q22', 'IPS', body)
+            worksheet268.write('R22', 'JML', body)
 
-            worksheet268.conditional_format(22, 0, row268+21, 15,
+            worksheet268.conditional_format(22, 0, row268+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 269
@@ -13687,20 +14335,22 @@
             worksheet269.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet269.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet269.merge_range('F4:F5', 'KELAS', header)
-            worksheet269.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet269.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet269.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet269.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet269.write('G5', 'MAT', body)
             worksheet269.write('H5', 'IND', body)
             worksheet269.write('I5', 'ENG', body)
-            worksheet269.write('J5', 'IPAS', body)
-            worksheet269.write('K5', 'JML', body)
-            worksheet269.write('L5', 'MAT', body)
-            worksheet269.write('M5', 'IND', body)
-            worksheet269.write('N5', 'ENG', body)
-            worksheet269.write('O5', 'IPAS', body)
-            worksheet269.write('P5', 'JML', body)
+            worksheet269.write('J5', 'IPA', body)
+            worksheet269.write('K5', 'IPS', body)
+            worksheet269.write('L5', 'JML', body)
+            worksheet269.write('M5', 'MAT', body)
+            worksheet269.write('N5', 'IND', body)
+            worksheet269.write('O5', 'ENG', body)
+            worksheet269.write('P5', 'IPA', body)
+            worksheet269.write('Q5', 'IPS', body)
+            worksheet269.write('R5', 'JML', body)
 
-            worksheet269.conditional_format(5, 0, row269_10+4, 15,
+            worksheet269.conditional_format(5, 0, row269_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet269.merge_range(
@@ -13715,20 +14365,22 @@
             worksheet269.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet269.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet269.merge_range('F21:F22', 'KELAS', header)
-            worksheet269.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet269.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet269.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet269.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet269.write('G22', 'MAT', body)
             worksheet269.write('H22', 'IND', body)
             worksheet269.write('I22', 'ENG', body)
-            worksheet269.write('J22', 'IPAS', body)
-            worksheet269.write('K22', 'JML', body)
-            worksheet269.write('L22', 'MAT', body)
-            worksheet269.write('M22', 'IND', body)
-            worksheet269.write('N22', 'ENG', body)
-            worksheet269.write('O22', 'IPAS', body)
-            worksheet269.write('P22', 'JML', body)
+            worksheet269.write('J22', 'IPA', body)
+            worksheet269.write('K22', 'IPS', body)
+            worksheet269.write('L22', 'JML', body)
+            worksheet269.write('M22', 'MAT', body)
+            worksheet269.write('N22', 'IND', body)
+            worksheet269.write('O22', 'ENG', body)
+            worksheet269.write('P22', 'IPA', body)
+            worksheet269.write('Q22', 'IPS', body)
+            worksheet269.write('R22', 'JML', body)
 
-            worksheet269.conditional_format(22, 0, row269+21, 15,
+            worksheet269.conditional_format(22, 0, row269+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 270
@@ -13752,20 +14404,22 @@
             worksheet270.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet270.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet270.merge_range('F4:F5', 'KELAS', header)
-            worksheet270.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet270.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet270.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet270.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet270.write('G5', 'MAT', body)
             worksheet270.write('H5', 'IND', body)
             worksheet270.write('I5', 'ENG', body)
-            worksheet270.write('J5', 'IPAS', body)
-            worksheet270.write('K5', 'JML', body)
-            worksheet270.write('L5', 'MAT', body)
-            worksheet270.write('M5', 'IND', body)
-            worksheet270.write('N5', 'ENG', body)
-            worksheet270.write('O5', 'IPAS', body)
-            worksheet270.write('P5', 'JML', body)
+            worksheet270.write('J5', 'IPA', body)
+            worksheet270.write('K5', 'IPS', body)
+            worksheet270.write('L5', 'JML', body)
+            worksheet270.write('M5', 'MAT', body)
+            worksheet270.write('N5', 'IND', body)
+            worksheet270.write('O5', 'ENG', body)
+            worksheet270.write('P5', 'IPA', body)
+            worksheet270.write('Q5', 'IPS', body)
+            worksheet270.write('R5', 'JML', body)
 
-            worksheet270.conditional_format(5, 0, row270_10+4, 15,
+            worksheet270.conditional_format(5, 0, row270_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet270.merge_range(
@@ -13780,20 +14434,22 @@
             worksheet270.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet270.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet270.merge_range('F21:F22', 'KELAS', header)
-            worksheet270.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet270.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet270.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet270.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet270.write('G22', 'MAT', body)
             worksheet270.write('H22', 'IND', body)
             worksheet270.write('I22', 'ENG', body)
-            worksheet270.write('J22', 'IPAS', body)
-            worksheet270.write('K22', 'JML', body)
-            worksheet270.write('L22', 'MAT', body)
-            worksheet270.write('M22', 'IND', body)
-            worksheet270.write('N22', 'ENG', body)
-            worksheet270.write('O22', 'IPAS', body)
-            worksheet270.write('P22', 'JML', body)
+            worksheet270.write('J22', 'IPA', body)
+            worksheet270.write('K22', 'IPS', body)
+            worksheet270.write('L22', 'JML', body)
+            worksheet270.write('M22', 'MAT', body)
+            worksheet270.write('N22', 'IND', body)
+            worksheet270.write('O22', 'ENG', body)
+            worksheet270.write('P22', 'IPA', body)
+            worksheet270.write('Q22', 'IPS', body)
+            worksheet270.write('R22', 'JML', body)
 
-            worksheet270.conditional_format(22, 0, row270+21, 15,
+            worksheet270.conditional_format(22, 0, row270+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 271
@@ -13817,20 +14473,22 @@
             worksheet271.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet271.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet271.merge_range('F4:F5', 'KELAS', header)
-            worksheet271.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet271.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet271.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet271.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet271.write('G5', 'MAT', body)
             worksheet271.write('H5', 'IND', body)
             worksheet271.write('I5', 'ENG', body)
-            worksheet271.write('J5', 'IPAS', body)
-            worksheet271.write('K5', 'JML', body)
-            worksheet271.write('L5', 'MAT', body)
-            worksheet271.write('M5', 'IND', body)
-            worksheet271.write('N5', 'ENG', body)
-            worksheet271.write('O5', 'IPAS', body)
-            worksheet271.write('P5', 'JML', body)
+            worksheet271.write('J5', 'IPA', body)
+            worksheet271.write('K5', 'IPS', body)
+            worksheet271.write('L5', 'JML', body)
+            worksheet271.write('M5', 'MAT', body)
+            worksheet271.write('N5', 'IND', body)
+            worksheet271.write('O5', 'ENG', body)
+            worksheet271.write('P5', 'IPA', body)
+            worksheet271.write('Q5', 'IPS', body)
+            worksheet271.write('R5', 'JML', body)
 
-            worksheet271.conditional_format(5, 0, row271_10+4, 15,
+            worksheet271.conditional_format(5, 0, row271_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet271.merge_range(
@@ -13845,20 +14503,22 @@
             worksheet271.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet271.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet271.merge_range('F21:F22', 'KELAS', header)
-            worksheet271.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet271.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet271.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet271.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet271.write('G22', 'MAT', body)
             worksheet271.write('H22', 'IND', body)
             worksheet271.write('I22', 'ENG', body)
-            worksheet271.write('J22', 'IPAS', body)
-            worksheet271.write('K22', 'JML', body)
-            worksheet271.write('L22', 'MAT', body)
-            worksheet271.write('M22', 'IND', body)
-            worksheet271.write('N22', 'ENG', body)
-            worksheet271.write('O22', 'IPAS', body)
-            worksheet271.write('P22', 'JML', body)
+            worksheet271.write('J22', 'IPA', body)
+            worksheet271.write('K22', 'IPS', body)
+            worksheet271.write('L22', 'JML', body)
+            worksheet271.write('M22', 'MAT', body)
+            worksheet271.write('N22', 'IND', body)
+            worksheet271.write('O22', 'ENG', body)
+            worksheet271.write('P22', 'IPA', body)
+            worksheet271.write('Q22', 'IPS', body)
+            worksheet271.write('R22', 'JML', body)
 
-            worksheet271.conditional_format(22, 0, row271+21, 15,
+            worksheet271.conditional_format(22, 0, row271+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 272
@@ -13882,20 +14542,22 @@
             worksheet272.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet272.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet272.merge_range('F4:F5', 'KELAS', header)
-            worksheet272.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet272.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet272.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet272.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet272.write('G5', 'MAT', body)
             worksheet272.write('H5', 'IND', body)
             worksheet272.write('I5', 'ENG', body)
-            worksheet272.write('J5', 'IPAS', body)
-            worksheet272.write('K5', 'JML', body)
-            worksheet272.write('L5', 'MAT', body)
-            worksheet272.write('M5', 'IND', body)
-            worksheet272.write('N5', 'ENG', body)
-            worksheet272.write('O5', 'IPAS', body)
-            worksheet272.write('P5', 'JML', body)
+            worksheet272.write('J5', 'IPA', body)
+            worksheet272.write('K5', 'IPS', body)
+            worksheet272.write('L5', 'JML', body)
+            worksheet272.write('M5', 'MAT', body)
+            worksheet272.write('N5', 'IND', body)
+            worksheet272.write('O5', 'ENG', body)
+            worksheet272.write('P5', 'IPA', body)
+            worksheet272.write('Q5', 'IPS', body)
+            worksheet272.write('R5', 'JML', body)
 
-            worksheet272.conditional_format(5, 0, row272_10+4, 15,
+            worksheet272.conditional_format(5, 0, row272_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet272.merge_range(
@@ -13910,20 +14572,22 @@
             worksheet272.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet272.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet272.merge_range('F21:F22', 'KELAS', header)
-            worksheet272.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet272.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet272.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet272.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet272.write('G22', 'MAT', body)
             worksheet272.write('H22', 'IND', body)
             worksheet272.write('I22', 'ENG', body)
-            worksheet272.write('J22', 'IPAS', body)
-            worksheet272.write('K22', 'JML', body)
-            worksheet272.write('L22', 'MAT', body)
-            worksheet272.write('M22', 'IND', body)
-            worksheet272.write('N22', 'ENG', body)
-            worksheet272.write('O22', 'IPAS', body)
-            worksheet272.write('P22', 'JML', body)
+            worksheet272.write('J22', 'IPA', body)
+            worksheet272.write('K22', 'IPS', body)
+            worksheet272.write('L22', 'JML', body)
+            worksheet272.write('M22', 'MAT', body)
+            worksheet272.write('N22', 'IND', body)
+            worksheet272.write('O22', 'ENG', body)
+            worksheet272.write('P22', 'IPA', body)
+            worksheet272.write('Q22', 'IPS', body)
+            worksheet272.write('R22', 'JML', body)
 
-            worksheet272.conditional_format(22, 0, row272+21, 15,
+            worksheet272.conditional_format(22, 0, row272+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 273
@@ -13947,20 +14611,22 @@
             worksheet273.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet273.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet273.merge_range('F4:F5', 'KELAS', header)
-            worksheet273.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet273.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet273.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet273.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet273.write('G5', 'MAT', body)
             worksheet273.write('H5', 'IND', body)
             worksheet273.write('I5', 'ENG', body)
-            worksheet273.write('J5', 'IPAS', body)
-            worksheet273.write('K5', 'JML', body)
-            worksheet273.write('L5', 'MAT', body)
-            worksheet273.write('M5', 'IND', body)
-            worksheet273.write('N5', 'ENG', body)
-            worksheet273.write('O5', 'IPAS', body)
-            worksheet273.write('P5', 'JML', body)
+            worksheet273.write('J5', 'IPA', body)
+            worksheet273.write('K5', 'IPS', body)
+            worksheet273.write('L5', 'JML', body)
+            worksheet273.write('M5', 'MAT', body)
+            worksheet273.write('N5', 'IND', body)
+            worksheet273.write('O5', 'ENG', body)
+            worksheet273.write('P5', 'IPA', body)
+            worksheet273.write('Q5', 'IPS', body)
+            worksheet273.write('R5', 'JML', body)
 
-            worksheet273.conditional_format(5, 0, row273_10+4, 15,
+            worksheet273.conditional_format(5, 0, row273_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet273.merge_range(
@@ -13975,20 +14641,22 @@
             worksheet273.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet273.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet273.merge_range('F21:F22', 'KELAS', header)
-            worksheet273.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet273.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet273.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet273.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet273.write('G22', 'MAT', body)
             worksheet273.write('H22', 'IND', body)
             worksheet273.write('I22', 'ENG', body)
-            worksheet273.write('J22', 'IPAS', body)
-            worksheet273.write('K22', 'JML', body)
-            worksheet273.write('L22', 'MAT', body)
-            worksheet273.write('M22', 'IND', body)
-            worksheet273.write('N22', 'ENG', body)
-            worksheet273.write('O22', 'IPAS', body)
-            worksheet273.write('P22', 'JML', body)
+            worksheet273.write('J22', 'IPA', body)
+            worksheet273.write('K22', 'IPS', body)
+            worksheet273.write('L22', 'JML', body)
+            worksheet273.write('M22', 'MAT', body)
+            worksheet273.write('N22', 'IND', body)
+            worksheet273.write('O22', 'ENG', body)
+            worksheet273.write('P22', 'IPA', body)
+            worksheet273.write('Q22', 'IPS', body)
+            worksheet273.write('R22', 'JML', body)
 
-            worksheet273.conditional_format(22, 0, row273+21, 15,
+            worksheet273.conditional_format(22, 0, row273+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 274
@@ -14012,20 +14680,22 @@
             worksheet274.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet274.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet274.merge_range('F4:F5', 'KELAS', header)
-            worksheet274.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet274.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet274.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet274.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet274.write('G5', 'MAT', body)
             worksheet274.write('H5', 'IND', body)
             worksheet274.write('I5', 'ENG', body)
-            worksheet274.write('J5', 'IPAS', body)
-            worksheet274.write('K5', 'JML', body)
-            worksheet274.write('L5', 'MAT', body)
-            worksheet274.write('M5', 'IND', body)
-            worksheet274.write('N5', 'ENG', body)
-            worksheet274.write('O5', 'IPAS', body)
-            worksheet274.write('P5', 'JML', body)
+            worksheet274.write('J5', 'IPA', body)
+            worksheet274.write('K5', 'IPS', body)
+            worksheet274.write('L5', 'JML', body)
+            worksheet274.write('M5', 'MAT', body)
+            worksheet274.write('N5', 'IND', body)
+            worksheet274.write('O5', 'ENG', body)
+            worksheet274.write('P5', 'IPA', body)
+            worksheet274.write('Q5', 'IPS', body)
+            worksheet274.write('R5', 'JML', body)
 
-            worksheet274.conditional_format(5, 0, row274_10+4, 15,
+            worksheet274.conditional_format(5, 0, row274_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet274.merge_range(
@@ -14040,20 +14710,22 @@
             worksheet274.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet274.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet274.merge_range('F21:F22', 'KELAS', header)
-            worksheet274.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet274.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet274.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet274.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet274.write('G22', 'MAT', body)
             worksheet274.write('H22', 'IND', body)
             worksheet274.write('I22', 'ENG', body)
-            worksheet274.write('J22', 'IPAS', body)
-            worksheet274.write('K22', 'JML', body)
-            worksheet274.write('L22', 'MAT', body)
-            worksheet274.write('M22', 'IND', body)
-            worksheet274.write('N22', 'ENG', body)
-            worksheet274.write('O22', 'IPAS', body)
-            worksheet274.write('P22', 'JML', body)
+            worksheet274.write('J22', 'IPA', body)
+            worksheet274.write('K22', 'IPS', body)
+            worksheet274.write('L22', 'JML', body)
+            worksheet274.write('M22', 'MAT', body)
+            worksheet274.write('N22', 'IND', body)
+            worksheet274.write('O22', 'ENG', body)
+            worksheet274.write('P22', 'IPA', body)
+            worksheet274.write('Q22', 'IPS', body)
+            worksheet274.write('R22', 'JML', body)
 
-            worksheet274.conditional_format(22, 0, row274+21, 15,
+            worksheet274.conditional_format(22, 0, row274+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 275
@@ -14077,20 +14749,22 @@
             worksheet275.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet275.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet275.merge_range('F4:F5', 'KELAS', header)
-            worksheet275.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet275.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet275.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet275.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet275.write('G5', 'MAT', body)
             worksheet275.write('H5', 'IND', body)
             worksheet275.write('I5', 'ENG', body)
-            worksheet275.write('J5', 'IPAS', body)
-            worksheet275.write('K5', 'JML', body)
-            worksheet275.write('L5', 'MAT', body)
-            worksheet275.write('M5', 'IND', body)
-            worksheet275.write('N5', 'ENG', body)
-            worksheet275.write('O5', 'IPAS', body)
-            worksheet275.write('P5', 'JML', body)
+            worksheet275.write('J5', 'IPA', body)
+            worksheet275.write('K5', 'IPS', body)
+            worksheet275.write('L5', 'JML', body)
+            worksheet275.write('M5', 'MAT', body)
+            worksheet275.write('N5', 'IND', body)
+            worksheet275.write('O5', 'ENG', body)
+            worksheet275.write('P5', 'IPA', body)
+            worksheet275.write('Q5', 'IPS', body)
+            worksheet275.write('R5', 'JML', body)
 
-            worksheet275.conditional_format(5, 0, row275_10+4, 15,
+            worksheet275.conditional_format(5, 0, row275_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet275.merge_range(
@@ -14105,20 +14779,22 @@
             worksheet275.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet275.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet275.merge_range('F21:F22', 'KELAS', header)
-            worksheet275.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet275.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet275.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet275.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet275.write('G22', 'MAT', body)
             worksheet275.write('H22', 'IND', body)
             worksheet275.write('I22', 'ENG', body)
-            worksheet275.write('J22', 'IPAS', body)
-            worksheet275.write('K22', 'JML', body)
-            worksheet275.write('L22', 'MAT', body)
-            worksheet275.write('M22', 'IND', body)
-            worksheet275.write('N22', 'ENG', body)
-            worksheet275.write('O22', 'IPAS', body)
-            worksheet275.write('P22', 'JML', body)
+            worksheet275.write('J22', 'IPA', body)
+            worksheet275.write('K22', 'IPS', body)
+            worksheet275.write('L22', 'JML', body)
+            worksheet275.write('M22', 'MAT', body)
+            worksheet275.write('N22', 'IND', body)
+            worksheet275.write('O22', 'ENG', body)
+            worksheet275.write('P22', 'IPA', body)
+            worksheet275.write('Q22', 'IPS', body)
+            worksheet275.write('R22', 'JML', body)
 
-            worksheet275.conditional_format(22, 0, row275+21, 15,
+            worksheet275.conditional_format(22, 0, row275+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 276
@@ -14142,20 +14818,22 @@
             worksheet276.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet276.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet276.merge_range('F4:F5', 'KELAS', header)
-            worksheet276.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet276.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet276.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet276.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet276.write('G5', 'MAT', body)
             worksheet276.write('H5', 'IND', body)
             worksheet276.write('I5', 'ENG', body)
-            worksheet276.write('J5', 'IPAS', body)
-            worksheet276.write('K5', 'JML', body)
-            worksheet276.write('L5', 'MAT', body)
-            worksheet276.write('M5', 'IND', body)
-            worksheet276.write('N5', 'ENG', body)
-            worksheet276.write('O5', 'IPAS', body)
-            worksheet276.write('P5', 'JML', body)
+            worksheet276.write('J5', 'IPA', body)
+            worksheet276.write('K5', 'IPS', body)
+            worksheet276.write('L5', 'JML', body)
+            worksheet276.write('M5', 'MAT', body)
+            worksheet276.write('N5', 'IND', body)
+            worksheet276.write('O5', 'ENG', body)
+            worksheet276.write('P5', 'IPA', body)
+            worksheet276.write('Q5', 'IPS', body)
+            worksheet276.write('R5', 'JML', body)
 
-            worksheet276.conditional_format(5, 0, row276_10+4, 15,
+            worksheet276.conditional_format(5, 0, row276_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet276.merge_range(
@@ -14170,20 +14848,22 @@
             worksheet276.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet276.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet276.merge_range('F21:F22', 'KELAS', header)
-            worksheet276.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet276.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet276.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet276.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet276.write('G22', 'MAT', body)
             worksheet276.write('H22', 'IND', body)
             worksheet276.write('I22', 'ENG', body)
-            worksheet276.write('J22', 'IPAS', body)
-            worksheet276.write('K22', 'JML', body)
-            worksheet276.write('L22', 'MAT', body)
-            worksheet276.write('M22', 'IND', body)
-            worksheet276.write('N22', 'ENG', body)
-            worksheet276.write('O22', 'IPAS', body)
-            worksheet276.write('P22', 'JML', body)
+            worksheet276.write('J22', 'IPA', body)
+            worksheet276.write('K22', 'IPS', body)
+            worksheet276.write('L22', 'JML', body)
+            worksheet276.write('M22', 'MAT', body)
+            worksheet276.write('N22', 'IND', body)
+            worksheet276.write('O22', 'ENG', body)
+            worksheet276.write('P22', 'IPA', body)
+            worksheet276.write('Q22', 'IPS', body)
+            worksheet276.write('R22', 'JML', body)
 
-            worksheet276.conditional_format(22, 0, row276+21, 15,
+            worksheet276.conditional_format(22, 0, row276+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 278
@@ -14207,20 +14887,22 @@
             worksheet278.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet278.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet278.merge_range('F4:F5', 'KELAS', header)
-            worksheet278.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet278.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet278.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet278.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet278.write('G5', 'MAT', body)
             worksheet278.write('H5', 'IND', body)
             worksheet278.write('I5', 'ENG', body)
-            worksheet278.write('J5', 'IPAS', body)
-            worksheet278.write('K5', 'JML', body)
-            worksheet278.write('L5', 'MAT', body)
-            worksheet278.write('M5', 'IND', body)
-            worksheet278.write('N5', 'ENG', body)
-            worksheet278.write('O5', 'IPAS', body)
-            worksheet278.write('P5', 'JML', body)
+            worksheet278.write('J5', 'IPA', body)
+            worksheet278.write('K5', 'IPS', body)
+            worksheet278.write('L5', 'JML', body)
+            worksheet278.write('M5', 'MAT', body)
+            worksheet278.write('N5', 'IND', body)
+            worksheet278.write('O5', 'ENG', body)
+            worksheet278.write('P5', 'IPA', body)
+            worksheet278.write('Q5', 'IPS', body)
+            worksheet278.write('R5', 'JML', body)
 
-            worksheet278.conditional_format(5, 0, row278_10+4, 15,
+            worksheet278.conditional_format(5, 0, row278_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet278.merge_range(
@@ -14235,20 +14917,22 @@
             worksheet278.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet278.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet278.merge_range('F21:F22', 'KELAS', header)
-            worksheet278.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet278.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet278.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet278.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet278.write('G22', 'MAT', body)
             worksheet278.write('H22', 'IND', body)
             worksheet278.write('I22', 'ENG', body)
-            worksheet278.write('J22', 'IPAS', body)
-            worksheet278.write('K22', 'JML', body)
-            worksheet278.write('L22', 'MAT', body)
-            worksheet278.write('M22', 'IND', body)
-            worksheet278.write('N22', 'ENG', body)
-            worksheet278.write('O22', 'IPAS', body)
-            worksheet278.write('P22', 'JML', body)
+            worksheet278.write('J22', 'IPA', body)
+            worksheet278.write('K22', 'IPS', body)
+            worksheet278.write('L22', 'JML', body)
+            worksheet278.write('M22', 'MAT', body)
+            worksheet278.write('N22', 'IND', body)
+            worksheet278.write('O22', 'ENG', body)
+            worksheet278.write('P22', 'IPA', body)
+            worksheet278.write('Q22', 'IPS', body)
+            worksheet278.write('R22', 'JML', body)
 
-            worksheet278.conditional_format(22, 0, row278+21, 15,
+            worksheet278.conditional_format(22, 0, row278+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 279
@@ -14272,20 +14956,22 @@
             worksheet279.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet279.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet279.merge_range('F4:F5', 'KELAS', header)
-            worksheet279.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet279.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet279.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet279.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet279.write('G5', 'MAT', body)
             worksheet279.write('H5', 'IND', body)
             worksheet279.write('I5', 'ENG', body)
-            worksheet279.write('J5', 'IPAS', body)
-            worksheet279.write('K5', 'JML', body)
-            worksheet279.write('L5', 'MAT', body)
-            worksheet279.write('M5', 'IND', body)
-            worksheet279.write('N5', 'ENG', body)
-            worksheet279.write('O5', 'IPAS', body)
-            worksheet279.write('P5', 'JML', body)
+            worksheet279.write('J5', 'IPA', body)
+            worksheet279.write('K5', 'IPS', body)
+            worksheet279.write('L5', 'JML', body)
+            worksheet279.write('M5', 'MAT', body)
+            worksheet279.write('N5', 'IND', body)
+            worksheet279.write('O5', 'ENG', body)
+            worksheet279.write('P5', 'IPA', body)
+            worksheet279.write('Q5', 'IPS', body)
+            worksheet279.write('R5', 'JML', body)
 
-            worksheet279.conditional_format(5, 0, row279_10+4, 15,
+            worksheet279.conditional_format(5, 0, row279_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet279.merge_range(
@@ -14300,20 +14986,22 @@
             worksheet279.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet279.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet279.merge_range('F21:F22', 'KELAS', header)
-            worksheet279.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet279.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet279.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet279.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet279.write('G22', 'MAT', body)
             worksheet279.write('H22', 'IND', body)
             worksheet279.write('I22', 'ENG', body)
-            worksheet279.write('J22', 'IPAS', body)
-            worksheet279.write('K22', 'JML', body)
-            worksheet279.write('L22', 'MAT', body)
-            worksheet279.write('M22', 'IND', body)
-            worksheet279.write('N22', 'ENG', body)
-            worksheet279.write('O22', 'IPAS', body)
-            worksheet279.write('P22', 'JML', body)
+            worksheet279.write('J22', 'IPA', body)
+            worksheet279.write('K22', 'IPS', body)
+            worksheet279.write('L22', 'JML', body)
+            worksheet279.write('M22', 'MAT', body)
+            worksheet279.write('N22', 'IND', body)
+            worksheet279.write('O22', 'ENG', body)
+            worksheet279.write('P22', 'IPA', body)
+            worksheet279.write('Q22', 'IPS', body)
+            worksheet279.write('R22', 'JML', body)
 
-            worksheet279.conditional_format(22, 0, row279+21, 15,
+            worksheet279.conditional_format(22, 0, row279+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 280
@@ -14337,20 +15025,22 @@
             worksheet280.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet280.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet280.merge_range('F4:F5', 'KELAS', header)
-            worksheet280.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet280.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet280.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet280.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet280.write('G5', 'MAT', body)
             worksheet280.write('H5', 'IND', body)
             worksheet280.write('I5', 'ENG', body)
-            worksheet280.write('J5', 'IPAS', body)
-            worksheet280.write('K5', 'JML', body)
-            worksheet280.write('L5', 'MAT', body)
-            worksheet280.write('M5', 'IND', body)
-            worksheet280.write('N5', 'ENG', body)
-            worksheet280.write('O5', 'IPAS', body)
-            worksheet280.write('P5', 'JML', body)
+            worksheet280.write('J5', 'IPA', body)
+            worksheet280.write('K5', 'IPS', body)
+            worksheet280.write('L5', 'JML', body)
+            worksheet280.write('M5', 'MAT', body)
+            worksheet280.write('N5', 'IND', body)
+            worksheet280.write('O5', 'ENG', body)
+            worksheet280.write('P5', 'IPA', body)
+            worksheet280.write('Q5', 'IPS', body)
+            worksheet280.write('R5', 'JML', body)
 
-            worksheet280.conditional_format(5, 0, row280_10+4, 15,
+            worksheet280.conditional_format(5, 0, row280_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet280.merge_range(
@@ -14365,20 +15055,22 @@
             worksheet280.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet280.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet280.merge_range('F21:F22', 'KELAS', header)
-            worksheet280.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet280.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet280.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet280.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet280.write('G22', 'MAT', body)
             worksheet280.write('H22', 'IND', body)
             worksheet280.write('I22', 'ENG', body)
-            worksheet280.write('J22', 'IPAS', body)
-            worksheet280.write('K22', 'JML', body)
-            worksheet280.write('L22', 'MAT', body)
-            worksheet280.write('M22', 'IND', body)
-            worksheet280.write('N22', 'ENG', body)
-            worksheet280.write('O22', 'IPAS', body)
-            worksheet280.write('P22', 'JML', body)
+            worksheet280.write('J22', 'IPA', body)
+            worksheet280.write('K22', 'IPS', body)
+            worksheet280.write('L22', 'JML', body)
+            worksheet280.write('M22', 'MAT', body)
+            worksheet280.write('N22', 'IND', body)
+            worksheet280.write('O22', 'ENG', body)
+            worksheet280.write('P22', 'IPA', body)
+            worksheet280.write('Q22', 'IPS', body)
+            worksheet280.write('R22', 'JML', body)
 
-            worksheet280.conditional_format(22, 0, row280+21, 15,
+            worksheet280.conditional_format(22, 0, row280+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 282
@@ -14402,20 +15094,22 @@
             worksheet282.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet282.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet282.merge_range('F4:F5', 'KELAS', header)
-            worksheet282.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet282.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet282.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet282.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet282.write('G5', 'MAT', body)
             worksheet282.write('H5', 'IND', body)
             worksheet282.write('I5', 'ENG', body)
-            worksheet282.write('J5', 'IPAS', body)
-            worksheet282.write('K5', 'JML', body)
-            worksheet282.write('L5', 'MAT', body)
-            worksheet282.write('M5', 'IND', body)
-            worksheet282.write('N5', 'ENG', body)
-            worksheet282.write('O5', 'IPAS', body)
-            worksheet282.write('P5', 'JML', body)
+            worksheet282.write('J5', 'IPA', body)
+            worksheet282.write('K5', 'IPS', body)
+            worksheet282.write('L5', 'JML', body)
+            worksheet282.write('M5', 'MAT', body)
+            worksheet282.write('N5', 'IND', body)
+            worksheet282.write('O5', 'ENG', body)
+            worksheet282.write('P5', 'IPA', body)
+            worksheet282.write('Q5', 'IPS', body)
+            worksheet282.write('R5', 'JML', body)
 
-            worksheet282.conditional_format(5, 0, row282_10+4, 15,
+            worksheet282.conditional_format(5, 0, row282_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet282.merge_range(
@@ -14430,20 +15124,22 @@
             worksheet282.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet282.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet282.merge_range('F21:F22', 'KELAS', header)
-            worksheet282.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet282.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet282.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet282.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet282.write('G22', 'MAT', body)
             worksheet282.write('H22', 'IND', body)
             worksheet282.write('I22', 'ENG', body)
-            worksheet282.write('J22', 'IPAS', body)
-            worksheet282.write('K22', 'JML', body)
-            worksheet282.write('L22', 'MAT', body)
-            worksheet282.write('M22', 'IND', body)
-            worksheet282.write('N22', 'ENG', body)
-            worksheet282.write('O22', 'IPAS', body)
-            worksheet282.write('P22', 'JML', body)
+            worksheet282.write('J22', 'IPA', body)
+            worksheet282.write('K22', 'IPS', body)
+            worksheet282.write('L22', 'JML', body)
+            worksheet282.write('M22', 'MAT', body)
+            worksheet282.write('N22', 'IND', body)
+            worksheet282.write('O22', 'ENG', body)
+            worksheet282.write('P22', 'IPA', body)
+            worksheet282.write('Q22', 'IPS', body)
+            worksheet282.write('R22', 'JML', body)
 
-            worksheet282.conditional_format(22, 0, row282+21, 15,
+            worksheet282.conditional_format(22, 0, row282+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 283
@@ -14467,20 +15163,22 @@
             worksheet283.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet283.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet283.merge_range('F4:F5', 'KELAS', header)
-            worksheet283.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet283.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet283.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet283.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet283.write('G5', 'MAT', body)
             worksheet283.write('H5', 'IND', body)
             worksheet283.write('I5', 'ENG', body)
-            worksheet283.write('J5', 'IPAS', body)
-            worksheet283.write('K5', 'JML', body)
-            worksheet283.write('L5', 'MAT', body)
-            worksheet283.write('M5', 'IND', body)
-            worksheet283.write('N5', 'ENG', body)
-            worksheet283.write('O5', 'IPAS', body)
-            worksheet283.write('P5', 'JML', body)
+            worksheet283.write('J5', 'IPA', body)
+            worksheet283.write('K5', 'IPS', body)
+            worksheet283.write('L5', 'JML', body)
+            worksheet283.write('M5', 'MAT', body)
+            worksheet283.write('N5', 'IND', body)
+            worksheet283.write('O5', 'ENG', body)
+            worksheet283.write('P5', 'IPA', body)
+            worksheet283.write('Q5', 'IPS', body)
+            worksheet283.write('R5', 'JML', body)
 
-            worksheet283.conditional_format(5, 0, row283_10+4, 15,
+            worksheet283.conditional_format(5, 0, row283_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet283.merge_range(
@@ -14495,20 +15193,22 @@
             worksheet283.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet283.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet283.merge_range('F21:F22', 'KELAS', header)
-            worksheet283.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet283.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet283.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet283.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet283.write('G22', 'MAT', body)
             worksheet283.write('H22', 'IND', body)
             worksheet283.write('I22', 'ENG', body)
-            worksheet283.write('J22', 'IPAS', body)
-            worksheet283.write('K22', 'JML', body)
-            worksheet283.write('L22', 'MAT', body)
-            worksheet283.write('M22', 'IND', body)
-            worksheet283.write('N22', 'ENG', body)
-            worksheet283.write('O22', 'IPAS', body)
-            worksheet283.write('P22', 'JML', body)
+            worksheet283.write('J22', 'IPA', body)
+            worksheet283.write('K22', 'IPS', body)
+            worksheet283.write('L22', 'JML', body)
+            worksheet283.write('M22', 'MAT', body)
+            worksheet283.write('N22', 'IND', body)
+            worksheet283.write('O22', 'ENG', body)
+            worksheet283.write('P22', 'IPA', body)
+            worksheet283.write('Q22', 'IPS', body)
+            worksheet283.write('R22', 'JML', body)
 
-            worksheet283.conditional_format(22, 0, row283+21, 15,
+            worksheet283.conditional_format(22, 0, row283+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 284
@@ -14532,20 +15232,22 @@
             worksheet284.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet284.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet284.merge_range('F4:F5', 'KELAS', header)
-            worksheet284.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet284.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet284.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet284.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet284.write('G5', 'MAT', body)
             worksheet284.write('H5', 'IND', body)
             worksheet284.write('I5', 'ENG', body)
-            worksheet284.write('J5', 'IPAS', body)
-            worksheet284.write('K5', 'JML', body)
-            worksheet284.write('L5', 'MAT', body)
-            worksheet284.write('M5', 'IND', body)
-            worksheet284.write('N5', 'ENG', body)
-            worksheet284.write('O5', 'IPAS', body)
-            worksheet284.write('P5', 'JML', body)
+            worksheet284.write('J5', 'IPA', body)
+            worksheet284.write('K5', 'IPS', body)
+            worksheet284.write('L5', 'JML', body)
+            worksheet284.write('M5', 'MAT', body)
+            worksheet284.write('N5', 'IND', body)
+            worksheet284.write('O5', 'ENG', body)
+            worksheet284.write('P5', 'IPA', body)
+            worksheet284.write('Q5', 'IPS', body)
+            worksheet284.write('R5', 'JML', body)
 
-            worksheet284.conditional_format(5, 0, row284_10+4, 15,
+            worksheet284.conditional_format(5, 0, row284_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet284.merge_range(
@@ -14560,20 +15262,22 @@
             worksheet284.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet284.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet284.merge_range('F21:F22', 'KELAS', header)
-            worksheet284.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet284.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet284.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet284.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet284.write('G22', 'MAT', body)
             worksheet284.write('H22', 'IND', body)
             worksheet284.write('I22', 'ENG', body)
-            worksheet284.write('J22', 'IPAS', body)
-            worksheet284.write('K22', 'JML', body)
-            worksheet284.write('L22', 'MAT', body)
-            worksheet284.write('M22', 'IND', body)
-            worksheet284.write('N22', 'ENG', body)
-            worksheet284.write('O22', 'IPAS', body)
-            worksheet284.write('P22', 'JML', body)
+            worksheet284.write('J22', 'IPA', body)
+            worksheet284.write('K22', 'IPS', body)
+            worksheet284.write('L22', 'JML', body)
+            worksheet284.write('M22', 'MAT', body)
+            worksheet284.write('N22', 'IND', body)
+            worksheet284.write('O22', 'ENG', body)
+            worksheet284.write('P22', 'IPA', body)
+            worksheet284.write('Q22', 'IPS', body)
+            worksheet284.write('R22', 'JML', body)
 
-            worksheet284.conditional_format(22, 0, row284+21, 15,
+            worksheet284.conditional_format(22, 0, row284+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 285
@@ -14597,20 +15301,22 @@
             worksheet285.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet285.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet285.merge_range('F4:F5', 'KELAS', header)
-            worksheet285.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet285.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet285.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet285.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet285.write('G5', 'MAT', body)
             worksheet285.write('H5', 'IND', body)
             worksheet285.write('I5', 'ENG', body)
-            worksheet285.write('J5', 'IPAS', body)
-            worksheet285.write('K5', 'JML', body)
-            worksheet285.write('L5', 'MAT', body)
-            worksheet285.write('M5', 'IND', body)
-            worksheet285.write('N5', 'ENG', body)
-            worksheet285.write('O5', 'IPAS', body)
-            worksheet285.write('P5', 'JML', body)
+            worksheet285.write('J5', 'IPA', body)
+            worksheet285.write('K5', 'IPS', body)
+            worksheet285.write('L5', 'JML', body)
+            worksheet285.write('M5', 'MAT', body)
+            worksheet285.write('N5', 'IND', body)
+            worksheet285.write('O5', 'ENG', body)
+            worksheet285.write('P5', 'IPA', body)
+            worksheet285.write('Q5', 'IPS', body)
+            worksheet285.write('R5', 'JML', body)
 
-            worksheet285.conditional_format(5, 0, row285_10+4, 15,
+            worksheet285.conditional_format(5, 0, row285_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet285.merge_range(
@@ -14625,20 +15331,22 @@
             worksheet285.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet285.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet285.merge_range('F21:F22', 'KELAS', header)
-            worksheet285.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet285.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet285.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet285.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet285.write('G22', 'MAT', body)
             worksheet285.write('H22', 'IND', body)
             worksheet285.write('I22', 'ENG', body)
-            worksheet285.write('J22', 'IPAS', body)
-            worksheet285.write('K22', 'JML', body)
-            worksheet285.write('L22', 'MAT', body)
-            worksheet285.write('M22', 'IND', body)
-            worksheet285.write('N22', 'ENG', body)
-            worksheet285.write('O22', 'IPAS', body)
-            worksheet285.write('P22', 'JML', body)
+            worksheet285.write('J22', 'IPA', body)
+            worksheet285.write('K22', 'IPS', body)
+            worksheet285.write('L22', 'JML', body)
+            worksheet285.write('M22', 'MAT', body)
+            worksheet285.write('N22', 'IND', body)
+            worksheet285.write('O22', 'ENG', body)
+            worksheet285.write('P22', 'IPA', body)
+            worksheet285.write('Q22', 'IPS', body)
+            worksheet285.write('R22', 'JML', body)
 
-            worksheet285.conditional_format(22, 0, row285+21, 15,
+            worksheet285.conditional_format(22, 0, row285+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 286
@@ -14662,20 +15370,22 @@
             worksheet286.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet286.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet286.merge_range('F4:F5', 'KELAS', header)
-            worksheet286.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet286.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet286.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet286.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet286.write('G5', 'MAT', body)
             worksheet286.write('H5', 'IND', body)
             worksheet286.write('I5', 'ENG', body)
-            worksheet286.write('J5', 'IPAS', body)
-            worksheet286.write('K5', 'JML', body)
-            worksheet286.write('L5', 'MAT', body)
-            worksheet286.write('M5', 'IND', body)
-            worksheet286.write('N5', 'ENG', body)
-            worksheet286.write('O5', 'IPAS', body)
-            worksheet286.write('P5', 'JML', body)
+            worksheet286.write('J5', 'IPA', body)
+            worksheet286.write('K5', 'IPS', body)
+            worksheet286.write('L5', 'JML', body)
+            worksheet286.write('M5', 'MAT', body)
+            worksheet286.write('N5', 'IND', body)
+            worksheet286.write('O5', 'ENG', body)
+            worksheet286.write('P5', 'IPA', body)
+            worksheet286.write('Q5', 'IPS', body)
+            worksheet286.write('R5', 'JML', body)
 
-            worksheet286.conditional_format(5, 0, row286_10+4, 15,
+            worksheet286.conditional_format(5, 0, row286_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet286.merge_range(
@@ -14690,20 +15400,22 @@
             worksheet286.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet286.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet286.merge_range('F21:F22', 'KELAS', header)
-            worksheet286.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet286.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet286.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet286.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet286.write('G22', 'MAT', body)
             worksheet286.write('H22', 'IND', body)
             worksheet286.write('I22', 'ENG', body)
-            worksheet286.write('J22', 'IPAS', body)
-            worksheet286.write('K22', 'JML', body)
-            worksheet286.write('L22', 'MAT', body)
-            worksheet286.write('M22', 'IND', body)
-            worksheet286.write('N22', 'ENG', body)
-            worksheet286.write('O22', 'IPAS', body)
-            worksheet286.write('P22', 'JML', body)
+            worksheet286.write('J22', 'IPA', body)
+            worksheet286.write('K22', 'IPS', body)
+            worksheet286.write('L22', 'JML', body)
+            worksheet286.write('M22', 'MAT', body)
+            worksheet286.write('N22', 'IND', body)
+            worksheet286.write('O22', 'ENG', body)
+            worksheet286.write('P22', 'IPA', body)
+            worksheet286.write('Q22', 'IPS', body)
+            worksheet286.write('R22', 'JML', body)
 
-            worksheet286.conditional_format(22, 0, row286+21, 15,
+            worksheet286.conditional_format(22, 0, row286+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 287
@@ -14727,20 +15439,22 @@
             worksheet287.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet287.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet287.merge_range('F4:F5', 'KELAS', header)
-            worksheet287.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet287.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet287.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet287.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet287.write('G5', 'MAT', body)
             worksheet287.write('H5', 'IND', body)
             worksheet287.write('I5', 'ENG', body)
-            worksheet287.write('J5', 'IPAS', body)
-            worksheet287.write('K5', 'JML', body)
-            worksheet287.write('L5', 'MAT', body)
-            worksheet287.write('M5', 'IND', body)
-            worksheet287.write('N5', 'ENG', body)
-            worksheet287.write('O5', 'IPAS', body)
-            worksheet287.write('P5', 'JML', body)
+            worksheet287.write('J5', 'IPA', body)
+            worksheet287.write('K5', 'IPS', body)
+            worksheet287.write('L5', 'JML', body)
+            worksheet287.write('M5', 'MAT', body)
+            worksheet287.write('N5', 'IND', body)
+            worksheet287.write('O5', 'ENG', body)
+            worksheet287.write('P5', 'IPA', body)
+            worksheet287.write('Q5', 'IPS', body)
+            worksheet287.write('R5', 'JML', body)
 
-            worksheet287.conditional_format(5, 0, row287_10+4, 15,
+            worksheet287.conditional_format(5, 0, row287_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet287.merge_range(
@@ -14755,20 +15469,22 @@
             worksheet287.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet287.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet287.merge_range('F21:F22', 'KELAS', header)
-            worksheet287.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet287.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet287.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet287.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet287.write('G22', 'MAT', body)
             worksheet287.write('H22', 'IND', body)
             worksheet287.write('I22', 'ENG', body)
-            worksheet287.write('J22', 'IPAS', body)
-            worksheet287.write('K22', 'JML', body)
-            worksheet287.write('L22', 'MAT', body)
-            worksheet287.write('M22', 'IND', body)
-            worksheet287.write('N22', 'ENG', body)
-            worksheet287.write('O22', 'IPAS', body)
-            worksheet287.write('P22', 'JML', body)
+            worksheet287.write('J22', 'IPA', body)
+            worksheet287.write('K22', 'IPS', body)
+            worksheet287.write('L22', 'JML', body)
+            worksheet287.write('M22', 'MAT', body)
+            worksheet287.write('N22', 'IND', body)
+            worksheet287.write('O22', 'ENG', body)
+            worksheet287.write('P22', 'IPA', body)
+            worksheet287.write('Q22', 'IPS', body)
+            worksheet287.write('R22', 'JML', body)
 
-            worksheet287.conditional_format(22, 0, row287+21, 15,
+            worksheet287.conditional_format(22, 0, row287+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 288
@@ -14792,20 +15508,22 @@
             worksheet288.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet288.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet288.merge_range('F4:F5', 'KELAS', header)
-            worksheet288.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet288.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet288.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet288.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet288.write('G5', 'MAT', body)
             worksheet288.write('H5', 'IND', body)
             worksheet288.write('I5', 'ENG', body)
-            worksheet288.write('J5', 'IPAS', body)
-            worksheet288.write('K5', 'JML', body)
-            worksheet288.write('L5', 'MAT', body)
-            worksheet288.write('M5', 'IND', body)
-            worksheet288.write('N5', 'ENG', body)
-            worksheet288.write('O5', 'IPAS', body)
-            worksheet288.write('P5', 'JML', body)
+            worksheet288.write('J5', 'IPA', body)
+            worksheet288.write('K5', 'IPS', body)
+            worksheet288.write('L5', 'JML', body)
+            worksheet288.write('M5', 'MAT', body)
+            worksheet288.write('N5', 'IND', body)
+            worksheet288.write('O5', 'ENG', body)
+            worksheet288.write('P5', 'IPA', body)
+            worksheet288.write('Q5', 'IPS', body)
+            worksheet288.write('R5', 'JML', body)
 
-            worksheet288.conditional_format(5, 0, row288_10+4, 15,
+            worksheet288.conditional_format(5, 0, row288_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet288.merge_range(
@@ -14820,20 +15538,22 @@
             worksheet288.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet288.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet288.merge_range('F21:F22', 'KELAS', header)
-            worksheet288.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet288.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet288.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet288.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet288.write('G22', 'MAT', body)
             worksheet288.write('H22', 'IND', body)
             worksheet288.write('I22', 'ENG', body)
-            worksheet288.write('J22', 'IPAS', body)
-            worksheet288.write('K22', 'JML', body)
-            worksheet288.write('L22', 'MAT', body)
-            worksheet288.write('M22', 'IND', body)
-            worksheet288.write('N22', 'ENG', body)
-            worksheet288.write('O22', 'IPAS', body)
-            worksheet288.write('P22', 'JML', body)
+            worksheet288.write('J22', 'IPA', body)
+            worksheet288.write('K22', 'IPS', body)
+            worksheet288.write('L22', 'JML', body)
+            worksheet288.write('M22', 'MAT', body)
+            worksheet288.write('N22', 'IND', body)
+            worksheet288.write('O22', 'ENG', body)
+            worksheet288.write('P22', 'IPA', body)
+            worksheet288.write('Q22', 'IPS', body)
+            worksheet288.write('R22', 'JML', body)
 
-            worksheet288.conditional_format(22, 0, row288+21, 15,
+            worksheet288.conditional_format(22, 0, row288+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 289
@@ -14857,20 +15577,22 @@
             worksheet289.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet289.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet289.merge_range('F4:F5', 'KELAS', header)
-            worksheet289.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet289.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet289.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet289.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet289.write('G5', 'MAT', body)
             worksheet289.write('H5', 'IND', body)
             worksheet289.write('I5', 'ENG', body)
-            worksheet289.write('J5', 'IPAS', body)
-            worksheet289.write('K5', 'JML', body)
-            worksheet289.write('L5', 'MAT', body)
-            worksheet289.write('M5', 'IND', body)
-            worksheet289.write('N5', 'ENG', body)
-            worksheet289.write('O5', 'IPAS', body)
-            worksheet289.write('P5', 'JML', body)
+            worksheet289.write('J5', 'IPA', body)
+            worksheet289.write('K5', 'IPS', body)
+            worksheet289.write('L5', 'JML', body)
+            worksheet289.write('M5', 'MAT', body)
+            worksheet289.write('N5', 'IND', body)
+            worksheet289.write('O5', 'ENG', body)
+            worksheet289.write('P5', 'IPA', body)
+            worksheet289.write('Q5', 'IPS', body)
+            worksheet289.write('R5', 'JML', body)
 
-            worksheet289.conditional_format(5, 0, row289_10+4, 15,
+            worksheet289.conditional_format(5, 0, row289_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet289.merge_range(
@@ -14885,20 +15607,22 @@
             worksheet289.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet289.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet289.merge_range('F21:F22', 'KELAS', header)
-            worksheet289.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet289.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet289.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet289.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet289.write('G22', 'MAT', body)
             worksheet289.write('H22', 'IND', body)
             worksheet289.write('I22', 'ENG', body)
-            worksheet289.write('J22', 'IPAS', body)
-            worksheet289.write('K22', 'JML', body)
-            worksheet289.write('L22', 'MAT', body)
-            worksheet289.write('M22', 'IND', body)
-            worksheet289.write('N22', 'ENG', body)
-            worksheet289.write('O22', 'IPAS', body)
-            worksheet289.write('P22', 'JML', body)
+            worksheet289.write('J22', 'IPA', body)
+            worksheet289.write('K22', 'IPS', body)
+            worksheet289.write('L22', 'JML', body)
+            worksheet289.write('M22', 'MAT', body)
+            worksheet289.write('N22', 'IND', body)
+            worksheet289.write('O22', 'ENG', body)
+            worksheet289.write('P22', 'IPA', body)
+            worksheet289.write('Q22', 'IPS', body)
+            worksheet289.write('R22', 'JML', body)
 
-            worksheet289.conditional_format(22, 0, row289+21, 15,
+            worksheet289.conditional_format(22, 0, row289+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 290
@@ -14922,20 +15646,22 @@
             worksheet290.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet290.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet290.merge_range('F4:F5', 'KELAS', header)
-            worksheet290.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet290.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet290.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet290.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet290.write('G5', 'MAT', body)
             worksheet290.write('H5', 'IND', body)
             worksheet290.write('I5', 'ENG', body)
-            worksheet290.write('J5', 'IPAS', body)
-            worksheet290.write('K5', 'JML', body)
-            worksheet290.write('L5', 'MAT', body)
-            worksheet290.write('M5', 'IND', body)
-            worksheet290.write('N5', 'ENG', body)
-            worksheet290.write('O5', 'IPAS', body)
-            worksheet290.write('P5', 'JML', body)
+            worksheet290.write('J5', 'IPA', body)
+            worksheet290.write('K5', 'IPS', body)
+            worksheet290.write('L5', 'JML', body)
+            worksheet290.write('M5', 'MAT', body)
+            worksheet290.write('N5', 'IND', body)
+            worksheet290.write('O5', 'ENG', body)
+            worksheet290.write('P5', 'IPA', body)
+            worksheet290.write('Q5', 'IPS', body)
+            worksheet290.write('R5', 'JML', body)
 
-            worksheet290.conditional_format(5, 0, row290_10+4, 15,
+            worksheet290.conditional_format(5, 0, row290_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet290.merge_range(
@@ -14950,20 +15676,22 @@
             worksheet290.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet290.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet290.merge_range('F21:F22', 'KELAS', header)
-            worksheet290.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet290.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet290.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet290.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet290.write('G22', 'MAT', body)
             worksheet290.write('H22', 'IND', body)
             worksheet290.write('I22', 'ENG', body)
-            worksheet290.write('J22', 'IPAS', body)
-            worksheet290.write('K22', 'JML', body)
-            worksheet290.write('L22', 'MAT', body)
-            worksheet290.write('M22', 'IND', body)
-            worksheet290.write('N22', 'ENG', body)
-            worksheet290.write('O22', 'IPAS', body)
-            worksheet290.write('P22', 'JML', body)
+            worksheet290.write('J22', 'IPA', body)
+            worksheet290.write('K22', 'IPS', body)
+            worksheet290.write('L22', 'JML', body)
+            worksheet290.write('M22', 'MAT', body)
+            worksheet290.write('N22', 'IND', body)
+            worksheet290.write('O22', 'ENG', body)
+            worksheet290.write('P22', 'IPA', body)
+            worksheet290.write('Q22', 'IPS', body)
+            worksheet290.write('R22', 'JML', body)
 
-            worksheet290.conditional_format(22, 0, row290+21, 15,
+            worksheet290.conditional_format(22, 0, row290+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 291
@@ -14987,20 +15715,22 @@
             worksheet291.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet291.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet291.merge_range('F4:F5', 'KELAS', header)
-            worksheet291.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet291.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet291.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet291.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet291.write('G5', 'MAT', body)
             worksheet291.write('H5', 'IND', body)
             worksheet291.write('I5', 'ENG', body)
-            worksheet291.write('J5', 'IPAS', body)
-            worksheet291.write('K5', 'JML', body)
-            worksheet291.write('L5', 'MAT', body)
-            worksheet291.write('M5', 'IND', body)
-            worksheet291.write('N5', 'ENG', body)
-            worksheet291.write('O5', 'IPAS', body)
-            worksheet291.write('P5', 'JML', body)
+            worksheet291.write('J5', 'IPA', body)
+            worksheet291.write('K5', 'IPS', body)
+            worksheet291.write('L5', 'JML', body)
+            worksheet291.write('M5', 'MAT', body)
+            worksheet291.write('N5', 'IND', body)
+            worksheet291.write('O5', 'ENG', body)
+            worksheet291.write('P5', 'IPA', body)
+            worksheet291.write('Q5', 'IPS', body)
+            worksheet291.write('R5', 'JML', body)
 
-            worksheet291.conditional_format(5, 0, row291_10+4, 15,
+            worksheet291.conditional_format(5, 0, row291_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet291.merge_range(
@@ -15015,20 +15745,22 @@
             worksheet291.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet291.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet291.merge_range('F21:F22', 'KELAS', header)
-            worksheet291.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet291.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet291.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet291.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet291.write('G22', 'MAT', body)
             worksheet291.write('H22', 'IND', body)
             worksheet291.write('I22', 'ENG', body)
-            worksheet291.write('J22', 'IPAS', body)
-            worksheet291.write('K22', 'JML', body)
-            worksheet291.write('L22', 'MAT', body)
-            worksheet291.write('M22', 'IND', body)
-            worksheet291.write('N22', 'ENG', body)
-            worksheet291.write('O22', 'IPAS', body)
-            worksheet291.write('P22', 'JML', body)
+            worksheet291.write('J22', 'IPA', body)
+            worksheet291.write('K22', 'IPS', body)
+            worksheet291.write('L22', 'JML', body)
+            worksheet291.write('M22', 'MAT', body)
+            worksheet291.write('N22', 'IND', body)
+            worksheet291.write('O22', 'ENG', body)
+            worksheet291.write('P22', 'IPA', body)
+            worksheet291.write('Q22', 'IPS', body)
+            worksheet291.write('R22', 'JML', body)
 
-            worksheet291.conditional_format(22, 0, row291+21, 15,
+            worksheet291.conditional_format(22, 0, row291+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 292
@@ -15052,20 +15784,22 @@
             worksheet292.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet292.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet292.merge_range('F4:F5', 'KELAS', header)
-            worksheet292.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet292.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet292.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet292.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet292.write('G5', 'MAT', body)
             worksheet292.write('H5', 'IND', body)
             worksheet292.write('I5', 'ENG', body)
-            worksheet292.write('J5', 'IPAS', body)
-            worksheet292.write('K5', 'JML', body)
-            worksheet292.write('L5', 'MAT', body)
-            worksheet292.write('M5', 'IND', body)
-            worksheet292.write('N5', 'ENG', body)
-            worksheet292.write('O5', 'IPAS', body)
-            worksheet292.write('P5', 'JML', body)
+            worksheet292.write('J5', 'IPA', body)
+            worksheet292.write('K5', 'IPS', body)
+            worksheet292.write('L5', 'JML', body)
+            worksheet292.write('M5', 'MAT', body)
+            worksheet292.write('N5', 'IND', body)
+            worksheet292.write('O5', 'ENG', body)
+            worksheet292.write('P5', 'IPA', body)
+            worksheet292.write('Q5', 'IPS', body)
+            worksheet292.write('R5', 'JML', body)
 
-            worksheet292.conditional_format(5, 0, row292_10+4, 15,
+            worksheet292.conditional_format(5, 0, row292_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet292.merge_range(
@@ -15080,20 +15814,22 @@
             worksheet292.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet292.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet292.merge_range('F21:F22', 'KELAS', header)
-            worksheet292.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet292.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet292.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet292.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet292.write('G22', 'MAT', body)
             worksheet292.write('H22', 'IND', body)
             worksheet292.write('I22', 'ENG', body)
-            worksheet292.write('J22', 'IPAS', body)
-            worksheet292.write('K22', 'JML', body)
-            worksheet292.write('L22', 'MAT', body)
-            worksheet292.write('M22', 'IND', body)
-            worksheet292.write('N22', 'ENG', body)
-            worksheet292.write('O22', 'IPAS', body)
-            worksheet292.write('P22', 'JML', body)
+            worksheet292.write('J22', 'IPA', body)
+            worksheet292.write('K22', 'IPS', body)
+            worksheet292.write('L22', 'JML', body)
+            worksheet292.write('M22', 'MAT', body)
+            worksheet292.write('N22', 'IND', body)
+            worksheet292.write('O22', 'ENG', body)
+            worksheet292.write('P22', 'IPA', body)
+            worksheet292.write('Q22', 'IPS', body)
+            worksheet292.write('R22', 'JML', body)
 
-            worksheet292.conditional_format(22, 0, row292+21, 15,
+            worksheet292.conditional_format(22, 0, row292+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 293
@@ -15117,20 +15853,22 @@
             worksheet293.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet293.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet293.merge_range('F4:F5', 'KELAS', header)
-            worksheet293.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet293.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet293.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet293.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet293.write('G5', 'MAT', body)
             worksheet293.write('H5', 'IND', body)
             worksheet293.write('I5', 'ENG', body)
-            worksheet293.write('J5', 'IPAS', body)
-            worksheet293.write('K5', 'JML', body)
-            worksheet293.write('L5', 'MAT', body)
-            worksheet293.write('M5', 'IND', body)
-            worksheet293.write('N5', 'ENG', body)
-            worksheet293.write('O5', 'IPAS', body)
-            worksheet293.write('P5', 'JML', body)
+            worksheet293.write('J5', 'IPA', body)
+            worksheet293.write('K5', 'IPS', body)
+            worksheet293.write('L5', 'JML', body)
+            worksheet293.write('M5', 'MAT', body)
+            worksheet293.write('N5', 'IND', body)
+            worksheet293.write('O5', 'ENG', body)
+            worksheet293.write('P5', 'IPA', body)
+            worksheet293.write('Q5', 'IPS', body)
+            worksheet293.write('R5', 'JML', body)
 
-            worksheet293.conditional_format(5, 0, row293_10+4, 15,
+            worksheet293.conditional_format(5, 0, row293_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet293.merge_range(
@@ -15145,20 +15883,22 @@
             worksheet293.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet293.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet293.merge_range('F21:F22', 'KELAS', header)
-            worksheet293.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet293.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet293.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet293.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet293.write('G22', 'MAT', body)
             worksheet293.write('H22', 'IND', body)
             worksheet293.write('I22', 'ENG', body)
-            worksheet293.write('J22', 'IPAS', body)
-            worksheet293.write('K22', 'JML', body)
-            worksheet293.write('L22', 'MAT', body)
-            worksheet293.write('M22', 'IND', body)
-            worksheet293.write('N22', 'ENG', body)
-            worksheet293.write('O22', 'IPAS', body)
-            worksheet293.write('P22', 'JML', body)
+            worksheet293.write('J22', 'IPA', body)
+            worksheet293.write('K22', 'IPS', body)
+            worksheet293.write('L22', 'JML', body)
+            worksheet293.write('M22', 'MAT', body)
+            worksheet293.write('N22', 'IND', body)
+            worksheet293.write('O22', 'ENG', body)
+            worksheet293.write('P22', 'IPA', body)
+            worksheet293.write('Q22', 'IPS', body)
+            worksheet293.write('R22', 'JML', body)
 
-            worksheet293.conditional_format(22, 0, row293+21, 15,
+            worksheet293.conditional_format(22, 0, row293+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 294
@@ -15182,20 +15922,22 @@
             worksheet294.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet294.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet294.merge_range('F4:F5', 'KELAS', header)
-            worksheet294.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet294.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet294.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet294.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet294.write('G5', 'MAT', body)
             worksheet294.write('H5', 'IND', body)
             worksheet294.write('I5', 'ENG', body)
-            worksheet294.write('J5', 'IPAS', body)
-            worksheet294.write('K5', 'JML', body)
-            worksheet294.write('L5', 'MAT', body)
-            worksheet294.write('M5', 'IND', body)
-            worksheet294.write('N5', 'ENG', body)
-            worksheet294.write('O5', 'IPAS', body)
-            worksheet294.write('P5', 'JML', body)
+            worksheet294.write('J5', 'IPA', body)
+            worksheet294.write('K5', 'IPS', body)
+            worksheet294.write('L5', 'JML', body)
+            worksheet294.write('M5', 'MAT', body)
+            worksheet294.write('N5', 'IND', body)
+            worksheet294.write('O5', 'ENG', body)
+            worksheet294.write('P5', 'IPA', body)
+            worksheet294.write('Q5', 'IPS', body)
+            worksheet294.write('R5', 'JML', body)
 
-            worksheet294.conditional_format(5, 0, row294_10+4, 15,
+            worksheet294.conditional_format(5, 0, row294_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet294.merge_range(
@@ -15210,20 +15952,22 @@
             worksheet294.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet294.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet294.merge_range('F21:F22', 'KELAS', header)
-            worksheet294.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet294.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet294.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet294.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet294.write('G22', 'MAT', body)
             worksheet294.write('H22', 'IND', body)
             worksheet294.write('I22', 'ENG', body)
-            worksheet294.write('J22', 'IPAS', body)
-            worksheet294.write('K22', 'JML', body)
-            worksheet294.write('L22', 'MAT', body)
-            worksheet294.write('M22', 'IND', body)
-            worksheet294.write('N22', 'ENG', body)
-            worksheet294.write('O22', 'IPAS', body)
-            worksheet294.write('P22', 'JML', body)
+            worksheet294.write('J22', 'IPA', body)
+            worksheet294.write('K22', 'IPS', body)
+            worksheet294.write('L22', 'JML', body)
+            worksheet294.write('M22', 'MAT', body)
+            worksheet294.write('N22', 'IND', body)
+            worksheet294.write('O22', 'ENG', body)
+            worksheet294.write('P22', 'IPA', body)
+            worksheet294.write('Q22', 'IPS', body)
+            worksheet294.write('R22', 'JML', body)
 
-            worksheet294.conditional_format(22, 0, row294+21, 15,
+            worksheet294.conditional_format(22, 0, row294+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 295
@@ -15247,20 +15991,22 @@
             worksheet295.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet295.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet295.merge_range('F4:F5', 'KELAS', header)
-            worksheet295.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet295.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet295.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet295.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet295.write('G5', 'MAT', body)
             worksheet295.write('H5', 'IND', body)
             worksheet295.write('I5', 'ENG', body)
-            worksheet295.write('J5', 'IPAS', body)
-            worksheet295.write('K5', 'JML', body)
-            worksheet295.write('L5', 'MAT', body)
-            worksheet295.write('M5', 'IND', body)
-            worksheet295.write('N5', 'ENG', body)
-            worksheet295.write('O5', 'IPAS', body)
-            worksheet295.write('P5', 'JML', body)
+            worksheet295.write('J5', 'IPA', body)
+            worksheet295.write('K5', 'IPS', body)
+            worksheet295.write('L5', 'JML', body)
+            worksheet295.write('M5', 'MAT', body)
+            worksheet295.write('N5', 'IND', body)
+            worksheet295.write('O5', 'ENG', body)
+            worksheet295.write('P5', 'IPA', body)
+            worksheet295.write('Q5', 'IPS', body)
+            worksheet295.write('R5', 'JML', body)
 
-            worksheet295.conditional_format(5, 0, row295_10+4, 15,
+            worksheet295.conditional_format(5, 0, row295_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet295.merge_range(
@@ -15275,20 +16021,22 @@
             worksheet295.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet295.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet295.merge_range('F21:F22', 'KELAS', header)
-            worksheet295.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet295.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet295.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet295.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet295.write('G22', 'MAT', body)
             worksheet295.write('H22', 'IND', body)
             worksheet295.write('I22', 'ENG', body)
-            worksheet295.write('J22', 'IPAS', body)
-            worksheet295.write('K22', 'JML', body)
-            worksheet295.write('L22', 'MAT', body)
-            worksheet295.write('M22', 'IND', body)
-            worksheet295.write('N22', 'ENG', body)
-            worksheet295.write('O22', 'IPAS', body)
-            worksheet295.write('P22', 'JML', body)
+            worksheet295.write('J22', 'IPA', body)
+            worksheet295.write('K22', 'IPS', body)
+            worksheet295.write('L22', 'JML', body)
+            worksheet295.write('M22', 'MAT', body)
+            worksheet295.write('N22', 'IND', body)
+            worksheet295.write('O22', 'ENG', body)
+            worksheet295.write('P22', 'IPA', body)
+            worksheet295.write('Q22', 'IPS', body)
+            worksheet295.write('R22', 'JML', body)
 
-            worksheet295.conditional_format(22, 0, row295+21, 15,
+            worksheet295.conditional_format(22, 0, row295+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 298
@@ -15312,20 +16060,22 @@
             worksheet298.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet298.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet298.merge_range('F4:F5', 'KELAS', header)
-            worksheet298.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet298.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet298.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet298.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet298.write('G5', 'MAT', body)
             worksheet298.write('H5', 'IND', body)
             worksheet298.write('I5', 'ENG', body)
-            worksheet298.write('J5', 'IPAS', body)
-            worksheet298.write('K5', 'JML', body)
-            worksheet298.write('L5', 'MAT', body)
-            worksheet298.write('M5', 'IND', body)
-            worksheet298.write('N5', 'ENG', body)
-            worksheet298.write('O5', 'IPAS', body)
-            worksheet298.write('P5', 'JML', body)
+            worksheet298.write('J5', 'IPA', body)
+            worksheet298.write('K5', 'IPS', body)
+            worksheet298.write('L5', 'JML', body)
+            worksheet298.write('M5', 'MAT', body)
+            worksheet298.write('N5', 'IND', body)
+            worksheet298.write('O5', 'ENG', body)
+            worksheet298.write('P5', 'IPA', body)
+            worksheet298.write('Q5', 'IPS', body)
+            worksheet298.write('R5', 'JML', body)
 
-            worksheet298.conditional_format(5, 0, row298_10+4, 15,
+            worksheet298.conditional_format(5, 0, row298_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet298.merge_range(
@@ -15340,20 +16090,22 @@
             worksheet298.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet298.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet298.merge_range('F21:F22', 'KELAS', header)
-            worksheet298.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet298.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet298.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet298.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet298.write('G22', 'MAT', body)
             worksheet298.write('H22', 'IND', body)
             worksheet298.write('I22', 'ENG', body)
-            worksheet298.write('J22', 'IPAS', body)
-            worksheet298.write('K22', 'JML', body)
-            worksheet298.write('L22', 'MAT', body)
-            worksheet298.write('M22', 'IND', body)
-            worksheet298.write('N22', 'ENG', body)
-            worksheet298.write('O22', 'IPAS', body)
-            worksheet298.write('P22', 'JML', body)
+            worksheet298.write('J22', 'IPA', body)
+            worksheet298.write('K22', 'IPS', body)
+            worksheet298.write('L22', 'JML', body)
+            worksheet298.write('M22', 'MAT', body)
+            worksheet298.write('N22', 'IND', body)
+            worksheet298.write('O22', 'ENG', body)
+            worksheet298.write('P22', 'IPA', body)
+            worksheet298.write('Q22', 'IPS', body)
+            worksheet298.write('R22', 'JML', body)
 
-            worksheet298.conditional_format(22, 0, row298+21, 15,
+            worksheet298.conditional_format(22, 0, row298+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 299
@@ -15377,20 +16129,22 @@
             worksheet299.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet299.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet299.merge_range('F4:F5', 'KELAS', header)
-            worksheet299.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet299.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet299.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet299.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet299.write('G5', 'MAT', body)
             worksheet299.write('H5', 'IND', body)
             worksheet299.write('I5', 'ENG', body)
-            worksheet299.write('J5', 'IPAS', body)
-            worksheet299.write('K5', 'JML', body)
-            worksheet299.write('L5', 'MAT', body)
-            worksheet299.write('M5', 'IND', body)
-            worksheet299.write('N5', 'ENG', body)
-            worksheet299.write('O5', 'IPAS', body)
-            worksheet299.write('P5', 'JML', body)
+            worksheet299.write('J5', 'IPA', body)
+            worksheet299.write('K5', 'IPS', body)
+            worksheet299.write('L5', 'JML', body)
+            worksheet299.write('M5', 'MAT', body)
+            worksheet299.write('N5', 'IND', body)
+            worksheet299.write('O5', 'ENG', body)
+            worksheet299.write('P5', 'IPA', body)
+            worksheet299.write('Q5', 'IPS', body)
+            worksheet299.write('R5', 'JML', body)
 
-            worksheet299.conditional_format(5, 0, row299_10+4, 15,
+            worksheet299.conditional_format(5, 0, row299_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet299.merge_range(
@@ -15405,20 +16159,22 @@
             worksheet299.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet299.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet299.merge_range('F21:F22', 'KELAS', header)
-            worksheet299.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet299.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet299.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet299.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet299.write('G22', 'MAT', body)
             worksheet299.write('H22', 'IND', body)
             worksheet299.write('I22', 'ENG', body)
-            worksheet299.write('J22', 'IPAS', body)
-            worksheet299.write('K22', 'JML', body)
-            worksheet299.write('L22', 'MAT', body)
-            worksheet299.write('M22', 'IND', body)
-            worksheet299.write('N22', 'ENG', body)
-            worksheet299.write('O22', 'IPAS', body)
-            worksheet299.write('P22', 'JML', body)
+            worksheet299.write('J22', 'IPA', body)
+            worksheet299.write('K22', 'IPS', body)
+            worksheet299.write('L22', 'JML', body)
+            worksheet299.write('M22', 'MAT', body)
+            worksheet299.write('N22', 'IND', body)
+            worksheet299.write('O22', 'ENG', body)
+            worksheet299.write('P22', 'IPA', body)
+            worksheet299.write('Q22', 'IPS', body)
+            worksheet299.write('R22', 'JML', body)
 
-            worksheet299.conditional_format(22, 0, row299+21, 15,
+            worksheet299.conditional_format(22, 0, row299+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             workbook.close()
@@ -15436,69 +16192,76 @@
         if uploaded_file is not None:
             df = pd.read_excel(uploaded_file)
 
-            len_col = df.shape[1]
-
-            r = df.shape[0]-5  # baris average
-            s = df.shape[0]-4  # baris stdev
-            t = df.shape[0]-3  # baris max
-            u = df.shape[0]-2  # baris min
+            # 89
+            r = df.shape[0]-5
+            # 90
+            s = df.shape[0]-4
+            # 91
+            t = df.shape[0]-3
+            # 92
+            u = df.shape[0]-2
 
             # JUMLAH PESERTA
-            peserta = df.iloc[r, len_col-136]
+            peserta = df.iloc[r, 23]
 
             # rata-rata jumlah benar
-            rata_mat = df.iloc[r, len_col-20]
-            rata_ind = df.iloc[r, len_col-19]
-            rata_eng = df.iloc[r, len_col-18]
-            rata_ipas = df.iloc[r, len_col-17]
-            rata_jml = df.iloc[r, len_col-16]
+            rata_mat = df.iloc[r, 156]
+            rata_ind = df.iloc[r, 157]
+            rata_eng = df.iloc[r, 158]
+            rata_ipa = df.iloc[r, 159]
+            rata_ips = df.iloc[r, 160]
+            rata_jml = df.iloc[r, 161]
 
             # rata-rata nilai standar
-            rata_Smat = df.iloc[t, len_col-11]
-            rata_Seko = df.iloc[t, len_col-10]
-            rata_Ssej = df.iloc[t, len_col-9]
-            rata_Ssos = df.iloc[t, len_col-8]
-            rata_Sjml = df.iloc[t, len_col-7]
+            rata_Smat = df.iloc[t, 167]
+            rata_Sind = df.iloc[t, 168]
+            rata_Seng = df.iloc[t, 169]
+            rata_Sipa = df.iloc[t, 170]
+            rata_Sips = df.iloc[t, 171]
+            rata_Sjml = df.iloc[t, 172]
 
-            # max jumlah benar
-            max_mat = df.iloc[t, len_col-20]
-            max_ind = df.iloc[t, len_col-19]
-            max_eng = df.iloc[t, len_col-18]
-            max_ipas = df.iloc[t, len_col-17]
-            max_jml = df.iloc[t, len_col-16]
+            max_mat = df.iloc[t, 156]
+            max_ind = df.iloc[t, 157]
+            max_eng = df.iloc[t, 158]
+            max_ipa = df.iloc[t, 159]
+            max_ips = df.iloc[t, 160]
+            max_jml = df.iloc[t, 161]
 
             # max nilai standar
-            max_Smat = df.iloc[r, len_col-11]
-            max_Seko = df.iloc[r, len_col-10]
-            max_Ssej = df.iloc[r, len_col-9]
-            max_Ssos = df.iloc[r, len_col-8]
-            max_Sjml = df.iloc[r, len_col-7]
+            max_Smat = df.iloc[r, 167]
+            max_Sind = df.iloc[r, 168]
+            max_Seng = df.iloc[r, 169]
+            max_Sipa = df.iloc[r, 170]
+            max_Sips = df.iloc[r, 171]
+            max_Sjml = df.iloc[r, 172]
 
             # min jumlah benar
-            min_mat = df.iloc[u, len_col-20]
-            min_ind = df.iloc[u, len_col-19]
-            min_eng = df.iloc[u, len_col-18]
-            min_ipas = df.iloc[u, len_col-17]
-            min_jml = df.iloc[u, len_col-16]
+            min_mat = df.iloc[u, 156]
+            min_ind = df.iloc[u, 157]
+            min_eng = df.iloc[u, 158]
+            min_ipa = df.iloc[u, 159]
+            min_ips = df.iloc[u, 160]
+            min_jml = df.iloc[u, 161]
 
             # min nilai standar
-            min_Smat = df.iloc[s, len_col-11]
-            min_Seko = df.iloc[s, len_col-10]
-            min_Ssej = df.iloc[s, len_col-9]
-            min_Ssos = df.iloc[s, len_col-8]
-            min_Sjml = df.iloc[s, len_col-7]
+            min_Smat = df.iloc[s, 167]
+            min_Sind = df.iloc[s, 168]
+            min_Seng = df.iloc[s, 169]
+            min_Sipa = df.iloc[s, 170]
+            min_Sips = df.iloc[s, 171]
+            min_Sjml = df.iloc[s, 172]
 
-            data_jml_benar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPAS', 'JUMLAH (JML)'],
-                              'TERENDAH': [min_mat, min_ind, min_eng, min_ipas, min_jml],
-                              'RATA-RATA': [rata_mat, rata_ind, rata_eng, rata_ipas, rata_jml],
-                              'TERTINGGI': [max_mat, max_ind, max_eng, max_ipas, max_jml]}
+            data_jml_benar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPA', 'IPS', 'JUMLAH (JML)'],
+                              'TERENDAH': [min_mat, min_ind, min_eng, min_ipa, min_ips, min_jml],
+                              'RATA-RATA': [rata_mat, rata_ind, rata_eng, rata_ipa, rata_ips, rata_jml],
+                              'TERTINGGI': [max_mat, max_ind, max_eng, max_ipa, max_ips, max_jml]}
 
             jml_benar = pd.DataFrame(data_jml_benar)
 
-            data_n_standar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPAS', 'JUMLAH (JML)'],
-                              'TERENDAH': [min_Smat, min_Seko, min_Ssej, min_Ssos, min_Sjml],
-                              'RATA-RATA': [rata_Smat, rata_Seko, rata_Ssej, rata_Ssos, rata_Sjml],
-                              'TERTINGGI': [max_Smat, max_Seko, max_Ssej, max_Ssos, max_Sjml]}
+            data_n_standar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPA', 'IPS', 'JUMLAH (JML)'],
+                              'TERENDAH': [min_Smat, min_Sind, min_Seng, min_Sipa, min_Sips, min_Sjml],
+                              'RATA-RATA': [rata_Smat, rata_Sind, rata_Seng, rata_Sipa, rata_Sips, rata_Sjml],
+                              'TERTINGGI': [max_Smat, max_Sind, max_Seng, max_Sipa, max_Sips, max_Sjml]}
 
             n_standar = pd.DataFrame(data_n_standar)
 
@@ -15506,19 +16269,23 @@
 
             jml_peserta = pd.DataFrame(data_jml_peserta)
 
-            data_jml_soal = {'BIDANG STUDI': ['MAT', 'EKO', 'SEJ', 'SOS'],
-                             'JUMLAH': [JML_SOAINDAT, JML_SOAL_EKO, JML_SOAL_SEJ, JML_SOAL_SOSIND
-            jml_soal = pd.DataFrame(data_jml_soEIPAS
-            df = df[['LOKASI', 'RANK LOK.', 'RANK NAS.', 'NOMOR NF', 'NAMA SISWA', 'NAMA SEKOLAH',
-                    'KELAS', 'MAT', 'EKO', 'SEJ', 'SOS', 'JML', 'S_MAT', 'S_EKO', 'S_SEJ', 'S_SOS', 'S_JML'IND
-            # sort best ENG
-            grouped = dfIPASoupby('LOKASI')
+            data_jml_soal = {'BIDANG STUDI': ['MAT', 'IND', 'ENG', 'IPA', 'IPS'],
+                             'JUMLAH': [JML_SOAL_MAT, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_IPA, JML_SOAL_IPS]}
+
+            jml_soal = pd.DataFrame(data_jml_soal)
+
+            df = df[['LOKASI', 'RANK LOK.', 'RANK NAS.', 'NOMOR NF', 'NAMA SISWA', 'NAMA SEKOLAH', 'KELAS',
+                    'MAT', 'IND', 'ENG', 'IPA', 'IPS', 'JML', 'S_MAT', 'S_IND', 'S_ENG', 'S_IPA', 'S_IPS', 'S_JML']]
+
+            # sort best 150
+            grouped = df.groupby('LOKASI')
             dfs = []  # List kosong untuk menyimpan DataFrame yang akan digabungkan
             for name, group in grouped:
                 dfs.append(group)
             best150 = pd.concat(dfs)
 
             # sort setiap lokasi
+            # tanpa 533, 535, 546, 548, 549, 558, 577, 578, 589, 594, 663, 664
             sort530 = df[df['LOKASI'] == 530]
             sort531 = df[df['LOKASI'] == 531]
             sort532 = df[df['LOKASI'] == 532]
@@ -15650,7 +16417,7 @@
             # All 662
             sort662 = sort662.sort_values(by=['NAMA SISWA'], ascending=[True])
             del sort662['LOKASI']
-            
+
             # jumlah row
             # 150
             rowBest150_all = best150_all.shape[0]
@@ -16029,7 +16796,7 @@
                 'right': 1})
 
             # worksheet cover
-            worksheetcover.conditional_format(15, 0, 11, 3,
+            worksheetcover.conditional_format(16, 0, 11, 3,
                                               {'type': 'no_errors', 'format': borderCover})
 
             worksheetcover.insert_image('F1', r'logo nf.jpg')
@@ -16056,17 +16823,17 @@
             worksheetcover.merge_range(
                 'A4:F5', fr'{penilaian}', sub_titleCover)
             worksheetcover.merge_range(
-                'A6:F7', fr'{semester} TAHUN {tahun} ({kurikulum})', headerCover)
+                'A6:F7', fr'{semester} TAHUN {tahun}', headerCover)
             worksheetcover.write('A9', 'JUMLAH BENAR', sub_headerCover)
             worksheetcover.write('A19', 'NILAI STANDAR', sub_headerCover)
-            worksheetcover.merge_range('F8:G9', fr'{kelas}', kelasCover)
+            worksheetcover.merge_range('F8:G9', fr'{kelas}-{kurikulum}', kelasCover)
             worksheetcover.merge_range(
                 'F11:G12', 'JUMLAH SOAL', sub_header1Cover)
 
-            worksheetcover.conditional_format(25, 0, 21, 3,
+            worksheetcover.conditional_format(26, 0, 21, 3,
                                               {'type': 'no_errors', 'format': borderCover})
 
-            worksheetcover.conditional_format(16, 6, 13, 5,
+            worksheetcover.conditional_format(17, 6, 13, 5,
                                               {'type': 'no_errors', 'format': borderCover})
 
             worksheetcover.conditional_format(21, 5, 21, 5,
@@ -16082,28 +16849,30 @@
             worksheetbest.set_column('E:E', 7.57, left)
             worksheetbest.set_column('F:Q', 6.29, center)
             worksheetbest.merge_range(
-                'A1:O1', fr'150 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF NASIONAL', title)
+                'A1:Q1', fr'150 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF NASIONAL', title)
             worksheetbest.merge_range(
-                'A2:O2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
+                'A2:Q2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
             worksheetbest.merge_range('A4:A5', 'RANK', header)
             worksheetbest.merge_range('B4:B5', 'NOMOR NF', header)
             worksheetbest.merge_range('C4:C5', 'NAMA SISWA', header)
             worksheetbest.merge_range('D4:D5', 'SEKOLAH', header)
             worksheetbest.merge_range('E4:E5', 'KELAS', header)
-            worksheetbest.merge_range('F4:J4', 'JUMLAH BENAR', header)
-            worksheetbest.merge_range('K4:O4', 'NILAI STANDAR', header)
+            worksheetbest.merge_range('F4:K4', 'JUMLAH BENAR', header)
+            worksheetbest.merge_range('L4:Q4', 'NILAI STANDAR', header)
             worksheetbest.write('F5', 'MAT', body)
             worksheetbest.write('G5', 'IND', body)
             worksheetbest.write('H5', 'ENG', body)
-            worksheetbest.write('I5', 'IPAS', body)
-            worksheetbest.write('J5', 'JML', body)
-            worksheetbest.write('K5', 'MAT', body)
-            worksheetbest.write('L5', 'IND', body)
-            worksheetbest.write('M5', 'ENG', body)
-            worksheetbest.write('N5', 'IPAS', body)
-            worksheetbest.write('O5', 'JML', body)
+            worksheetbest.write('I5', 'IPA', body)
+            worksheetbest.write('J5', 'IPS', body)
+            worksheetbest.write('K5', 'JML', body)
+            worksheetbest.write('L5', 'MAT', body)
+            worksheetbest.write('M5', 'IND', body)
+            worksheetbest.write('N5', 'ENG', body)
+            worksheetbest.write('O5', 'IPA', body)
+            worksheetbest.write('P5', 'IPS', body)
+            worksheetbest.write('Q5', 'JML', body)
 
-            worksheetbest.conditional_format(5, 0, rowBest150_all+4, 14,
+            worksheetbest.conditional_format(5, 0, rowBest150_all+4, 16,
                                              {'type': 'no_errors', 'format': border})
 
             # worksheet 530
@@ -16127,20 +16896,22 @@
             worksheet530.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet530.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet530.merge_range('F4:F5', 'KELAS', header)
-            worksheet530.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet530.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet530.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet530.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet530.write('G5', 'MAT', body)
             worksheet530.write('H5', 'IND', body)
             worksheet530.write('I5', 'ENG', body)
-            worksheet530.write('J5', 'IPAS', body)
-            worksheet530.write('K5', 'JML', body)
-            worksheet530.write('L5', 'MAT', body)
-            worksheet530.write('M5', 'IND', body)
-            worksheet530.write('N5', 'ENG', body)
-            worksheet530.write('O5', 'IPAS', body)
-            worksheet530.write('P5', 'JML', body)
+            worksheet530.write('J5', 'IPA', body)
+            worksheet530.write('K5', 'IPS', body)
+            worksheet530.write('L5', 'JML', body)
+            worksheet530.write('M5', 'MAT', body)
+            worksheet530.write('N5', 'IND', body)
+            worksheet530.write('O5', 'ENG', body)
+            worksheet530.write('P5', 'IPA', body)
+            worksheet530.write('Q5', 'IPS', body)
+            worksheet530.write('R5', 'JML', body)
 
-            worksheet530.conditional_format(5, 0, row530_10+4, 15,
+            worksheet530.conditional_format(5, 0, row530_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet530.merge_range(
@@ -16155,20 +16926,22 @@
             worksheet530.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet530.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet530.merge_range('F21:F22', 'KELAS', header)
-            worksheet530.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet530.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet530.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet530.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet530.write('G22', 'MAT', body)
             worksheet530.write('H22', 'IND', body)
             worksheet530.write('I22', 'ENG', body)
-            worksheet530.write('J22', 'IPAS', body)
-            worksheet530.write('K22', 'JML', body)
-            worksheet530.write('L22', 'MAT', body)
-            worksheet530.write('M22', 'IND', body)
-            worksheet530.write('N22', 'ENG', body)
-            worksheet530.write('O22', 'IPAS', body)
-            worksheet530.write('P22', 'JML', body)
+            worksheet530.write('J22', 'IPA', body)
+            worksheet530.write('K22', 'IPS', body)
+            worksheet530.write('L22', 'JML', body)
+            worksheet530.write('M22', 'MAT', body)
+            worksheet530.write('N22', 'IND', body)
+            worksheet530.write('O22', 'ENG', body)
+            worksheet530.write('P22', 'IPA', body)
+            worksheet530.write('Q22', 'IPS', body)
+            worksheet530.write('R22', 'JML', body)
 
-            worksheet530.conditional_format(22, 0, row530+21, 15,
+            worksheet530.conditional_format(22, 0, row530+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 531
@@ -16192,20 +16965,22 @@
             worksheet531.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet531.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet531.merge_range('F4:F5', 'KELAS', header)
-            worksheet531.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet531.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet531.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet531.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet531.write('G5', 'MAT', body)
             worksheet531.write('H5', 'IND', body)
             worksheet531.write('I5', 'ENG', body)
-            worksheet531.write('J5', 'IPAS', body)
-            worksheet531.write('K5', 'JML', body)
-            worksheet531.write('L5', 'MAT', body)
-            worksheet531.write('M5', 'IND', body)
-            worksheet531.write('N5', 'ENG', body)
-            worksheet531.write('O5', 'IPAS', body)
-            worksheet531.write('P5', 'JML', body)
+            worksheet531.write('J5', 'IPA', body)
+            worksheet531.write('K5', 'IPS', body)
+            worksheet531.write('L5', 'JML', body)
+            worksheet531.write('M5', 'MAT', body)
+            worksheet531.write('N5', 'IND', body)
+            worksheet531.write('O5', 'ENG', body)
+            worksheet531.write('P5', 'IPA', body)
+            worksheet531.write('Q5', 'IPS', body)
+            worksheet531.write('R5', 'JML', body)
 
-            worksheet531.conditional_format(5, 0, row531_10+4, 15,
+            worksheet531.conditional_format(5, 0, row531_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet531.merge_range(
@@ -16220,20 +16995,22 @@
             worksheet531.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet531.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet531.merge_range('F21:F22', 'KELAS', header)
-            worksheet531.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet531.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet531.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet531.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet531.write('G22', 'MAT', body)
             worksheet531.write('H22', 'IND', body)
             worksheet531.write('I22', 'ENG', body)
-            worksheet531.write('J22', 'IPAS', body)
-            worksheet531.write('K22', 'JML', body)
-            worksheet531.write('L22', 'MAT', body)
-            worksheet531.write('M22', 'IND', body)
-            worksheet531.write('N22', 'ENG', body)
-            worksheet531.write('O22', 'IPAS', body)
-            worksheet531.write('P22', 'JML', body)
+            worksheet531.write('J22', 'IPA', body)
+            worksheet531.write('K22', 'IPS', body)
+            worksheet531.write('L22', 'JML', body)
+            worksheet531.write('M22', 'MAT', body)
+            worksheet531.write('N22', 'IND', body)
+            worksheet531.write('O22', 'ENG', body)
+            worksheet531.write('P22', 'IPA', body)
+            worksheet531.write('Q22', 'IPS', body)
+            worksheet531.write('R22', 'JML', body)
 
-            worksheet531.conditional_format(22, 0, row531+21, 15,
+            worksheet531.conditional_format(22, 0, row531+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 532
@@ -16257,20 +17034,22 @@
             worksheet532.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet532.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet532.merge_range('F4:F5', 'KELAS', header)
-            worksheet532.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet532.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet532.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet532.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet532.write('G5', 'MAT', body)
             worksheet532.write('H5', 'IND', body)
             worksheet532.write('I5', 'ENG', body)
-            worksheet532.write('J5', 'IPAS', body)
-            worksheet532.write('K5', 'JML', body)
-            worksheet532.write('L5', 'MAT', body)
-            worksheet532.write('M5', 'IND', body)
-            worksheet532.write('N5', 'ENG', body)
-            worksheet532.write('O5', 'IPAS', body)
-            worksheet532.write('P5', 'JML', body)
+            worksheet532.write('J5', 'IPA', body)
+            worksheet532.write('K5', 'IPS', body)
+            worksheet532.write('L5', 'JML', body)
+            worksheet532.write('M5', 'MAT', body)
+            worksheet532.write('N5', 'IND', body)
+            worksheet532.write('O5', 'ENG', body)
+            worksheet532.write('P5', 'IPA', body)
+            worksheet532.write('Q5', 'IPS', body)
+            worksheet532.write('R5', 'JML', body)
 
-            worksheet532.conditional_format(5, 0, row532_10+4, 15,
+            worksheet532.conditional_format(5, 0, row532_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet532.merge_range(
@@ -16285,20 +17064,22 @@
             worksheet532.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet532.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet532.merge_range('F21:F22', 'KELAS', header)
-            worksheet532.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet532.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet532.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet532.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet532.write('G22', 'MAT', body)
             worksheet532.write('H22', 'IND', body)
             worksheet532.write('I22', 'ENG', body)
-            worksheet532.write('J22', 'IPAS', body)
-            worksheet532.write('K22', 'JML', body)
-            worksheet532.write('L22', 'MAT', body)
-            worksheet532.write('M22', 'IND', body)
-            worksheet532.write('N22', 'ENG', body)
-            worksheet532.write('O22', 'IPAS', body)
-            worksheet532.write('P22', 'JML', body)
+            worksheet532.write('J22', 'IPA', body)
+            worksheet532.write('K22', 'IPS', body)
+            worksheet532.write('L22', 'JML', body)
+            worksheet532.write('M22', 'MAT', body)
+            worksheet532.write('N22', 'IND', body)
+            worksheet532.write('O22', 'ENG', body)
+            worksheet532.write('P22', 'IPA', body)
+            worksheet532.write('Q22', 'IPS', body)
+            worksheet532.write('R22', 'JML', body)
 
-            worksheet532.conditional_format(22, 0, row532+21, 15,
+            worksheet532.conditional_format(22, 0, row532+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 534
@@ -16322,20 +17103,22 @@
             worksheet534.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet534.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet534.merge_range('F4:F5', 'KELAS', header)
-            worksheet534.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet534.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet534.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet534.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet534.write('G5', 'MAT', body)
             worksheet534.write('H5', 'IND', body)
             worksheet534.write('I5', 'ENG', body)
-            worksheet534.write('J5', 'IPAS', body)
-            worksheet534.write('K5', 'JML', body)
-            worksheet534.write('L5', 'MAT', body)
-            worksheet534.write('M5', 'IND', body)
-            worksheet534.write('N5', 'ENG', body)
-            worksheet534.write('O5', 'IPAS', body)
-            worksheet534.write('P5', 'JML', body)
+            worksheet534.write('J5', 'IPA', body)
+            worksheet534.write('K5', 'IPS', body)
+            worksheet534.write('L5', 'JML', body)
+            worksheet534.write('M5', 'MAT', body)
+            worksheet534.write('N5', 'IND', body)
+            worksheet534.write('O5', 'ENG', body)
+            worksheet534.write('P5', 'IPA', body)
+            worksheet534.write('Q5', 'IPS', body)
+            worksheet534.write('R5', 'JML', body)
 
-            worksheet534.conditional_format(5, 0, row534_10+4, 15,
+            worksheet534.conditional_format(5, 0, row534_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet534.merge_range(
@@ -16350,20 +17133,22 @@
             worksheet534.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet534.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet534.merge_range('F21:F22', 'KELAS', header)
-            worksheet534.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet534.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet534.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet534.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet534.write('G22', 'MAT', body)
             worksheet534.write('H22', 'IND', body)
             worksheet534.write('I22', 'ENG', body)
-            worksheet534.write('J22', 'IPAS', body)
-            worksheet534.write('K22', 'JML', body)
-            worksheet534.write('L22', 'MAT', body)
-            worksheet534.write('M22', 'IND', body)
-            worksheet534.write('N22', 'ENG', body)
-            worksheet534.write('O22', 'IPAS', body)
-            worksheet534.write('P22', 'JML', body)
+            worksheet534.write('J22', 'IPA', body)
+            worksheet534.write('K22', 'IPS', body)
+            worksheet534.write('L22', 'JML', body)
+            worksheet534.write('M22', 'MAT', body)
+            worksheet534.write('N22', 'IND', body)
+            worksheet534.write('O22', 'ENG', body)
+            worksheet534.write('P22', 'IPA', body)
+            worksheet534.write('Q22', 'IPS', body)
+            worksheet534.write('R22', 'JML', body)
 
-            worksheet534.conditional_format(22, 0, row534+21, 15,
+            worksheet534.conditional_format(22, 0, row534+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 547
@@ -16387,20 +17172,22 @@
             worksheet547.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet547.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet547.merge_range('F4:F5', 'KELAS', header)
-            worksheet547.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet547.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet547.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet547.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet547.write('G5', 'MAT', body)
             worksheet547.write('H5', 'IND', body)
             worksheet547.write('I5', 'ENG', body)
-            worksheet547.write('J5', 'IPAS', body)
-            worksheet547.write('K5', 'JML', body)
-            worksheet547.write('L5', 'MAT', body)
-            worksheet547.write('M5', 'IND', body)
-            worksheet547.write('N5', 'ENG', body)
-            worksheet547.write('O5', 'IPAS', body)
-            worksheet547.write('P5', 'JML', body)
+            worksheet547.write('J5', 'IPA', body)
+            worksheet547.write('K5', 'IPS', body)
+            worksheet547.write('L5', 'JML', body)
+            worksheet547.write('M5', 'MAT', body)
+            worksheet547.write('N5', 'IND', body)
+            worksheet547.write('O5', 'ENG', body)
+            worksheet547.write('P5', 'IPA', body)
+            worksheet547.write('Q5', 'IPS', body)
+            worksheet547.write('R5', 'JML', body)
 
-            worksheet547.conditional_format(5, 0, row547_10+4, 15,
+            worksheet547.conditional_format(5, 0, row547_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet547.merge_range(
@@ -16415,20 +17202,22 @@
             worksheet547.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet547.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet547.merge_range('F21:F22', 'KELAS', header)
-            worksheet547.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet547.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet547.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet547.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet547.write('G22', 'MAT', body)
             worksheet547.write('H22', 'IND', body)
             worksheet547.write('I22', 'ENG', body)
-            worksheet547.write('J22', 'IPAS', body)
-            worksheet547.write('K22', 'JML', body)
-            worksheet547.write('L22', 'MAT', body)
-            worksheet547.write('M22', 'IND', body)
-            worksheet547.write('N22', 'ENG', body)
-            worksheet547.write('O22', 'IPAS', body)
-            worksheet547.write('P22', 'JML', body)
+            worksheet547.write('J22', 'IPA', body)
+            worksheet547.write('K22', 'IPS', body)
+            worksheet547.write('L22', 'JML', body)
+            worksheet547.write('M22', 'MAT', body)
+            worksheet547.write('N22', 'IND', body)
+            worksheet547.write('O22', 'ENG', body)
+            worksheet547.write('P22', 'IPA', body)
+            worksheet547.write('Q22', 'IPS', body)
+            worksheet547.write('R22', 'JML', body)
 
-            worksheet547.conditional_format(22, 0, row547+21, 15,
+            worksheet547.conditional_format(22, 0, row547+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 556
@@ -16452,20 +17241,22 @@
             worksheet556.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet556.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet556.merge_range('F4:F5', 'KELAS', header)
-            worksheet556.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet556.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet556.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet556.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet556.write('G5', 'MAT', body)
             worksheet556.write('H5', 'IND', body)
             worksheet556.write('I5', 'ENG', body)
-            worksheet556.write('J5', 'IPAS', body)
-            worksheet556.write('K5', 'JML', body)
-            worksheet556.write('L5', 'MAT', body)
-            worksheet556.write('M5', 'IND', body)
-            worksheet556.write('N5', 'ENG', body)
-            worksheet556.write('O5', 'IPAS', body)
-            worksheet556.write('P5', 'JML', body)
+            worksheet556.write('J5', 'IPA', body)
+            worksheet556.write('K5', 'IPS', body)
+            worksheet556.write('L5', 'JML', body)
+            worksheet556.write('M5', 'MAT', body)
+            worksheet556.write('N5', 'IND', body)
+            worksheet556.write('O5', 'ENG', body)
+            worksheet556.write('P5', 'IPA', body)
+            worksheet556.write('Q5', 'IPS', body)
+            worksheet556.write('R5', 'JML', body)
 
-            worksheet556.conditional_format(5, 0, row556_10+4, 15,
+            worksheet556.conditional_format(5, 0, row556_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet556.merge_range(
@@ -16480,20 +17271,22 @@
             worksheet556.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet556.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet556.merge_range('F21:F22', 'KELAS', header)
-            worksheet556.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet556.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet556.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet556.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet556.write('G22', 'MAT', body)
             worksheet556.write('H22', 'IND', body)
             worksheet556.write('I22', 'ENG', body)
-            worksheet556.write('J22', 'IPAS', body)
-            worksheet556.write('K22', 'JML', body)
-            worksheet556.write('L22', 'MAT', body)
-            worksheet556.write('M22', 'IND', body)
-            worksheet556.write('N22', 'ENG', body)
-            worksheet556.write('O22', 'IPAS', body)
-            worksheet556.write('P22', 'JML', body)
+            worksheet556.write('J22', 'IPA', body)
+            worksheet556.write('K22', 'IPS', body)
+            worksheet556.write('L22', 'JML', body)
+            worksheet556.write('M22', 'MAT', body)
+            worksheet556.write('N22', 'IND', body)
+            worksheet556.write('O22', 'ENG', body)
+            worksheet556.write('P22', 'IPA', body)
+            worksheet556.write('Q22', 'IPS', body)
+            worksheet556.write('R22', 'JML', body)
 
-            worksheet556.conditional_format(22, 0, row556+21, 15,
+            worksheet556.conditional_format(22, 0, row556+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 557
@@ -16517,20 +17310,22 @@
             worksheet557.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet557.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet557.merge_range('F4:F5', 'KELAS', header)
-            worksheet557.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet557.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet557.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet557.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet557.write('G5', 'MAT', body)
             worksheet557.write('H5', 'IND', body)
             worksheet557.write('I5', 'ENG', body)
-            worksheet557.write('J5', 'IPAS', body)
-            worksheet557.write('K5', 'JML', body)
-            worksheet557.write('L5', 'MAT', body)
-            worksheet557.write('M5', 'IND', body)
-            worksheet557.write('N5', 'ENG', body)
-            worksheet557.write('O5', 'IPAS', body)
-            worksheet557.write('P5', 'JML', body)
+            worksheet557.write('J5', 'IPA', body)
+            worksheet557.write('K5', 'IPS', body)
+            worksheet557.write('L5', 'JML', body)
+            worksheet557.write('M5', 'MAT', body)
+            worksheet557.write('N5', 'IND', body)
+            worksheet557.write('O5', 'ENG', body)
+            worksheet557.write('P5', 'IPA', body)
+            worksheet557.write('Q5', 'IPS', body)
+            worksheet557.write('R5', 'JML', body)
 
-            worksheet557.conditional_format(5, 0, row557_10+4, 15,
+            worksheet557.conditional_format(5, 0, row557_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet557.merge_range(
@@ -16545,20 +17340,22 @@
             worksheet557.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet557.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet557.merge_range('F21:F22', 'KELAS', header)
-            worksheet557.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet557.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet557.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet557.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet557.write('G22', 'MAT', body)
             worksheet557.write('H22', 'IND', body)
             worksheet557.write('I22', 'ENG', body)
-            worksheet557.write('J22', 'IPAS', body)
-            worksheet557.write('K22', 'JML', body)
-            worksheet557.write('L22', 'MAT', body)
-            worksheet557.write('M22', 'IND', body)
-            worksheet557.write('N22', 'ENG', body)
-            worksheet557.write('O22', 'IPAS', body)
-            worksheet557.write('P22', 'JML', body)
+            worksheet557.write('J22', 'IPA', body)
+            worksheet557.write('K22', 'IPS', body)
+            worksheet557.write('L22', 'JML', body)
+            worksheet557.write('M22', 'MAT', body)
+            worksheet557.write('N22', 'IND', body)
+            worksheet557.write('O22', 'ENG', body)
+            worksheet557.write('P22', 'IPA', body)
+            worksheet557.write('Q22', 'IPS', body)
+            worksheet557.write('R22', 'JML', body)
 
-            worksheet557.conditional_format(22, 0, row557+21, 15,
+            worksheet557.conditional_format(22, 0, row557+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 575
@@ -16582,20 +17379,22 @@
             worksheet575.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet575.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet575.merge_range('F4:F5', 'KELAS', header)
-            worksheet575.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet575.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet575.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet575.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet575.write('G5', 'MAT', body)
             worksheet575.write('H5', 'IND', body)
             worksheet575.write('I5', 'ENG', body)
-            worksheet575.write('J5', 'IPAS', body)
-            worksheet575.write('K5', 'JML', body)
-            worksheet575.write('L5', 'MAT', body)
-            worksheet575.write('M5', 'IND', body)
-            worksheet575.write('N5', 'ENG', body)
-            worksheet575.write('O5', 'IPAS', body)
-            worksheet575.write('P5', 'JML', body)
+            worksheet575.write('J5', 'IPA', body)
+            worksheet575.write('K5', 'IPS', body)
+            worksheet575.write('L5', 'JML', body)
+            worksheet575.write('M5', 'MAT', body)
+            worksheet575.write('N5', 'IND', body)
+            worksheet575.write('O5', 'ENG', body)
+            worksheet575.write('P5', 'IPA', body)
+            worksheet575.write('Q5', 'IPS', body)
+            worksheet575.write('R5', 'JML', body)
 
-            worksheet575.conditional_format(5, 0, row575_10+4, 15,
+            worksheet575.conditional_format(5, 0, row575_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet575.merge_range(
@@ -16610,20 +17409,22 @@
             worksheet575.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet575.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet575.merge_range('F21:F22', 'KELAS', header)
-            worksheet575.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet575.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet575.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet575.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet575.write('G22', 'MAT', body)
             worksheet575.write('H22', 'IND', body)
             worksheet575.write('I22', 'ENG', body)
-            worksheet575.write('J22', 'IPAS', body)
-            worksheet575.write('K22', 'JML', body)
-            worksheet575.write('L22', 'MAT', body)
-            worksheet575.write('M22', 'IND', body)
-            worksheet575.write('N22', 'ENG', body)
-            worksheet575.write('O22', 'IPAS', body)
-            worksheet575.write('P22', 'JML', body)
+            worksheet575.write('J22', 'IPA', body)
+            worksheet575.write('K22', 'IPS', body)
+            worksheet575.write('L22', 'JML', body)
+            worksheet575.write('M22', 'MAT', body)
+            worksheet575.write('N22', 'IND', body)
+            worksheet575.write('O22', 'ENG', body)
+            worksheet575.write('P22', 'IPA', body)
+            worksheet575.write('Q22', 'IPS', body)
+            worksheet575.write('R22', 'JML', body)
 
-            worksheet575.conditional_format(22, 0, row575+21, 15,
+            worksheet575.conditional_format(22, 0, row575+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 576
@@ -16647,20 +17448,22 @@
             worksheet576.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet576.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet576.merge_range('F4:F5', 'KELAS', header)
-            worksheet576.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet576.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet576.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet576.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet576.write('G5', 'MAT', body)
             worksheet576.write('H5', 'IND', body)
             worksheet576.write('I5', 'ENG', body)
-            worksheet576.write('J5', 'IPAS', body)
-            worksheet576.write('K5', 'JML', body)
-            worksheet576.write('L5', 'MAT', body)
-            worksheet576.write('M5', 'IND', body)
-            worksheet576.write('N5', 'ENG', body)
-            worksheet576.write('O5', 'IPAS', body)
-            worksheet576.write('P5', 'JML', body)
+            worksheet576.write('J5', 'IPA', body)
+            worksheet576.write('K5', 'IPS', body)
+            worksheet576.write('L5', 'JML', body)
+            worksheet576.write('M5', 'MAT', body)
+            worksheet576.write('N5', 'IND', body)
+            worksheet576.write('O5', 'ENG', body)
+            worksheet576.write('P5', 'IPA', body)
+            worksheet576.write('Q5', 'IPS', body)
+            worksheet576.write('R5', 'JML', body)
 
-            worksheet576.conditional_format(5, 0, row576_10+4, 15,
+            worksheet576.conditional_format(5, 0, row576_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet576.merge_range(
@@ -16675,20 +17478,22 @@
             worksheet576.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet576.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet576.merge_range('F21:F22', 'KELAS', header)
-            worksheet576.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet576.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet576.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet576.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet576.write('G22', 'MAT', body)
             worksheet576.write('H22', 'IND', body)
             worksheet576.write('I22', 'ENG', body)
-            worksheet576.write('J22', 'IPAS', body)
-            worksheet576.write('K22', 'JML', body)
-            worksheet576.write('L22', 'MAT', body)
-            worksheet576.write('M22', 'IND', body)
-            worksheet576.write('N22', 'ENG', body)
-            worksheet576.write('O22', 'IPAS', body)
-            worksheet576.write('P22', 'JML', body)
+            worksheet576.write('J22', 'IPA', body)
+            worksheet576.write('K22', 'IPS', body)
+            worksheet576.write('L22', 'JML', body)
+            worksheet576.write('M22', 'MAT', body)
+            worksheet576.write('N22', 'IND', body)
+            worksheet576.write('O22', 'ENG', body)
+            worksheet576.write('P22', 'IPA', body)
+            worksheet576.write('Q22', 'IPS', body)
+            worksheet576.write('R22', 'JML', body)
 
-            worksheet576.conditional_format(22, 0, row576+21, 15,
+            worksheet576.conditional_format(22, 0, row576+21, 17,
                                             {'type': 'no_errors', 'format': border})
             # worksheet 588
             worksheet588.insert_image('A1', r'logo resmi nf.jpg')
@@ -16711,20 +17516,22 @@
             worksheet588.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet588.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet588.merge_range('F4:F5', 'KELAS', header)
-            worksheet588.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet588.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet588.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet588.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet588.write('G5', 'MAT', body)
             worksheet588.write('H5', 'IND', body)
             worksheet588.write('I5', 'ENG', body)
-            worksheet588.write('J5', 'IPAS', body)
-            worksheet588.write('K5', 'JML', body)
-            worksheet588.write('L5', 'MAT', body)
-            worksheet588.write('M5', 'IND', body)
-            worksheet588.write('N5', 'ENG', body)
-            worksheet588.write('O5', 'IPAS', body)
-            worksheet588.write('P5', 'JML', body)
+            worksheet588.write('J5', 'IPA', body)
+            worksheet588.write('K5', 'IPS', body)
+            worksheet588.write('L5', 'JML', body)
+            worksheet588.write('M5', 'MAT', body)
+            worksheet588.write('N5', 'IND', body)
+            worksheet588.write('O5', 'ENG', body)
+            worksheet588.write('P5', 'IPA', body)
+            worksheet588.write('Q5', 'IPS', body)
+            worksheet588.write('R5', 'JML', body)
 
-            worksheet588.conditional_format(5, 0, row588_10+4, 15,
+            worksheet588.conditional_format(5, 0, row588_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet588.merge_range(
@@ -16739,20 +17546,22 @@
             worksheet588.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet588.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet588.merge_range('F21:F22', 'KELAS', header)
-            worksheet588.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet588.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet588.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet588.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet588.write('G22', 'MAT', body)
             worksheet588.write('H22', 'IND', body)
             worksheet588.write('I22', 'ENG', body)
-            worksheet588.write('J22', 'IPAS', body)
-            worksheet588.write('K22', 'JML', body)
-            worksheet588.write('L22', 'MAT', body)
-            worksheet588.write('M22', 'IND', body)
-            worksheet588.write('N22', 'ENG', body)
-            worksheet588.write('O22', 'IPAS', body)
-            worksheet588.write('P22', 'JML', body)
+            worksheet588.write('J22', 'IPA', body)
+            worksheet588.write('K22', 'IPS', body)
+            worksheet588.write('L22', 'JML', body)
+            worksheet588.write('M22', 'MAT', body)
+            worksheet588.write('N22', 'IND', body)
+            worksheet588.write('O22', 'ENG', body)
+            worksheet588.write('P22', 'IPA', body)
+            worksheet588.write('Q22', 'IPS', body)
+            worksheet588.write('R22', 'JML', body)
 
-            worksheet588.conditional_format(22, 0, row588+21, 15,
+            worksheet588.conditional_format(22, 0, row588+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 661
@@ -16776,20 +17585,22 @@
             worksheet661.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet661.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet661.merge_range('F4:F5', 'KELAS', header)
-            worksheet661.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet661.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet661.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet661.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet661.write('G5', 'MAT', body)
             worksheet661.write('H5', 'IND', body)
             worksheet661.write('I5', 'ENG', body)
-            worksheet661.write('J5', 'IPAS', body)
-            worksheet661.write('K5', 'JML', body)
-            worksheet661.write('L5', 'MAT', body)
-            worksheet661.write('M5', 'IND', body)
-            worksheet661.write('N5', 'ENG', body)
-            worksheet661.write('O5', 'IPAS', body)
-            worksheet661.write('P5', 'JML', body)
+            worksheet661.write('J5', 'IPA', body)
+            worksheet661.write('K5', 'IPS', body)
+            worksheet661.write('L5', 'JML', body)
+            worksheet661.write('M5', 'MAT', body)
+            worksheet661.write('N5', 'IND', body)
+            worksheet661.write('O5', 'ENG', body)
+            worksheet661.write('P5', 'IPA', body)
+            worksheet661.write('Q5', 'IPS', body)
+            worksheet661.write('R5', 'JML', body)
 
-            worksheet661.conditional_format(5, 0, row661_10+4, 15,
+            worksheet661.conditional_format(5, 0, row661_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet661.merge_range(
@@ -16804,20 +17615,22 @@
             worksheet661.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet661.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet661.merge_range('F21:F22', 'KELAS', header)
-            worksheet661.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet661.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet661.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet661.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet661.write('G22', 'MAT', body)
             worksheet661.write('H22', 'IND', body)
             worksheet661.write('I22', 'ENG', body)
-            worksheet661.write('J22', 'IPAS', body)
-            worksheet661.write('K22', 'JML', body)
-            worksheet661.write('L22', 'MAT', body)
-            worksheet661.write('M22', 'IND', body)
-            worksheet661.write('N22', 'ENG', body)
-            worksheet661.write('O22', 'IPAS', body)
-            worksheet661.write('P22', 'JML', body)
+            worksheet661.write('J22', 'IPA', body)
+            worksheet661.write('K22', 'IPS', body)
+            worksheet661.write('L22', 'JML', body)
+            worksheet661.write('M22', 'MAT', body)
+            worksheet661.write('N22', 'IND', body)
+            worksheet661.write('O22', 'ENG', body)
+            worksheet661.write('P22', 'IPA', body)
+            worksheet661.write('Q22', 'IPS', body)
+            worksheet661.write('R22', 'JML', body)
 
-            worksheet661.conditional_format(22, 0, row661+21, 15,
+            worksheet661.conditional_format(22, 0, row661+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             # worksheet 662
@@ -16841,20 +17654,22 @@
             worksheet662.merge_range('D4:D5', 'NAMA SISWA', header)
             worksheet662.merge_range('E4:E5', 'SEKOLAH', header)
             worksheet662.merge_range('F4:F5', 'KELAS', header)
-            worksheet662.merge_range('G4:K4', 'JUMLAH BENAR', header)
-            worksheet662.merge_range('L4:P4', 'NILAI STANDAR', header)
+            worksheet662.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet662.merge_range('M4:R4', 'NILAI STANDAR', header)
             worksheet662.write('G5', 'MAT', body)
             worksheet662.write('H5', 'IND', body)
             worksheet662.write('I5', 'ENG', body)
-            worksheet662.write('J5', 'IPAS', body)
-            worksheet662.write('K5', 'JML', body)
-            worksheet662.write('L5', 'MAT', body)
-            worksheet662.write('M5', 'IND', body)
-            worksheet662.write('N5', 'ENG', body)
-            worksheet662.write('O5', 'IPAS', body)
-            worksheet662.write('P5', 'JML', body)
+            worksheet662.write('J5', 'IPA', body)
+            worksheet662.write('K5', 'IPS', body)
+            worksheet662.write('L5', 'JML', body)
+            worksheet662.write('M5', 'MAT', body)
+            worksheet662.write('N5', 'IND', body)
+            worksheet662.write('O5', 'ENG', body)
+            worksheet662.write('P5', 'IPA', body)
+            worksheet662.write('Q5', 'IPS', body)
+            worksheet662.write('R5', 'JML', body)
 
-            worksheet662.conditional_format(5, 0, row662_10+4, 15,
+            worksheet662.conditional_format(5, 0, row662_10+4, 17,
                                             {'type': 'no_errors', 'format': border})
 
             worksheet662.merge_range(
@@ -16869,20 +17684,491 @@
             worksheet662.merge_range('D21:D22', 'NAMA SISWA', header)
             worksheet662.merge_range('E21:E22', 'SEKOLAH', header)
             worksheet662.merge_range('F21:F22', 'KELAS', header)
-            worksheet662.merge_range('G21:K21', 'JUMLAH BENAR', header)
-            worksheet662.merge_range('L21:P21', 'NILAI STANDAR', header)
+            worksheet662.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet662.merge_range('M21:R21', 'NILAI STANDAR', header)
             worksheet662.write('G22', 'MAT', body)
             worksheet662.write('H22', 'IND', body)
             worksheet662.write('I22', 'ENG', body)
-            worksheet662.write('J22', 'IPAS', body)
-            worksheet662.write('K22', 'JML', body)
-            worksheet662.write('L22', 'MAT', body)
-            worksheet662.write('M22', 'IND', body)
-            worksheet662.write('N22', 'ENG', body)
-            worksheet662.write('O22', 'IPAS', body)
-            worksheet662.write('P22', 'JML', body)
+            worksheet662.write('J22', 'IPA', body)
+            worksheet662.write('K22', 'IPS', body)
+            worksheet662.write('L22', 'JML', body)
+            worksheet662.write('M22', 'MAT', body)
+            worksheet662.write('N22', 'IND', body)
+            worksheet662.write('O22', 'ENG', body)
+            worksheet662.write('P22', 'IPA', body)
+            worksheet662.write('Q22', 'IPS', body)
+            worksheet662.write('R22', 'JML', body)
 
-            worksheet662.conditional_format(22, 0, row662+21, 15,
+            worksheet662.conditional_format(22, 0, row662+21, 17,
+                                            {'type': 'no_errors', 'format': border})
+
+            workbook.close()
+            st.success("File siap diunduh!")
+
+            # Tombol unduh file
+            with open(file_path, "rb") as f:
+                bytes_data = f.read()
+            st.download_button(label="Unduh File", data=bytes_data,
+                               file_name=file_name)
+    
+        uploaded_file = st.file_uploader(
+            'Letakkan file excel NILAI STANDAR [LOKASI SEKOLAH KERJASAMA]', type='xlsx')
+
+        if uploaded_file is not None:
+            df = pd.read_excel(uploaded_file)
+
+            # 89
+            r = df.shape[0]-5
+            # 90
+            s = df.shape[0]-4
+            # 91
+            t = df.shape[0]-3
+            # 92
+            u = df.shape[0]-2
+
+            # JUMLAH PESERTA
+            peserta = df.iloc[r, 23]
+
+            # rata-rata jumlah benar
+            rata_mat = df.iloc[r, 156]
+            rata_ind = df.iloc[r, 157]
+            rata_eng = df.iloc[r, 158]
+            rata_ipa = df.iloc[r, 159]
+            rata_ips = df.iloc[r, 160]
+            rata_jml = df.iloc[r, 161]
+
+            # rata-rata nilai standar
+            rata_Smat = df.iloc[t, 167]
+            rata_Sind = df.iloc[t, 168]
+            rata_Seng = df.iloc[t, 169]
+            rata_Sipa = df.iloc[t, 170]
+            rata_Sips = df.iloc[t, 171]
+            rata_Sjml = df.iloc[t, 172]
+
+            max_mat = df.iloc[t, 156]
+            max_ind = df.iloc[t, 157]
+            max_eng = df.iloc[t, 158]
+            max_ipa = df.iloc[t, 159]
+            max_ips = df.iloc[t, 160]
+            max_jml = df.iloc[t, 161]
+
+            # max nilai standar
+            max_Smat = df.iloc[r, 167]
+            max_Sind = df.iloc[r, 168]
+            max_Seng = df.iloc[r, 169]
+            max_Sipa = df.iloc[r, 170]
+            max_Sips = df.iloc[r, 171]
+            max_Sjml = df.iloc[r, 172]
+
+            # min jumlah benar
+            min_mat = df.iloc[u, 156]
+            min_ind = df.iloc[u, 157]
+            min_eng = df.iloc[u, 158]
+            min_ipa = df.iloc[u, 159]
+            min_ips = df.iloc[u, 160]
+            min_jml = df.iloc[u, 161]
+
+            # min nilai standar
+            min_Smat = df.iloc[s, 167]
+            min_Sind = df.iloc[s, 168]
+            min_Seng = df.iloc[s, 169]
+            min_Sipa = df.iloc[s, 170]
+            min_Sips = df.iloc[s, 171]
+            min_Sjml = df.iloc[s, 172]
+
+            data_jml_benar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPA', 'IPS', 'JUMLAH (JML)'],
+                              'TERENDAH': [min_mat, min_ind, min_eng, min_ipa, min_ips, min_jml],
+                              'RATA-RATA': [rata_mat, rata_ind, rata_eng, rata_ipa, rata_ips, rata_jml],
+                              'TERTINGGI': [max_mat, max_ind, max_eng, max_ipa, max_ips, max_jml]}
+
+            jml_benar = pd.DataFrame(data_jml_benar)
+
+            data_n_standar = {'BIDANG STUDI': ['MATEMATIKA (MAT)', 'B. INDONESIA (IND)', 'B. INGGRIS (ENG)', 'IPA', 'IPS', 'JUMLAH (JML)'],
+                              'TERENDAH': [min_Smat, min_Sind, min_Seng, min_Sipa, min_Sips, min_Sjml],
+                              'RATA-RATA': [rata_Smat, rata_Sind, rata_Seng, rata_Sipa, rata_Sips, rata_Sjml],
+                              'TERTINGGI': [max_Smat, max_Sind, max_Seng, max_Sipa, max_Sips, max_Sjml]}
+
+            n_standar = pd.DataFrame(data_n_standar)
+
+            data_jml_peserta = {'JUMLAH PESERTA': [peserta]}
+
+            jml_peserta = pd.DataFrame(data_jml_peserta)
+
+            data_jml_soal = {'BIDANG STUDI': ['MAT', 'IND', 'ENG', 'IPA', 'IPS'],
+                             'JUMLAH': [JML_SOAL_MAT, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_IPA, JML_SOAL_IPS]}
+
+            jml_soal = pd.DataFrame(data_jml_soal)
+
+            df = df[['LOKASI', 'RANK LOK.', 'RANK NAS.', 'NOMOR NF', 'NAMA SISWA', 'NAMA SEKOLAH', 'KELAS',
+                    'MAT', 'IND', 'ENG', 'IPA', 'IPS', 'JML', 'S_MAT', 'S_IND', 'S_ENG', 'S_IPA', 'S_IPS', 'S_JML']]
+
+            # sort best 150
+            grouped = df.groupby('LOKASI')
+            dfs = []  # List kosong untuk menyimpan DataFrame yang akan digabungkan
+            for name, group in grouped:
+                dfs.append(group)
+            best150 = pd.concat(dfs)
+
+            # sort setiap lokasi
+            sort701 = df[df['LOKASI'] == 701]
+            
+            # best150
+            best150_all = best150.sort_values(
+                by=['RANK NAS.'], ascending=[True])
+            del best150_all['LOKASI']
+            del best150_all['RANK LOK.']
+            best150_all = best150_all.drop(
+                best150_all[(best150_all['RANK NAS.'] > 150)].index)
+
+            # 10 besar setiap lokasi
+            # 701
+            sort701_10 = sort701.sort_values(
+                by=['RANK LOK.'], ascending=[True])
+            del sort701_10['LOKASI']
+            sort701_10 = sort701_10.drop(
+                sort701_10[(sort701_10['RANK LOK.'] > 10)].index)
+            
+            # All 701
+            sort701 = sort701.sort_values(by=['NAMA SISWA'], ascending=[True])
+            del sort701['LOKASI']
+            
+            # jumlah row
+            # 150
+            rowBest150_all = best150_all.shape[0]
+            rowBest150 = best150.shape[0]
+            # 701
+            row701_10 = sort701_10.shape[0]
+            row701 = sort701.shape[0]
+            
+            # Create a Pandas Excel writer using XlsxWriter as the engine.
+            # Path file hasil penyimpanan
+            file_name = f"{kelas}_{penilaian}_{semester}_lokasi_sekolah_kerjasama.xlsx"
+            file_path = tempfile.gettempdir() + '/' + file_name
+
+            # Menyimpan file Excel
+            writer = pd.ExcelWriter(file_path, engine='xlsxwriter')
+
+            # Convert the dataframe to an XlsxWriter Excel object cover.
+            jml_benar.to_excel(writer, sheet_name='cover',
+                               startrow=10,
+                               startcol=0,
+                               index=False,
+                               )
+
+            # Convert the dataframe to an XlsxWriter Excel object cover.
+            n_standar.to_excel(writer, sheet_name='cover',
+                               startrow=21,
+                               startcol=0,
+                               index=False,
+                               header=False)
+
+            # Convert the dataframe to an XlsxWriter Excel object cover.
+            jml_peserta.to_excel(writer, sheet_name='cover',
+                                 startrow=21,
+                                 startcol=5,
+                                 index=False,
+                                 header=False)
+
+            # Convert the dataframe to an XlsxWriter Excel object cover.
+            jml_soal.to_excel(writer, sheet_name='cover',
+                              startrow=13,
+                              startcol=5,
+                              index=False,
+                              header=False)
+
+            # Ranking 150
+            best150_all.to_excel(writer, sheet_name='best_150',
+                                 startrow=5,
+                                 startcol=0,
+                                 index=False,
+                                 header=False)
+
+            # 701
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort701_10.to_excel(writer, sheet_name='701',
+                                startrow=5,
+                                startcol=0,
+                                index=False,
+                                header=False)
+            # Convert the dataframe to an XlsxWriter Excel object.
+            sort701.to_excel(writer, sheet_name='701',
+                             startrow=22,
+                             startcol=0,
+                             index=False,
+                             header=False)
+            
+            # Get the xlsxwriter objects from the dataframe writer object.
+            workbook = writer.book
+
+            # membuat worksheet baru
+            worksheetcover = writer.sheets['cover']
+            worksheetbest = writer.sheets['best_150']
+            worksheet701 = writer.sheets['701']
+            
+            # format workbook
+            titleCover = workbook.add_format({
+                'bold': 1,
+                'border': 0,
+                'align': 'left',
+                'valign': 'vcenter',
+                'font_color': '#00058E',
+                'font_size': 52,
+                'font_name': 'Arial Black'})
+            sub_titleCover = workbook.add_format({
+                'bold': 0,
+                'border': 0,
+                'align': 'left',
+                'valign': 'vcenter',
+                'font_size': 27,
+                'font_name': 'Arial Unicode MS'})
+            headerCover = workbook.add_format({
+                'bold': 1,
+                'border': 0,
+                'align': 'left',
+                'valign': 'vcenter',
+                'font_size': 24,
+                'font_name': 'Arial Rounded MT Bold'})
+            sub_headerCover = workbook.add_format({
+                'bold': 0,
+                'border': 0,
+                'align': 'left',
+                'valign': 'vcenter',
+                'font_size': 16,
+                'font_name': 'Arial'})
+            sub_header1Cover = workbook.add_format({
+                'bold': 1,
+                'border': 0,
+                'align': 'center',
+                'valign': 'vcenter',
+                'font_size': 20,
+                'font_name': 'Arial'})
+            kelasCover = workbook.add_format({
+                'bold': 1,
+                'border': 1,
+                'align': 'center',
+                'valign': 'vcenter',
+                'font_size': 40,
+                'font_name': 'Arial Rounded MT Bold'})
+            borderCover = workbook.add_format({
+                'bottom': 1,
+                'top': 1,
+                'left': 1,
+                'right': 1})
+            centerCover = workbook.add_format({
+                'align': 'center',
+                'font_size': 12,
+                'font_name': 'Arial'})
+            center1Cover = workbook.add_format({
+                'align': 'center',
+                'font_size': 20,
+                'font_name': 'Arial'})
+            bodyCover = workbook.add_format({
+                'bold': 1,
+                'border': 1,
+                'align': 'center',
+                'valign': 'vcenter',
+                'font_size': 12,
+                'font_name': 'Arial',
+                'bg_color': 'FFF684'})
+
+            center = workbook.add_format({
+                'align': 'center',
+                'font_size': 10,
+                'font_name': 'Arial'})
+            left = workbook.add_format({
+                'align': 'left',
+                'font_size': 10,
+                'font_name': 'Arial'})
+            title = workbook.add_format({
+                'bold': 1,
+                'border': 0,
+                'align': 'center',
+                'valign': 'vcenter',
+                'font_color': '#00058E',
+                'font_size': 12,
+                'font_name': 'Arial'})
+            sub_title = workbook.add_format({
+                'bold': 1,
+                'border': 0,
+                'align': 'center',
+                'valign': 'vcenter',
+                'font_size': 12,
+                'font_name': 'Arial'})
+            subTitle = workbook.add_format({
+                'bold': 1,
+                'border': 0,
+                'align': 'center',
+                'valign': 'vcenter',
+                'font_size': 14,
+                'font_name': 'Arial'})
+            header = workbook.add_format({
+                'bold': 1,
+                'border': 1,
+                'align': 'center',
+                'valign': 'vcenter',
+                'font_size': 10,
+                'font_name': 'Arial',
+                'bg_color': 'FFF684'})
+            body = workbook.add_format({
+                'bold': 0,
+                'border': 1,
+                'align': 'center',
+                'font_size': 10,
+                'font_name': 'Arial',
+                'bg_color': 'FFF684'})
+            border = workbook.add_format({
+                'bottom': 1,
+                'top': 1,
+                'left': 1,
+                'right': 1})
+
+            # worksheet cover
+            worksheetcover.conditional_format(16, 0, 11, 3,
+                                              {'type': 'no_errors', 'format': borderCover})
+
+            worksheetcover.insert_image('F1', r'logo nf.jpg')
+
+            worksheetcover.merge_range('A10:A11', 'BIDANG STUDI', bodyCover)
+            worksheetcover.merge_range('B10:B11', 'TERENDAH', bodyCover)
+            worksheetcover.merge_range('C10:C11', 'RATA-RATA', bodyCover)
+            worksheetcover.merge_range('D10:D11', 'TERTINGGI', bodyCover)
+            worksheetcover.merge_range('A20:A21', 'BIDANG STUDI', bodyCover)
+            worksheetcover.merge_range('B20:B21', 'TERENDAH', bodyCover)
+            worksheetcover.merge_range('C20:C21', 'RATA-RATA', bodyCover)
+            worksheetcover.merge_range('D20:D21', 'TERTINGGI', bodyCover)
+            worksheetcover.write('F13', 'BIDANG STUDI', bodyCover)
+            worksheetcover.merge_range('F20:F21', 'JUMLAH', sub_header1Cover)
+            worksheetcover.merge_range('F23:F24', 'PESERTA', sub_header1Cover)
+            worksheetcover.write('G13', 'JUMLAH', bodyCover)
+            worksheetcover.set_column('A:A', 25.71, centerCover)
+            worksheetcover.set_column('B:B', 15, centerCover)
+            worksheetcover.set_column('C:C', 15, centerCover)
+            worksheetcover.set_column('D:D', 15, centerCover)
+            worksheetcover.set_column('F:F', 25.71, centerCover)
+            worksheetcover.set_column('G:G', 13, centerCover)
+            worksheetcover.merge_range('A1:F3', 'DAFTAR NILAI', titleCover)
+            worksheetcover.merge_range(
+                'A4:F5', fr'{penilaian}', sub_titleCover)
+            worksheetcover.merge_range(
+                'A6:F7', fr'{semester} TAHUN {tahun}', headerCover)
+            worksheetcover.write('A9', 'JUMLAH BENAR', sub_headerCover)
+            worksheetcover.write('A19', 'NILAI STANDAR', sub_headerCover)
+            worksheetcover.merge_range('F8:G9', fr'{kelas}-{kurikulum}', kelasCover)
+            worksheetcover.merge_range(
+                'F11:G12', 'JUMLAH SOAL', sub_header1Cover)
+
+            worksheetcover.conditional_format(26, 0, 21, 3,
+                                              {'type': 'no_errors', 'format': borderCover})
+
+            worksheetcover.conditional_format(17, 6, 13, 5,
+                                              {'type': 'no_errors', 'format': borderCover})
+
+            worksheetcover.conditional_format(21, 5, 21, 5,
+                                              {'type': 'no_errors', 'format': borderCover})
+
+            # workseet best_150
+            worksheetbest.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheetbest.set_column('A:A', 5.43, center)
+            worksheetbest.set_column('B:B', 11.43, center)
+            worksheetbest.set_column('C:C', 34.29, left)
+            worksheetbest.set_column('D:D', 36.71, left)
+            worksheetbest.set_column('E:E', 7.57, left)
+            worksheetbest.set_column('F:Q', 6.29, center)
+            worksheetbest.merge_range(
+                'A1:Q1', fr'150 SISWA KELAS {kelas} PERINGKAT TERTINGGI NF NASIONAL', title)
+            worksheetbest.merge_range(
+                'A2:Q2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
+            worksheetbest.merge_range('A4:A5', 'RANK', header)
+            worksheetbest.merge_range('B4:B5', 'NOMOR NF', header)
+            worksheetbest.merge_range('C4:C5', 'NAMA SISWA', header)
+            worksheetbest.merge_range('D4:D5', 'SEKOLAH', header)
+            worksheetbest.merge_range('E4:E5', 'KELAS', header)
+            worksheetbest.merge_range('F4:K4', 'JUMLAH BENAR', header)
+            worksheetbest.merge_range('L4:Q4', 'NILAI STANDAR', header)
+            worksheetbest.write('F5', 'MAT', body)
+            worksheetbest.write('G5', 'IND', body)
+            worksheetbest.write('H5', 'ENG', body)
+            worksheetbest.write('I5', 'IPA', body)
+            worksheetbest.write('J5', 'IPS', body)
+            worksheetbest.write('K5', 'JML', body)
+            worksheetbest.write('L5', 'MAT', body)
+            worksheetbest.write('M5', 'IND', body)
+            worksheetbest.write('N5', 'ENG', body)
+            worksheetbest.write('O5', 'IPA', body)
+            worksheetbest.write('P5', 'IPS', body)
+            worksheetbest.write('Q5', 'JML', body)
+
+            worksheetbest.conditional_format(5, 0, rowBest150_all+4, 16,
+                                             {'type': 'no_errors', 'format': border})
+
+            # worksheet 701
+            worksheet701.insert_image('A1', r'logo resmi nf.jpg')
+
+            worksheet701.set_column('A:A', 7, center)
+            worksheet701.set_column('B:B', 6, center)
+            worksheet701.set_column('C:C', 18.14, center)
+            worksheet701.set_column('D:D', 25, left)
+            worksheet701.set_column('E:E', 13.14, left)
+            worksheet701.set_column('F:F', 8.57, center)
+            worksheet701.set_column('G:R', 5, center)
+            worksheet701.merge_range(
+                'A1:R1', fr'10 SISWA KELAS {kelas} PERINGKAT TERTINGGI SMPN 19 PERCONTOHAN BANDA ACEH', title)
+            worksheet701.merge_range(
+                'A2:R2', fr'{penilaian} - {semester} TAHUN {tahun}', sub_title)
+            worksheet701.write('A5', 'LOKASI', header)
+            worksheet701.write('B5', 'TOTAL', header)
+            worksheet701.merge_range('A4:B4', 'RANK', header)
+            worksheet701.merge_range('C4:C5', 'NOMOR NF', header)
+            worksheet701.merge_range('D4:D5', 'NAMA SISWA', header)
+            worksheet701.merge_range('E4:E5', 'SEKOLAH', header)
+            worksheet701.merge_range('F4:F5', 'KELAS', header)
+            worksheet701.merge_range('G4:L4', 'JUMLAH BENAR', header)
+            worksheet701.merge_range('M4:R4', 'NILAI STANDAR', header)
+            worksheet701.write('G5', 'MAT', body)
+            worksheet701.write('H5', 'IND', body)
+            worksheet701.write('I5', 'ENG', body)
+            worksheet701.write('J5', 'IPA', body)
+            worksheet701.write('K5', 'IPS', body)
+            worksheet701.write('L5', 'JML', body)
+            worksheet701.write('M5', 'MAT', body)
+            worksheet701.write('N5', 'IND', body)
+            worksheet701.write('O5', 'ENG', body)
+            worksheet701.write('P5', 'IPA', body)
+            worksheet701.write('Q5', 'IPS', body)
+            worksheet701.write('R5', 'JML', body)
+
+            worksheet701.conditional_format(5, 0, row701_10+4, 17,
+                                            {'type': 'no_errors', 'format': border})
+
+            worksheet701.merge_range(
+                'A17:R17', fr'KELAS {kelas} - LOKASI SMPN 19 PERCONTOHAN BANDA ACEH', title)
+            worksheet701.merge_range('A18:R18', fr'{penilaian}', subTitle)
+            worksheet701.merge_range(
+                'A19:R19', fr'{semester} TAHUN {tahun}', sub_title)
+            worksheet701.write('A22', 'LOKASI', header)
+            worksheet701.write('B22', 'TOTAL', header)
+            worksheet701.merge_range('A21:B21', 'RANK', header)
+            worksheet701.merge_range('C21:C22', 'NOMOR NF', header)
+            worksheet701.merge_range('D21:D22', 'NAMA SISWA', header)
+            worksheet701.merge_range('E21:E22', 'SEKOLAH', header)
+            worksheet701.merge_range('F21:F22', 'KELAS', header)
+            worksheet701.merge_range('G21:L21', 'JUMLAH BENAR', header)
+            worksheet701.merge_range('M21:R21', 'NILAI STANDAR', header)
+            worksheet701.write('G22', 'MAT', body)
+            worksheet701.write('H22', 'IND', body)
+            worksheet701.write('I22', 'ENG', body)
+            worksheet701.write('J22', 'IPA', body)
+            worksheet701.write('K22', 'IPS', body)
+            worksheet701.write('L22', 'JML', body)
+            worksheet701.write('M22', 'MAT', body)
+            worksheet701.write('N22', 'IND', body)
+            worksheet701.write('O22', 'ENG', body)
+            worksheet701.write('P22', 'IPA', body)
+            worksheet701.write('Q22', 'IPS', body)
+            worksheet701.write('R22', 'JML', body)
+
+            worksheet701.conditional_format(22, 0, row701+21, 17,
                                             {'type': 'no_errors', 'format': border})
 
             workbook.close()
