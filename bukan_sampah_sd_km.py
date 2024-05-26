@@ -1,6 +1,6 @@
 
 
-    if selected_file == "Lok. SMP (KM SB)":
+    if selected_file == "Lok. 10, 11 IPS (K13)":
         # menghilangkan hamburger
         st.markdown("""
         <style>
@@ -17,14 +17,14 @@
 
         st.info("Jika melihat pesan error di paling bawah, silahkan refresh")
         st.title("Olahan untuk Lokasi")
-        st.header("SMP (KM SB)")
+        st.header("10, 11 IPS (K13)")
 
         col6 = st.container()
 
         with col6:
             KELAS = st.selectbox(
                 "KELAS",
-                ("--Pilih Kelas--", "8 SMP SB"))
+                ("--Pilih Kelas--", "10 IPS", "11 IPS"))
 
         col7 = st.container()
 
@@ -38,7 +38,7 @@
         with col8:
             PENILAIAN = st.selectbox(
                 "PENILAIAN",
-                ("--Pilih Penilaian--", "SUMATIF TENGAH SEMESTER"))
+                ("--Pilih Penilaian--", "SUM TENGAH SEMESTER"))
 
         col9 = st.container()
 
