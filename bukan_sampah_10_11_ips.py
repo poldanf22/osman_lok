@@ -50,7 +50,7 @@
         TAHUN = st.text_input("Masukkan Tahun Ajaran", value="",
                               placeholder="contoh: 2022-2023")
 
-        col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12, col13 = st.columns(13)
+        col1, col2, col3, col4 = st.columns(4)
 
         with col1:
             MTK_1 = st.selectbox(
@@ -71,6 +71,8 @@
             ENG = st.selectbox(
                 "JML. SOAL ENG.",
                 ("--Pilih--", 25, 30, 35, 40, 45))
+
+        col5, col6, col7, col8, col9 = st.columns(5)
 
         with col5:
             SEJ = st.selectbox(
@@ -97,6 +99,8 @@
                 "JML. SOAL ANT.",
                 ("--Pilih--", 25, 30, 35, 40, 45))
         
+        col10, col11, col12, col13 = st.columns(4)
+
         with col10:
             BIO = st.selectbox(
                 "JML. SOAL BIO.",
@@ -268,7 +272,7 @@
             jml_peserta = pd.DataFrame(data_jml_peserta)
 
             data_jml_soal = {'BIDANG STUDI': ['MAT_1', 'MAT_2', 'IND', 'ENG', 'SEJ', 'EKO', 'SOS', 'GEO', 'ANT', 'BIO', 'FIS', 'KIM_1', 'KIM_2'],
-                             'JUMLAH': [JML_SOAL_MAT_1, JML_SOAL_MAT_2, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_SEJ, JML_SOAL_EKO, , JML_SOAL_SOS, JML_SOAL_GEO, JML_SOAL_ANT, JML_SOAL_BIO, JML_SOAL_FIS, JML_SOAL_KIM_1, JML_SOAL_KIM_2]}
+                             'JUMLAH': [JML_SOAL_MAT_1, JML_SOAL_MAT_2, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_SEJ, JML_SOAL_EKO, JML_SOAL_SOS, JML_SOAL_GEO, JML_SOAL_ANT, JML_SOAL_BIO, JML_SOAL_FIS, JML_SOAL_KIM_1, JML_SOAL_KIM_2]}
 
             jml_soal = pd.DataFrame(data_jml_soal)
 
@@ -7875,7 +7879,7 @@
             jml_peserta = pd.DataFrame(data_jml_peserta)
 
             data_jml_soal = {'BIDANG STUDI': ['MAT_1', 'MAT_2', 'IND', 'ENG', 'SEJ', 'EKO', 'SOS', 'GEO', 'ANT', 'BIO', 'FIS', 'KIM_1', 'KIM_2'],
-                             'JUMLAH': [JML_SOAL_MAT_1, JML_SOAL_MAT_2, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_SEJ, JML_SOAL_EKO, , JML_SOAL_SOS, JML_SOAL_GEO, JML_SOAL_ANT, JML_SOAL_BIO, JML_SOAL_FIS, JML_SOAL_KIM_1, JML_SOAL_KIM_2]}
+                             'JUMLAH': [JML_SOAL_MAT_1, JML_SOAL_MAT_2, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_SEJ, JML_SOAL_EKO, JML_SOAL_SOS, JML_SOAL_GEO, JML_SOAL_ANT, JML_SOAL_BIO, JML_SOAL_FIS, JML_SOAL_KIM_1, JML_SOAL_KIM_2]}
 
             jml_soal = pd.DataFrame(data_jml_soal)
 
@@ -15096,7 +15100,7 @@
             jml_peserta = pd.DataFrame(data_jml_peserta)
 
             data_jml_soal = {'BIDANG STUDI': ['MAT_1', 'MAT_2', 'IND', 'ENG', 'SEJ', 'EKO', 'SOS', 'GEO', 'ANT', 'BIO', 'FIS', 'KIM_1', 'KIM_2'],
-                             'JUMLAH': [JML_SOAL_MAT_1, JML_SOAL_MAT_2, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_SEJ, JML_SOAL_EKO, , JML_SOAL_SOS, JML_SOAL_GEO, JML_SOAL_ANT, JML_SOAL_BIO, JML_SOAL_FIS, JML_SOAL_KIM_1, JML_SOAL_KIM_2]}
+                             'JUMLAH': [JML_SOAL_MAT_1, JML_SOAL_MAT_2, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_SEJ, JML_SOAL_EKO, JML_SOAL_SOS, JML_SOAL_GEO, JML_SOAL_ANT, JML_SOAL_BIO, JML_SOAL_FIS, JML_SOAL_KIM_1, JML_SOAL_KIM_2]}
 
             jml_soal = pd.DataFrame(data_jml_soal)
 
@@ -21549,7 +21553,7 @@
             jml_peserta = pd.DataFrame(data_jml_peserta)
 
             data_jml_soal = {'BIDANG STUDI': ['MAT_1', 'MAT_2', 'IND', 'ENG', 'SEJ', 'EKO', 'SOS', 'GEO', 'ANT', 'BIO', 'FIS', 'KIM_1', 'KIM_2'],
-                             'JUMLAH': [JML_SOAL_MAT_1, JML_SOAL_MAT_2, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_SEJ, JML_SOAL_EKO, , JML_SOAL_SOS, JML_SOAL_GEO, JML_SOAL_ANT, JML_SOAL_BIO, JML_SOAL_FIS, JML_SOAL_KIM_1, JML_SOAL_KIM_2]}
+                             'JUMLAH': [JML_SOAL_MAT_1, JML_SOAL_MAT_2, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_SEJ, JML_SOAL_EKO, JML_SOAL_SOS, JML_SOAL_GEO, JML_SOAL_ANT, JML_SOAL_BIO, JML_SOAL_FIS, JML_SOAL_KIM_1, JML_SOAL_KIM_2]}
 
             jml_soal = pd.DataFrame(data_jml_soal)
 
@@ -23522,7 +23526,7 @@
             jml_peserta = pd.DataFrame(data_jml_peserta)
 
             data_jml_soal = {'BIDANG STUDI': ['MAT_1', 'MAT_2', 'IND', 'ENG', 'SEJ', 'EKO', 'SOS', 'GEO', 'ANT', 'BIO', 'FIS', 'KIM_1', 'KIM_2'],
-                             'JUMLAH': [JML_SOAL_MAT_1, JML_SOAL_MAT_2, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_SEJ, JML_SOAL_EKO, , JML_SOAL_SOS, JML_SOAL_GEO, JML_SOAL_ANT, JML_SOAL_BIO, JML_SOAL_FIS, JML_SOAL_KIM_1, JML_SOAL_KIM_2]}
+                             'JUMLAH': [JML_SOAL_MAT_1, JML_SOAL_MAT_2, JML_SOAL_IND, JML_SOAL_ENG, JML_SOAL_SEJ, JML_SOAL_EKO, JML_SOAL_SOS, JML_SOAL_GEO, JML_SOAL_ANT, JML_SOAL_BIO, JML_SOAL_FIS, JML_SOAL_KIM_1, JML_SOAL_KIM_2]}
 
             jml_soal = pd.DataFrame(data_jml_soal)
 
